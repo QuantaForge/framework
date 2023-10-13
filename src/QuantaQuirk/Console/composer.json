@@ -14,7 +14,7 @@
         "quantaquirk/collections": "^1.0.0",
         "quantaquirk/contracts": "^1.0.0",
         "quantaquirk/macroable": "^1.0.0",
-        "quantaquirk/prompts": "^0.1.9",
+        "quantaquirk/prompts": "^1.0.0",
         "quantaquirk/support": "^1.0.0",
         "quantaquirk/view": "^1.0.0",
         "nunomaduro/termwind": "^1.13",
