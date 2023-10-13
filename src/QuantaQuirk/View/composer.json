@@ -1,0 +1,36 @@
+{
+    "name": "quantaquirk/view",
+    "description": "The QuantaQuirk View package.",
+        "license": "proprietary",
+    "authors": [
+        {
+            "name": "Tomáš Selič (Smisch-DEV)",
+            "email": "contact@smisch.sk"
+        }
+    ],
+    "require": {
+        "php": "^8.1",
+        "ext-tokenizer": "*",
+        "quantaquirk/collections": "^10.0",
+        "quantaquirk/container": "^10.0",
+        "quantaquirk/contracts": "^10.0",
+        "quantaquirk/events": "^10.0",
+        "quantaquirk/filesystem": "^10.0",
+        "quantaquirk/macroable": "^10.0",
+        "quantaquirk/support": "^10.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "QuantaQuirk\\View\\": ""
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "10.x-dev"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "dev"
+}
