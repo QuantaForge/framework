@@ -13,10 +13,7 @@ use QuantaQuirk\View\ViewFinderInterface;
 use InvalidArgumentException;
 use ReflectionClass;
 
-/**
- * @author Spatie bvba <info@spatie.be>
- * @author Taylor Otwell <taylor@quantaquirk.com>
- */
+
 class ComponentTagCompiler
 {
     /**
