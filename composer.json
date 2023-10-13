@@ -26,7 +26,7 @@
         "fruitcake/php-cors": "^1.2",
         "guzzlehttp/uri-template": "^1.0",
         "quantaquirk/prompts": "^1.0.0",
-        "quantaquirk/serializable-closure": "^1.3",
+        "quantaquirk/serializable-closure": "^1.0.0",
         "league/commonmark": "^2.2.1",
         "league/flysystem": "^3.8.0",
         "monolog/monolog": "^3.0",
