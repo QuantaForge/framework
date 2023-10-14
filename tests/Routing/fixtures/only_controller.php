@@ -7,7 +7,7 @@ class FooController extends BaseController
     /**
      * Display a listing of the resource.
      *
-     * @return \QuantaQuirk\Http\Response
+     * @return \QuantaForge\Http\Response
      */
     public function index()
     {
@@ -18,7 +18,7 @@ class FooController extends BaseController
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \QuantaQuirk\Http\Response
+     * @return \QuantaForge\Http\Response
      */
     public function show($id)
     {

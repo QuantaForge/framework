@@ -1,9 +1,9 @@
 <?php
 
-namespace QuantaQuirk\Tests\Validation;
+namespace QuantaForge\Tests\Validation;
 
-use QuantaQuirk\Validation\Rule;
-use QuantaQuirk\Validation\Rules\NotIn;
+use QuantaForge\Validation\Rule;
+use QuantaForge\Validation\Rules\NotIn;
 use PHPUnit\Framework\TestCase;
 
 include_once 'Enums.php';
@@ -12,9 +12,9 @@ class ValidationNotInRuleTest extends TestCase
 {
     public function testItCorrectlyFormatsAStringVersionOfTheRule()
     {
-        $rule = new NotIn(['QuantaQuirk', 'Framework', 'PHP']);
+        $rule = new NotIn(['QuantaForge', 'Framework', 'PHP']);
 
-        $this->assertSame('not_in:"QuantaQuirk","Framework","PHP"', (string) $rule);
+        $this->assertSame('not_in:"QuantaForge","Framework","PHP"', (string) $rule);
 
         $rule = Rule::notIn([1, 2, 3, 4]);
 

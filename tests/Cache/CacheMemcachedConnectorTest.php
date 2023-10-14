@@ -1,8 +1,8 @@
 <?php
 
-namespace QuantaQuirk\Tests\Cache;
+namespace QuantaForge\Tests\Cache;
 
-use QuantaQuirk\Cache\MemcachedConnector;
+use QuantaForge\Cache\MemcachedConnector;
 use Memcached;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;

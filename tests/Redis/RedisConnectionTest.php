@@ -1,13 +1,13 @@
 <?php
 
-namespace QuantaQuirk\Tests\Redis;
+namespace QuantaForge\Tests\Redis;
 
-use QuantaQuirk\Contracts\Events\Dispatcher;
-use QuantaQuirk\Foundation\Application;
-use QuantaQuirk\Foundation\Testing\Concerns\InteractsWithRedis;
-use QuantaQuirk\Redis\Connections\Connection;
-use QuantaQuirk\Redis\Connections\PhpRedisConnection;
-use QuantaQuirk\Redis\RedisManager;
+use QuantaForge\Contracts\Events\Dispatcher;
+use QuantaForge\Foundation\Application;
+use QuantaForge\Foundation\Testing\Concerns\InteractsWithRedis;
+use QuantaForge\Redis\Connections\Connection;
+use QuantaForge\Redis\Connections\PhpRedisConnection;
+use QuantaForge\Redis\RedisManager;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 use Predis\Client;
@@ -581,7 +581,7 @@ class RedisConnectionTest extends TestCase
         }
 
         $this->assertSame(
-            'quantaquirk',
+            'quantaforge',
             $this->connections()['persistent']->getPersistentID()
         );
     }
@@ -813,7 +813,7 @@ class RedisConnectionTest extends TestCase
                 'host' => 'overwrittenByUrl',
                 'port' => 'overwrittenByUrl',
                 'database' => 5,
-                'options' => ['prefix' => 'quantaquirk:'],
+                'options' => ['prefix' => 'quantaforge:'],
                 'timeout' => 0.5,
             ],
         ]))->connection();
@@ -824,10 +824,10 @@ class RedisConnectionTest extends TestCase
                 'host' => $host,
                 'port' => $port,
                 'database' => 6,
-                'options' => ['prefix' => 'quantaquirk:'],
+                'options' => ['prefix' => 'quantaforge:'],
                 'timeout' => 0.5,
                 'persistent' => true,
-                'persistent_id' => 'quantaquirk',
+                'persistent_id' => 'quantaforge',
             ],
         ]))->connection();
 

@@ -1,9 +1,9 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Events;
+namespace QuantaForge\Tests\Integration\Events;
 
-use QuantaQuirk\Database\DatabaseTransactionsManager;
-use QuantaQuirk\Support\Facades\Event;
+use QuantaForge\Database\DatabaseTransactionsManager;
+use QuantaForge\Support\Facades\Event;
 use Mockery as m;
 use Orchestra\Testbench\TestCase;
 

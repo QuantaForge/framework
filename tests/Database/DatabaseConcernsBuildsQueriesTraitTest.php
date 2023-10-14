@@ -1,8 +1,8 @@
 <?php
 
-namespace QuantaQuirk\Tests\Database;
+namespace QuantaForge\Tests\Database;
 
-use QuantaQuirk\Database\Concerns\BuildsQueries;
+use QuantaForge\Database\Concerns\BuildsQueries;
 use PHPUnit\Framework\TestCase;
 
 class DatabaseConcernsBuildsQueriesTraitTest extends TestCase

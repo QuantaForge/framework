@@ -1,9 +1,9 @@
 <?php
 
-namespace QuantaQuirk\Tests\Validation;
+namespace QuantaForge\Tests\Validation;
 
 use Exception;
-use QuantaQuirk\Validation\Rules\ProhibitedIf;
+use QuantaForge\Validation\Rules\ProhibitedIf;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use stdClass;

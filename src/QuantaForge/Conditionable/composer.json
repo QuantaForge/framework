@@ -1,0 +1,28 @@
+{
+    "name": "quantaforge/conditionable",
+    "description": "The QuantaForge Conditionable package.",
+        "license": "proprietary",
+    "authors": [
+        {
+            "name": "Tomáš Selič (Smisch-DEV)",
+            "email": "contact@smisch.sk"
+        }
+    ],
+    "require": {
+        "php": "^8.0.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "QuantaForge\\Support\\": ""
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "10.x-dev"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "dev"
+}

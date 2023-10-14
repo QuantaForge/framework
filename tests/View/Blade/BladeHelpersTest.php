@@ -1,6 +1,6 @@
 <?php
 
-namespace QuantaQuirk\Tests\View\Blade;
+namespace QuantaForge\Tests\View\Blade;
 
 class BladeHelpersTest extends AbstractBladeTestCase
 {
@@ -11,10 +11,10 @@ class BladeHelpersTest extends AbstractBladeTestCase
         $this->assertSame('<?php dd($var1); ?>', $this->compiler->compileString('@dd($var1)'));
         $this->assertSame('<?php dd($var1, $var2); ?>', $this->compiler->compileString('@dd($var1, $var2)'));
         $this->assertSame('<?php dump($var1, $var2); ?>', $this->compiler->compileString('@dump($var1, $var2)'));
-        $this->assertSame('<?php echo app(\'QuantaQuirk\Foundation\Vite\')(); ?>', $this->compiler->compileString('@vite'));
-        $this->assertSame('<?php echo app(\'QuantaQuirk\Foundation\Vite\')(); ?>', $this->compiler->compileString('@vite()'));
-        $this->assertSame('<?php echo app(\'QuantaQuirk\Foundation\Vite\')(\'resources/js/app.js\'); ?>', $this->compiler->compileString('@vite(\'resources/js/app.js\')'));
-        $this->assertSame('<?php echo app(\'QuantaQuirk\Foundation\Vite\')([\'resources/js/app.js\']); ?>', $this->compiler->compileString('@vite([\'resources/js/app.js\'])'));
-        $this->assertSame('<?php echo app(\'QuantaQuirk\Foundation\Vite\')->reactRefresh(); ?>', $this->compiler->compileString('@viteReactRefresh'));
+        $this->assertSame('<?php echo app(\'QuantaForge\Foundation\Vite\')(); ?>', $this->compiler->compileString('@vite'));
+        $this->assertSame('<?php echo app(\'QuantaForge\Foundation\Vite\')(); ?>', $this->compiler->compileString('@vite()'));
+        $this->assertSame('<?php echo app(\'QuantaForge\Foundation\Vite\')(\'resources/js/app.js\'); ?>', $this->compiler->compileString('@vite(\'resources/js/app.js\')'));
+        $this->assertSame('<?php echo app(\'QuantaForge\Foundation\Vite\')([\'resources/js/app.js\']); ?>', $this->compiler->compileString('@vite([\'resources/js/app.js\'])'));
+        $this->assertSame('<?php echo app(\'QuantaForge\Foundation\Vite\')->reactRefresh(); ?>', $this->compiler->compileString('@viteReactRefresh'));
     }
 }

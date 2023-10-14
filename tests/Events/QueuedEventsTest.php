@@ -1,14 +1,14 @@
 <?php
 
-namespace QuantaQuirk\Tests\Events;
+namespace QuantaForge\Tests\Events;
 
-use QuantaQuirk\Container\Container;
-use QuantaQuirk\Contracts\Queue\Queue;
-use QuantaQuirk\Contracts\Queue\ShouldQueue;
-use QuantaQuirk\Events\CallQueuedListener;
-use QuantaQuirk\Events\Dispatcher;
-use QuantaQuirk\Queue\QueueManager;
-use QuantaQuirk\Support\Testing\Fakes\QueueFake;
+use QuantaForge\Container\Container;
+use QuantaForge\Contracts\Queue\Queue;
+use QuantaForge\Contracts\Queue\ShouldQueue;
+use QuantaForge\Events\CallQueuedListener;
+use QuantaForge\Events\Dispatcher;
+use QuantaForge\Queue\QueueManager;
+use QuantaForge\Support\Testing\Fakes\QueueFake;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 

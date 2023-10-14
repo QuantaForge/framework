@@ -1,6 +1,6 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Console;
+namespace QuantaForge\Tests\Integration\Console;
 
 use Orchestra\Testbench\TestCase;
 

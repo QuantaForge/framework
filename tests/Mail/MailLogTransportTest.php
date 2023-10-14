@@ -1,9 +1,9 @@
 <?php
 
-namespace QuantaQuirk\Tests\Mail;
+namespace QuantaForge\Tests\Mail;
 
-use QuantaQuirk\Mail\Message;
-use QuantaQuirk\Mail\Transport\LogTransport;
+use QuantaForge\Mail\Message;
+use QuantaForge\Mail\Transport\LogTransport;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 use Orchestra\Testbench\TestCase;

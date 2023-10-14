@@ -1,17 +1,17 @@
 <?php
 
-namespace QuantaQuirk\Tests\Support;
+namespace QuantaForge\Tests\Support;
 
 use ArrayAccess;
 use ArrayIterator;
 use Countable;
-use QuantaQuirk\Contracts\Support\Htmlable;
-use QuantaQuirk\Support\Env;
-use QuantaQuirk\Support\Optional;
-use QuantaQuirk\Support\Sleep;
-use QuantaQuirk\Support\Stringable;
-use QuantaQuirk\Tests\Support\Fixtures\IntBackedEnum;
-use QuantaQuirk\Tests\Support\Fixtures\StringBackedEnum;
+use QuantaForge\Contracts\Support\Htmlable;
+use QuantaForge\Support\Env;
+use QuantaForge\Support\Optional;
+use QuantaForge\Support\Sleep;
+use QuantaForge\Support\Stringable;
+use QuantaForge\Tests\Support\Fixtures\IntBackedEnum;
+use QuantaForge\Tests\Support\Fixtures\StringBackedEnum;
 use IteratorAggregate;
 use LogicException;
 use Mockery as m;
@@ -565,8 +565,8 @@ class SupportHelpersTest extends TestCase
     public function testTraitUsesRecursive()
     {
         $this->assertSame([
-            'QuantaQuirk\Tests\Support\SupportTestTraitTwo' => 'QuantaQuirk\Tests\Support\SupportTestTraitTwo',
-            'QuantaQuirk\Tests\Support\SupportTestTraitOne' => 'QuantaQuirk\Tests\Support\SupportTestTraitOne',
+            'QuantaForge\Tests\Support\SupportTestTraitTwo' => 'QuantaForge\Tests\Support\SupportTestTraitTwo',
+            'QuantaForge\Tests\Support\SupportTestTraitOne' => 'QuantaForge\Tests\Support\SupportTestTraitOne',
         ],
             trait_uses_recursive(SupportTestClassOne::class));
 

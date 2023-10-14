@@ -1,9 +1,9 @@
 <?php
 
-namespace QuantaQuirk\Tests\Translation;
+namespace QuantaForge\Tests\Translation;
 
-use QuantaQuirk\Filesystem\Filesystem;
-use QuantaQuirk\Translation\FileLoader;
+use QuantaForge\Filesystem\Filesystem;
+use QuantaForge\Translation\FileLoader;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 

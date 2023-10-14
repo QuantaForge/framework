@@ -1,14 +1,14 @@
 <?php
 
-namespace QuantaQuirk\Tests\Config;
+namespace QuantaForge\Tests\Config;
 
-use QuantaQuirk\Config\Repository;
+use QuantaForge\Config\Repository;
 use PHPUnit\Framework\TestCase;
 
 class RepositoryTest extends TestCase
 {
     /**
-     * @var \QuantaQuirk\Config\Repository
+     * @var \QuantaForge\Config\Repository
      */
     protected $repository;
 

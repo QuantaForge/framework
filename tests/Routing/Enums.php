@@ -1,6 +1,6 @@
 <?php
 
-namespace QuantaQuirk\Tests\Routing;
+namespace QuantaForge\Tests\Routing;
 
 enum CategoryEnum
 {

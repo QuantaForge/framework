@@ -1,9 +1,9 @@
 <?php
 
-namespace QuantaQuirk\Tests\Pipeline;
+namespace QuantaForge\Tests\Pipeline;
 
-use QuantaQuirk\Container\Container;
-use QuantaQuirk\Pipeline\Pipeline;
+use QuantaForge\Container\Container;
+use QuantaForge\Pipeline\Pipeline;
 use PHPUnit\Framework\TestCase;
 use RuntimeException;
 use stdClass;

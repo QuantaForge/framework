@@ -1,18 +1,18 @@
 <?php
 
-namespace QuantaQuirk\Tests\Mail;
+namespace QuantaForge\Tests\Mail;
 
-use QuantaQuirk\Bus\Queueable;
-use QuantaQuirk\Container\Container;
-use QuantaQuirk\Contracts\Queue\ShouldQueue;
-use QuantaQuirk\Contracts\View\Factory;
-use QuantaQuirk\Filesystem\Filesystem;
-use QuantaQuirk\Filesystem\FilesystemManager;
-use QuantaQuirk\Foundation\Application;
-use QuantaQuirk\Mail\Mailable;
-use QuantaQuirk\Mail\Mailer;
-use QuantaQuirk\Mail\SendQueuedMailable;
-use QuantaQuirk\Support\Testing\Fakes\QueueFake;
+use QuantaForge\Bus\Queueable;
+use QuantaForge\Container\Container;
+use QuantaForge\Contracts\Queue\ShouldQueue;
+use QuantaForge\Contracts\View\Factory;
+use QuantaForge\Filesystem\Filesystem;
+use QuantaForge\Filesystem\FilesystemManager;
+use QuantaForge\Foundation\Application;
+use QuantaForge\Mail\Mailable;
+use QuantaForge\Mail\Mailer;
+use QuantaForge\Mail\SendQueuedMailable;
+use QuantaForge\Support\Testing\Fakes\QueueFake;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Mailer\Transport\TransportInterface;

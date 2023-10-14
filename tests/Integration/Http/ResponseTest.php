@@ -1,9 +1,9 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Http;
+namespace QuantaForge\Tests\Integration\Http;
 
-use QuantaQuirk\Http\Response;
-use QuantaQuirk\Support\Facades\Route;
+use QuantaForge\Http\Response;
+use QuantaForge\Support\Facades\Route;
 use JsonSerializable;
 use Orchestra\Testbench\TestCase;
 

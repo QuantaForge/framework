@@ -1,11 +1,11 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Console;
+namespace QuantaForge\Tests\Integration\Console;
 
 use Carbon\CarbonInterval;
-use QuantaQuirk\Contracts\Console\Kernel;
-use QuantaQuirk\Support\Carbon;
-use QuantaQuirk\Support\Facades\Config;
+use QuantaForge\Contracts\Console\Kernel;
+use QuantaForge\Support\Carbon;
+use QuantaForge\Support\Facades\Config;
 use Orchestra\Testbench\TestCase;
 use Symfony\Component\Console\Input\StringInput;
 use Symfony\Component\Console\Output\ConsoleOutput;

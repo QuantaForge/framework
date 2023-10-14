@@ -1,9 +1,9 @@
 <?php
 
-namespace QuantaQuirk\Tests\Database;
+namespace QuantaForge\Tests\Database;
 
-use QuantaQuirk\Database\Connection;
-use QuantaQuirk\Database\Query\Grammars\PostgresGrammar;
+use QuantaForge\Database\Connection;
+use QuantaForge\Database\Query\Grammars\PostgresGrammar;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 

@@ -1,14 +1,14 @@
 <?php
 
-namespace QuantaQuirk\Tests\View\Blade;
+namespace QuantaForge\Tests\View\Blade;
 
-use QuantaQuirk\View\ComponentAttributeBag;
+use QuantaForge\View\ComponentAttributeBag;
 
 class BladePropsTest extends AbstractBladeTestCase
 {
     public function testPropsAreCompiled()
     {
-        $this->assertSame('<?php $attributes ??= new \QuantaQuirk\View\ComponentAttributeBag; ?>
+        $this->assertSame('<?php $attributes ??= new \QuantaForge\View\ComponentAttributeBag; ?>
 <?php foreach($attributes->onlyProps([\'one\' => true, \'two\' => \'string\']) as $__key => $__value) {
     $$__key = $$__key ?? $__value;
 } ?>

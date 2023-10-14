@@ -1,15 +1,15 @@
 <?php
 
-namespace QuantaQuirk\Tests\Validation;
+namespace QuantaForge\Tests\Validation;
 
-use QuantaQuirk\Container\Container;
-use QuantaQuirk\Contracts\Validation\Rule as RuleContract;
-use QuantaQuirk\Support\Facades\Facade;
-use QuantaQuirk\Translation\ArrayLoader;
-use QuantaQuirk\Translation\Translator;
-use QuantaQuirk\Validation\Rules\Password;
-use QuantaQuirk\Validation\ValidationServiceProvider;
-use QuantaQuirk\Validation\Validator;
+use QuantaForge\Container\Container;
+use QuantaForge\Contracts\Validation\Rule as RuleContract;
+use QuantaForge\Support\Facades\Facade;
+use QuantaForge\Translation\ArrayLoader;
+use QuantaForge\Translation\Translator;
+use QuantaForge\Validation\Rules\Password;
+use QuantaForge\Validation\ValidationServiceProvider;
+use QuantaForge\Validation\Validator;
 use PHPUnit\Framework\TestCase;
 
 class ValidationPasswordRuleTest extends TestCase

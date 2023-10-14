@@ -1,20 +1,20 @@
 <?php
 
-namespace QuantaQuirk\Tests\Foundation;
+namespace QuantaForge\Tests\Foundation;
 
 use Exception;
-use QuantaQuirk\Auth\Access\AuthorizationException;
-use QuantaQuirk\Auth\Access\Response;
-use QuantaQuirk\Container\Container;
-use QuantaQuirk\Contracts\Translation\Translator;
-use QuantaQuirk\Contracts\Validation\Factory as ValidationFactoryContract;
-use QuantaQuirk\Contracts\Validation\Validator;
-use QuantaQuirk\Foundation\Http\FormRequest;
-use QuantaQuirk\Http\RedirectResponse;
-use QuantaQuirk\Routing\Redirector;
-use QuantaQuirk\Routing\UrlGenerator;
-use QuantaQuirk\Validation\Factory as ValidationFactory;
-use QuantaQuirk\Validation\ValidationException;
+use QuantaForge\Auth\Access\AuthorizationException;
+use QuantaForge\Auth\Access\Response;
+use QuantaForge\Container\Container;
+use QuantaForge\Contracts\Translation\Translator;
+use QuantaForge\Contracts\Validation\Factory as ValidationFactoryContract;
+use QuantaForge\Contracts\Validation\Validator;
+use QuantaForge\Foundation\Http\FormRequest;
+use QuantaForge\Http\RedirectResponse;
+use QuantaForge\Routing\Redirector;
+use QuantaForge\Routing\UrlGenerator;
+use QuantaForge\Validation\Factory as ValidationFactory;
+use QuantaForge\Validation\ValidationException;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 
@@ -181,8 +181,8 @@ class FoundationFormRequestTest extends TestCase
             }
         };
         $request->setContainer($container = new Container);
-        $container->instance(\QuantaQuirk\Contracts\Validation\Factory::class, (new \QuantaQuirk\Validation\Factory(
-            new \QuantaQuirk\Translation\Translator(new \QuantaQuirk\Translation\ArrayLoader(), 'en')
+        $container->instance(\QuantaForge\Contracts\Validation\Factory::class, (new \QuantaForge\Validation\Factory(
+            new \QuantaForge\Translation\Translator(new \QuantaForge\Translation\ArrayLoader(), 'en')
         ))->setContainer($container));
         $container->instance(InjectedDependency::class, new InjectedDependency('value-from-dependency'));
 
@@ -242,7 +242,7 @@ class FoundationFormRequestTest extends TestCase
      *
      * @param  array  $payload
      * @param  string  $class
-     * @return \QuantaQuirk\Foundation\Http\FormRequest
+     * @return \QuantaForge\Foundation\Http\FormRequest
      */
     protected function createRequest($payload = [], $class = FoundationTestFormRequestStub::class)
     {
@@ -262,8 +262,8 @@ class FoundationFormRequestTest extends TestCase
     /**
      * Create a new validation factory.
      *
-     * @param  \QuantaQuirk\Container\Container  $container
-     * @return \QuantaQuirk\Validation\Factory
+     * @param  \QuantaForge\Container\Container  $container
+     * @return \QuantaForge\Validation\Factory
      */
     protected function createValidationFactory($container)
     {
@@ -276,8 +276,8 @@ class FoundationFormRequestTest extends TestCase
     /**
      * Create a mock redirector.
      *
-     * @param  \QuantaQuirk\Http\Request  $request
-     * @return \QuantaQuirk\Routing\Redirector
+     * @param  \QuantaForge\Http\Request  $request
+     * @return \QuantaForge\Routing\Redirector
      */
     protected function createMockRedirector($request)
     {
@@ -298,7 +298,7 @@ class FoundationFormRequestTest extends TestCase
     /**
      * Create a mock URL generator.
      *
-     * @return \QuantaQuirk\Routing\UrlGenerator
+     * @return \QuantaForge\Routing\UrlGenerator
      */
     protected function createMockUrlGenerator()
     {
@@ -308,7 +308,7 @@ class FoundationFormRequestTest extends TestCase
     /**
      * Create a mock redirect response.
      *
-     * @return \QuantaQuirk\Http\RedirectResponse
+     * @return \QuantaForge\Http\RedirectResponse
      */
     protected function createMockRedirectResponse()
     {

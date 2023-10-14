@@ -1,24 +1,24 @@
 <?php
 
-namespace QuantaQuirk\Tests\View;
+namespace QuantaForge\Tests\View;
 
 use Closure;
 use ErrorException;
-use QuantaQuirk\Container\Container;
-use QuantaQuirk\Contracts\Events\Dispatcher as DispatcherContract;
-use QuantaQuirk\Contracts\View\Engine;
-use QuantaQuirk\Contracts\View\View as ViewContract;
-use QuantaQuirk\Events\Dispatcher;
-use QuantaQuirk\Filesystem\Filesystem;
-use QuantaQuirk\Support\HtmlString;
-use QuantaQuirk\Support\LazyCollection;
-use QuantaQuirk\View\Compilers\CompilerInterface;
-use QuantaQuirk\View\Engines\CompilerEngine;
-use QuantaQuirk\View\Engines\EngineResolver;
-use QuantaQuirk\View\Engines\PhpEngine;
-use QuantaQuirk\View\Factory;
-use QuantaQuirk\View\View;
-use QuantaQuirk\View\ViewFinderInterface;
+use QuantaForge\Container\Container;
+use QuantaForge\Contracts\Events\Dispatcher as DispatcherContract;
+use QuantaForge\Contracts\View\Engine;
+use QuantaForge\Contracts\View\View as ViewContract;
+use QuantaForge\Events\Dispatcher;
+use QuantaForge\Filesystem\Filesystem;
+use QuantaForge\Support\HtmlString;
+use QuantaForge\Support\LazyCollection;
+use QuantaForge\View\Compilers\CompilerInterface;
+use QuantaForge\View\Engines\CompilerEngine;
+use QuantaForge\View\Engines\EngineResolver;
+use QuantaForge\View\Engines\PhpEngine;
+use QuantaForge\View\Factory;
+use QuantaForge\View\View;
+use QuantaForge\View\ViewFinderInterface;
 use InvalidArgumentException;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
@@ -615,12 +615,12 @@ class ViewFactoryTest extends TestCase
         $factory->getDispatcher()->shouldReceive('dispatch');
         $factory->startComponent('component', ['name' => 'Taylor']);
         $factory->slot('title');
-        $factory->slot('website', 'quantaquirk.com', []);
+        $factory->slot('website', 'quantaforge.com', []);
         echo 'title<hr>';
         $factory->endSlot();
         echo 'component';
         $contents = $factory->renderComponent();
-        $this->assertSame('title<hr> component Taylor quantaquirk.com', $contents);
+        $this->assertSame('title<hr> component Taylor quantaforge.com', $contents);
     }
 
     public function testComponentHandlingUsingViewObject()
@@ -631,12 +631,12 @@ class ViewFactoryTest extends TestCase
         $factory->getDispatcher()->shouldReceive('dispatch');
         $factory->startComponent($factory->make('component'), ['name' => 'Taylor']);
         $factory->slot('title');
-        $factory->slot('website', 'quantaquirk.com', []);
+        $factory->slot('website', 'quantaforge.com', []);
         echo 'title<hr>';
         $factory->endSlot();
         echo 'component';
         $contents = $factory->renderComponent();
-        $this->assertSame('title<hr> component Taylor quantaquirk.com', $contents);
+        $this->assertSame('title<hr> component Taylor quantaforge.com', $contents);
     }
 
     public function testComponentHandlingUsingClosure()
@@ -652,20 +652,20 @@ class ViewFactoryTest extends TestCase
             return $factory->make('component');
         }, ['name' => 'Taylor']);
         $factory->slot('title');
-        $factory->slot('website', 'quantaquirk.com', []);
+        $factory->slot('website', 'quantaforge.com', []);
         echo 'title<hr>';
         $factory->endSlot();
         echo 'component';
         $contents = $factory->renderComponent();
-        $this->assertSame('title<hr> component Taylor quantaquirk.com', $contents);
+        $this->assertSame('title<hr> component Taylor quantaforge.com', $contents);
     }
 
     public function testComponentHandlingUsingHtmlable()
     {
         $factory = $this->getFactory();
-        $factory->startComponent(new HtmlString('quantaquirk.com'));
+        $factory->startComponent(new HtmlString('quantaforge.com'));
         $contents = $factory->renderComponent();
-        $this->assertSame('quantaquirk.com', $contents);
+        $this->assertSame('quantaforge.com', $contents);
     }
 
     public function testTranslation()

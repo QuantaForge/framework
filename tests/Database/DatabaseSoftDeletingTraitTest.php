@@ -1,9 +1,9 @@
 <?php
 
-namespace QuantaQuirk\Tests\Database;
+namespace QuantaForge\Tests\Database;
 
-use QuantaQuirk\Database\Eloquent\SoftDeletes;
-use QuantaQuirk\Support\Carbon;
+use QuantaForge\Database\Eloquent\SoftDeletes;
+use QuantaForge\Support\Carbon;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 use stdClass;

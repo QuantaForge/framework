@@ -1,6 +1,6 @@
 <?php
 
-namespace QuantaQuirk\Tests\Database\Fixtures\Enums;
+namespace QuantaForge\Tests\Database\Fixtures\Enums;
 
 enum Foo: string
 {

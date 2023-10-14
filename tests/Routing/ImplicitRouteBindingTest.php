@@ -1,12 +1,12 @@
 <?php
 
-namespace QuantaQuirk\Tests\Routing;
+namespace QuantaForge\Tests\Routing;
 
-use QuantaQuirk\Container\Container;
-use QuantaQuirk\Database\Eloquent\Model;
-use QuantaQuirk\Routing\Exceptions\BackedEnumCaseNotFoundException;
-use QuantaQuirk\Routing\ImplicitRouteBinding;
-use QuantaQuirk\Routing\Route;
+use QuantaForge\Container\Container;
+use QuantaForge\Database\Eloquent\Model;
+use QuantaForge\Routing\Exceptions\BackedEnumCaseNotFoundException;
+use QuantaForge\Routing\ImplicitRouteBinding;
+use QuantaForge\Routing\Route;
 use PHPUnit\Framework\TestCase;
 
 include_once 'Enums.php';

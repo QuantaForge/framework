@@ -1,13 +1,13 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Database;
+namespace QuantaForge\Tests\Integration\Database;
 
-use QuantaQuirk\Database\Eloquent\Model;
-use QuantaQuirk\Database\Eloquent\SoftDeletes;
-use QuantaQuirk\Database\Schema\Blueprint;
-use QuantaQuirk\Support\Facades\Schema;
-use QuantaQuirk\Tests\Integration\Database\Fixtures\Post;
-use QuantaQuirk\Tests\Integration\Database\Fixtures\PostStringyKey;
+use QuantaForge\Database\Eloquent\Model;
+use QuantaForge\Database\Eloquent\SoftDeletes;
+use QuantaForge\Database\Schema\Blueprint;
+use QuantaForge\Support\Facades\Schema;
+use QuantaForge\Tests\Integration\Database\Fixtures\Post;
+use QuantaForge\Tests\Integration\Database\Fixtures\PostStringyKey;
 
 class EloquentDeleteTest extends DatabaseTestCase
 {

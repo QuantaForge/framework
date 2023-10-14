@@ -1,8 +1,8 @@
 <?php
 
-namespace QuantaQuirk\Tests\Http;
+namespace QuantaForge\Tests\Http;
 
-use QuantaQuirk\Http\Testing\FileFactory;
+use QuantaForge\Http\Testing\FileFactory;
 use PHPUnit\Framework\TestCase;
 
 /**

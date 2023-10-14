@@ -1,11 +1,11 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Events;
+namespace QuantaForge\Tests\Integration\Events;
 
-use QuantaQuirk\Events\CallQueuedListener;
-use QuantaQuirk\Events\InvokeQueuedClosure;
-use QuantaQuirk\Support\Facades\Bus;
-use QuantaQuirk\Support\Facades\Event;
+use QuantaForge\Events\CallQueuedListener;
+use QuantaForge\Events\InvokeQueuedClosure;
+use QuantaForge\Support\Facades\Bus;
+use QuantaForge\Support\Facades\Event;
 use Orchestra\Testbench\TestCase;
 
 class QueuedClosureListenerTest extends TestCase
@@ -14,7 +14,7 @@ class QueuedClosureListenerTest extends TestCase
     {
         Bus::fake();
 
-        Event::listen(\QuantaQuirk\Events\queueable(function (TestEvent $event) {
+        Event::listen(\QuantaForge\Events\queueable(function (TestEvent $event) {
             //
         })->catch(function (TestEvent $event) {
             //

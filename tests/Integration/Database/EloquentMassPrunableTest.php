@@ -1,15 +1,15 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Database;
+namespace QuantaForge\Tests\Integration\Database;
 
-use QuantaQuirk\Container\Container;
-use QuantaQuirk\Contracts\Events\Dispatcher;
-use QuantaQuirk\Database\Eloquent\MassPrunable;
-use QuantaQuirk\Database\Eloquent\Model;
-use QuantaQuirk\Database\Eloquent\SoftDeletes;
-use QuantaQuirk\Database\Events\ModelsPruned;
-use QuantaQuirk\Database\Schema\Blueprint;
-use QuantaQuirk\Support\Facades\Schema;
+use QuantaForge\Container\Container;
+use QuantaForge\Contracts\Events\Dispatcher;
+use QuantaForge\Database\Eloquent\MassPrunable;
+use QuantaForge\Database\Eloquent\Model;
+use QuantaForge\Database\Eloquent\SoftDeletes;
+use QuantaForge\Database\Events\ModelsPruned;
+use QuantaForge\Database\Schema\Blueprint;
+use QuantaForge\Support\Facades\Schema;
 use LogicException;
 use Mockery as m;
 

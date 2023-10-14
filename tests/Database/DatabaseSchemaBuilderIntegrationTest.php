@@ -1,11 +1,11 @@
 <?php
 
-namespace QuantaQuirk\Tests\Database;
+namespace QuantaForge\Tests\Database;
 
-use QuantaQuirk\Container\Container;
-use QuantaQuirk\Database\Capsule\Manager as DB;
-use QuantaQuirk\Database\Schema\Blueprint;
-use QuantaQuirk\Support\Facades\Facade;
+use QuantaForge\Container\Container;
+use QuantaForge\Database\Capsule\Manager as DB;
+use QuantaForge\Database\Schema\Blueprint;
+use QuantaForge\Support\Facades\Facade;
 use PHPUnit\Framework\TestCase;
 
 class DatabaseSchemaBuilderIntegrationTest extends TestCase

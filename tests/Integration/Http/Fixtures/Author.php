@@ -1,8 +1,8 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Http\Fixtures;
+namespace QuantaForge\Tests\Integration\Http\Fixtures;
 
-use QuantaQuirk\Database\Eloquent\Model;
+use QuantaForge\Database\Eloquent\Model;
 
 class Author extends Model
 {

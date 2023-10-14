@@ -1,10 +1,10 @@
 <?php
 
-namespace QuantaQuirk\Tests\Validation;
+namespace QuantaForge\Tests\Validation;
 
-use QuantaQuirk\Translation\ArrayLoader;
-use QuantaQuirk\Translation\Translator;
-use QuantaQuirk\Validation\Validator;
+use QuantaForge\Translation\ArrayLoader;
+use QuantaForge\Translation\Translator;
+use QuantaForge\Validation\Validator;
 use PHPUnit\Framework\TestCase;
 
 class ValidatorAfterRuleTest extends TestCase

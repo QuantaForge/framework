@@ -1,22 +1,22 @@
 <?php
 
-namespace QuantaQuirk\Tests\Auth;
+namespace QuantaForge\Tests\Auth;
 
-use QuantaQuirk\Auth\AuthenticationException;
-use QuantaQuirk\Auth\Events\Attempting;
-use QuantaQuirk\Auth\Events\Authenticated;
-use QuantaQuirk\Auth\Events\CurrentDeviceLogout;
-use QuantaQuirk\Auth\Events\Failed;
-use QuantaQuirk\Auth\Events\Login;
-use QuantaQuirk\Auth\Events\Logout;
-use QuantaQuirk\Auth\Events\Validated;
-use QuantaQuirk\Auth\SessionGuard;
-use QuantaQuirk\Contracts\Auth\Authenticatable;
-use QuantaQuirk\Contracts\Auth\UserProvider;
-use QuantaQuirk\Contracts\Events\Dispatcher;
-use QuantaQuirk\Contracts\Session\Session;
-use QuantaQuirk\Cookie\CookieJar;
-use QuantaQuirk\Support\Timebox;
+use QuantaForge\Auth\AuthenticationException;
+use QuantaForge\Auth\Events\Attempting;
+use QuantaForge\Auth\Events\Authenticated;
+use QuantaForge\Auth\Events\CurrentDeviceLogout;
+use QuantaForge\Auth\Events\Failed;
+use QuantaForge\Auth\Events\Login;
+use QuantaForge\Auth\Events\Logout;
+use QuantaForge\Auth\Events\Validated;
+use QuantaForge\Auth\SessionGuard;
+use QuantaForge\Contracts\Auth\Authenticatable;
+use QuantaForge\Contracts\Auth\UserProvider;
+use QuantaForge\Contracts\Events\Dispatcher;
+use QuantaForge\Contracts\Session\Session;
+use QuantaForge\Cookie\CookieJar;
+use QuantaForge\Support\Timebox;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Cookie;

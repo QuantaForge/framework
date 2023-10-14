@@ -1,14 +1,14 @@
 <?php
 
-namespace QuantaQuirk\Tests\Testing\Console;
+namespace QuantaForge\Tests\Testing\Console;
 
-use QuantaQuirk\Contracts\Routing\Registrar;
-use QuantaQuirk\Foundation\Auth\User;
-use QuantaQuirk\Foundation\Console\RouteListCommand;
-use QuantaQuirk\Foundation\Testing\Concerns\InteractsWithDeprecationHandling;
-use QuantaQuirk\Http\RedirectResponse;
-use QuantaQuirk\Routing\Controller;
-use QuantaQuirk\Support\Facades\Facade;
+use QuantaForge\Contracts\Routing\Registrar;
+use QuantaForge\Foundation\Auth\User;
+use QuantaForge\Foundation\Console\RouteListCommand;
+use QuantaForge\Foundation\Testing\Concerns\InteractsWithDeprecationHandling;
+use QuantaForge\Http\RedirectResponse;
+use QuantaForge\Routing\Controller;
+use QuantaForge\Support\Facades\Facade;
 use Orchestra\Testbench\TestCase;
 
 class RouteListCommandTest extends TestCase
@@ -16,12 +16,12 @@ class RouteListCommandTest extends TestCase
     use InteractsWithDeprecationHandling;
 
     /**
-     * @var \QuantaQuirk\Contracts\Routing\Registrar
+     * @var \QuantaForge\Contracts\Routing\Registrar
      */
     private $router;
 
     /**
-     * @var \QuantaQuirk\Routing\UrlGenerator
+     * @var \QuantaForge\Routing\UrlGenerator
      */
     private $urlGenerator;
 
@@ -64,8 +64,8 @@ class RouteListCommandTest extends TestCase
             ->expectsOutput('  GET|HEAD   / ..................................................... ')
             ->expectsOutput('  GET|HEAD   {account}.example.com/ ................................ ')
             ->expectsOutput('  GET|HEAD   closure ............................................... ')
-            ->expectsOutput('  POST       controller-invokable QuantaQuirk\Tests\Testing\Console\…')
-            ->expectsOutput('  GET|HEAD   controller-method/{user} QuantaQuirk\Tests\Testing\Cons…')
+            ->expectsOutput('  POST       controller-invokable QuantaForge\Tests\Testing\Console\…')
+            ->expectsOutput('  GET|HEAD   controller-method/{user} QuantaForge\Tests\Testing\Cons…')
             ->expectsOutput('  GET|HEAD   {account}.example.com/user/{id} ............. user.show')
             ->expectsOutput('')
             ->expectsOutput('                                                  Showing [6] routes')
@@ -90,8 +90,8 @@ class RouteListCommandTest extends TestCase
             ->assertSuccessful()
             ->expectsOutput('')
             ->expectsOutput('  GET|HEAD   closure ............................................... ')
-            ->expectsOutput('  POST       controller-invokable QuantaQuirk\\Tests\\Testing\\Console\\FooController')
-            ->expectsOutput('  GET|HEAD   controller-method/{user} QuantaQuirk\\Tests\\Testing\\Console\\FooController@show')
+            ->expectsOutput('  POST       controller-invokable QuantaForge\\Tests\\Testing\\Console\\FooController')
+            ->expectsOutput('  GET|HEAD   controller-method/{user} QuantaForge\\Tests\\Testing\\Console\\FooController@show')
             ->expectsOutput('  GET|HEAD   {account}.example.com/user/{id} ............. user.show')
             ->expectsOutput('             ⇂ web')
             ->expectsOutput('')
@@ -128,8 +128,8 @@ class RouteListCommandTest extends TestCase
         $this->artisan(RouteListCommand::class, ['-v' => true, '--except-vendor' => true])
             ->assertSuccessful()
             ->expectsOutput('')
-            ->expectsOutput('  GET|HEAD       foo/{user} QuantaQuirk\Tests\Testing\Console\FooController@show')
-            ->expectsOutput('  ANY            redirect .... QuantaQuirk\Routing\RedirectController')
+            ->expectsOutput('  GET|HEAD       foo/{user} QuantaForge\Tests\Testing\Console\FooController@show')
+            ->expectsOutput('  ANY            redirect .... QuantaForge\Routing\RedirectController')
             ->expectsOutput('  GET|HEAD       view .............................................. ')
             ->expectsOutput('')
             ->expectsOutput('                                                  Showing [3] routes')

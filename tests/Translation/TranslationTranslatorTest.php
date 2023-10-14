@@ -1,12 +1,12 @@
 <?php
 
-namespace QuantaQuirk\Tests\Translation;
+namespace QuantaForge\Tests\Translation;
 
-use QuantaQuirk\Contracts\Translation\Loader;
-use QuantaQuirk\Support\Carbon;
-use QuantaQuirk\Support\Collection;
-use QuantaQuirk\Translation\MessageSelector;
-use QuantaQuirk\Translation\Translator;
+use QuantaForge\Contracts\Translation\Loader;
+use QuantaForge\Support\Carbon;
+use QuantaForge\Support\Collection;
+use QuantaForge\Translation\MessageSelector;
+use QuantaForge\Translation\Translator;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 
@@ -238,7 +238,7 @@ class TranslationTranslatorTest extends TestCase
             $t->get('test', ['date' => $date])
         );
 
-        $t->stringable(function (\QuantaQuirk\Support\Carbon $carbon) {
+        $t->stringable(function (\QuantaForge\Support\Carbon $carbon) {
             return $carbon->format('jS M Y');
         });
         $this->assertSame(

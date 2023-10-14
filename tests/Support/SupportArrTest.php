@@ -1,11 +1,11 @@
 <?php
 
-namespace QuantaQuirk\Tests\Support;
+namespace QuantaForge\Tests\Support;
 
 use ArrayObject;
-use QuantaQuirk\Support\Arr;
-use QuantaQuirk\Support\Carbon;
-use QuantaQuirk\Support\Collection;
+use QuantaForge\Support\Arr;
+use QuantaForge\Support\Carbon;
+use QuantaForge\Support\Collection;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use stdClass;
@@ -145,9 +145,9 @@ class SupportArrTest extends TestCase
         $this->assertEquals(['age' => 26], Arr::except($array, ['name']));
         $this->assertEquals(['age' => 26], Arr::except($array, 'name'));
 
-        $array = ['name' => 'taylor', 'framework' => ['language' => 'PHP', 'name' => 'QuantaQuirk']];
+        $array = ['name' => 'taylor', 'framework' => ['language' => 'PHP', 'name' => 'QuantaForge']];
         $this->assertEquals(['name' => 'taylor'], Arr::except($array, 'framework'));
-        $this->assertEquals(['name' => 'taylor', 'framework' => ['name' => 'QuantaQuirk']], Arr::except($array, 'framework.language'));
+        $this->assertEquals(['name' => 'taylor', 'framework' => ['name' => 'QuantaForge']], Arr::except($array, 'framework.language'));
         $this->assertEquals(['framework' => ['language' => 'PHP']], Arr::except($array, ['name', 'framework.name']));
 
         $array = [1 => 'hAz', 2 => [5 => 'foo', 12 => 'baz']];

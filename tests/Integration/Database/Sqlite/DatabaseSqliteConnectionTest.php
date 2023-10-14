@@ -1,11 +1,11 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Database\Sqlite;
+namespace QuantaForge\Tests\Integration\Database\Sqlite;
 
-use QuantaQuirk\Database\Schema\Blueprint;
-use QuantaQuirk\Support\Facades\DB;
-use QuantaQuirk\Support\Facades\Schema;
-use QuantaQuirk\Tests\Integration\Database\DatabaseTestCase;
+use QuantaForge\Database\Schema\Blueprint;
+use QuantaForge\Support\Facades\DB;
+use QuantaForge\Support\Facades\Schema;
+use QuantaForge\Tests\Integration\Database\DatabaseTestCase;
 
 class DatabaseSqliteConnectionTest extends DatabaseTestCase
 {

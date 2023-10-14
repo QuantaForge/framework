@@ -1,21 +1,21 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Routing;
+namespace QuantaForge\Tests\Integration\Routing;
 
 use Exception;
-use QuantaQuirk\Database\Eloquent\ModelNotFoundException;
-use QuantaQuirk\Foundation\Http\FormRequest;
-use QuantaQuirk\Foundation\Http\Middleware\HandlePrecognitiveRequests;
-use QuantaQuirk\Foundation\Validation\ValidatesRequests;
-use QuantaQuirk\Http\Request;
-use QuantaQuirk\Routing\CallableDispatcher;
-use QuantaQuirk\Routing\Contracts\CallableDispatcher as CallableDispatcherContract;
-use QuantaQuirk\Routing\Contracts\ControllerDispatcher as ControllerDispatcherContract;
-use QuantaQuirk\Routing\ControllerDispatcher;
-use QuantaQuirk\Session\Middleware\StartSession;
-use QuantaQuirk\Support\Facades\Gate;
-use QuantaQuirk\Support\Facades\Route;
-use QuantaQuirk\Support\Facades\Validator;
+use QuantaForge\Database\Eloquent\ModelNotFoundException;
+use QuantaForge\Foundation\Http\FormRequest;
+use QuantaForge\Foundation\Http\Middleware\HandlePrecognitiveRequests;
+use QuantaForge\Foundation\Validation\ValidatesRequests;
+use QuantaForge\Http\Request;
+use QuantaForge\Routing\CallableDispatcher;
+use QuantaForge\Routing\Contracts\CallableDispatcher as CallableDispatcherContract;
+use QuantaForge\Routing\Contracts\ControllerDispatcher as ControllerDispatcherContract;
+use QuantaForge\Routing\ControllerDispatcher;
+use QuantaForge\Session\Middleware\StartSession;
+use QuantaForge\Support\Facades\Gate;
+use QuantaForge\Support\Facades\Route;
+use QuantaForge\Support\Facades\Validator;
 use Orchestra\Testbench\TestCase;
 
 function fail()

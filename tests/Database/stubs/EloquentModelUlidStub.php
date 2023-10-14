@@ -1,7 +1,7 @@
 <?php
 
-use QuantaQuirk\Database\Eloquent\Concerns\HasUlids;
-use QuantaQuirk\Database\Eloquent\Model;
+use QuantaForge\Database\Eloquent\Concerns\HasUlids;
+use QuantaForge\Database\Eloquent\Model;
 
 class EloquentModelUlidStub extends Model
 {

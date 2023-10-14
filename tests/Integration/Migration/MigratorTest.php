@@ -1,8 +1,8 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Migration;
+namespace QuantaForge\Tests\Integration\Migration;
 
-use QuantaQuirk\Support\Facades\DB;
+use QuantaForge\Support\Facades\DB;
 use Mockery as m;
 use Orchestra\Testbench\TestCase;
 use Symfony\Component\Console\Output\OutputInterface;

@@ -1,11 +1,11 @@
 <?php
 
-namespace QuantaQuirk\Tests\Filesystem;
+namespace QuantaForge\Tests\Filesystem;
 
-use QuantaQuirk\Contracts\Filesystem\FileNotFoundException;
-use QuantaQuirk\Filesystem\Filesystem;
-use QuantaQuirk\Support\LazyCollection;
-use QuantaQuirk\Testing\Assert;
+use QuantaForge\Contracts\Filesystem\FileNotFoundException;
+use QuantaForge\Filesystem\Filesystem;
+use QuantaForge\Support\LazyCollection;
+use QuantaForge\Testing\Assert;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 use SplFileInfo;

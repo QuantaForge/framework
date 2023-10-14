@@ -1,10 +1,10 @@
 <?php
 
-namespace QuantaQuirk\Tests\Foundation\Http;
+namespace QuantaForge\Tests\Foundation\Http;
 
-use QuantaQuirk\Config\Repository;
-use QuantaQuirk\Container\Container;
-use QuantaQuirk\Foundation\Http\HtmlDumper;
+use QuantaForge\Config\Repository;
+use QuantaForge\Container\Container;
+use QuantaForge\Foundation\Http\HtmlDumper;
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;
 use stdClass;

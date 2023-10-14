@@ -1,6 +1,6 @@
 <?php
 
-namespace QuantaQuirk\Tests\View\Blade;
+namespace QuantaForge\Tests\View\Blade;
 
 use InvalidArgumentException;
 
@@ -105,7 +105,7 @@ class BladeCustomTest extends AbstractBladeTestCase
 
         $string = '@custom($user)
 @endcustom';
-        $expected = '<?php if (\QuantaQuirk\Support\Facades\Blade::check(\'custom\', $user)): ?>
+        $expected = '<?php if (\QuantaForge\Support\Facades\Blade::check(\'custom\', $user)): ?>
 <?php endif; ?>';
         $this->assertEquals($expected, $this->compiler->compileString($string));
     }
@@ -120,8 +120,8 @@ class BladeCustomTest extends AbstractBladeTestCase
 @elsecustom($product)
 @else
 @endcustom';
-        $expected = '<?php if (\QuantaQuirk\Support\Facades\Blade::check(\'custom\', $user)): ?>
-<?php elseif (\QuantaQuirk\Support\Facades\Blade::check(\'custom\', $product)): ?>
+        $expected = '<?php if (\QuantaForge\Support\Facades\Blade::check(\'custom\', $user)): ?>
+<?php elseif (\QuantaForge\Support\Facades\Blade::check(\'custom\', $product)): ?>
 <?php else: ?>
 <?php endif; ?>';
         $this->assertEquals($expected, $this->compiler->compileString($string));
@@ -135,7 +135,7 @@ class BladeCustomTest extends AbstractBladeTestCase
 
         $string = '@unlesscustom($user)
 @endcustom';
-        $expected = '<?php if (! \QuantaQuirk\Support\Facades\Blade::check(\'custom\', $user)): ?>
+        $expected = '<?php if (! \QuantaForge\Support\Facades\Blade::check(\'custom\', $user)): ?>
 <?php endif; ?>';
         $this->assertEquals($expected, $this->compiler->compileString($string));
     }
@@ -149,8 +149,8 @@ class BladeCustomTest extends AbstractBladeTestCase
         $string = '@custom(0)
 @elsecustom(0)
 @endcustom';
-        $expected = '<?php if (\QuantaQuirk\Support\Facades\Blade::check(\'custom\', 0)): ?>
-<?php elseif (\QuantaQuirk\Support\Facades\Blade::check(\'custom\', 0)): ?>
+        $expected = '<?php if (\QuantaForge\Support\Facades\Blade::check(\'custom\', 0)): ?>
+<?php elseif (\QuantaForge\Support\Facades\Blade::check(\'custom\', 0)): ?>
 <?php endif; ?>';
         $this->assertEquals($expected, $this->compiler->compileString($string));
     }
@@ -193,7 +193,7 @@ class BladeCustomTest extends AbstractBladeTestCase
         $this->compiler->include('app.includes.input', 'input');
 
         $string = '@input';
-        $expected = '<?php echo $__env->make(\'app.includes.input\', [], \QuantaQuirk\Support\Arr::except(get_defined_vars(), [\'__data\', \'__path\']))->render(); ?>';
+        $expected = '<?php echo $__env->make(\'app.includes.input\', [], \QuantaForge\Support\Arr::except(get_defined_vars(), [\'__data\', \'__path\']))->render(); ?>';
         $this->assertEquals($expected, $this->compiler->compileString($string));
     }
 
@@ -202,7 +202,7 @@ class BladeCustomTest extends AbstractBladeTestCase
         $this->compiler->include('app.includes.input', 'input');
 
         $string = '@input([\'type\' => \'email\'])';
-        $expected = '<?php echo $__env->make(\'app.includes.input\', [\'type\' => \'email\'], \QuantaQuirk\Support\Arr::except(get_defined_vars(), [\'__data\', \'__path\']))->render(); ?>';
+        $expected = '<?php echo $__env->make(\'app.includes.input\', [\'type\' => \'email\'], \QuantaForge\Support\Arr::except(get_defined_vars(), [\'__data\', \'__path\']))->render(); ?>';
         $this->assertEquals($expected, $this->compiler->compileString($string));
     }
 
@@ -211,7 +211,7 @@ class BladeCustomTest extends AbstractBladeTestCase
         $this->compiler->include('app.includes.input');
 
         $string = '@input';
-        $expected = '<?php echo $__env->make(\'app.includes.input\', [], \QuantaQuirk\Support\Arr::except(get_defined_vars(), [\'__data\', \'__path\']))->render(); ?>';
+        $expected = '<?php echo $__env->make(\'app.includes.input\', [], \QuantaForge\Support\Arr::except(get_defined_vars(), [\'__data\', \'__path\']))->render(); ?>';
         $this->assertEquals($expected, $this->compiler->compileString($string));
     }
 
@@ -220,7 +220,7 @@ class BladeCustomTest extends AbstractBladeTestCase
         $this->compiler->include('app.includes.foreach');
 
         $string = '@foreach';
-        $expected = '<?php echo $__env->make(\'app.includes.foreach\', [], \QuantaQuirk\Support\Arr::except(get_defined_vars(), [\'__data\', \'__path\']))->render(); ?>';
+        $expected = '<?php echo $__env->make(\'app.includes.foreach\', [], \QuantaForge\Support\Arr::except(get_defined_vars(), [\'__data\', \'__path\']))->render(); ?>';
         $this->assertEquals($expected, $this->compiler->compileString($string));
     }
 

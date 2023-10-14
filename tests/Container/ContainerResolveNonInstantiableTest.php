@@ -1,8 +1,8 @@
 <?php
 
-namespace QuantaQuirk\Tests\Container;
+namespace QuantaForge\Tests\Container;
 
-use QuantaQuirk\Container\Container;
+use QuantaForge\Container\Container;
 use PHPUnit\Framework\TestCase;
 
 class ContainerResolveNonInstantiableTest extends TestCase
@@ -53,7 +53,7 @@ class ParentClass
 class VariadicParentClass
 {
     /**
-     * @var \QuantaQuirk\Tests\Container\ChildClass
+     * @var \QuantaForge\Tests\Container\ChildClass
      */
     public $child;
 

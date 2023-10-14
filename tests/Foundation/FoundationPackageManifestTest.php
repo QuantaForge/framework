@@ -1,9 +1,9 @@
 <?php
 
-namespace QuantaQuirk\Tests\Foundation;
+namespace QuantaForge\Tests\Foundation;
 
-use QuantaQuirk\Filesystem\Filesystem;
-use QuantaQuirk\Foundation\PackageManifest;
+use QuantaForge\Filesystem\Filesystem;
+use QuantaForge\Foundation\PackageManifest;
 use PHPUnit\Framework\TestCase;
 
 class FoundationPackageManifestTest extends TestCase

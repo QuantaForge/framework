@@ -1,9 +1,9 @@
 <?php
 
-namespace QuantaQuirk\Tests\Container;
+namespace QuantaForge\Tests\Container;
 
-use QuantaQuirk\Config\Repository;
-use QuantaQuirk\Container\Container;
+use QuantaForge\Config\Repository;
+use QuantaForge\Container\Container;
 use PHPUnit\Framework\TestCase;
 
 class ContextualBindingTest extends TestCase
@@ -368,7 +368,7 @@ class ContextualBindingTest extends TestCase
         $container->singleton('config', function () {
             return new Repository([
                 'test' => [
-                    'username' => 'quantaquirk',
+                    'username' => 'quantaforge',
                     'password' => 'hunter42',
                 ],
             ]);
@@ -386,7 +386,7 @@ class ContextualBindingTest extends TestCase
 
         $resolvedInstance = $container->make(ContainerTestContextInjectFromConfigIndividualValues::class);
 
-        $this->assertSame('quantaquirk', $resolvedInstance->username);
+        $this->assertSame('quantaforge', $resolvedInstance->username);
         $this->assertSame('hunter42', $resolvedInstance->password);
         $this->assertNull($resolvedInstance->alias);
     }
@@ -398,7 +398,7 @@ class ContextualBindingTest extends TestCase
         $container->singleton('config', function () {
             return new Repository([
                 'test' => [
-                    'username' => 'quantaquirk',
+                    'username' => 'quantaforge',
                     'password' => 'hunter42',
                     'alias' => 'lumen',
                 ],
@@ -422,7 +422,7 @@ class ContextualBindingTest extends TestCase
 
         $resolvedInstance = $container->make(ContainerTestContextInjectFromConfigIndividualValues::class);
 
-        $this->assertSame('quantaquirk', $resolvedInstance->username);
+        $this->assertSame('quantaforge', $resolvedInstance->username);
         $this->assertSame('hunter42', $resolvedInstance->password);
         $this->assertSame('lumen', $resolvedInstance->alias);
     }
@@ -463,7 +463,7 @@ class ContextualBindingTest extends TestCase
         $container->singleton('config', function () {
             return new Repository([
                 'test' => [
-                    'username' => 'quantaquirk',
+                    'username' => 'quantaforge',
                     'password' => 'hunter42',
                     'alias' => 'lumen',
                 ],
@@ -477,7 +477,7 @@ class ContextualBindingTest extends TestCase
 
         $resolvedInstance = $container->make(ContainerTestContextInjectFromConfigArray::class);
 
-        $this->assertSame('quantaquirk', $resolvedInstance->settings['username']);
+        $this->assertSame('quantaforge', $resolvedInstance->settings['username']);
         $this->assertSame('hunter42', $resolvedInstance->settings['password']);
         $this->assertSame('lumen', $resolvedInstance->settings['alias']);
     }

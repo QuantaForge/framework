@@ -1,11 +1,11 @@
 <?php
 
-namespace QuantaQuirk\Tests\Console;
+namespace QuantaForge\Tests\Console;
 
-use QuantaQuirk\Console\Scheduling\Event;
-use QuantaQuirk\Console\Scheduling\EventMutex;
-use QuantaQuirk\Foundation\Application;
-use QuantaQuirk\Support\Carbon;
+use QuantaForge\Console\Scheduling\Event;
+use QuantaForge\Console\Scheduling\EventMutex;
+use QuantaForge\Foundation\Application;
+use QuantaForge\Support\Carbon;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 

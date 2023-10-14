@@ -1,23 +1,23 @@
 <?php
 
-namespace QuantaQuirk\Tests\Database\EloquentRelationshipsTest;
+namespace QuantaForge\Tests\Database\EloquentRelationshipsTest;
 
-use QuantaQuirk\Database\Connection;
-use QuantaQuirk\Database\Eloquent\Builder;
-use QuantaQuirk\Database\Eloquent\Model;
-use QuantaQuirk\Database\Eloquent\Relations\BelongsTo;
-use QuantaQuirk\Database\Eloquent\Relations\BelongsToMany;
-use QuantaQuirk\Database\Eloquent\Relations\HasMany;
-use QuantaQuirk\Database\Eloquent\Relations\HasManyThrough;
-use QuantaQuirk\Database\Eloquent\Relations\HasOne;
-use QuantaQuirk\Database\Eloquent\Relations\HasOneThrough;
-use QuantaQuirk\Database\Eloquent\Relations\MorphMany;
-use QuantaQuirk\Database\Eloquent\Relations\MorphOne;
-use QuantaQuirk\Database\Eloquent\Relations\MorphTo;
-use QuantaQuirk\Database\Eloquent\Relations\MorphToMany;
-use QuantaQuirk\Database\Query\Builder as BaseBuilder;
-use QuantaQuirk\Database\Query\Grammars\Grammar;
-use QuantaQuirk\Database\Query\Processors\Processor;
+use QuantaForge\Database\Connection;
+use QuantaForge\Database\Eloquent\Builder;
+use QuantaForge\Database\Eloquent\Model;
+use QuantaForge\Database\Eloquent\Relations\BelongsTo;
+use QuantaForge\Database\Eloquent\Relations\BelongsToMany;
+use QuantaForge\Database\Eloquent\Relations\HasMany;
+use QuantaForge\Database\Eloquent\Relations\HasManyThrough;
+use QuantaForge\Database\Eloquent\Relations\HasOne;
+use QuantaForge\Database\Eloquent\Relations\HasOneThrough;
+use QuantaForge\Database\Eloquent\Relations\MorphMany;
+use QuantaForge\Database\Eloquent\Relations\MorphOne;
+use QuantaForge\Database\Eloquent\Relations\MorphTo;
+use QuantaForge\Database\Eloquent\Relations\MorphToMany;
+use QuantaForge\Database\Query\Builder as BaseBuilder;
+use QuantaForge\Database\Query\Grammars\Grammar;
+use QuantaForge\Database\Query\Processors\Processor;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 

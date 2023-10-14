@@ -1,16 +1,16 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Validation;
+namespace QuantaForge\Tests\Integration\Validation;
 
-use QuantaQuirk\Database\Eloquent\Model;
-use QuantaQuirk\Database\Schema\Blueprint;
-use QuantaQuirk\Support\Facades\Schema;
-use QuantaQuirk\Support\Str;
-use QuantaQuirk\Tests\Integration\Database\DatabaseTestCase;
-use QuantaQuirk\Translation\ArrayLoader;
-use QuantaQuirk\Translation\Translator;
-use QuantaQuirk\Validation\DatabasePresenceVerifier;
-use QuantaQuirk\Validation\Validator;
+use QuantaForge\Database\Eloquent\Model;
+use QuantaForge\Database\Schema\Blueprint;
+use QuantaForge\Support\Facades\Schema;
+use QuantaForge\Support\Str;
+use QuantaForge\Tests\Integration\Database\DatabaseTestCase;
+use QuantaForge\Translation\ArrayLoader;
+use QuantaForge\Translation\Translator;
+use QuantaForge\Validation\DatabasePresenceVerifier;
+use QuantaForge\Validation\Validator;
 
 class ValidatorTest extends DatabaseTestCase
 {

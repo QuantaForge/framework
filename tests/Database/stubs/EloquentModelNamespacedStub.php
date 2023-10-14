@@ -2,7 +2,7 @@
 
 namespace Foo\Bar;
 
-use QuantaQuirk\Database\Eloquent\Model;
+use QuantaForge\Database\Eloquent\Model;
 
 class EloquentModelNamespacedStub extends Model
 {

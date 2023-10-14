@@ -1,9 +1,9 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Database\MySql;
+namespace QuantaForge\Tests\Integration\Database\MySql;
 
-use QuantaQuirk\Database\Schema\Blueprint;
-use QuantaQuirk\Support\Facades\Schema;
+use QuantaForge\Database\Schema\Blueprint;
+use QuantaForge\Support\Facades\Schema;
 use stdClass;
 
 /**

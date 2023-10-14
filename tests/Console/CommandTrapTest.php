@@ -1,10 +1,10 @@
 <?php
 
-namespace QuantaQuirk\Tests\Console;
+namespace QuantaForge\Tests\Console;
 
-use QuantaQuirk\Console\Command;
-use QuantaQuirk\Console\Signals;
-use QuantaQuirk\Tests\Console\Fixtures\FakeSignalsRegistry;
+use QuantaForge\Console\Command;
+use QuantaForge\Console\Signals;
+use QuantaForge\Tests\Console\Fixtures\FakeSignalsRegistry;
 use PHPUnit\Framework\TestCase;
 
 class CommandTrapTest extends TestCase

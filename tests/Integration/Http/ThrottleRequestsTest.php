@@ -1,14 +1,14 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Http;
+namespace QuantaForge\Tests\Integration\Http;
 
-use QuantaQuirk\Cache\RateLimiter;
-use QuantaQuirk\Cache\RateLimiting\GlobalLimit;
-use QuantaQuirk\Container\Container;
-use QuantaQuirk\Http\Exceptions\ThrottleRequestsException;
-use QuantaQuirk\Routing\Middleware\ThrottleRequests;
-use QuantaQuirk\Support\Carbon;
-use QuantaQuirk\Support\Facades\Route;
+use QuantaForge\Cache\RateLimiter;
+use QuantaForge\Cache\RateLimiting\GlobalLimit;
+use QuantaForge\Container\Container;
+use QuantaForge\Http\Exceptions\ThrottleRequestsException;
+use QuantaForge\Routing\Middleware\ThrottleRequests;
+use QuantaForge\Support\Carbon;
+use QuantaForge\Support\Facades\Route;
 use Orchestra\Testbench\TestCase;
 use Throwable;
 
@@ -99,21 +99,21 @@ class ThrottleRequestsTest extends TestCase
     public function testItCanGenerateDefinitionViaStaticMethod()
     {
         $signature = (string) ThrottleRequests::using('gold-tier');
-        $this->assertSame('QuantaQuirk\Routing\Middleware\ThrottleRequests:gold-tier', $signature);
+        $this->assertSame('QuantaForge\Routing\Middleware\ThrottleRequests:gold-tier', $signature);
 
         $signature = (string) ThrottleRequests::with(25);
-        $this->assertSame('QuantaQuirk\Routing\Middleware\ThrottleRequests:25', $signature);
+        $this->assertSame('QuantaForge\Routing\Middleware\ThrottleRequests:25', $signature);
 
         $signature = (string) ThrottleRequests::with(25, 2);
-        $this->assertSame('QuantaQuirk\Routing\Middleware\ThrottleRequests:25,2', $signature);
+        $this->assertSame('QuantaForge\Routing\Middleware\ThrottleRequests:25,2', $signature);
 
         $signature = (string) ThrottleRequests::with(25, 2, 'foo');
-        $this->assertSame('QuantaQuirk\Routing\Middleware\ThrottleRequests:25,2,foo', $signature);
+        $this->assertSame('QuantaForge\Routing\Middleware\ThrottleRequests:25,2,foo', $signature);
 
         $signature = (string) ThrottleRequests::with(maxAttempts: 25, decayMinutes: 2, prefix: 'foo');
-        $this->assertSame('QuantaQuirk\Routing\Middleware\ThrottleRequests:25,2,foo', $signature);
+        $this->assertSame('QuantaForge\Routing\Middleware\ThrottleRequests:25,2,foo', $signature);
 
         $signature = (string) ThrottleRequests::with(prefix: 'foo');
-        $this->assertSame('QuantaQuirk\Routing\Middleware\ThrottleRequests:60,1,foo', $signature);
+        $this->assertSame('QuantaForge\Routing\Middleware\ThrottleRequests:60,1,foo', $signature);
     }
 }

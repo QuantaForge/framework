@@ -1,8 +1,8 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Database;
+namespace QuantaForge\Tests\Integration\Database;
 
-use QuantaQuirk\Support\Facades\Schema;
+use QuantaForge\Support\Facades\Schema;
 use Orchestra\Testbench\TestCase;
 
 class MigrateWithRealpathTest extends TestCase

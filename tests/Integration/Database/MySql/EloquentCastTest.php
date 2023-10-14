@@ -1,12 +1,12 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Database\MySql;
+namespace QuantaForge\Tests\Integration\Database\MySql;
 
-use QuantaQuirk\Contracts\Database\Eloquent\CastsAttributes;
-use QuantaQuirk\Database\Eloquent\Casts\Attribute;
-use QuantaQuirk\Database\Eloquent\Model;
-use QuantaQuirk\Support\Carbon;
-use QuantaQuirk\Support\Facades\Schema;
+use QuantaForge\Contracts\Database\Eloquent\CastsAttributes;
+use QuantaForge\Database\Eloquent\Casts\Attribute;
+use QuantaForge\Database\Eloquent\Model;
+use QuantaForge\Support\Carbon;
+use QuantaForge\Support\Facades\Schema;
 
 class EloquentCastTest extends MySqlTestCase
 {

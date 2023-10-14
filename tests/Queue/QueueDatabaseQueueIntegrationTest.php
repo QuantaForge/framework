@@ -1,22 +1,22 @@
 <?php
 
-namespace QuantaQuirk\Tests\Queue;
+namespace QuantaForge\Tests\Queue;
 
-use QuantaQuirk\Container\Container;
-use QuantaQuirk\Database\Capsule\Manager as DB;
-use QuantaQuirk\Database\Eloquent\Model as Eloquent;
-use QuantaQuirk\Database\Schema\Blueprint;
-use QuantaQuirk\Events\Dispatcher;
-use QuantaQuirk\Queue\DatabaseQueue;
-use QuantaQuirk\Queue\Events\JobQueued;
-use QuantaQuirk\Support\Carbon;
-use QuantaQuirk\Support\Str;
+use QuantaForge\Container\Container;
+use QuantaForge\Database\Capsule\Manager as DB;
+use QuantaForge\Database\Eloquent\Model as Eloquent;
+use QuantaForge\Database\Schema\Blueprint;
+use QuantaForge\Events\Dispatcher;
+use QuantaForge\Queue\DatabaseQueue;
+use QuantaForge\Queue\Events\JobQueued;
+use QuantaForge\Support\Carbon;
+use QuantaForge\Support\Str;
 use PHPUnit\Framework\TestCase;
 
 class QueueDatabaseQueueIntegrationTest extends TestCase
 {
     /**
-     * @var \QuantaQuirk\Queue\DatabaseQueue
+     * @var \QuantaForge\Queue\DatabaseQueue
      */
     protected $queue;
 
@@ -26,7 +26,7 @@ class QueueDatabaseQueueIntegrationTest extends TestCase
     protected $table;
 
     /**
-     * @var \QuantaQuirk\Container\Container
+     * @var \QuantaForge\Container\Container
      */
     protected $container;
 
@@ -78,7 +78,7 @@ class QueueDatabaseQueueIntegrationTest extends TestCase
     /**
      * Get a database connection instance.
      *
-     * @return \QuantaQuirk\Database\Connection
+     * @return \QuantaForge\Database\Connection
      */
     protected function connection()
     {
@@ -88,7 +88,7 @@ class QueueDatabaseQueueIntegrationTest extends TestCase
     /**
      * Get a schema builder instance.
      *
-     * @return \QuantaQuirk\Database\Schema\Builder
+     * @return \QuantaForge\Database\Schema\Builder
      */
     protected function schema()
     {
@@ -258,7 +258,7 @@ class QueueDatabaseQueueIntegrationTest extends TestCase
         });
 
         $this->queue->push('MyJob', [
-            'quantaquirk' => 'Framework',
+            'quantaforge' => 'Framework',
         ]);
 
         $this->assertIsArray($event->payload());

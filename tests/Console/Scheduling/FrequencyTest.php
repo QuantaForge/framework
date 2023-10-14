@@ -1,17 +1,17 @@
 <?php
 
-namespace QuantaQuirk\Tests\Console\Scheduling;
+namespace QuantaForge\Tests\Console\Scheduling;
 
-use QuantaQuirk\Console\Scheduling\Event;
-use QuantaQuirk\Console\Scheduling\EventMutex;
-use QuantaQuirk\Support\Carbon;
+use QuantaForge\Console\Scheduling\Event;
+use QuantaForge\Console\Scheduling\EventMutex;
+use QuantaForge\Support\Carbon;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 
 class FrequencyTest extends TestCase
 {
     /*
-     * @var \QuantaQuirk\Console\Scheduling\Event
+     * @var \QuantaForge\Console\Scheduling\Event
      */
     protected $event;
 

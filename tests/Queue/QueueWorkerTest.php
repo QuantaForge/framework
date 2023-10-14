@@ -1,22 +1,22 @@
 <?php
 
-namespace QuantaQuirk\Tests\Queue;
+namespace QuantaForge\Tests\Queue;
 
 use Exception;
-use QuantaQuirk\Container\Container;
-use QuantaQuirk\Contracts\Debug\ExceptionHandler;
-use QuantaQuirk\Contracts\Events\Dispatcher;
-use QuantaQuirk\Contracts\Queue\Job as QueueJobContract;
-use QuantaQuirk\Queue\Events\JobExceptionOccurred;
-use QuantaQuirk\Queue\Events\JobPopped;
-use QuantaQuirk\Queue\Events\JobPopping;
-use QuantaQuirk\Queue\Events\JobProcessed;
-use QuantaQuirk\Queue\Events\JobProcessing;
-use QuantaQuirk\Queue\MaxAttemptsExceededException;
-use QuantaQuirk\Queue\QueueManager;
-use QuantaQuirk\Queue\Worker;
-use QuantaQuirk\Queue\WorkerOptions;
-use QuantaQuirk\Support\Carbon;
+use QuantaForge\Container\Container;
+use QuantaForge\Contracts\Debug\ExceptionHandler;
+use QuantaForge\Contracts\Events\Dispatcher;
+use QuantaForge\Contracts\Queue\Job as QueueJobContract;
+use QuantaForge\Queue\Events\JobExceptionOccurred;
+use QuantaForge\Queue\Events\JobPopped;
+use QuantaForge\Queue\Events\JobPopping;
+use QuantaForge\Queue\Events\JobProcessed;
+use QuantaForge\Queue\Events\JobProcessing;
+use QuantaForge\Queue\MaxAttemptsExceededException;
+use QuantaForge\Queue\QueueManager;
+use QuantaForge\Queue\Worker;
+use QuantaForge\Queue\WorkerOptions;
+use QuantaForge\Support\Carbon;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 use RuntimeException;

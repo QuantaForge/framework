@@ -1,6 +1,6 @@
 <?php
 
-namespace QuantaQuirk\Tests\Console\Fixtures;
+namespace QuantaForge\Tests\Console\Fixtures;
 
 class FakeSignalsRegistry
 {

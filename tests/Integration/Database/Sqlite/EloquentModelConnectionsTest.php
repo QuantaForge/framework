@@ -1,11 +1,11 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Database\Sqlite;
+namespace QuantaForge\Tests\Integration\Database\Sqlite;
 
-use QuantaQuirk\Database\Eloquent\Model;
-use QuantaQuirk\Database\Schema\Blueprint;
-use QuantaQuirk\Support\Facades\Schema;
-use QuantaQuirk\Support\Str;
+use QuantaForge\Database\Eloquent\Model;
+use QuantaForge\Database\Schema\Blueprint;
+use QuantaForge\Support\Facades\Schema;
+use QuantaForge\Support\Str;
 use Orchestra\Testbench\TestCase;
 
 class EloquentModelConnectionsTest extends TestCase

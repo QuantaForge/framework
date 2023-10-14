@@ -1,8 +1,8 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Database;
+namespace QuantaForge\Tests\Integration\Database;
 
-use QuantaQuirk\Support\Facades\DB;
+use QuantaForge\Support\Facades\DB;
 use Orchestra\Testbench\TestCase;
 
 class RefreshCommandTest extends TestCase

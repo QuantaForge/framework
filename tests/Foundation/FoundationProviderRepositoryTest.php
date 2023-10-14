@@ -1,13 +1,13 @@
 <?php
 
-namespace QuantaQuirk\Tests\Foundation;
+namespace QuantaForge\Tests\Foundation;
 
 use Exception;
-use QuantaQuirk\Contracts\Foundation\Application as ApplicationContract;
-use QuantaQuirk\Filesystem\Filesystem;
-use QuantaQuirk\Foundation\Application;
-use QuantaQuirk\Foundation\ProviderRepository;
-use QuantaQuirk\Support\ServiceProvider;
+use QuantaForge\Contracts\Foundation\Application as ApplicationContract;
+use QuantaForge\Filesystem\Filesystem;
+use QuantaForge\Foundation\Application;
+use QuantaForge\Foundation\ProviderRepository;
+use QuantaForge\Support\ServiceProvider;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 use stdClass;

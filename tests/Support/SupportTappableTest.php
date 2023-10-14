@@ -1,8 +1,8 @@
 <?php
 
-namespace QuantaQuirk\Tests\Support;
+namespace QuantaForge\Tests\Support;
 
-use QuantaQuirk\Support\Traits\Tappable;
+use QuantaForge\Support\Traits\Tappable;
 use PHPUnit\Framework\TestCase;
 
 class SupportTappableTest extends TestCase

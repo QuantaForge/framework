@@ -1,6 +1,6 @@
 <?php
 
-use QuantaQuirk\Database\Eloquent\ModelNotFoundException;
+use QuantaForge\Database\Eloquent\ModelNotFoundException;
 
 use function PHPStan\Testing\assertType;
 

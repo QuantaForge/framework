@@ -1,8 +1,8 @@
 <?php
 
-namespace QuantaQuirk\Tests\Cache;
+namespace QuantaForge\Tests\Cache;
 
-use QuantaQuirk\Cache\NullStore;
+use QuantaForge\Cache\NullStore;
 use PHPUnit\Framework\TestCase;
 
 class CacheNullStoreTest extends TestCase

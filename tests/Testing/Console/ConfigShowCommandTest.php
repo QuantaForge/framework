@@ -1,8 +1,8 @@
 <?php
 
-namespace QuantaQuirk\Tests\Testing\Console;
+namespace QuantaForge\Tests\Testing\Console;
 
-use QuantaQuirk\Foundation\Console\ConfigShowCommand;
+use QuantaForge\Foundation\Console\ConfigShowCommand;
 use Orchestra\Testbench\TestCase;
 
 class ConfigShowCommandTest extends TestCase
@@ -38,7 +38,7 @@ class ConfigShowCommandTest extends TestCase
             ->expectsOutput('  float .................................................. 1.2  ')
             ->expectsOutput('  boolean ............................................... true  ')
             ->expectsOutput('  null .................................................. null  ')
-            ->expectsOutput('  array ⇁ 0 .. QuantaQuirk\Foundation\Console\ConfigShowCommand  ')
+            ->expectsOutput('  array ⇁ 0 .. QuantaForge\Foundation\Console\ConfigShowCommand  ')
             ->expectsOutput('  empty_array ............................................. []  ')
             ->expectsOutput('  assoc_array ⇁ foo ...................................... bar  ')
             ->expectsOutput('  class ............................................. stdClass  ');

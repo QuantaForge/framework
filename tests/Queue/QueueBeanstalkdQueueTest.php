@@ -1,11 +1,11 @@
 <?php
 
-namespace QuantaQuirk\Tests\Queue;
+namespace QuantaForge\Tests\Queue;
 
-use QuantaQuirk\Container\Container;
-use QuantaQuirk\Queue\BeanstalkdQueue;
-use QuantaQuirk\Queue\Jobs\BeanstalkdJob;
-use QuantaQuirk\Support\Str;
+use QuantaForge\Container\Container;
+use QuantaForge\Queue\BeanstalkdQueue;
+use QuantaForge\Queue\Jobs\BeanstalkdJob;
+use QuantaForge\Support\Str;
 use Mockery as m;
 use Pheanstalk\Job;
 use Pheanstalk\Pheanstalk;
@@ -14,12 +14,12 @@ use PHPUnit\Framework\TestCase;
 class QueueBeanstalkdQueueTest extends TestCase
 {
     /**
-     * @var \QuantaQuirk\Queue\BeanstalkdQueue
+     * @var \QuantaForge\Queue\BeanstalkdQueue
      */
     private $queue;
 
     /**
-     * @var \QuantaQuirk\Container\Container|\Mockery\LegacyMockInterface|\Mockery\MockInterface
+     * @var \QuantaForge\Container\Container|\Mockery\LegacyMockInterface|\Mockery\MockInterface
      */
     private $container;
 

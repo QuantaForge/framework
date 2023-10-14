@@ -1,1 +1,1 @@
-This is a sentence with a <x-link href="https://quantaquirk.com">link</x-link>.
+This is a sentence with a <x-link href="https://quantaforge.com">link</x-link>.

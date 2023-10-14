@@ -1,14 +1,14 @@
 <?php
 
-namespace QuantaQuirk\Tests\Notifications;
+namespace QuantaForge\Tests\Notifications;
 
-use QuantaQuirk\Contracts\Database\ModelIdentifier;
-use QuantaQuirk\Database\Eloquent\Model;
-use QuantaQuirk\Notifications\AnonymousNotifiable;
-use QuantaQuirk\Notifications\ChannelManager;
-use QuantaQuirk\Notifications\Notifiable;
-use QuantaQuirk\Notifications\SendQueuedNotifications;
-use QuantaQuirk\Support\Collection;
+use QuantaForge\Contracts\Database\ModelIdentifier;
+use QuantaForge\Database\Eloquent\Model;
+use QuantaForge\Notifications\AnonymousNotifiable;
+use QuantaForge\Notifications\ChannelManager;
+use QuantaForge\Notifications\Notifiable;
+use QuantaForge\Notifications\SendQueuedNotifications;
+use QuantaForge\Support\Collection;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 

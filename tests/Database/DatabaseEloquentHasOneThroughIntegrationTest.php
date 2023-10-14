@@ -1,11 +1,11 @@
 <?php
 
-namespace QuantaQuirk\Tests\Database;
+namespace QuantaForge\Tests\Database;
 
-use QuantaQuirk\Database\Capsule\Manager as DB;
-use QuantaQuirk\Database\Eloquent\Model as Eloquent;
-use QuantaQuirk\Database\Eloquent\ModelNotFoundException;
-use QuantaQuirk\Database\Eloquent\SoftDeletes;
+use QuantaForge\Database\Capsule\Manager as DB;
+use QuantaForge\Database\Eloquent\Model as Eloquent;
+use QuantaForge\Database\Eloquent\ModelNotFoundException;
+use QuantaForge\Database\Eloquent\SoftDeletes;
 use PHPUnit\Framework\TestCase;
 
 class DatabaseEloquentHasOneThroughIntegrationTest extends TestCase
@@ -131,7 +131,7 @@ class DatabaseEloquentHasOneThroughIntegrationTest extends TestCase
     public function testFirstOrFailThrowsAnException()
     {
         $this->expectException(ModelNotFoundException::class);
-        $this->expectExceptionMessage('No query results for model [QuantaQuirk\Tests\Database\HasOneThroughTestContract].');
+        $this->expectExceptionMessage('No query results for model [QuantaForge\Tests\Database\HasOneThroughTestContract].');
 
         HasOneThroughTestPosition::create(['id' => 1, 'name' => 'President', 'shortname' => 'ps'])
             ->user()->create(['id' => 1, 'email' => 'taylorotwell@gmail.com', 'position_short' => 'ps']);
@@ -170,7 +170,7 @@ class DatabaseEloquentHasOneThroughIntegrationTest extends TestCase
             'email',
             'created_at',
             'updated_at',
-            'quantaquirk_through_key',
+            'quantaforge_through_key',
         ], array_keys($contract->getAttributes()));
     }
 
@@ -182,7 +182,7 @@ class DatabaseEloquentHasOneThroughIntegrationTest extends TestCase
         $this->assertEquals([
             'title',
             'body',
-            'quantaquirk_through_key',
+            'quantaforge_through_key',
         ], array_keys($contract->getAttributes()));
     }
 
@@ -202,7 +202,7 @@ class DatabaseEloquentHasOneThroughIntegrationTest extends TestCase
                 'email',
                 'created_at',
                 'updated_at',
-                'quantaquirk_through_key', ], array_keys($contract->getAttributes()));
+                'quantaforge_through_key', ], array_keys($contract->getAttributes()));
         });
     }
 
@@ -223,7 +223,7 @@ class DatabaseEloquentHasOneThroughIntegrationTest extends TestCase
                 'email',
                 'created_at',
                 'updated_at',
-                'quantaquirk_through_key', ], array_keys($contract->getAttributes()));
+                'quantaforge_through_key', ], array_keys($contract->getAttributes()));
         }
     }
 
@@ -242,7 +242,7 @@ class DatabaseEloquentHasOneThroughIntegrationTest extends TestCase
                 'email',
                 'created_at',
                 'updated_at',
-                'quantaquirk_through_key', ], array_keys($contract->getAttributes()));
+                'quantaforge_through_key', ], array_keys($contract->getAttributes()));
         });
     }
 
@@ -261,7 +261,7 @@ class DatabaseEloquentHasOneThroughIntegrationTest extends TestCase
                 'email',
                 'created_at',
                 'updated_at',
-                'quantaquirk_through_key', ], array_keys($contract->getAttributes()));
+                'quantaforge_through_key', ], array_keys($contract->getAttributes()));
         });
     }
 
@@ -324,7 +324,7 @@ class DatabaseEloquentHasOneThroughIntegrationTest extends TestCase
     }
 
     /**
-     * Migrate tables for classes with a QuantaQuirk "default" HasOneThrough setup.
+     * Migrate tables for classes with a QuantaForge "default" HasOneThrough setup.
      */
     protected function migrateDefault()
     {
@@ -353,7 +353,7 @@ class DatabaseEloquentHasOneThroughIntegrationTest extends TestCase
     /**
      * Get a database connection instance.
      *
-     * @return \QuantaQuirk\Database\Connection
+     * @return \QuantaForge\Database\Connection
      */
     protected function connection()
     {
@@ -363,7 +363,7 @@ class DatabaseEloquentHasOneThroughIntegrationTest extends TestCase
     /**
      * Get a schema builder instance.
      *
-     * @return \QuantaQuirk\Database\Schema\Builder
+     * @return \QuantaForge\Database\Schema\Builder
      */
     protected function schema()
     {

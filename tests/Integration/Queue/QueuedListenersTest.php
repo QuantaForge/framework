@@ -1,10 +1,10 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Queue;
+namespace QuantaForge\Tests\Integration\Queue;
 
 use Event;
-use QuantaQuirk\Contracts\Queue\ShouldQueue;
-use QuantaQuirk\Events\CallQueuedListener;
+use QuantaForge\Contracts\Queue\ShouldQueue;
+use QuantaForge\Events\CallQueuedListener;
 use Orchestra\Testbench\TestCase;
 use Queue;
 

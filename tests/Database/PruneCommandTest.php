@@ -1,20 +1,20 @@
 <?php
 
-namespace QuantaQuirk\Tests\Database;
+namespace QuantaForge\Tests\Database;
 
 use Closure;
-use QuantaQuirk\Contracts\Events\Dispatcher as DispatcherContract;
-use QuantaQuirk\Database\Capsule\Manager as DB;
-use QuantaQuirk\Database\Console\PruneCommand;
-use QuantaQuirk\Database\Eloquent\MassPrunable;
-use QuantaQuirk\Database\Eloquent\Model;
-use QuantaQuirk\Database\Eloquent\Prunable;
-use QuantaQuirk\Database\Eloquent\SoftDeletes;
-use QuantaQuirk\Database\Events\ModelPruningFinished;
-use QuantaQuirk\Database\Events\ModelPruningStarting;
-use QuantaQuirk\Database\Events\ModelsPruned;
-use QuantaQuirk\Events\Dispatcher;
-use QuantaQuirk\Foundation\Application;
+use QuantaForge\Contracts\Events\Dispatcher as DispatcherContract;
+use QuantaForge\Database\Capsule\Manager as DB;
+use QuantaForge\Database\Console\PruneCommand;
+use QuantaForge\Database\Eloquent\MassPrunable;
+use QuantaForge\Database\Eloquent\Model;
+use QuantaForge\Database\Eloquent\Prunable;
+use QuantaForge\Database\Eloquent\SoftDeletes;
+use QuantaForge\Database\Events\ModelPruningFinished;
+use QuantaForge\Database\Events\ModelPruningStarting;
+use QuantaForge\Database\Events\ModelsPruned;
+use QuantaForge\Events\Dispatcher;
+use QuantaForge\Foundation\Application;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Input\ArrayInput;
@@ -42,7 +42,7 @@ class PruneCommandTest extends TestCase
         $output = $output->fetch();
 
         $this->assertStringContainsString(
-            'QuantaQuirk\Tests\Database\PrunableTestModelWithPrunableRecords',
+            'QuantaForge\Tests\Database\PrunableTestModelWithPrunableRecords',
             $output,
         );
 
@@ -52,7 +52,7 @@ class PruneCommandTest extends TestCase
         );
 
         $this->assertStringContainsString(
-            'QuantaQuirk\Tests\Database\PrunableTestModelWithPrunableRecords',
+            'QuantaForge\Tests\Database\PrunableTestModelWithPrunableRecords',
             $output,
         );
 
@@ -67,7 +67,7 @@ class PruneCommandTest extends TestCase
         $output = $this->artisan(['--model' => PrunableTestModelWithoutPrunableRecords::class]);
 
         $this->assertStringContainsString(
-            'No prunable [QuantaQuirk\Tests\Database\PrunableTestModelWithoutPrunableRecords] records found.',
+            'No prunable [QuantaForge\Tests\Database\PrunableTestModelWithoutPrunableRecords] records found.',
             $output->fetch()
         );
     }
@@ -97,7 +97,7 @@ class PruneCommandTest extends TestCase
         $output = $output->fetch();
 
         $this->assertStringContainsString(
-            'QuantaQuirk\Tests\Database\PrunableTestSoftDeletedModelWithPrunableRecords',
+            'QuantaForge\Tests\Database\PrunableTestSoftDeletedModelWithPrunableRecords',
             $output,
         );
 
@@ -114,7 +114,7 @@ class PruneCommandTest extends TestCase
         $output = $this->artisan(['--model' => NonPrunableTestModel::class]);
 
         $this->assertStringContainsString(
-            'No prunable [QuantaQuirk\Tests\Database\NonPrunableTestModel] records found.',
+            'No prunable [QuantaForge\Tests\Database\NonPrunableTestModel] records found.',
             $output->fetch(),
         );
     }
@@ -156,7 +156,7 @@ class PruneCommandTest extends TestCase
         ]);
 
         $this->assertStringContainsString(
-            '3 [QuantaQuirk\Tests\Database\PrunableTestModelWithPrunableRecords] records will be pruned.',
+            '3 [QuantaForge\Tests\Database\PrunableTestModelWithPrunableRecords] records will be pruned.',
             $output->fetch(),
         );
 
@@ -189,7 +189,7 @@ class PruneCommandTest extends TestCase
         ]);
 
         $this->assertStringContainsString(
-            '2 [QuantaQuirk\Tests\Database\PrunableTestSoftDeletedModelWithPrunableRecords] records will be pruned.',
+            '2 [QuantaForge\Tests\Database\PrunableTestSoftDeletedModelWithPrunableRecords] records will be pruned.',
             $output->fetch(),
         );
 
@@ -223,7 +223,7 @@ class PruneCommandTest extends TestCase
         $output = new BufferedOutput;
 
         tap(new PruneCommand())
-            ->setQuantaQuirk(Application::getInstance())
+            ->setQuantaForge(Application::getInstance())
             ->run($input, $output);
 
         return $output;

@@ -1,10 +1,10 @@
 <?php
 
-namespace QuantaQuirk\Tests\Queue;
+namespace QuantaForge\Tests\Queue;
 
 use Exception;
-use QuantaQuirk\Queue\Failed\FileFailedJobProvider;
-use QuantaQuirk\Support\Str;
+use QuantaForge\Queue\Failed\FileFailedJobProvider;
+use QuantaForge\Support\Str;
 use PHPUnit\Framework\TestCase;
 
 class FileFailedJobProviderTest extends TestCase

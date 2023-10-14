@@ -1,15 +1,15 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Console;
+namespace QuantaForge\Tests\Integration\Console;
 
-use QuantaQuirk\Console\Events\CommandFinished;
-use QuantaQuirk\Console\Events\CommandStarting;
-use QuantaQuirk\Contracts\Console\Kernel as ConsoleKernel;
-use QuantaQuirk\Events\Dispatcher;
-use QuantaQuirk\Filesystem\Filesystem;
-use QuantaQuirk\Foundation\Testing\WithConsoleEvents;
-use QuantaQuirk\Support\Facades\Event;
-use QuantaQuirk\Support\Str;
+use QuantaForge\Console\Events\CommandFinished;
+use QuantaForge\Console\Events\CommandStarting;
+use QuantaForge\Contracts\Console\Kernel as ConsoleKernel;
+use QuantaForge\Events\Dispatcher;
+use QuantaForge\Filesystem\Filesystem;
+use QuantaForge\Foundation\Testing\WithConsoleEvents;
+use QuantaForge\Support\Facades\Event;
+use QuantaForge\Support\Str;
 use Orchestra\Testbench\Foundation\Application as Testbench;
 use Orchestra\Testbench\TestCase;
 
@@ -27,7 +27,7 @@ class CommandEventsTest extends TestCase
     /**
      * The Filesystem instance for writing stubs and logs.
      *
-     * @var \QuantaQuirk\Filesystem\Filesystem
+     * @var \QuantaForge\Filesystem\Filesystem
      */
     protected $files;
 
@@ -97,7 +97,7 @@ class CommandEventsTest extends TestCase
 
     public function testCommandEventsReceiveParsedInputFromBackground()
     {
-        $quantaquirk = Testbench::create(
+        $quantaforge = Testbench::create(
             basePath: static::applicationBasePath(),
             resolvingCallback: function ($app) {
                 $files = new Filesystem;
@@ -123,7 +123,7 @@ class CommandEventsTest extends TestCase
             },
         );
 
-        tap($quantaquirk[ConsoleKernel::class], function ($kernel) {
+        tap($quantaforge[ConsoleKernel::class], function ($kernel) {
             $kernel->rerouteSymfonyCommandEvents();
             $kernel->registerCommand(new CommandEventsTestCommand);
 
@@ -139,7 +139,7 @@ class CommandEventsTest extends TestCase
             'CommandFinished', 'taylor', 'otwell', 'coding',
         );
 
-        $quantaquirk->terminate();
+        $quantaforge->terminate();
     }
 
     protected function assertLogged(...$messages)
@@ -150,7 +150,7 @@ class CommandEventsTest extends TestCase
     }
 }
 
-class CommandEventsTestCommand extends \QuantaQuirk\Console\Command
+class CommandEventsTestCommand extends \QuantaForge\Console\Command
 {
     protected $signature = 'command-events-test-command {firstname} {lastname} {--occupation=cook}';
 

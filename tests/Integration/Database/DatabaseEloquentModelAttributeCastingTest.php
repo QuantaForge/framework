@@ -1,14 +1,14 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Database;
+namespace QuantaForge\Tests\Integration\Database;
 
-use QuantaQuirk\Database\Eloquent\Casts\Attribute;
-use QuantaQuirk\Database\Eloquent\Model;
-use QuantaQuirk\Database\Schema\Blueprint;
-use QuantaQuirk\Support\Carbon;
-use QuantaQuirk\Support\Facades\Date;
-use QuantaQuirk\Support\Facades\Schema;
-use QuantaQuirk\Support\Str;
+use QuantaForge\Database\Eloquent\Casts\Attribute;
+use QuantaForge\Database\Eloquent\Model;
+use QuantaForge\Database\Schema\Blueprint;
+use QuantaForge\Support\Carbon;
+use QuantaForge\Support\Facades\Date;
+use QuantaForge\Support\Facades\Schema;
+use QuantaForge\Support\Str;
 
 class DatabaseEloquentModelAttributeCastingTest extends DatabaseTestCase
 {

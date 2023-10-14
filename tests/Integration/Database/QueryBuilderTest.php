@@ -1,14 +1,14 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Database;
+namespace QuantaForge\Tests\Integration\Database;
 
-use QuantaQuirk\Contracts\Pagination\LengthAwarePaginator;
-use QuantaQuirk\Database\MultipleRecordsFoundException;
-use QuantaQuirk\Database\RecordsNotFoundException;
-use QuantaQuirk\Database\Schema\Blueprint;
-use QuantaQuirk\Support\Carbon;
-use QuantaQuirk\Support\Facades\DB;
-use QuantaQuirk\Support\Facades\Schema;
+use QuantaForge\Contracts\Pagination\LengthAwarePaginator;
+use QuantaForge\Database\MultipleRecordsFoundException;
+use QuantaForge\Database\RecordsNotFoundException;
+use QuantaForge\Database\Schema\Blueprint;
+use QuantaForge\Support\Carbon;
+use QuantaForge\Support\Facades\DB;
+use QuantaForge\Support\Facades\Schema;
 
 class QueryBuilderTest extends DatabaseTestCase
 {

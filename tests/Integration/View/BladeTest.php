@@ -1,11 +1,11 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\View;
+namespace QuantaForge\Tests\Integration\View;
 
-use QuantaQuirk\Support\Facades\Blade;
-use QuantaQuirk\Support\Facades\Config;
-use QuantaQuirk\Support\Facades\View;
-use QuantaQuirk\View\Component;
+use QuantaForge\Support\Facades\Blade;
+use QuantaForge\Support\Facades\Config;
+use QuantaForge\Support\Facades\View;
+use QuantaForge\View\Component;
 use Orchestra\Testbench\TestCase;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
@@ -74,7 +74,7 @@ class BladeTest extends TestCase
     {
         $view = View::make('uses-link')->render();
 
-        $this->assertSame('This is a sentence with a <a href="https://quantaquirk.com">link</a>.', trim($view));
+        $this->assertSame('This is a sentence with a <a href="https://quantaforge.com">link</a>.', trim($view));
     }
 
     public function test_appendable_attributes()

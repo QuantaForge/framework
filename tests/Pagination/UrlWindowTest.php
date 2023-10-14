@@ -1,9 +1,9 @@
 <?php
 
-namespace QuantaQuirk\Tests\Pagination;
+namespace QuantaForge\Tests\Pagination;
 
-use QuantaQuirk\Pagination\LengthAwarePaginator;
-use QuantaQuirk\Pagination\UrlWindow;
+use QuantaForge\Pagination\LengthAwarePaginator;
+use QuantaForge\Pagination\UrlWindow;
 use PHPUnit\Framework\TestCase;
 
 class UrlWindowTest extends TestCase

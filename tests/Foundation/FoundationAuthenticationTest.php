@@ -1,13 +1,13 @@
 <?php
 
-namespace QuantaQuirk\Tests\Foundation;
+namespace QuantaForge\Tests\Foundation;
 
-use QuantaQuirk\Auth\AuthManager;
-use QuantaQuirk\Contracts\Auth\Authenticatable;
-use QuantaQuirk\Contracts\Auth\Guard;
-use QuantaQuirk\Contracts\Auth\UserProvider;
-use QuantaQuirk\Foundation\Application;
-use QuantaQuirk\Foundation\Testing\Concerns\InteractsWithAuthentication;
+use QuantaForge\Auth\AuthManager;
+use QuantaForge\Contracts\Auth\Authenticatable;
+use QuantaForge\Contracts\Auth\Guard;
+use QuantaForge\Contracts\Auth\UserProvider;
+use QuantaForge\Foundation\Application;
+use QuantaForge\Foundation\Testing\Concerns\InteractsWithAuthentication;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 
@@ -24,12 +24,12 @@ class FoundationAuthenticationTest extends TestCase
      * @return array
      */
     protected $credentials = [
-        'email' => 'someone@quantaquirk.com',
+        'email' => 'someone@quantaforge.com',
         'password' => 'secret_password',
     ];
 
     /**
-     * @return \QuantaQuirk\Contracts\Auth\Guard|\Mockery\LegacyMockInterface|\Mockery\MockInterface
+     * @return \QuantaForge\Contracts\Auth\Guard|\Mockery\LegacyMockInterface|\Mockery\MockInterface
      */
     protected function mockGuard()
     {

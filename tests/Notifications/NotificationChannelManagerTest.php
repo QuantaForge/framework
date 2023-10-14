@@ -1,18 +1,18 @@
 <?php
 
-namespace QuantaQuirk\Tests\Notifications;
+namespace QuantaForge\Tests\Notifications;
 
-use QuantaQuirk\Bus\Queueable;
-use QuantaQuirk\Container\Container;
-use QuantaQuirk\Contracts\Bus\Dispatcher as Bus;
-use QuantaQuirk\Contracts\Events\Dispatcher;
-use QuantaQuirk\Contracts\Queue\ShouldQueue;
-use QuantaQuirk\Notifications\ChannelManager;
-use QuantaQuirk\Notifications\Events\NotificationSending;
-use QuantaQuirk\Notifications\Events\NotificationSent;
-use QuantaQuirk\Notifications\Notifiable;
-use QuantaQuirk\Notifications\Notification;
-use QuantaQuirk\Notifications\SendQueuedNotifications;
+use QuantaForge\Bus\Queueable;
+use QuantaForge\Container\Container;
+use QuantaForge\Contracts\Bus\Dispatcher as Bus;
+use QuantaForge\Contracts\Events\Dispatcher;
+use QuantaForge\Contracts\Queue\ShouldQueue;
+use QuantaForge\Notifications\ChannelManager;
+use QuantaForge\Notifications\Events\NotificationSending;
+use QuantaForge\Notifications\Events\NotificationSent;
+use QuantaForge\Notifications\Notifiable;
+use QuantaForge\Notifications\Notification;
+use QuantaForge\Notifications\SendQueuedNotifications;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 

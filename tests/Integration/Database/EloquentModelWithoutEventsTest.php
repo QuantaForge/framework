@@ -1,10 +1,10 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Database;
+namespace QuantaForge\Tests\Integration\Database;
 
-use QuantaQuirk\Database\Eloquent\Model;
-use QuantaQuirk\Database\Schema\Blueprint;
-use QuantaQuirk\Support\Facades\Schema;
+use QuantaForge\Database\Eloquent\Model;
+use QuantaForge\Database\Schema\Blueprint;
+use QuantaForge\Support\Facades\Schema;
 
 class EloquentModelWithoutEventsTest extends DatabaseTestCase
 {
@@ -26,7 +26,7 @@ class EloquentModelWithoutEventsTest extends DatabaseTestCase
 
         $model->save();
 
-        $this->assertSame('QuantaQuirk', $model->project);
+        $this->assertSame('QuantaForge', $model->project);
     }
 }
 
@@ -41,7 +41,7 @@ class AutoFilledModel extends Model
         parent::boot();
 
         static::saving(function ($model) {
-            $model->project = 'QuantaQuirk';
+            $model->project = 'QuantaForge';
         });
     }
 }

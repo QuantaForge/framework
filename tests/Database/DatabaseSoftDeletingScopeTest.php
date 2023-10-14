@@ -1,14 +1,14 @@
 <?php
 
-namespace QuantaQuirk\Tests\Database;
+namespace QuantaForge\Tests\Database;
 
-use QuantaQuirk\Database\ConnectionInterface;
-use QuantaQuirk\Database\Eloquent\Builder as EloquentBuilder;
-use QuantaQuirk\Database\Eloquent\Model;
-use QuantaQuirk\Database\Eloquent\SoftDeletingScope;
-use QuantaQuirk\Database\Query\Builder as BaseBuilder;
-use QuantaQuirk\Database\Query\Grammars\Grammar;
-use QuantaQuirk\Database\Query\Processors\Processor;
+use QuantaForge\Database\ConnectionInterface;
+use QuantaForge\Database\Eloquent\Builder as EloquentBuilder;
+use QuantaForge\Database\Eloquent\Model;
+use QuantaForge\Database\Eloquent\SoftDeletingScope;
+use QuantaForge\Database\Query\Builder as BaseBuilder;
+use QuantaForge\Database\Query\Grammars\Grammar;
+use QuantaForge\Database\Query\Processors\Processor;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 use stdClass;

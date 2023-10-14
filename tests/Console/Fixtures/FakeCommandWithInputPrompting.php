@@ -1,11 +1,11 @@
 <?php
 
-namespace QuantaQuirk\Tests\Console\Fixtures;
+namespace QuantaForge\Tests\Console\Fixtures;
 
-use QuantaQuirk\Console\Command;
-use QuantaQuirk\Contracts\Console\PromptsForMissingInput;
-use QuantaQuirk\Prompts\Prompt;
-use QuantaQuirk\Prompts\TextPrompt;
+use QuantaForge\Console\Command;
+use QuantaForge\Contracts\Console\PromptsForMissingInput;
+use QuantaForge\Prompts\Prompt;
+use QuantaForge\Prompts\TextPrompt;
 use Symfony\Component\Console\Input\InputInterface;
 
 class FakeCommandWithInputPrompting extends Command implements PromptsForMissingInput

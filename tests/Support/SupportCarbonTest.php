@@ -1,18 +1,18 @@
 <?php
 
-namespace QuantaQuirk\Tests\Support;
+namespace QuantaForge\Tests\Support;
 
 use BadMethodCallException;
 use Carbon\Carbon as BaseCarbon;
 use Carbon\CarbonImmutable as BaseCarbonImmutable;
 use DateTimeInterface;
-use QuantaQuirk\Support\Carbon;
+use QuantaForge\Support\Carbon;
 use PHPUnit\Framework\TestCase;
 
 class SupportCarbonTest extends TestCase
 {
     /**
-     * @var \QuantaQuirk\Support\Carbon
+     * @var \QuantaForge\Support\Carbon
      */
     protected $now;
 

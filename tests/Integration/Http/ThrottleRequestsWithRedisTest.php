@@ -1,11 +1,11 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Http;
+namespace QuantaForge\Tests\Integration\Http;
 
-use QuantaQuirk\Foundation\Testing\Concerns\InteractsWithRedis;
-use QuantaQuirk\Routing\Middleware\ThrottleRequestsWithRedis;
-use QuantaQuirk\Support\Carbon;
-use QuantaQuirk\Support\Facades\Route;
+use QuantaForge\Foundation\Testing\Concerns\InteractsWithRedis;
+use QuantaForge\Routing\Middleware\ThrottleRequestsWithRedis;
+use QuantaForge\Support\Carbon;
+use QuantaForge\Support\Facades\Route;
 use Orchestra\Testbench\TestCase;
 use Throwable;
 

@@ -1,11 +1,11 @@
 <?php
 
-namespace QuantaQuirk\Tests\Notifications;
+namespace QuantaForge\Tests\Notifications;
 
-use QuantaQuirk\Container\Container;
-use QuantaQuirk\Contracts\Notifications\Dispatcher;
-use QuantaQuirk\Notifications\RoutesNotifications;
-use QuantaQuirk\Support\Facades\Notification;
+use QuantaForge\Container\Container;
+use QuantaForge\Contracts\Notifications\Dispatcher;
+use QuantaForge\Notifications\RoutesNotifications;
+use QuantaForge\Support\Facades\Notification;
 use InvalidArgumentException;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
@@ -50,7 +50,7 @@ class NotificationRoutesNotificationsTest extends TestCase
     {
         $instance = new RoutesNotificationsTestInstance;
         $this->assertSame('bar', $instance->routeNotificationFor('foo'));
-        $this->assertSame('taylor@quantaquirk.com', $instance->routeNotificationFor('mail'));
+        $this->assertSame('taylor@quantaforge.com', $instance->routeNotificationFor('mail'));
     }
 
     public function testOnDemandNotificationsCannotUseDatabaseChannel()
@@ -67,7 +67,7 @@ class RoutesNotificationsTestInstance
 {
     use RoutesNotifications;
 
-    protected $email = 'taylor@quantaquirk.com';
+    protected $email = 'taylor@quantaforge.com';
 
     public function routeNotificationForFoo()
     {

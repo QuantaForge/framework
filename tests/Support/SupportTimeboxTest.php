@@ -1,9 +1,9 @@
 <?php
 
-namespace QuantaQuirk\Tests\Support;
+namespace QuantaForge\Tests\Support;
 
 use Exception;
-use QuantaQuirk\Support\Timebox;
+use QuantaForge\Support\Timebox;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 

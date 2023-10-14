@@ -1,10 +1,10 @@
 <?php
 
-namespace QuantaQuirk\Tests\Notifications;
+namespace QuantaForge\Tests\Notifications;
 
-use QuantaQuirk\Contracts\Mail\Attachable;
-use QuantaQuirk\Mail\Attachment;
-use QuantaQuirk\Notifications\Messages\MailMessage;
+use QuantaForge\Contracts\Mail\Attachable;
+use QuantaForge\Mail\Attachment;
+use QuantaForge\Notifications\Messages\MailMessage;
 use PHPUnit\Framework\TestCase;
 
 class NotificationMailMessageTest extends TestCase

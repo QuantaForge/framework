@@ -1,7 +1,7 @@
 <?php
 
-use QuantaQuirk\Tests\Support\AnotherExampleParameter;
-use QuantaQuirk\Tests\Support\ExampleParameter;
+use QuantaForge\Tests\Support\AnotherExampleParameter;
+use QuantaForge\Tests\Support\ExampleParameter;
 
 return function (ExampleParameter|AnotherExampleParameter $a, $b) {
     //

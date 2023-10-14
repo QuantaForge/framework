@@ -1,10 +1,10 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Routing;
+namespace QuantaForge\Tests\Integration\Routing;
 
-use QuantaQuirk\Foundation\Auth\User;
-use QuantaQuirk\Routing\Middleware\SubstituteBindings;
-use QuantaQuirk\Support\Facades\Route;
+use QuantaForge\Foundation\Auth\User;
+use QuantaForge\Routing\Middleware\SubstituteBindings;
+use QuantaForge\Support\Facades\Route;
 use Orchestra\Testbench\TestCase;
 
 class RouteRedirectTest extends TestCase
@@ -29,7 +29,7 @@ class RouteRedirectTest extends TestCase
             'route redirect with one parameter' => ['from/{param}/{param2?}', 'to', '/from/value1', '/to'],
             'route redirect with two parameters' => ['from/{param}/{param2?}', 'to', '/from/value1/value2', '/to'],
             'route redirect with one parameter replacement' => ['users/{user}/repos', 'members/{user}/repos', '/users/22/repos', '/members/22/repos'],
-            'route redirect with two parameter replacements' => ['users/{user}/repos/{repo}', 'members/{user}/projects/{repo}', '/users/22/repos/quantaquirk-framework', '/members/22/projects/quantaquirk-framework'],
+            'route redirect with two parameter replacements' => ['users/{user}/repos/{repo}', 'members/{user}/projects/{repo}', '/users/22/repos/quantaforge-framework', '/members/22/projects/quantaforge-framework'],
             'route redirect with non existent optional parameter replacements' => ['users/{user?}', 'members/{user?}', '/users', '/members'],
             'route redirect with existing parameter replacements' => ['users/{user?}', 'members/{user?}', '/users/22', '/members/22'],
             'route redirect with two optional replacements' => ['users/{user?}/{repo?}', 'members/{user?}', '/users/22', '/members/22'],

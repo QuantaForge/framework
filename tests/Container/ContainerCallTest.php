@@ -1,11 +1,11 @@
 <?php
 
-namespace QuantaQuirk\Tests\Container;
+namespace QuantaForge\Tests\Container;
 
 use Closure;
 use Error;
-use QuantaQuirk\Container\Container;
-use QuantaQuirk\Contracts\Container\BindingResolutionException;
+use QuantaForge\Container\Container;
+use QuantaForge\Contracts\Container\BindingResolutionException;
 use PHPUnit\Framework\TestCase;
 use stdClass;
 
@@ -52,7 +52,7 @@ class ContainerCallTest extends TestCase
     public function testCallWithStaticMethodNameString()
     {
         $container = new Container;
-        $result = $container->call('QuantaQuirk\Tests\Container\ContainerStaticMethodStub::inject');
+        $result = $container->call('QuantaForge\Tests\Container\ContainerStaticMethodStub::inject');
         $this->assertInstanceOf(ContainerCallConcreteStub::class, $result[0]);
         $this->assertSame('taylor', $result[1]);
     }
@@ -60,7 +60,7 @@ class ContainerCallTest extends TestCase
     public function testCallWithGlobalMethodName()
     {
         $container = new Container;
-        $result = $container->call('QuantaQuirk\Tests\Container\containerTestInject');
+        $result = $container->call('QuantaForge\Tests\Container\containerTestInject');
         $this->assertInstanceOf(ContainerCallConcreteStub::class, $result[0]);
         $this->assertSame('taylor', $result[1]);
     }
@@ -204,7 +204,7 @@ class ContainerCallTest extends TestCase
     public function testCallWithoutRequiredParamsThrowsException()
     {
         $this->expectException(BindingResolutionException::class);
-        $this->expectExceptionMessage('Unable to resolve dependency [Parameter #0 [ <required> $foo ]] in class QuantaQuirk\Tests\Container\ContainerTestCallStub');
+        $this->expectExceptionMessage('Unable to resolve dependency [Parameter #0 [ <required> $foo ]] in class QuantaForge\Tests\Container\ContainerTestCallStub');
 
         $container = new Container;
         $container->call(ContainerTestCallStub::class.'@unresolvable');
@@ -213,7 +213,7 @@ class ContainerCallTest extends TestCase
     public function testCallWithUnnamedParametersThrowsException()
     {
         $this->expectException(BindingResolutionException::class);
-        $this->expectExceptionMessage('Unable to resolve dependency [Parameter #0 [ <required> $foo ]] in class QuantaQuirk\Tests\Container\ContainerTestCallStub');
+        $this->expectExceptionMessage('Unable to resolve dependency [Parameter #0 [ <required> $foo ]] in class QuantaForge\Tests\Container\ContainerTestCallStub');
 
         $container = new Container;
         $container->call([new ContainerTestCallStub, 'unresolvable'], ['foo', 'bar']);
@@ -222,7 +222,7 @@ class ContainerCallTest extends TestCase
     public function testCallWithoutRequiredParamsOnClosureThrowsException()
     {
         $this->expectException(BindingResolutionException::class);
-        $this->expectExceptionMessage('Unable to resolve dependency [Parameter #0 [ <required> $foo ]] in class QuantaQuirk\Tests\Container\ContainerCallTest');
+        $this->expectExceptionMessage('Unable to resolve dependency [Parameter #0 [ <required> $foo ]] in class QuantaForge\Tests\Container\ContainerCallTest');
 
         $container = new Container;
         $container->call(function ($foo, $bar = 'default') {

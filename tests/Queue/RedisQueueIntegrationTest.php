@@ -1,16 +1,16 @@
 <?php
 
-namespace QuantaQuirk\Tests\Queue;
+namespace QuantaForge\Tests\Queue;
 
-use QuantaQuirk\Container\Container;
-use QuantaQuirk\Contracts\Events\Dispatcher;
-use QuantaQuirk\Foundation\Testing\Concerns\InteractsWithRedis;
-use QuantaQuirk\Queue\Events\JobQueued;
-use QuantaQuirk\Queue\Jobs\RedisJob;
-use QuantaQuirk\Queue\RedisQueue;
-use QuantaQuirk\Support\Carbon;
-use QuantaQuirk\Support\InteractsWithTime;
-use QuantaQuirk\Support\Str;
+use QuantaForge\Container\Container;
+use QuantaForge\Contracts\Events\Dispatcher;
+use QuantaForge\Foundation\Testing\Concerns\InteractsWithRedis;
+use QuantaForge\Queue\Events\JobQueued;
+use QuantaForge\Queue\Jobs\RedisJob;
+use QuantaForge\Queue\RedisQueue;
+use QuantaForge\Support\Carbon;
+use QuantaForge\Support\InteractsWithTime;
+use QuantaForge\Support\Str;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 
@@ -19,7 +19,7 @@ class RedisQueueIntegrationTest extends TestCase
     use InteractsWithRedis, InteractsWithTime;
 
     /**
-     * @var \QuantaQuirk\Queue\RedisQueue
+     * @var \QuantaForge\Queue\RedisQueue
      */
     private $queue;
 
@@ -136,7 +136,7 @@ class RedisQueueIntegrationTest extends TestCase
 
         // Pop and check it is popped correctly
         $before = $this->currentTime();
-        /** @var \QuantaQuirk\Queue\Jobs\RedisJob $redisJob */
+        /** @var \QuantaForge\Queue\Jobs\RedisJob $redisJob */
         $redisJob = $this->queue->pop();
         $after = $this->currentTime();
 
@@ -227,7 +227,7 @@ class RedisQueueIntegrationTest extends TestCase
         $this->queue->push($job);
 
         // Pop and check it is popped correctly
-        /** @var \QuantaQuirk\Queue\Jobs\RedisJob $redisJob */
+        /** @var \QuantaForge\Queue\Jobs\RedisJob $redisJob */
         $redisJob = $this->queue->pop();
 
         $this->assertNotNull($redisJob);
@@ -357,7 +357,7 @@ class RedisQueueIntegrationTest extends TestCase
         $this->queue->push($job);
 
         // pop and release the job
-        /** @var \QuantaQuirk\Queue\Jobs\RedisJob $redisJob */
+        /** @var \QuantaForge\Queue\Jobs\RedisJob $redisJob */
         $redisJob = $this->queue->pop();
         $before = $this->currentTime();
         $redisJob->release(1000);
@@ -395,7 +395,7 @@ class RedisQueueIntegrationTest extends TestCase
         $job = new RedisQueueIntegrationTestJob(30);
         $this->queue->push($job);
 
-        /** @var \QuantaQuirk\Queue\Jobs\RedisJob $redisJob */
+        /** @var \QuantaForge\Queue\Jobs\RedisJob $redisJob */
         $redisJob = $this->queue->pop();
         $redisJob->release(-3);
 
@@ -414,7 +414,7 @@ class RedisQueueIntegrationTest extends TestCase
         $job = new RedisQueueIntegrationTestJob(30);
         $this->queue->push($job);
 
-        /** @var \QuantaQuirk\Queue\Jobs\RedisJob $redisJob */
+        /** @var \QuantaForge\Queue\Jobs\RedisJob $redisJob */
         $redisJob = $this->queue->pop();
 
         $redisJob->delete();

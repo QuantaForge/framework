@@ -1,12 +1,12 @@
 <?php
 
-namespace QuantaQuirk\Tests\Foundation\Bootstrap;
+namespace QuantaForge\Tests\Foundation\Bootstrap;
 
 use ErrorException;
-use QuantaQuirk\Config\Repository as Config;
-use QuantaQuirk\Foundation\Application;
-use QuantaQuirk\Foundation\Bootstrap\HandleExceptions;
-use QuantaQuirk\Log\LogManager;
+use QuantaForge\Config\Repository as Config;
+use QuantaForge\Foundation\Application;
+use QuantaForge\Foundation\Bootstrap\HandleExceptions;
+use QuantaForge\Log\LogManager;
 use Mockery as m;
 use Monolog\Handler\NullHandler;
 use PHPUnit\Framework\TestCase;
@@ -56,14 +56,14 @@ class HandleExceptionsTest extends TestCase
         $logger->shouldReceive('channel')->with('deprecations')->andReturnSelf();
         $logger->shouldReceive('warning')->with(sprintf('%s in %s on line %s',
             'str_contains(): Passing null to parameter #2 ($needle) of type string is deprecated',
-            '/home/user/quantaquirk/routes/web.php',
+            '/home/user/quantaforge/routes/web.php',
             17
         ));
 
         $this->handleExceptions->handleError(
             E_DEPRECATED,
             'str_contains(): Passing null to parameter #2 ($needle) of type string is deprecated',
-            '/home/user/quantaquirk/routes/web.php',
+            '/home/user/quantaforge/routes/web.php',
             17
         );
     }
@@ -82,12 +82,12 @@ class HandleExceptionsTest extends TestCase
         $logger->shouldReceive('warning')->with(
             m::on(fn (string $message) => (bool) preg_match(
                 <<<REGEXP
-                #ErrorException: str_contains\(\): Passing null to parameter \#2 \(\\\$needle\) of type string is deprecated in /home/user/quantaquirk/routes/web\.php:17
+                #ErrorException: str_contains\(\): Passing null to parameter \#2 \(\\\$needle\) of type string is deprecated in /home/user/quantaforge/routes/web\.php:17
                 Stack trace:
-                \#0 .*helpers.php\(.*\): QuantaQuirk\\\\Foundation\\\\Bootstrap\\\\HandleExceptions.*
+                \#0 .*helpers.php\(.*\): QuantaForge\\\\Foundation\\\\Bootstrap\\\\HandleExceptions.*
                 \#1 .*HandleExceptions\.php\(.*\): with.*
-                \#2 .*HandleExceptions\.php\(.*\): QuantaQuirk\\\\Foundation\\\\Bootstrap\\\\HandleExceptions->handleDeprecation.*
-                \#3 .*HandleExceptionsTest\.php\(.*\): QuantaQuirk\\\\Foundation\\\\Bootstrap\\\\HandleExceptions->handleError.*
+                \#2 .*HandleExceptions\.php\(.*\): QuantaForge\\\\Foundation\\\\Bootstrap\\\\HandleExceptions->handleDeprecation.*
+                \#3 .*HandleExceptionsTest\.php\(.*\): QuantaForge\\\\Foundation\\\\Bootstrap\\\\HandleExceptions->handleError.*
                 [\s\S]*#i
                 REGEXP,
                 $message
@@ -97,7 +97,7 @@ class HandleExceptionsTest extends TestCase
         $this->handleExceptions->handleError(
             E_DEPRECATED,
             'str_contains(): Passing null to parameter #2 ($needle) of type string is deprecated',
-            '/home/user/quantaquirk/routes/web.php',
+            '/home/user/quantaforge/routes/web.php',
             17
         );
     }
@@ -115,14 +115,14 @@ class HandleExceptionsTest extends TestCase
         $logger->shouldReceive('channel')->with('deprecations')->andReturnSelf();
         $logger->shouldReceive('warning')->with(sprintf('%s in %s on line %s',
             'str_contains(): Passing null to parameter #2 ($needle) of type string is deprecated',
-            '/home/user/quantaquirk/routes/web.php',
+            '/home/user/quantaforge/routes/web.php',
             17
         ));
 
         $this->handleExceptions->handleError(
             E_DEPRECATED,
             'str_contains(): Passing null to parameter #2 ($needle) of type string is deprecated',
-            '/home/user/quantaquirk/routes/web.php',
+            '/home/user/quantaforge/routes/web.php',
             17
         );
 
@@ -140,14 +140,14 @@ class HandleExceptionsTest extends TestCase
         $logger->shouldReceive('channel')->with('deprecations')->andReturnSelf();
         $logger->shouldReceive('warning')->with(sprintf('%s in %s on line %s',
             'str_contains(): Passing null to parameter #2 ($needle) of type string is deprecated',
-            '/home/user/quantaquirk/routes/web.php',
+            '/home/user/quantaforge/routes/web.php',
             17
         ));
 
         $this->handleExceptions->handleError(
             E_USER_DEPRECATED,
             'str_contains(): Passing null to parameter #2 ($needle) of type string is deprecated',
-            '/home/user/quantaquirk/routes/web.php',
+            '/home/user/quantaforge/routes/web.php',
             17
         );
     }
@@ -166,12 +166,12 @@ class HandleExceptionsTest extends TestCase
         $logger->shouldReceive('warning')->with(
             m::on(fn (string $message) => (bool) preg_match(
                 <<<REGEXP
-                #ErrorException: str_contains\(\): Passing null to parameter \#2 \(\\\$needle\) of type string is deprecated in /home/user/quantaquirk/routes/web\.php:17
+                #ErrorException: str_contains\(\): Passing null to parameter \#2 \(\\\$needle\) of type string is deprecated in /home/user/quantaforge/routes/web\.php:17
                 Stack trace:
-                \#0 .*helpers.php\(.*\): QuantaQuirk\\\\Foundation\\\\Bootstrap\\\\HandleExceptions.*
+                \#0 .*helpers.php\(.*\): QuantaForge\\\\Foundation\\\\Bootstrap\\\\HandleExceptions.*
                 \#1 .*HandleExceptions\.php\(.*\): with.*
-                \#2 .*HandleExceptions\.php\(.*\): QuantaQuirk\\\\Foundation\\\\Bootstrap\\\\HandleExceptions->handleDeprecation.*
-                \#3 .*HandleExceptionsTest\.php\(.*\): QuantaQuirk\\\\Foundation\\\\Bootstrap\\\\HandleExceptions->handleError.*
+                \#2 .*HandleExceptions\.php\(.*\): QuantaForge\\\\Foundation\\\\Bootstrap\\\\HandleExceptions->handleDeprecation.*
+                \#3 .*HandleExceptionsTest\.php\(.*\): QuantaForge\\\\Foundation\\\\Bootstrap\\\\HandleExceptions->handleError.*
                 [\s\S]*#i
                 REGEXP,
                 $message
@@ -181,7 +181,7 @@ class HandleExceptionsTest extends TestCase
         $this->handleExceptions->handleError(
             E_USER_DEPRECATED,
             'str_contains(): Passing null to parameter #2 ($needle) of type string is deprecated',
-            '/home/user/quantaquirk/routes/web.php',
+            '/home/user/quantaforge/routes/web.php',
             17
         );
     }
@@ -200,7 +200,7 @@ class HandleExceptionsTest extends TestCase
         $this->handleExceptions->handleError(
             E_ERROR,
             'Something went wrong',
-            '/home/user/quantaquirk/src/Providers/AppServiceProvider.php',
+            '/home/user/quantaforge/src/Providers/AppServiceProvider.php',
             17
         );
     }
@@ -223,7 +223,7 @@ class HandleExceptionsTest extends TestCase
         $this->handleExceptions->handleError(
             E_USER_DEPRECATED,
             'str_contains(): Passing null to parameter #2 ($needle) of type string is deprecated',
-            '/home/user/quantaquirk/routes/web.php',
+            '/home/user/quantaforge/routes/web.php',
             17
         );
 
@@ -248,7 +248,7 @@ class HandleExceptionsTest extends TestCase
         $this->handleExceptions->handleError(
             E_USER_DEPRECATED,
             'str_contains(): Passing null to parameter #2 ($needle) of type string is deprecated',
-            '/home/user/quantaquirk/routes/web.php',
+            '/home/user/quantaforge/routes/web.php',
             17
         );
 
@@ -269,7 +269,7 @@ class HandleExceptionsTest extends TestCase
         $this->handleExceptions->handleError(
             E_USER_DEPRECATED,
             'str_contains(): Passing null to parameter #2 ($needle) of type string is deprecated',
-            '/home/user/quantaquirk/routes/web.php',
+            '/home/user/quantaforge/routes/web.php',
             17
         );
 
@@ -295,7 +295,7 @@ class HandleExceptionsTest extends TestCase
         $this->handleExceptions->handleError(
             E_USER_DEPRECATED,
             'str_contains(): Passing null to parameter #2 ($needle) of type string is deprecated',
-            '/home/user/quantaquirk/routes/web.php',
+            '/home/user/quantaforge/routes/web.php',
             17
         );
 
@@ -316,7 +316,7 @@ class HandleExceptionsTest extends TestCase
         $this->handleExceptions->handleError(
             E_DEPRECATED,
             'str_contains(): Passing null to parameter #2 ($needle) of type string is deprecated',
-            '/home/user/quantaquirk/routes/web.php',
+            '/home/user/quantaforge/routes/web.php',
             17
         );
     }

@@ -1,13 +1,13 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Database;
+namespace QuantaForge\Tests\Integration\Database;
 
 use Doctrine\DBAL\Types\Type;
-use QuantaQuirk\Database\Schema\Blueprint;
-use QuantaQuirk\Database\Schema\Grammars\SQLiteGrammar;
-use QuantaQuirk\Support\Facades\DB;
-use QuantaQuirk\Support\Facades\Schema;
-use QuantaQuirk\Tests\Integration\Database\Fixtures\TinyInteger;
+use QuantaForge\Database\Schema\Blueprint;
+use QuantaForge\Database\Schema\Grammars\SQLiteGrammar;
+use QuantaForge\Support\Facades\DB;
+use QuantaForge\Support\Facades\Schema;
+use QuantaForge\Tests\Integration\Database\Fixtures\TinyInteger;
 
 class SchemaBuilderTest extends DatabaseTestCase
 {

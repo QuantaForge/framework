@@ -1,9 +1,9 @@
 <?php
 
-namespace QuantaQuirk\Tests\Support;
+namespace QuantaForge\Tests\Support;
 
 use ArrayAccess;
-use QuantaQuirk\Support\Facades\Facade;
+use QuantaForge\Support\Facades\Facade;
 use Mockery as m;
 use Mockery\MockInterface;
 use PHPUnit\Framework\TestCase;

@@ -1,0 +1,11 @@
+<?php
+
+namespace {{ namespace }};
+
+use QuantaForge\Database\Eloquent\Factories\HasFactory;
+use QuantaForge\Database\Eloquent\Model;
+
+class {{ class }} extends Model
+{
+    use HasFactory;
+}

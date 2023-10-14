@@ -1,9 +1,9 @@
 <?php
 
-namespace QuantaQuirk\Tests\Cache;
+namespace QuantaForge\Tests\Cache;
 
-use QuantaQuirk\Cache\RateLimiter;
-use QuantaQuirk\Contracts\Cache\Repository as Cache;
+use QuantaForge\Cache\RateLimiter;
+use QuantaForge\Contracts\Cache\Repository as Cache;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 

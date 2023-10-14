@@ -1,7 +1,7 @@
 <?php
 
-use QuantaQuirk\Database\Eloquent\Factories\HasFactory;
-use QuantaQuirk\Foundation\Auth\User as Authenticatable;
+use QuantaForge\Database\Eloquent\Factories\HasFactory;
+use QuantaForge\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {

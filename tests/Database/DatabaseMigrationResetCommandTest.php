@@ -1,11 +1,11 @@
 <?php
 
-namespace QuantaQuirk\Tests\Database;
+namespace QuantaForge\Tests\Database;
 
 use Closure;
-use QuantaQuirk\Database\Console\Migrations\ResetCommand;
-use QuantaQuirk\Database\Migrations\Migrator;
-use QuantaQuirk\Foundation\Application;
+use QuantaForge\Database\Console\Migrations\ResetCommand;
+use QuantaForge\Database\Migrations\Migrator;
+use QuantaForge\Foundation\Application;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Input\ArrayInput;
@@ -23,7 +23,7 @@ class DatabaseMigrationResetCommandTest extends TestCase
         $command = new ResetCommand($migrator = m::mock(Migrator::class));
         $app = new ApplicationDatabaseResetStub(['path.database' => __DIR__]);
         $app->useDatabasePath(__DIR__);
-        $command->setQuantaQuirk($app);
+        $command->setQuantaForge($app);
         $migrator->shouldReceive('paths')->once()->andReturn([]);
         $migrator->shouldReceive('usingConnection')->once()->with(null, m::type(Closure::class))->andReturnUsing(function ($connection, $callback) {
             $callback();
@@ -40,7 +40,7 @@ class DatabaseMigrationResetCommandTest extends TestCase
         $command = new ResetCommand($migrator = m::mock(Migrator::class));
         $app = new ApplicationDatabaseResetStub(['path.database' => __DIR__]);
         $app->useDatabasePath(__DIR__);
-        $command->setQuantaQuirk($app);
+        $command->setQuantaForge($app);
         $migrator->shouldReceive('paths')->once()->andReturn([]);
         $migrator->shouldReceive('usingConnection')->once()->with('foo', m::type(Closure::class))->andReturnUsing(function ($connection, $callback) {
             $callback();

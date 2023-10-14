@@ -1,12 +1,12 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Routing;
+namespace QuantaForge\Tests\Integration\Routing;
 
 use ArrayIterator;
-use QuantaQuirk\Http\Request;
-use QuantaQuirk\Routing\Route;
-use QuantaQuirk\Routing\RouteCollection;
-use QuantaQuirk\Support\Arr;
+use QuantaForge\Http\Request;
+use QuantaForge\Routing\Route;
+use QuantaForge\Routing\RouteCollection;
+use QuantaForge\Support\Arr;
 use Orchestra\Testbench\TestCase;
 use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -14,12 +14,12 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 class CompiledRouteCollectionTest extends TestCase
 {
     /**
-     * @var \QuantaQuirk\Routing\RouteCollection
+     * @var \QuantaForge\Routing\RouteCollection
      */
     protected $routeCollection;
 
     /**
-     * @var \QuantaQuirk\Routing\Router
+     * @var \QuantaForge\Routing\Router
      */
     protected $router;
 
@@ -40,7 +40,7 @@ class CompiledRouteCollectionTest extends TestCase
     }
 
     /**
-     * @return \QuantaQuirk\Routing\CompiledRouteCollection
+     * @return \QuantaForge\Routing\CompiledRouteCollection
      */
     protected function collection()
     {
@@ -545,7 +545,7 @@ class CompiledRouteCollectionTest extends TestCase
      * @param  array|string  $methods
      * @param  string  $uri
      * @param  mixed  $action
-     * @return \QuantaQuirk\Routing\Route
+     * @return \QuantaForge\Routing\Route
      */
     protected function newRoute($methods, $uri, $action)
     {
@@ -558,7 +558,7 @@ class CompiledRouteCollectionTest extends TestCase
      * Create a new fallback Route object.
      *
      * @param  mixed  $action
-     * @return \QuantaQuirk\Routing\Route
+     * @return \QuantaForge\Routing\Route
      */
     protected function fallbackRoute($action)
     {

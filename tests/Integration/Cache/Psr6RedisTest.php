@@ -1,10 +1,10 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Cache;
+namespace QuantaForge\Tests\Integration\Cache;
 
-use QuantaQuirk\Foundation\Testing\Concerns\InteractsWithRedis;
-use QuantaQuirk\Support\Facades\Cache;
-use QuantaQuirk\Tests\Integration\Cache\Fixtures\Unserializable;
+use QuantaForge\Foundation\Testing\Concerns\InteractsWithRedis;
+use QuantaForge\Support\Facades\Cache;
+use QuantaForge\Tests\Integration\Cache\Fixtures\Unserializable;
 use Orchestra\Testbench\TestCase;
 
 class Psr6RedisTest extends TestCase

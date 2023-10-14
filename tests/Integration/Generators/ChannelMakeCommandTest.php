@@ -1,6 +1,6 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Generators;
+namespace QuantaForge\Tests\Integration\Generators;
 
 class ChannelMakeCommandTest extends TestCase
 {
@@ -15,7 +15,7 @@ class ChannelMakeCommandTest extends TestCase
 
         $this->assertFileContains([
             'namespace App\Broadcasting;',
-            'use QuantaQuirk\Foundation\Auth\User;',
+            'use QuantaForge\Foundation\Auth\User;',
             'class FooChannel',
         ], 'app/Broadcasting/FooChannel.php');
     }

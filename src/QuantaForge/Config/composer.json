@@ -1,0 +1,30 @@
+{
+    "name": "quantaforge/config",
+    "description": "The QuantaForge Config package.",
+        "license": "proprietary",
+    "authors": [
+        {
+            "name": "Tomáš Selič (Smisch-DEV)",
+            "email": "contact@smisch.sk"
+        }
+    ],
+    "require": {
+        "php": "^8.1",
+        "quantaforge/collections": "^1.0.0",
+        "quantaforge/contracts": "^1.0.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "QuantaForge\\Config\\": ""
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "10.x-dev"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "dev"
+}

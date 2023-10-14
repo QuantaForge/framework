@@ -1,9 +1,9 @@
 <?php
 
-namespace QuantaQuirk\Tests\Cache;
+namespace QuantaForge\Tests\Cache;
 
-use QuantaQuirk\Cache\MemcachedStore;
-use QuantaQuirk\Support\Carbon;
+use QuantaForge\Cache\MemcachedStore;
+use QuantaForge\Support\Carbon;
 use Memcached;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;

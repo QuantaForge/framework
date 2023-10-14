@@ -1,9 +1,9 @@
 <?php
 
-namespace QuantaQuirk\Tests\Support;
+namespace QuantaForge\Tests\Support;
 
-use QuantaQuirk\Mail\Mailable;
-use QuantaQuirk\Support\Facades\Mail;
+use QuantaForge\Mail\Mailable;
+use QuantaForge\Support\Facades\Mail;
 use Orchestra\Testbench\TestCase;
 
 class SupportMailTest extends TestCase
@@ -35,7 +35,7 @@ class SupportMailTest extends TestCase
         Mail::fake();
         Mail::assertNothingSent();
 
-        Mail::to('hello@quantaquirk.com')->send(new TestMail());
+        Mail::to('hello@quantaforge.com')->send(new TestMail());
 
         Mail::assertSent(TestMail::class);
     }

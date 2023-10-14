@@ -1,3 +1,3 @@
 @php
-    throw new QuantaQuirk\Tests\Integration\View\RenderableException;
+    throw new QuantaForge\Tests\Integration\View\RenderableException;
 @endphp

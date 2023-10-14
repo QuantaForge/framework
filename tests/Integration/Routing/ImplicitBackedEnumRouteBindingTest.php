@@ -1,8 +1,8 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Routing;
+namespace QuantaForge\Tests\Integration\Routing;
 
-use QuantaQuirk\Support\Facades\Route;
+use QuantaForge\Support\Facades\Route;
 use Orchestra\Testbench\TestCase;
 
 include_once 'Enums.php';
@@ -19,7 +19,7 @@ class ImplicitBackedEnumRouteBindingTest extends TestCase
         $this->defineCacheRoutes(<<<PHP
 <?php
 
-use QuantaQuirk\Tests\Integration\Routing\CategoryBackedEnum;
+use QuantaForge\Tests\Integration\Routing\CategoryBackedEnum;
 
 Route::get('/categories/{category}', function (CategoryBackedEnum \$category) {
     return \$category->value;

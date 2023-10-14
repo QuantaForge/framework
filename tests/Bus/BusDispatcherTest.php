@@ -1,14 +1,14 @@
 <?php
 
-namespace QuantaQuirk\Tests\Bus;
+namespace QuantaForge\Tests\Bus;
 
-use QuantaQuirk\Bus\Dispatcher;
-use QuantaQuirk\Bus\Queueable;
-use QuantaQuirk\Config\Repository as Config;
-use QuantaQuirk\Container\Container;
-use QuantaQuirk\Contracts\Queue\Queue;
-use QuantaQuirk\Contracts\Queue\ShouldQueue;
-use QuantaQuirk\Queue\InteractsWithQueue;
+use QuantaForge\Bus\Dispatcher;
+use QuantaForge\Bus\Queueable;
+use QuantaForge\Config\Repository as Config;
+use QuantaForge\Container\Container;
+use QuantaForge\Contracts\Queue\Queue;
+use QuantaForge\Contracts\Queue\ShouldQueue;
+use QuantaForge\Queue\InteractsWithQueue;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 use RuntimeException;

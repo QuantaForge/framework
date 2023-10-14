@@ -1,9 +1,9 @@
 <?php
 
-namespace QuantaQuirk\Tests\Http\Middleware;
+namespace QuantaForge\Tests\Http\Middleware;
 
-use QuantaQuirk\Http\Middleware\TrustProxies;
-use QuantaQuirk\Http\Request;
+use QuantaForge\Http\Middleware\TrustProxies;
+use QuantaForge\Http\Request;
 use PHPUnit\Framework\TestCase;
 
 class TrustProxiesTest extends TestCase
@@ -361,7 +361,7 @@ class TrustProxiesTest extends TestCase
      * Fake an HTTP request by generating a Symfony Request object.
      *
      * @param  array  $serverOverrides
-     * @return \QuantaQuirk\Http\Request
+     * @return \QuantaForge\Http\Request
      */
     protected function createProxiedRequest($serverOverrides = [])
     {
@@ -392,7 +392,7 @@ class TrustProxiesTest extends TestCase
      *
      * @param  null|string|int  $trustedHeaders
      * @param  null|array|string  $trustedProxies
-     * @return \QuantaQuirk\Http\Middleware\TrustProxies
+     * @return \QuantaForge\Http\Middleware\TrustProxies
      */
     protected function createTrustedProxy($trustedHeaders, $trustedProxies)
     {

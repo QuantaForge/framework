@@ -1,8 +1,8 @@
 <?php
 
-namespace QuantaQuirk\Tests\Support;
+namespace QuantaForge\Tests\Support;
 
-use QuantaQuirk\Support\ValidatedInput;
+use QuantaForge\Support\ValidatedInput;
 use PHPUnit\Framework\TestCase;
 
 class ValidatedInputTest extends TestCase

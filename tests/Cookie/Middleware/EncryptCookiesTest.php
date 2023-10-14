@@ -1,31 +1,31 @@
 <?php
 
-namespace QuantaQuirk\Tests\Cookie\Middleware;
+namespace QuantaForge\Tests\Cookie\Middleware;
 
-use QuantaQuirk\Container\Container;
-use QuantaQuirk\Contracts\Encryption\Encrypter as EncrypterContract;
-use QuantaQuirk\Cookie\CookieJar;
-use QuantaQuirk\Cookie\CookieValuePrefix;
-use QuantaQuirk\Cookie\Middleware\AddQueuedCookiesToResponse;
-use QuantaQuirk\Cookie\Middleware\EncryptCookies;
-use QuantaQuirk\Encryption\Encrypter;
-use QuantaQuirk\Events\Dispatcher;
-use QuantaQuirk\Http\Request;
-use QuantaQuirk\Http\Response;
-use QuantaQuirk\Routing\Controller;
-use QuantaQuirk\Routing\Router;
+use QuantaForge\Container\Container;
+use QuantaForge\Contracts\Encryption\Encrypter as EncrypterContract;
+use QuantaForge\Cookie\CookieJar;
+use QuantaForge\Cookie\CookieValuePrefix;
+use QuantaForge\Cookie\Middleware\AddQueuedCookiesToResponse;
+use QuantaForge\Cookie\Middleware\EncryptCookies;
+use QuantaForge\Encryption\Encrypter;
+use QuantaForge\Events\Dispatcher;
+use QuantaForge\Http\Request;
+use QuantaForge\Http\Response;
+use QuantaForge\Routing\Controller;
+use QuantaForge\Routing\Router;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Cookie;
 
 class EncryptCookiesTest extends TestCase
 {
     /**
-     * @var \QuantaQuirk\Container\Container
+     * @var \QuantaForge\Container\Container
      */
     protected $container;
 
     /**
-     * @var \QuantaQuirk\Routing\Router
+     * @var \QuantaForge\Routing\Router
      */
     protected $router;
 

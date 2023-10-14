@@ -1,8 +1,8 @@
 <?php
 
-namespace QuantaQuirk\Tests\Cookie;
+namespace QuantaForge\Tests\Cookie;
 
-use QuantaQuirk\Cookie\CookieJar;
+use QuantaForge\Cookie\CookieJar;
 use PHPUnit\Framework\TestCase;
 use ReflectionObject;
 use Symfony\Component\HttpFoundation\Cookie;

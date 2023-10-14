@@ -1,11 +1,11 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Notifications;
+namespace QuantaForge\Tests\Integration\Notifications;
 
-use QuantaQuirk\Notifications\AnonymousNotifiable;
-use QuantaQuirk\Notifications\Notification;
-use QuantaQuirk\Support\Facades\Notification as NotificationFacade;
-use QuantaQuirk\Support\Testing\Fakes\NotificationFake;
+use QuantaForge\Notifications\AnonymousNotifiable;
+use QuantaForge\Notifications\Notification;
+use QuantaForge\Support\Facades\Notification as NotificationFacade;
+use QuantaForge\Support\Testing\Fakes\NotificationFake;
 use Orchestra\Testbench\TestCase;
 
 class SendingNotificationsViaAnonymousNotifiableTest extends TestCase

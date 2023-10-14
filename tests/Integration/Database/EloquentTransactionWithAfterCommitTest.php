@@ -1,6 +1,6 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Database;
+namespace QuantaForge\Tests\Integration\Database;
 
 class EloquentTransactionWithAfterCommitTest extends DatabaseTestCase
 {

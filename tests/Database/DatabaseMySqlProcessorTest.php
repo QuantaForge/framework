@@ -1,8 +1,8 @@
 <?php
 
-namespace QuantaQuirk\Tests\Database;
+namespace QuantaForge\Tests\Database;
 
-use QuantaQuirk\Database\Query\Processors\MySqlProcessor;
+use QuantaForge\Database\Query\Processors\MySqlProcessor;
 use PHPUnit\Framework\TestCase;
 
 class DatabaseMySqlProcessorTest extends TestCase

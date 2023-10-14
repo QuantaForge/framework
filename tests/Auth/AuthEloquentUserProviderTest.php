@@ -1,10 +1,10 @@
 <?php
 
-namespace QuantaQuirk\Tests\Auth;
+namespace QuantaForge\Tests\Auth;
 
-use QuantaQuirk\Auth\EloquentUserProvider;
-use QuantaQuirk\Contracts\Auth\Authenticatable;
-use QuantaQuirk\Contracts\Hashing\Hasher;
+use QuantaForge\Auth\EloquentUserProvider;
+use QuantaForge\Contracts\Auth\Authenticatable;
+use QuantaForge\Contracts\Hashing\Hasher;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 use stdClass;

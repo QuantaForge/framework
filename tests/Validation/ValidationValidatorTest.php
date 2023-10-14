@@ -1,33 +1,33 @@
 <?php
 
-namespace QuantaQuirk\Tests\Validation;
+namespace QuantaForge\Tests\Validation;
 
 use Countable;
 use DateTime;
 use DateTimeImmutable;
 use Egulias\EmailValidator\Validation\NoRFCWarningsValidation;
-use QuantaQuirk\Container\Container;
-use QuantaQuirk\Contracts\Auth\Authenticatable;
-use QuantaQuirk\Contracts\Auth\Guard;
-use QuantaQuirk\Contracts\Hashing\Hasher;
-use QuantaQuirk\Contracts\Translation\Translator as TranslatorContract;
-use QuantaQuirk\Contracts\Validation\DataAwareRule;
-use QuantaQuirk\Contracts\Validation\ImplicitRule;
-use QuantaQuirk\Contracts\Validation\Rule;
-use QuantaQuirk\Contracts\Validation\ValidatorAwareRule;
-use QuantaQuirk\Database\Eloquent\Model;
-use QuantaQuirk\Support\Arr;
-use QuantaQuirk\Support\Carbon;
-use QuantaQuirk\Support\Exceptions\MathException;
-use QuantaQuirk\Translation\ArrayLoader;
-use QuantaQuirk\Translation\Translator;
-use QuantaQuirk\Validation\DatabasePresenceVerifierInterface;
-use QuantaQuirk\Validation\Rules\Exists;
-use QuantaQuirk\Validation\Rules\ProhibitedIf;
-use QuantaQuirk\Validation\Rules\Unique;
-use QuantaQuirk\Validation\ValidationData;
-use QuantaQuirk\Validation\ValidationException;
-use QuantaQuirk\Validation\Validator;
+use QuantaForge\Container\Container;
+use QuantaForge\Contracts\Auth\Authenticatable;
+use QuantaForge\Contracts\Auth\Guard;
+use QuantaForge\Contracts\Hashing\Hasher;
+use QuantaForge\Contracts\Translation\Translator as TranslatorContract;
+use QuantaForge\Contracts\Validation\DataAwareRule;
+use QuantaForge\Contracts\Validation\ImplicitRule;
+use QuantaForge\Contracts\Validation\Rule;
+use QuantaForge\Contracts\Validation\ValidatorAwareRule;
+use QuantaForge\Database\Eloquent\Model;
+use QuantaForge\Support\Arr;
+use QuantaForge\Support\Carbon;
+use QuantaForge\Support\Exceptions\MathException;
+use QuantaForge\Translation\ArrayLoader;
+use QuantaForge\Translation\Translator;
+use QuantaForge\Validation\DatabasePresenceVerifierInterface;
+use QuantaForge\Validation\Rules\Exists;
+use QuantaForge\Validation\Rules\ProhibitedIf;
+use QuantaForge\Validation\Rules\Unique;
+use QuantaForge\Validation\ValidationData;
+use QuantaForge\Validation\ValidationException;
+use QuantaForge\Validation\Validator;
 use InvalidArgumentException;
 use Mockery as m;
 use Mockery\MockInterface;
@@ -49,7 +49,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testNestedErrorMessagesAreRetrievedFromLocalArray()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, [
             'users' => [
                 [
@@ -75,7 +75,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testNestedArrayErrorMessagesAreRetrievedFromLocalArray()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, [
             'users' => [
                 [
@@ -105,19 +105,19 @@ class ValidationValidatorTest extends TestCase
 
     public function testSometimesWorksOnNestedArrays()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['foo' => ['bar' => ['baz' => '']]], ['foo.bar.baz' => 'sometimes|required']);
         $this->assertFalse($v->passes());
         $this->assertEquals(['foo.bar.baz' => ['Required' => []]], $v->failed());
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['foo' => ['bar' => ['baz' => 'nonEmpty']]], ['foo.bar.baz' => 'sometimes|required']);
         $this->assertTrue($v->passes());
     }
 
     public function testAfterCallbacksAreCalledWithValidatorInstance()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['foo' => 'bar', 'baz' => 'boom'], ['foo' => 'Same:baz']);
         $v->setContainer(new Container);
         $v->after(function ($validator) {
@@ -136,12 +136,12 @@ class ValidationValidatorTest extends TestCase
 
     public function testSometimesWorksOnArrays()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['foo' => ['bar', 'baz', 'moo']], ['foo' => 'sometimes|required|between:5,10']);
         $this->assertFalse($v->passes());
         $this->assertNotEmpty($v->failed());
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['foo' => ['bar', 'baz', 'moo', 'pew', 'boom']], ['foo' => 'sometimes|required|between:5,10']);
         $this->assertTrue($v->passes());
     }
@@ -150,7 +150,7 @@ class ValidationValidatorTest extends TestCase
     {
         $this->expectException(ValidationException::class);
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['foo' => 'bar'], ['baz' => 'required']);
 
         $v->validate();
@@ -158,7 +158,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testValidateDoesntThrowOnPass()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['foo' => 'bar'], ['foo' => 'required']);
 
         $this->assertSame(['foo' => 'bar'], $v->validate());
@@ -166,7 +166,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testHasFailedValidationRules()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['foo' => 'bar', 'baz' => 'boom'], ['foo' => 'Same:baz']);
         $this->assertFalse($v->passes());
         $this->assertEquals(['foo' => ['Same' => ['baz']]], $v->failed());
@@ -174,7 +174,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testFailingOnce()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['foo' => 'bar', 'baz' => 'boom'], ['foo' => 'Bail|Same:baz|In:qux']);
         $this->assertFalse($v->passes());
         $this->assertEquals(['foo' => ['Same' => ['baz']]], $v->failed());
@@ -220,7 +220,7 @@ class ValidationValidatorTest extends TestCase
             ],
         ];
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, $data, $rules);
 
         $this->assertTrue($v->passes());
@@ -231,7 +231,7 @@ class ValidationValidatorTest extends TestCase
             ],
         ];
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, $data, $rules);
 
         $this->assertSame('validation.in', $v->messages()->get('items.0.|name')[0]);
@@ -239,7 +239,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testValidateEmptyStringsAlwaysPasses()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
 
         $v = new Validator($trans, ['x' => ''], ['x' => 'size:10|array|integer|min:5']);
         $this->assertTrue($v->passes());
@@ -247,7 +247,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testEmptyExistingAttributesAreValidated()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
 
         $v = new Validator($trans, ['x' => ''], ['x' => 'array']);
         $this->assertTrue($v->passes());
@@ -270,7 +270,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testNullable()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
 
         $v = new Validator($trans, [
             'x' => null, 'y' => null, 'z' => null, 'a' => null, 'b' => null,
@@ -294,7 +294,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testNullableMakesNoDifferenceIfImplicitRuleExists()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
 
         $v = new Validator($trans, [
             'x' => null, 'y' => null,
@@ -325,7 +325,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testProperLanguageLineIsSet()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $trans->addLines(['validation.required' => 'required!'], 'en');
         $v = new Validator($trans, ['name' => ''], ['name' => 'Required']);
         $this->assertFalse($v->passes());
@@ -336,7 +336,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testCustomReplacersAreCalled()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $trans->addLines(['validation.required' => 'foo bar'], 'en');
         $v = new Validator($trans, ['name' => ''], ['name' => 'Required']);
         $v->addReplacer('required', function ($message, $attribute, $rule, $parameters) {
@@ -349,7 +349,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testClassBasedCustomReplacers()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $trans->addLines(['validation.foo' => 'foo!'], 'en');
         $v = new Validator($trans, [], ['name' => 'required']);
         $v->setContainer($container = m::mock(Container::class));
@@ -366,14 +366,14 @@ class ValidationValidatorTest extends TestCase
         // Knowing that demo image.png has width = 3 and height = 2
         $uploadedFile = new UploadedFile(__DIR__.'/fixtures/image.png', '', null, null, true);
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $trans->addLines(['validation.dimensions' => ':min_width :max_height :ratio'], 'en');
         $v = new Validator($trans, ['x' => $uploadedFile], ['x' => 'dimensions:min_width=10,max_height=20,ratio=1']);
         $v->messages()->setFormat(':message');
         $this->assertTrue($v->fails());
         $this->assertSame('10 20 1', $v->messages()->first('x'));
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $trans->addLines(['validation.dimensions' => ':width :height :ratio'], 'en');
         $v = new Validator($trans, ['x' => $uploadedFile], ['x' => 'dimensions:min_width=10,max_height=20,ratio=1']);
         $v->messages()->setFormat(':message');
@@ -383,14 +383,14 @@ class ValidationValidatorTest extends TestCase
 
     public function testAttributeNamesAreReplaced()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $trans->addLines(['validation.required' => ':attribute is required!'], 'en');
         $v = new Validator($trans, ['name' => ''], ['name' => 'Required']);
         $this->assertFalse($v->passes());
         $v->messages()->setFormat(':message');
         $this->assertSame('name is required!', $v->messages()->first('name'));
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $trans->addLines(['validation.required' => ':attribute is required!', 'validation.attributes.name' => 'Name'], 'en');
         $v = new Validator($trans, ['name' => ''], ['name' => 'Required']);
         $this->assertFalse($v->passes());
@@ -398,7 +398,7 @@ class ValidationValidatorTest extends TestCase
         $this->assertSame('Name is required!', $v->messages()->first('name'));
 
         // set customAttributes by setter
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $trans->addLines(['validation.required' => ':attribute is required!'], 'en');
         $customAttributes = ['name' => 'Name'];
         $v = new Validator($trans, ['name' => ''], ['name' => 'Required']);
@@ -407,7 +407,7 @@ class ValidationValidatorTest extends TestCase
         $v->messages()->setFormat(':message');
         $this->assertSame('Name is required!', $v->messages()->first('name'));
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $trans->addLines(['validation.required' => ':attribute is required!'], 'en');
         $v = new Validator($trans, ['name' => ''], ['name' => 'Required']);
         $v->setAttributeNames(['name' => 'Name']);
@@ -415,14 +415,14 @@ class ValidationValidatorTest extends TestCase
         $v->messages()->setFormat(':message');
         $this->assertSame('Name is required!', $v->messages()->first('name'));
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $trans->addLines(['validation.required' => ':Attribute is required!'], 'en');
         $v = new Validator($trans, ['name' => ''], ['name' => 'Required']);
         $this->assertFalse($v->passes());
         $v->messages()->setFormat(':message');
         $this->assertSame('Name is required!', $v->messages()->first('name'));
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $trans->addLines(['validation.required' => ':ATTRIBUTE is required!'], 'en');
         $v = new Validator($trans, ['name' => ''], ['name' => 'Required']);
         $this->assertFalse($v->passes());
@@ -432,14 +432,14 @@ class ValidationValidatorTest extends TestCase
 
     public function testAttributeNamesAreReplacedInArrays()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $trans->addLines(['validation.required' => ':attribute is required!'], 'en');
         $v = new Validator($trans, ['users' => [['country_code' => 'US'], ['country_code' => null]]], ['users.*.country_code' => 'Required']);
         $this->assertFalse($v->passes());
         $v->messages()->setFormat(':message');
         $this->assertSame('users.1.country_code is required!', $v->messages()->first('users.1.country_code'));
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $trans->addLines([
             'validation.string' => ':attribute must be a string!',
             'validation.attributes.name.*' => 'Any name',
@@ -449,7 +449,7 @@ class ValidationValidatorTest extends TestCase
         $v->messages()->setFormat(':message');
         $this->assertSame('Any name must be a string!', $v->messages()->first('name.1'));
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $trans->addLines(['validation.string' => ':attribute must be a string!'], 'en');
         $v = new Validator($trans, ['name' => ['Jon', 2]], ['name.*' => 'string']);
         $v->setAttributeNames(['name.*' => 'Any name']);
@@ -469,14 +469,14 @@ class ValidationValidatorTest extends TestCase
         $v->messages()->setFormat(':message');
         $this->assertSame('Titel is required!', $v->messages()->first('title.nl'));
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $trans->addLines(['validation.required' => ':attribute is required!'], 'en');
         $trans->addLines(['validation.attributes' => ['names.*' => 'names']], 'en');
         $v = new Validator($trans, ['names' => [null, 'name']], ['names.*' => 'Required']);
         $v->messages()->setFormat(':message');
         $this->assertSame('names is required!', $v->messages()->first('names.0'));
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $trans->addLines(['validation.required' => ':attribute is required!'], 'en');
         $trans->addLines(['validation.attributes' => ['names.*' => 'names']], 'en');
         $trans->addLines(['validation.attributes' => ['names.0' => 'First name']], 'en');
@@ -487,14 +487,14 @@ class ValidationValidatorTest extends TestCase
 
     public function testInputIsReplaced()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $trans->addLines(['validation.email' => ':input is not a valid email'], 'en');
         $v = new Validator($trans, ['email' => 'a@@s'], ['email' => 'email']);
         $this->assertFalse($v->passes());
         $v->messages()->setFormat(':message');
         $this->assertSame('a@@s is not a valid email', $v->messages()->first('email'));
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $trans->addLines(['validation.email' => ':input is not a valid email'], 'en');
         $v = new Validator($trans, ['email' => null], ['email' => 'email']);
         $this->assertFalse($v->passes());
@@ -505,12 +505,12 @@ class ValidationValidatorTest extends TestCase
     public function testInputIsReplacedByItsDisplayableValue()
     {
         $frameworks = [
-            1 => 'QuantaQuirk',
+            1 => 'QuantaForge',
             2 => 'Symfony',
             3 => 'Rails',
         ];
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $trans->addLines(['validation.framework_php' => ':input is not a valid PHP Framework'], 'en');
 
         $v = new Validator($trans, ['framework' => 3], ['framework' => 'framework_php']);
@@ -526,7 +526,7 @@ class ValidationValidatorTest extends TestCase
     public function testDisplayableValuesAreReplaced()
     {
         // required_if:foo,bar
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $trans->addLines(['validation.required_if' => 'The :attribute field is required when :other is :value.'], 'en');
         $trans->addLines(['validation.values.color.1' => 'red'], 'en');
         $v = new Validator($trans, ['color' => '1', 'bar' => ''], ['bar' => 'RequiredIf:color,1']);
@@ -535,7 +535,7 @@ class ValidationValidatorTest extends TestCase
         $this->assertSame('The bar field is required when color is red.', $v->messages()->first('bar'));
 
         // required_if:foo,boolean
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $trans->addLines(['validation.required_if' => 'The :attribute field is required when :other is :value.'], 'en');
         $trans->addLines(['validation.values.subscribe.false' => 'false'], 'en');
         $v = new Validator($trans, ['subscribe' => false, 'bar' => ''], ['bar' => 'RequiredIf:subscribe,false']);
@@ -543,7 +543,7 @@ class ValidationValidatorTest extends TestCase
         $v->messages()->setFormat(':message');
         $this->assertSame('The bar field is required when subscribe is false.', $v->messages()->first('bar'));
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $trans->addLines(['validation.required_if' => 'The :attribute field is required when :other is :value.'], 'en');
         $trans->addLines(['validation.values.subscribe.true' => 'true'], 'en');
         $v = new Validator($trans, ['subscribe' => true, 'bar' => ''], ['bar' => 'RequiredIf:subscribe,true']);
@@ -552,7 +552,7 @@ class ValidationValidatorTest extends TestCase
         $this->assertSame('The bar field is required when subscribe is true.', $v->messages()->first('bar'));
 
         // required_unless:foo,bar
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $trans->addLines(['validation.required_unless' => 'The :attribute field is required unless :other is in :values.'], 'en');
         $trans->addLines(['validation.values.color.1' => 'red'], 'en');
         $v = new Validator($trans, ['color' => '2', 'bar' => ''], ['bar' => 'RequiredUnless:color,1']);
@@ -561,7 +561,7 @@ class ValidationValidatorTest extends TestCase
         $this->assertSame('The bar field is required unless color is in red.', $v->messages()->first('bar'));
 
         // in:foo,bar,...
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $trans->addLines(['validation.in' => ':attribute must be included in :values.'], 'en');
         $trans->addLines(['validation.values.type.5' => 'Short'], 'en');
         $trans->addLines(['validation.values.type.300' => 'Long'], 'en');
@@ -571,7 +571,7 @@ class ValidationValidatorTest extends TestCase
         $this->assertSame('type must be included in Short, Long.', $v->messages()->first('type'));
 
         // date_equals:tomorrow
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $trans->addLines(['validation.date_equals' => 'The :attribute must be a date equal to :date.'], 'en');
         $trans->addLines(['validation.values.date.tomorrow' => 'the day after today'], 'en');
         $v = new Validator($trans, ['date' => date('Y-m-d')], ['date' => 'date_equals:tomorrow']);
@@ -580,7 +580,7 @@ class ValidationValidatorTest extends TestCase
         $this->assertSame('The date must be a date equal to the day after today.', $v->messages()->first('date'));
 
         // test addCustomValues
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $trans->addLines(['validation.in' => ':attribute must be included in :values.'], 'en');
         $customValues = [
             'type' => [
@@ -595,7 +595,7 @@ class ValidationValidatorTest extends TestCase
         $this->assertSame('type must be included in Short, Long.', $v->messages()->first('type'));
 
         // set custom values by setter
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $trans->addLines(['validation.in' => ':attribute must be included in :values.'], 'en');
         $customValues = [
             'type' => [
@@ -612,7 +612,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testDisplayableAttributesAreReplacedInCustomReplacers()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $trans->addLines(['validation.alliteration' => ':attribute needs to begin with the same letter as :other'], 'en');
         $trans->addLines(['validation.attributes.firstname' => 'Firstname'], 'en');
         $trans->addLines(['validation.attributes.lastname' => 'Lastname'], 'en');
@@ -629,7 +629,7 @@ class ValidationValidatorTest extends TestCase
         $v->messages()->setFormat(':message');
         $this->assertSame('Lastname needs to begin with the same letter as Firstname', $v->messages()->first('lastname'));
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $trans->addLines(['validation.alliteration' => ':attribute needs to begin with the same letter as :other'], 'en');
         $customAttributes = ['firstname' => 'Firstname', 'lastname' => 'Lastname'];
         $v = new Validator($trans, ['firstname' => 'Bob', 'lastname' => 'Smith'], ['lastname' => 'alliteration:firstname']);
@@ -646,14 +646,14 @@ class ValidationValidatorTest extends TestCase
         $v->messages()->setFormat(':message');
         $this->assertSame('Lastname needs to begin with the same letter as Firstname', $v->messages()->first('lastname'));
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $trans->addLines(['validation.alliteration' => ':attribute needs to begin with the same letter as :other'], 'en');
         new Validator($trans, ['firstname' => 'Bob', 'lastname' => 'Smith'], ['lastname' => 'alliteration:firstname']);
     }
 
     public function testIndexValuesAreReplaced()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
 
         // $v = new Validator($trans, ['name' => ''], ['name' => 'required'], ['name.required' => 'Name :index is required.']);
         // $this->assertFalse($v->passes());
@@ -699,7 +699,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testPositionValuesAreReplaced()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
 
         // $v = new Validator($trans, ['name' => ''], ['name' => 'required'], ['name.required' => 'Name :position is required.']);
         // $this->assertFalse($v->passes());
@@ -731,7 +731,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testCustomValidationLinesAreRespected()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $trans->getLoader()->addMessages('en', 'validation', [
             'required' => 'required!',
             'custom' => [
@@ -748,7 +748,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testCustomValidationLinesForSizeRules()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $trans->getLoader()->addMessages('en', 'validation', [
             'required' => 'required!',
             'custom' => [
@@ -773,7 +773,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testCustomValidationLinesAreRespectedWithAsterisks()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $trans->getLoader()->addMessages('en', 'validation', [
             'required' => 'required!',
             'custom' => [
@@ -800,7 +800,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testCustomException()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
 
         $v = new Validator($trans, ['name' => ''], ['name' => 'required']);
 
@@ -816,19 +816,19 @@ class ValidationValidatorTest extends TestCase
 
     public function testCustomExceptionMustExtendValidationException()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
 
         $v = new Validator($trans, [], []);
 
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage('Exception [RuntimeException] is invalid. It must extend [QuantaQuirk\Validation\ValidationException].');
+        $this->expectExceptionMessage('Exception [RuntimeException] is invalid. It must extend [QuantaForge\Validation\ValidationException].');
 
         $v->setException(RuntimeException::class);
     }
 
     public function testValidationDotCustomDotAnythingCanBeTranslated()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $trans->getLoader()->addMessages('en', 'validation', [
             'required' => 'required!',
             'custom' => [
@@ -848,19 +848,19 @@ class ValidationValidatorTest extends TestCase
 
     public function testInlineValidationMessagesAreRespected()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['name' => ''], ['name' => 'Required'], ['name.required' => 'require it please!']);
         $this->assertFalse($v->passes());
         $v->messages()->setFormat(':message');
         $this->assertSame('require it please!', $v->messages()->first('name'));
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['name' => ''], ['name' => 'Required'], ['required' => 'require it please!']);
         $this->assertFalse($v->passes());
         $v->messages()->setFormat(':message');
         $this->assertSame('require it please!', $v->messages()->first('name'));
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['name' => 'foobarba'], ['name' => 'size:9'], ['size' => ['string' => ':attribute should be of length :size']]);
         $this->assertFalse($v->passes());
         $v->messages()->setFormat(':message');
@@ -869,7 +869,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testInlineValidationMessagesAreRespectedWithAsterisks()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['name' => ['', '']], ['name.*' => 'required|max:255'], ['name.*.required' => 'all must be required!']);
         $this->assertFalse($v->passes());
         $v->messages()->setFormat(':message');
@@ -892,26 +892,26 @@ class ValidationValidatorTest extends TestCase
             }
         };
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['name' => 'Taylor'], ['name' => $rule], [$rule::class => 'my custom message']);
         $this->assertFalse($v->passes());
         $v->messages()->setFormat(':message');
         $this->assertSame('my custom message', $v->messages()->first('name'));
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['name' => 'Ryan'], ['name' => $rule], ['name.'.$rule::class => 'my custom message']);
         $this->assertFalse($v->passes());
         $v->messages()->setFormat(':message');
         $this->assertSame('my custom message', $v->messages()->first('name'));
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['name' => ['foo', 'bar']], ['name.*' => $rule], ['name.*.'.$rule::class => 'my custom message']);
         $this->assertFalse($v->passes());
         $v->messages()->setFormat(':message');
         $this->assertSame('my custom message', $v->messages()->first('name.0'));
         $this->assertSame('my custom message', $v->messages()->first('name.1'));
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['name' => 'Ryan'], ['name' => $rule], [$rule::class => 'my attribute is :attribute']);
         $this->assertFalse($v->passes());
         $v->messages()->setFormat(':message');
@@ -920,7 +920,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testIfRulesAreSuccessfullyAdded()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, [], ['foo' => 'Required']);
         // foo has required rule
         $this->assertTrue($v->hasRule('foo', 'Required'));
@@ -932,7 +932,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testValidateArray()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
 
         $v = new Validator($trans, ['foo' => [1, 2, 3]], ['foo' => 'Array']);
         $this->assertTrue($v->passes());
@@ -943,7 +943,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testValidateArrayKeys()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $rules = ['user' => 'array:name,username'];
 
         $v = new Validator($trans, ['user' => ['name' => 'Duilio', 'username' => 'duilio']], $rules);
@@ -1054,7 +1054,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testValidateFilled()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, [], ['name' => 'filled']);
         $this->assertTrue($v->passes());
 
@@ -1073,7 +1073,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testValidationStopsAtFailedPresenceCheck()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
 
         $v = new Validator($trans, ['name' => null], ['name' => 'Required|string']);
         $v->passes();
@@ -1094,7 +1094,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testValidatePresent()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, [], ['name' => 'present']);
         $this->assertFalse($v->passes());
 
@@ -1122,7 +1122,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testValidateRequired()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, [], ['name' => 'Required']);
         $this->assertFalse($v->passes());
 
@@ -1151,7 +1151,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testValidateRequiredWith()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['first' => 'Taylor'], ['last' => 'required_with:first']);
         $this->assertFalse($v->passes());
 
@@ -1184,7 +1184,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testRequiredWithAll()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['first' => 'foo'], ['last' => 'required_with_all:first,foo']);
         $this->assertTrue($v->passes());
 
@@ -1194,7 +1194,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testValidateRequiredWithout()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['first' => 'Taylor'], ['last' => 'required_without:first']);
         $this->assertTrue($v->passes());
 
@@ -1248,7 +1248,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testRequiredWithoutMultiple()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
 
         $rules = [
             'f1' => 'required_without:f2,f3',
@@ -1283,7 +1283,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testRequiredWithoutAll()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
 
         $rules = [
             'f1' => 'required_without_all:f2,f3',
@@ -1318,62 +1318,62 @@ class ValidationValidatorTest extends TestCase
 
     public function testRequiredIf()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['first' => 'taylor'], ['last' => 'required_if:first,taylor']);
         $this->assertTrue($v->fails());
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['first' => 'taylor', 'last' => 'otwell'], ['last' => 'required_if:first,taylor']);
         $this->assertTrue($v->passes());
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['first' => 'taylor', 'last' => 'otwell'], ['last' => 'required_if:first,taylor,dayle']);
         $this->assertTrue($v->passes());
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['first' => 'dayle', 'last' => 'rees'], ['last' => 'required_if:first,taylor,dayle']);
         $this->assertTrue($v->passes());
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['foo' => true], ['bar' => 'required_if:foo,false']);
         $this->assertTrue($v->passes());
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['foo' => true], ['bar' => 'required_if:foo,null']);
         $this->assertTrue($v->passes());
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['foo' => 0], ['bar' => 'required_if:foo,0']);
         $this->assertTrue($v->fails());
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['foo' => '0'], ['bar' => 'required_if:foo,0']);
         $this->assertTrue($v->fails());
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['foo' => 1], ['bar' => 'required_if:foo,1']);
         $this->assertTrue($v->fails());
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['foo' => '1'], ['bar' => 'required_if:foo,1']);
         $this->assertTrue($v->fails());
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['foo' => true], ['bar' => 'required_if:foo,true']);
         $this->assertTrue($v->fails());
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['foo' => false], ['bar' => 'required_if:foo,false']);
         $this->assertTrue($v->fails());
 
         // error message when passed multiple values (required_if:foo,bar,baz)
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $trans->addLines(['validation.required_if' => 'The :attribute field is required when :other is :value.'], 'en');
         $v = new Validator($trans, ['first' => 'dayle', 'last' => ''], ['last' => 'RequiredIf:first,taylor,dayle']);
         $this->assertFalse($v->passes());
         $this->assertSame('The last field is required when first is dayle.', $v->messages()->first('last'));
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $trans->addLines(['validation.required_if' => 'The :attribute field is required when :other is :value.'], 'en');
         $v = new Validator($trans, ['foo' => 0], [
             'foo' => 'nullable|required|boolean',
@@ -1384,28 +1384,28 @@ class ValidationValidatorTest extends TestCase
         $this->assertCount(1, $v->messages());
         $this->assertSame('The baz field is required when foo is 0.', $v->messages()->first('baz'));
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, [], [
             'foo' => 'nullable|boolean',
             'baz' => 'nullable|required_if:foo,false',
         ]);
         $this->assertTrue($v->passes());
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['foo' => null], [
             'foo' => 'nullable|boolean',
             'baz' => 'nullable|required_if:foo,false',
         ]);
         $this->assertTrue($v->passes());
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, [], [
             'foo' => 'nullable|boolean',
             'baz' => 'nullable|required_if:foo,null',
         ]);
         $this->assertTrue($v->passes());
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $trans->addLines(['validation.required_if' => 'The :attribute field is required when :other is :value.'], 'en');
         $v = new Validator($trans, ['foo' => null], [
             'foo' => 'nullable|boolean',
@@ -1418,7 +1418,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testRequiredIfArrayToStringConversationErrorException()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, [
             'is_customer' => 1,
             'fullname' => null,
@@ -1428,7 +1428,7 @@ class ValidationValidatorTest extends TestCase
         ]);
         $this->assertTrue($v->fails());
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, [
             'is_customer' => ['test'],
             'fullname' => null,
@@ -1441,68 +1441,68 @@ class ValidationValidatorTest extends TestCase
 
     public function testRequiredUnless()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['first' => 'sven'], ['last' => 'required_unless:first,taylor']);
         $this->assertTrue($v->fails());
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['first' => 'taylor'], ['last' => 'required_unless:first,taylor']);
         $this->assertTrue($v->passes());
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['first' => 'sven', 'last' => 'wittevrongel'], ['last' => 'required_unless:first,taylor']);
         $this->assertTrue($v->passes());
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['first' => 'taylor'], ['last' => 'required_unless:first,taylor,sven']);
         $this->assertTrue($v->passes());
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['first' => 'sven'], ['last' => 'required_unless:first,taylor,sven']);
         $this->assertTrue($v->passes());
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['foo' => false], ['bar' => 'required_unless:foo,false']);
         $this->assertTrue($v->passes());
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['foo' => false], ['bar' => 'required_unless:foo,true']);
         $this->assertTrue($v->fails());
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['bar' => '1'], ['bar' => 'required_unless:foo,true']);
         $this->assertTrue($v->passes());
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, [], ['bar' => 'required_unless:foo,true']);
         $this->assertTrue($v->fails());
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, [], ['bar' => 'required_unless:foo,null']);
         $this->assertTrue($v->passes());
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['foo' => true], ['bar' => 'required_unless:foo,null']);
         $this->assertTrue($v->fails());
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['foo' => '0'], ['bar' => 'required_unless:foo,0']);
         $this->assertTrue($v->passes());
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['foo' => 0], ['bar' => 'required_unless:foo,0']);
         $this->assertTrue($v->passes());
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['foo' => '1'], ['bar' => 'required_unless:foo,1']);
         $this->assertTrue($v->passes());
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['foo' => 1], ['bar' => 'required_unless:foo,1']);
         $this->assertTrue($v->passes());
 
         // error message when passed multiple values (required_unless:foo,bar,baz)
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $trans->addLines(['validation.required_unless' => 'The :attribute field is required unless :other is in :values.'], 'en');
         $v = new Validator($trans, ['first' => 'dayle', 'last' => ''], ['last' => 'RequiredUnless:first,taylor,sven']);
         $this->assertFalse($v->passes());
@@ -1511,7 +1511,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testProhibited()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
 
         $v = new Validator($trans, [], ['name' => 'prohibited']);
         $this->assertTrue($v->passes());
@@ -1541,32 +1541,32 @@ class ValidationValidatorTest extends TestCase
 
     public function testProhibitedIf()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['first' => 'taylor', 'last' => 'otwell'], ['last' => 'prohibited_if:first,taylor']);
         $this->assertTrue($v->fails());
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['first' => 'taylor'], ['last' => 'prohibited_if:first,taylor']);
         $this->assertTrue($v->passes());
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['first' => 'taylor', 'last' => 'otwell'], ['last' => 'prohibited_if:first,taylor,jess']);
         $this->assertTrue($v->fails());
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['first' => 'taylor'], ['last' => 'prohibited_if:first,taylor,jess']);
         $this->assertTrue($v->passes());
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['foo' => true, 'bar' => 'baz'], ['bar' => 'prohibited_if:foo,false']);
         $this->assertTrue($v->passes());
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['foo' => true, 'bar' => 'baz'], ['bar' => 'prohibited_if:foo,true']);
         $this->assertTrue($v->fails());
 
         // error message when passed multiple values (prohibited_if:foo,bar,baz)
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $trans->addLines(['validation.prohibited_if' => 'The :attribute field is prohibited when :other is :value.'], 'en');
         $v = new Validator($trans, ['first' => 'jess', 'last' => 'archer'], ['last' => 'prohibited_if:first,taylor,jess']);
         $this->assertFalse($v->passes());
@@ -1575,36 +1575,36 @@ class ValidationValidatorTest extends TestCase
 
     public function testProhibitedUnless()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['first' => 'jess', 'last' => 'archer'], ['last' => 'prohibited_unless:first,taylor']);
         $this->assertTrue($v->fails());
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['first' => 'taylor', 'last' => 'otwell'], ['last' => 'prohibited_unless:first,taylor']);
         $this->assertTrue($v->passes());
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['first' => 'jess'], ['last' => 'prohibited_unless:first,taylor']);
         $this->assertTrue($v->passes());
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['first' => 'taylor', 'last' => 'otwell'], ['last' => 'prohibited_unless:first,taylor,jess']);
         $this->assertTrue($v->passes());
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['first' => 'jess', 'last' => 'archer'], ['last' => 'prohibited_unless:first,taylor,jess']);
         $this->assertTrue($v->passes());
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['foo' => false, 'bar' => 'baz'], ['bar' => 'prohibited_unless:foo,false']);
         $this->assertTrue($v->passes());
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['foo' => false, 'bar' => 'baz'], ['bar' => 'prohibited_unless:foo,true']);
         $this->assertTrue($v->fails());
 
         // error message when passed multiple values (prohibited_unless:foo,bar,baz)
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $trans->addLines(['validation.prohibited_unless' => 'The :attribute field is prohibited unless :other is in :values.'], 'en');
         $v = new Validator($trans, ['first' => 'tim', 'last' => 'macdonald'], ['last' => 'prohibitedUnless:first,taylor,jess']);
         $this->assertFalse($v->passes());
@@ -1613,45 +1613,45 @@ class ValidationValidatorTest extends TestCase
 
     public function testProhibits()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['email' => 'foo', 'emails' => ['foo']], ['email' => 'prohibits:emails']);
         $this->assertTrue($v->fails());
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['email' => 'foo', 'emails' => []], ['email' => 'prohibits:emails']);
         $this->assertTrue($v->passes());
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['email' => 'foo', 'emails' => ''], ['email' => 'prohibits:emails']);
         $this->assertTrue($v->passes());
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['email' => 'foo', 'emails' => null], ['email' => 'prohibits:emails']);
         $this->assertTrue($v->passes());
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['email' => 'foo', 'emails' => false], ['email' => 'prohibits:emails']);
         $this->assertTrue($v->fails());
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['email' => 'foo', 'emails' => ['foo']], ['email' => 'prohibits:email_address,emails']);
         $this->assertTrue($v->fails());
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['email' => 'foo'], ['email' => 'prohibits:emails']);
         $this->assertTrue($v->passes());
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['email' => 'foo', 'other' => 'foo'], ['email' => 'prohibits:email_address,emails']);
         $this->assertTrue($v->passes());
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $trans->addLines(['validation.prohibits' => 'The :attribute field prohibits :other being present.'], 'en');
         $v = new Validator($trans, ['email' => 'foo', 'emails' => 'bar', 'email_address' => 'baz'], ['email' => 'prohibits:emails,email_address']);
         $this->assertFalse($v->passes());
         $this->assertSame('The email field prohibits emails / email address being present.', $v->messages()->first('email'));
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, [
             'foo' => [
                 ['email' => 'foo', 'emails' => 'foo'],
@@ -1666,7 +1666,7 @@ class ValidationValidatorTest extends TestCase
     /** @dataProvider prohibitedRulesData */
     public function testProhibitedRulesAreConsistent($rules, $data, $result)
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
 
         $this->assertSame($result, (new Validator($trans, $data, $rules))->passes());
     }
@@ -1740,7 +1740,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testFailedFileUploads()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
 
         // If file is not successfully uploaded validation should fail with a
         // 'uploaded' error message instead of the original rule.
@@ -1776,19 +1776,19 @@ class ValidationValidatorTest extends TestCase
 
     public function testValidateInArray()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['foo' => [1, 2, 3], 'bar' => [1, 2]], ['foo.*' => 'in_array:bar.*']);
         $this->assertFalse($v->passes());
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['foo' => [1, 2], 'bar' => [1, 2, 3]], ['foo.*' => 'in_array:bar.*']);
         $this->assertTrue($v->passes());
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['foo' => [['bar_id' => 5], ['bar_id' => 2]], 'bar' => [['id' => 1, ['id' => 2]]]], ['foo.*.bar_id' => 'in_array:bar.*.id']);
         $this->assertFalse($v->passes());
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['foo' => [['bar_id' => 1], ['bar_id' => 2]], 'bar' => [['id' => 1, ['id' => 2]]]], ['foo.*.bar_id' => 'in_array:bar.*.id']);
         $this->assertTrue($v->passes());
 
@@ -1799,7 +1799,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testValidateConfirmed()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['password' => 'foo'], ['password' => 'Confirmed']);
         $this->assertFalse($v->passes());
 
@@ -1815,7 +1815,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testValidateSame()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['foo' => 'bar', 'baz' => 'boom'], ['foo' => 'Same:baz']);
         $this->assertFalse($v->passes());
 
@@ -1834,7 +1834,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testValidateDifferent()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['foo' => 'bar', 'baz' => 'boom'], ['foo' => 'Different:baz']);
         $this->assertTrue($v->passes());
 
@@ -1862,7 +1862,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testGreaterThan()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['lhs' => 15, 'rhs' => 10], ['lhs' => 'numeric|gt:rhs']);
         $this->assertTrue($v->passes());
 
@@ -1906,7 +1906,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testLowercase()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, [
             'lower' => 'lowercase',
             'mixed' => 'MixedCase',
@@ -1933,7 +1933,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testUppercase()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, [
             'lower' => 'lowercase',
             'mixed' => 'MixedCase',
@@ -1960,7 +1960,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testLessThan()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['lhs' => 15, 'rhs' => 10], ['lhs' => 'numeric|lt:rhs']);
         $this->assertTrue($v->fails());
 
@@ -2001,7 +2001,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testGreaterThanOrEqual()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['lhs' => 15, 'rhs' => 15], ['lhs' => 'numeric|gte:rhs']);
         $this->assertTrue($v->passes());
 
@@ -2042,7 +2042,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testLessThanOrEqual()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['lhs' => 15, 'rhs' => 15], ['lhs' => 'numeric|lte:rhs']);
         $this->assertTrue($v->passes());
 
@@ -2083,7 +2083,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testValidateAccepted()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['foo' => 'no'], ['foo' => 'Accepted']);
         $this->assertFalse($v->passes());
 
@@ -2129,7 +2129,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testValidateRequiredAcceptedIf()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['foo' => 'no', 'bar' => 'baz'], ['bar' => 'required_if_accepted:foo']);
         $this->assertTrue($v->passes());
 
@@ -2145,7 +2145,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testValidateAcceptedIf()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['foo' => 'no', 'bar' => 'aaa'], ['foo' => 'accepted_if:bar,aaa']);
         $this->assertFalse($v->passes());
 
@@ -2186,7 +2186,7 @@ class ValidationValidatorTest extends TestCase
         $this->assertTrue($v->passes());
 
         // accepted_if:bar,aaa
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $trans->addLines(['validation.accepted_if' => 'The :attribute field must be accepted when :other is :value.'], 'en');
         $v = new Validator($trans, ['foo' => 'no', 'bar' => 'aaa'], ['foo' => 'accepted_if:bar,aaa']);
         $this->assertFalse($v->passes());
@@ -2194,7 +2194,7 @@ class ValidationValidatorTest extends TestCase
         $this->assertSame('The foo field must be accepted when bar is aaa.', $v->messages()->first('foo'));
 
         // accepted_if:bar,aaa,...
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $trans->addLines(['validation.accepted_if' => 'The :attribute field must be accepted when :other is :value.'], 'en');
         $v = new Validator($trans, ['foo' => 'no', 'bar' => 'abc'], ['foo' => 'accepted_if:bar,aaa,bbb,abc']);
         $this->assertFalse($v->passes());
@@ -2202,14 +2202,14 @@ class ValidationValidatorTest extends TestCase
         $this->assertSame('The foo field must be accepted when bar is abc.', $v->messages()->first('foo'));
 
         // accepted_if:bar,boolean
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $trans->addLines(['validation.accepted_if' => 'The :attribute field must be accepted when :other is :value.'], 'en');
         $v = new Validator($trans, ['foo' => 'no', 'bar' => false], ['foo' => 'accepted_if:bar,false']);
         $this->assertFalse($v->passes());
         $v->messages()->setFormat(':message');
         $this->assertSame('The foo field must be accepted when bar is false.', $v->messages()->first('foo'));
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $trans->addLines(['validation.accepted_if' => 'The :attribute field must be accepted when :other is :value.'], 'en');
         $v = new Validator($trans, ['foo' => 'no', 'bar' => true], ['foo' => 'accepted_if:bar,true']);
         $this->assertFalse($v->passes());
@@ -2219,7 +2219,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testValidateDeclined()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['foo' => 'yes'], ['foo' => 'Declined']);
         $this->assertFalse($v->passes());
 
@@ -2265,7 +2265,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testValidateMissing()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $trans->addLines(['validation.missing' => 'The :attribute field must be missing.'], 'en');
 
         $v = new Validator($trans, ['foo' => 'yes'], ['foo' => 'missing']);
@@ -2304,7 +2304,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testValidateMissingIf()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $trans->addLines(['validation.missing_if' => 'The :attribute field must be missing when :other is :value.'], 'en');
 
         $v = new Validator($trans, ['foo' => 'yes', 'bar' => '1'], ['foo' => 'missing_if:bar,1']);
@@ -2343,7 +2343,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testValidateMissingUnless()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $trans->addLines(['validation.missing_unless' => 'The :attribute field must be missing unless :other is :value.'], 'en');
 
         $v = new Validator($trans, ['foo' => 'yes', 'bar' => '2'], ['foo' => 'missing_unless:bar,1']);
@@ -2382,7 +2382,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testValidateMissingWith()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $trans->addLines(['validation.missing_with' => 'The :attribute field must be missing when :values is present.'], 'en');
 
         $v = new Validator($trans, ['bar' => '2'], ['foo' => 'missing_with:baz,bar']);
@@ -2424,7 +2424,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testValidateMissingWithAll()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $trans->addLines(['validation.missing_with_all' => 'The :attribute field must be missing when :values are present.'], 'en');
 
         $v = new Validator($trans, ['bar' => '2', 'baz' => '2'], ['foo' => 'missing_with_all:baz,bar']);
@@ -2466,7 +2466,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testValidateDeclinedIf()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['foo' => 'yes', 'bar' => 'aaa'], ['foo' => 'declined_if:bar,aaa']);
         $this->assertFalse($v->passes());
 
@@ -2507,7 +2507,7 @@ class ValidationValidatorTest extends TestCase
         $this->assertTrue($v->passes());
 
         // declined_if:bar,aaa
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $trans->addLines(['validation.declined_if' => 'The :attribute field must be declined when :other is :value.'], 'en');
         $v = new Validator($trans, ['foo' => 'yes', 'bar' => 'aaa'], ['foo' => 'declined_if:bar,aaa']);
         $this->assertFalse($v->passes());
@@ -2515,7 +2515,7 @@ class ValidationValidatorTest extends TestCase
         $this->assertSame('The foo field must be declined when bar is aaa.', $v->messages()->first('foo'));
 
         // declined_if:bar,aaa,...
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $trans->addLines(['validation.declined_if' => 'The :attribute field must be declined when :other is :value.'], 'en');
         $v = new Validator($trans, ['foo' => 'yes', 'bar' => 'abc'], ['foo' => 'declined_if:bar,aaa,bbb,abc']);
         $this->assertFalse($v->passes());
@@ -2523,14 +2523,14 @@ class ValidationValidatorTest extends TestCase
         $this->assertSame('The foo field must be declined when bar is abc.', $v->messages()->first('foo'));
 
         // declined_if:bar,boolean
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $trans->addLines(['validation.declined_if' => 'The :attribute field must be declined when :other is :value.'], 'en');
         $v = new Validator($trans, ['foo' => 'yes', 'bar' => false], ['foo' => 'declined_if:bar,false']);
         $this->assertFalse($v->passes());
         $v->messages()->setFormat(':message');
         $this->assertSame('The foo field must be declined when bar is false.', $v->messages()->first('foo'));
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $trans->addLines(['validation.declined_if' => 'The :attribute field must be declined when :other is :value.'], 'en');
         $v = new Validator($trans, ['foo' => 'yes', 'bar' => true], ['foo' => 'declined_if:bar,true']);
         $this->assertFalse($v->passes());
@@ -2540,113 +2540,113 @@ class ValidationValidatorTest extends TestCase
 
     public function testValidateEndsWith()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['x' => 'hello world'], ['x' => 'ends_with:hello']);
         $this->assertFalse($v->passes());
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['x' => 'hello world'], ['x' => 'ends_with:world']);
         $this->assertTrue($v->passes());
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['x' => 'hello world'], ['x' => 'ends_with:world,hello']);
         $this->assertTrue($v->passes());
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $trans->addLines(['validation.ends_with' => 'The :attribute must end with one of the following values :values'], 'en');
-        $v = new Validator($trans, ['url' => 'quantaquirk.com'], ['url' => 'ends_with:http']);
+        $v = new Validator($trans, ['url' => 'quantaforge.com'], ['url' => 'ends_with:http']);
         $this->assertFalse($v->passes());
         $this->assertSame('The url must end with one of the following values http', $v->messages()->first('url'));
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $trans->addLines(['validation.ends_with' => 'The :attribute must end with one of the following values :values'], 'en');
-        $v = new Validator($trans, ['url' => 'quantaquirk.com'], ['url' => 'ends_with:http,https']);
+        $v = new Validator($trans, ['url' => 'quantaforge.com'], ['url' => 'ends_with:http,https']);
         $this->assertFalse($v->passes());
         $this->assertSame('The url must end with one of the following values http, https', $v->messages()->first('url'));
     }
 
     public function testValidateDoesntEndWith()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['x' => 'hello world'], ['x' => 'doesnt_end_with:hello']);
         $this->assertTrue($v->passes());
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['x' => 'hello world'], ['x' => 'doesnt_end_with:world']);
         $this->assertFalse($v->passes());
     }
 
     public function testValidateStartsWith()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['x' => 'hello world'], ['x' => 'starts_with:hello']);
         $this->assertTrue($v->passes());
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['x' => 'hello world'], ['x' => 'starts_with:world']);
         $this->assertFalse($v->passes());
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['x' => 'hello world'], ['x' => 'starts_with:world,hello']);
         $this->assertTrue($v->passes());
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $trans->addLines(['validation.starts_with' => 'The :attribute must start with one of the following values :values'], 'en');
-        $v = new Validator($trans, ['url' => 'quantaquirk.com'], ['url' => 'starts_with:http']);
+        $v = new Validator($trans, ['url' => 'quantaforge.com'], ['url' => 'starts_with:http']);
         $this->assertFalse($v->passes());
         $this->assertSame('The url must start with one of the following values http', $v->messages()->first('url'));
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $trans->addLines(['validation.starts_with' => 'The :attribute must start with one of the following values :values'], 'en');
-        $v = new Validator($trans, ['url' => 'quantaquirk.com'], ['url' => 'starts_with:http,https']);
+        $v = new Validator($trans, ['url' => 'quantaforge.com'], ['url' => 'starts_with:http,https']);
         $this->assertFalse($v->passes());
         $this->assertSame('The url must start with one of the following values http, https', $v->messages()->first('url'));
     }
 
     public function testValidateDoesntStartWith()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['x' => 'world hello'], ['x' => 'doesnt_start_with:hello']);
         $this->assertTrue($v->passes());
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['x' => 'hello world'], ['x' => 'doesnt_start_with:hello']);
         $this->assertFalse($v->passes());
     }
 
     public function testValidateString()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['x' => 'aslsdlks'], ['x' => 'string']);
         $this->assertTrue($v->passes());
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['x' => ['blah' => 'test']], ['x' => 'string']);
         $this->assertFalse($v->passes());
     }
 
     public function testValidateJson()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['foo' => 'aslksd'], ['foo' => 'json']);
         $this->assertFalse($v->passes());
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['foo' => '[]'], ['foo' => 'json']);
         $this->assertTrue($v->passes());
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['foo' => '{"name":"John","age":"34"}'], ['foo' => 'json']);
         $this->assertTrue($v->passes());
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['foo' => ['array']], ['foo' => 'json']);
         $this->assertFalse($v->passes());
     }
 
     public function testValidateBoolean()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['foo' => 'no'], ['foo' => 'Boolean']);
         $this->assertFalse($v->passes());
 
@@ -2683,7 +2683,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testValidateBool()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['foo' => 'no'], ['foo' => 'Bool']);
         $this->assertFalse($v->passes());
 
@@ -2720,7 +2720,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testValidateNumeric()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['foo' => 'asdad'], ['foo' => 'Numeric']);
         $this->assertFalse($v->passes());
 
@@ -2736,7 +2736,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testValidateInteger()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['foo' => 'asdad'], ['foo' => 'Integer']);
         $this->assertFalse($v->passes());
 
@@ -2752,7 +2752,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testValidateDecimal()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['foo' => 'asdad'], ['foo' => 'Decimal:2,3']);
         $this->assertFalse($v->passes());
 
@@ -2932,7 +2932,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testValidateInt()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['foo' => 'asdad'], ['foo' => 'Int']);
         $this->assertFalse($v->passes());
 
@@ -2948,7 +2948,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testValidateDigits()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['foo' => '12345'], ['foo' => 'Digits:5']);
         $this->assertTrue($v->passes());
 
@@ -2961,7 +2961,7 @@ class ValidationValidatorTest extends TestCase
         $v = new Validator($trans, ['foo' => '2e7'], ['foo' => 'Digits:3']);
         $this->assertTrue($v->fails());
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['foo' => '12345'], ['foo' => 'digits_between:1,6']);
         $this->assertTrue($v->passes());
 
@@ -2974,7 +2974,7 @@ class ValidationValidatorTest extends TestCase
         $v = new Validator($trans, ['foo' => '+12.3'], ['foo' => 'digits_between:1,6']);
         $this->assertFalse($v->passes());
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['foo' => '12345'], ['foo' => 'min_digits:1']);
         $this->assertTrue($v->passes());
 
@@ -2987,7 +2987,7 @@ class ValidationValidatorTest extends TestCase
         $v = new Validator($trans, ['foo' => '+12.3'], ['foo' => 'min_digits:1']);
         $this->assertFalse($v->passes());
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['foo' => '12345'], ['foo' => 'max_digits:6']);
         $this->assertTrue($v->passes());
 
@@ -3003,7 +3003,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testValidateSize()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['foo' => 'asdad'], ['foo' => 'Size:3']);
         $this->assertFalse($v->passes());
 
@@ -3047,7 +3047,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testValidateBetween()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['foo' => 'asdad'], ['foo' => 'Between:3,4']);
         $this->assertFalse($v->passes());
 
@@ -3103,7 +3103,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testValidateMin()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['foo' => '3'], ['foo' => 'Min:3']);
         $this->assertFalse($v->passes());
 
@@ -3162,7 +3162,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testValidateMax()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['foo' => 'aslksd'], ['foo' => 'Max:3']);
         $this->assertFalse($v->passes());
 
@@ -3231,7 +3231,7 @@ class ValidationValidatorTest extends TestCase
      */
     public function testValidateMultipleOf($input, $allowed, $passes)
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $trans->addLines(['validation.multiple_of' => 'The :attribute must be a multiple of :value'], 'en');
 
         $v = new Validator($trans, ['foo' => $input], ['foo' => "multiple_of:{$allowed}"]);
@@ -3312,7 +3312,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testProperMessagesAreReturnedForSizes()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $trans->addLines(['validation.min.numeric' => 'numeric', 'validation.size.string' => 'string', 'validation.max.file' => 'file'], 'en');
         $v = new Validator($trans, ['name' => '3'], ['name' => 'Numeric|Min:5']);
         $this->assertFalse($v->passes());
@@ -3335,7 +3335,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testValidateGtPlaceHolderIsReplacedProperly()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $trans->addLines([
             'validation.gt.numeric' => ':value',
             'validation.gt.string' => ':value',
@@ -3377,7 +3377,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testValidateLtPlaceHolderIsReplacedProperly()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $trans->addLines([
             'validation.lt.numeric' => ':value',
             'validation.lt.string' => ':value',
@@ -3419,7 +3419,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testValidateGtePlaceHolderIsReplacedProperly()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $trans->addLines([
             'validation.gte.numeric' => ':value',
             'validation.gte.string' => ':value',
@@ -3461,7 +3461,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testValidateLtePlaceHolderIsReplacedProperly()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $trans->addLines([
             'validation.lte.numeric' => ':value',
             'validation.lte.string' => ':value',
@@ -3503,11 +3503,11 @@ class ValidationValidatorTest extends TestCase
 
     public function testValidateIn()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['name' => 'foo'], ['name' => 'In:bar,baz']);
         $this->assertFalse($v->passes());
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['name' => 0], ['name' => 'In:bar,baz']);
         $this->assertFalse($v->passes());
 
@@ -3538,7 +3538,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testValidateNotIn()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['name' => 'foo'], ['name' => 'NotIn:bar,baz']);
         $this->assertTrue($v->passes());
 
@@ -3548,7 +3548,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testValidateDistinct()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
 
         $v = new Validator($trans, ['foo' => ['foo', 'foo']], ['foo.*' => 'distinct']);
         $this->assertFalse($v->passes());
@@ -3633,7 +3633,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testValidateDistinctForTopLevelArrays()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
 
         $v = new Validator($trans, ['foo', 'foo'], ['*' => 'distinct']);
         $this->assertFalse($v->passes());
@@ -3656,7 +3656,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testValidateUnique()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['email' => 'foo'], ['email' => 'Unique:users']);
         $mock = m::mock(DatabasePresenceVerifierInterface::class);
         $mock->shouldReceive('setConnection')->once()->with(null);
@@ -3704,7 +3704,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testValidateUniqueAndExistsSendsCorrectFieldNameToDBWithArrays()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, [['email' => 'foo', 'type' => 'bar']], [
             '*.email' => 'unique:users', '*.type' => 'exists:user_types',
         ]);
@@ -3715,7 +3715,7 @@ class ValidationValidatorTest extends TestCase
         $v->setPresenceVerifier($mock);
         $this->assertTrue($v->passes());
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $closure = function () {
             //
         };
@@ -3733,7 +3733,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testValidationExists()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['email' => 'foo'], ['email' => 'Exists:users']);
         $mock = m::mock(DatabasePresenceVerifierInterface::class);
         $mock->shouldReceive('setConnection')->once()->with(null);
@@ -3741,7 +3741,7 @@ class ValidationValidatorTest extends TestCase
         $v->setPresenceVerifier($mock);
         $this->assertTrue($v->passes());
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['email' => 'foo'], ['email' => 'Exists:users,email,account_id,1,name,taylor']);
         $mock = m::mock(DatabasePresenceVerifierInterface::class);
         $mock->shouldReceive('setConnection')->once()->with(null);
@@ -3780,14 +3780,14 @@ class ValidationValidatorTest extends TestCase
 
     public function testValidationExistsIsNotCalledUnnecessarily()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['id' => 'foo'], ['id' => 'Integer|Exists:users,id']);
         $mock = m::mock(DatabasePresenceVerifierInterface::class);
         $mock->shouldReceive('getCount')->never();
         $v->setPresenceVerifier($mock);
         $this->assertFalse($v->passes());
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['id' => '1'], ['id' => 'Integer|Exists:users,id']);
         $mock = m::mock(DatabasePresenceVerifierInterface::class);
         $mock->shouldReceive('setConnection')->once()->with(null);
@@ -3798,7 +3798,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testValidateIp()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['ip' => 'aslsdlks'], ['ip' => 'Ip']);
         $this->assertFalse($v->passes());
 
@@ -3820,50 +3820,50 @@ class ValidationValidatorTest extends TestCase
 
     public function testValidateMacAddress()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['mac' => 'foo'], ['mac' => 'mac_address']);
         $this->assertFalse($v->passes());
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['mac' => '01-23-45-67-89-ab'], ['mac' => 'mac_address']);
         $this->assertTrue($v->passes());
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['mac' => '01-23-45-67-89-AB'], ['mac' => 'mac_address']);
         $this->assertTrue($v->passes());
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['mac' => '01-23-45-67-89-aB'], ['mac' => 'mac_address']);
         $this->assertTrue($v->passes());
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['mac' => '01:23:45:67:89:ab'], ['mac' => 'mac_address']);
         $this->assertTrue($v->passes());
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['mac' => '01:23:45:67:89:AB'], ['mac' => 'mac_address']);
         $this->assertTrue($v->passes());
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['mac' => '01:23:45:67:89:aB'], ['mac' => 'mac_address']);
         $this->assertTrue($v->passes());
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['mac' => '01:23:45-67:89:aB'], ['mac' => 'mac_address']);
         $this->assertFalse($v->passes());
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['mac' => 'xx:23:45:67:89:aB'], ['mac' => 'mac_address']);
         $this->assertFalse($v->passes());
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['mac' => '0123.4567.89ab'], ['mac' => 'mac_address']);
         $this->assertTrue($v->passes());
     }
 
     public function testValidateEmail()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['x' => 'aslsdlks'], ['x' => 'Email']);
         $this->assertFalse($v->passes());
 
@@ -3898,45 +3898,45 @@ class ValidationValidatorTest extends TestCase
 
     public function testValidateEmailWithInternationalCharacters()
     {
-        $v = new Validator($this->getQuantaQuirkArrayTranslator(), ['x' => 'foo@gmäil.com'], ['x' => 'email']);
+        $v = new Validator($this->getQuantaForgeArrayTranslator(), ['x' => 'foo@gmäil.com'], ['x' => 'email']);
         $this->assertTrue($v->passes());
     }
 
     public function testValidateEmailWithStrictCheck()
     {
-        $v = new Validator($this->getQuantaQuirkArrayTranslator(), ['x' => 'foo@bar '], ['x' => 'email:strict']);
+        $v = new Validator($this->getQuantaForgeArrayTranslator(), ['x' => 'foo@bar '], ['x' => 'email:strict']);
         $this->assertFalse($v->passes());
     }
 
     public function testValidateEmailWithFilterCheck()
     {
-        $v = new Validator($this->getQuantaQuirkArrayTranslator(), ['x' => 'foo@bar'], ['x' => 'email:filter']);
+        $v = new Validator($this->getQuantaForgeArrayTranslator(), ['x' => 'foo@bar'], ['x' => 'email:filter']);
         $this->assertFalse($v->passes());
 
-        $v = new Validator($this->getQuantaQuirkArrayTranslator(), ['x' => 'example@example.com'], ['x' => 'email:filter']);
+        $v = new Validator($this->getQuantaForgeArrayTranslator(), ['x' => 'example@example.com'], ['x' => 'email:filter']);
         $this->assertTrue($v->passes());
 
         // Unicode characters are not allowed
-        $v = new Validator($this->getQuantaQuirkArrayTranslator(), ['x' => 'exämple@example.com'], ['x' => 'email:filter']);
+        $v = new Validator($this->getQuantaForgeArrayTranslator(), ['x' => 'exämple@example.com'], ['x' => 'email:filter']);
         $this->assertFalse($v->passes());
 
-        $v = new Validator($this->getQuantaQuirkArrayTranslator(), ['x' => 'exämple@exämple.com'], ['x' => 'email:filter']);
+        $v = new Validator($this->getQuantaForgeArrayTranslator(), ['x' => 'exämple@exämple.com'], ['x' => 'email:filter']);
         $this->assertFalse($v->passes());
     }
 
     public function testValidateEmailWithFilterUnicodeCheck()
     {
-        $v = new Validator($this->getQuantaQuirkArrayTranslator(), ['x' => 'foo@bar'], ['x' => 'email:filter_unicode']);
+        $v = new Validator($this->getQuantaForgeArrayTranslator(), ['x' => 'foo@bar'], ['x' => 'email:filter_unicode']);
         $this->assertFalse($v->passes());
 
-        $v = new Validator($this->getQuantaQuirkArrayTranslator(), ['x' => 'example@example.com'], ['x' => 'email:filter_unicode']);
+        $v = new Validator($this->getQuantaForgeArrayTranslator(), ['x' => 'example@example.com'], ['x' => 'email:filter_unicode']);
         $this->assertTrue($v->passes());
 
         // Any unicode characters are allowed only in local-part
-        $v = new Validator($this->getQuantaQuirkArrayTranslator(), ['x' => 'exämple@example.com'], ['x' => 'email:filter_unicode']);
+        $v = new Validator($this->getQuantaForgeArrayTranslator(), ['x' => 'exämple@example.com'], ['x' => 'email:filter_unicode']);
         $this->assertTrue($v->passes());
 
-        $v = new Validator($this->getQuantaQuirkArrayTranslator(), ['x' => 'exämple@exämple.com'], ['x' => 'email:filter_unicode']);
+        $v = new Validator($this->getQuantaForgeArrayTranslator(), ['x' => 'exämple@exämple.com'], ['x' => 'email:filter_unicode']);
         $this->assertFalse($v->passes());
     }
 
@@ -3945,7 +3945,7 @@ class ValidationValidatorTest extends TestCase
         $container = m::mock(Container::class);
         $container->shouldReceive('make')->with(NoRFCWarningsValidation::class)->andReturn(new NoRFCWarningsValidation);
 
-        $v = new Validator($this->getQuantaQuirkArrayTranslator(), ['x' => 'foo@bar '], ['x' => 'email:'.NoRFCWarningsValidation::class]);
+        $v = new Validator($this->getQuantaForgeArrayTranslator(), ['x' => 'foo@bar '], ['x' => 'email:'.NoRFCWarningsValidation::class]);
         $v->setContainer($container);
 
         $this->assertFalse($v->passes());
@@ -3953,14 +3953,14 @@ class ValidationValidatorTest extends TestCase
 
     public function testValidateUrlWithProtocols()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
 
         // Allow a non-standard protocol
         $v = new Validator($trans, ['x' => 'foo://bar'], ['x' => 'url:https,foo']);
         $this->assertTrue($v->passes());
 
         // Test with a standard protocol
-        $v = new Validator($trans, ['x' => 'http://quantaquirk.com'], ['x' => 'url:https']);
+        $v = new Validator($trans, ['x' => 'http://quantaforge.com'], ['x' => 'url:https']);
         $this->assertFalse($v->passes());
     }
 
@@ -3969,7 +3969,7 @@ class ValidationValidatorTest extends TestCase
      */
     public function testValidateUrlWithValidUrls($validUrl)
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['x' => $validUrl], ['x' => 'Url']);
         $this->assertTrue($v->passes());
     }
@@ -3979,7 +3979,7 @@ class ValidationValidatorTest extends TestCase
      */
     public function testValidateUrlWithInvalidUrls($invalidUrl)
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['x' => $invalidUrl], ['x' => 'Url']);
         $this->assertFalse($v->passes());
     }
@@ -4211,18 +4211,18 @@ class ValidationValidatorTest extends TestCase
             ['http://www.google.com'],
             ['http://goog_le.com'],
             ['https://google.com'],
-            ['http://quantaquirk.dev'],
+            ['http://quantaforge.dev'],
             ['http://localhost'],
-            ['https://quantaquirk.com/?'],
+            ['https://quantaforge.com/?'],
             ['http://президент.рф/'],
             ['http://스타벅스코리아.com'],
             ['http://xn--d1abbgf6aiiy.xn--p1ai/'],
-            ['https://quantaquirk.com?'],
-            ['https://quantaquirk.com?q=1'],
-            ['https://quantaquirk.com/?q=1'],
-            ['https://quantaquirk.com#'],
-            ['https://quantaquirk.com#fragment'],
-            ['https://quantaquirk.com/#fragment'],
+            ['https://quantaforge.com?'],
+            ['https://quantaforge.com?q=1'],
+            ['https://quantaforge.com/?q=1'],
+            ['https://quantaforge.com#'],
+            ['https://quantaforge.com#fragment'],
+            ['https://quantaforge.com/#fragment'],
             ['https://domain1'],
             ['https://domain12/'],
             ['https://domain12#fragment'],
@@ -4253,7 +4253,7 @@ class ValidationValidatorTest extends TestCase
      */
     public function testValidateActiveUrl($data, $outcome)
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = m::mock(
             new Validator($trans, $data, ['x' => 'active_url']),
             function (MockInterface $mock) {
@@ -4296,7 +4296,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testValidateImage()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $uploadedFile = [__FILE__, '', null, null, true];
 
         $file = $this->getMockBuilder(UploadedFile::class)->onlyMethods(['guessExtension', 'getClientOriginalExtension'])->setConstructorArgs($uploadedFile)->getMock();
@@ -4363,7 +4363,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testValidateImageDoesNotAllowPhpExtensionsOnImageMime()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $uploadedFile = [__FILE__, '', null, null, true];
 
         $file = $this->getMockBuilder(UploadedFile::class)->onlyMethods(['guessExtension', 'getClientOriginalExtension'])->setConstructorArgs($uploadedFile)->getMock();
@@ -4377,7 +4377,7 @@ class ValidationValidatorTest extends TestCase
     {
         // Knowing that demo image.png has width = 3 and height = 2
         $uploadedFile = new UploadedFile(__DIR__.'/fixtures/image.png', '', null, null, true);
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
 
         $v = new Validator($trans, ['x' => 'file'], ['x' => 'dimensions']);
         $this->assertTrue($v->fails());
@@ -4426,7 +4426,7 @@ class ValidationValidatorTest extends TestCase
 
         // Knowing that demo image2.png has width = 4 and height = 2
         $uploadedFile = new UploadedFile(__DIR__.'/fixtures/image2.png', '', null, null, true);
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
 
         // Ensure validation doesn't erroneously fail when ratio has no fractional part
         $v = new Validator($trans, ['x' => $uploadedFile], ['x' => 'dimensions:ratio=2/1']);
@@ -4434,14 +4434,14 @@ class ValidationValidatorTest extends TestCase
 
         // This test fails without suppressing warnings on getimagesize() due to a read error.
         $emptyUploadedFile = new UploadedFile(__DIR__.'/fixtures/empty.png', '', null, null, true);
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
 
         $v = new Validator($trans, ['x' => $emptyUploadedFile], ['x' => 'dimensions:min_width=1']);
         $this->assertTrue($v->fails());
 
         // Knowing that demo image3.png has width = 7 and height = 10
         $uploadedFile = new UploadedFile(__DIR__.'/fixtures/image3.png', '', null, null, true);
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
 
         // Ensure validation doesn't erroneously fail when ratio has no fractional part
         $v = new Validator($trans, ['x' => $uploadedFile], ['x' => 'dimensions:ratio=2/3']);
@@ -4449,33 +4449,33 @@ class ValidationValidatorTest extends TestCase
 
         // Ensure svg images always pass as size is irrelevant (image/svg+xml)
         $svgXmlUploadedFile = new UploadedFile(__DIR__.'/fixtures/image.svg', '', 'image/svg+xml', null, true);
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
 
         $v = new Validator($trans, ['x' => $svgXmlUploadedFile], ['x' => 'dimensions:max_width=1,max_height=1']);
         $this->assertTrue($v->passes());
 
         $svgXmlFile = new File(__DIR__.'/fixtures/image.svg', '', 'image/svg+xml', null, true);
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
 
         $v = new Validator($trans, ['x' => $svgXmlFile], ['x' => 'dimensions:max_width=1,max_height=1']);
         $this->assertTrue($v->passes());
 
         // Ensure svg images always pass as size is irrelevant (image/svg)
         $svgUploadedFile = new UploadedFile(__DIR__.'/fixtures/image2.svg', '', 'image/svg', null, true);
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
 
         $v = new Validator($trans, ['x' => $svgUploadedFile], ['x' => 'dimensions:max_width=1,max_height=1']);
         $this->assertTrue($v->passes());
 
         $svgFile = new File(__DIR__.'/fixtures/image2.svg', '', 'image/svg', null, true);
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
 
         $v = new Validator($trans, ['x' => $svgFile], ['x' => 'dimensions:max_width=1,max_height=1']);
         $this->assertTrue($v->passes());
 
         // Knowing that demo image4.png has width = 64 and height = 65
         $uploadedFile = new UploadedFile(__DIR__.'/fixtures/image4.png', '', null, null, true);
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
 
         // Ensure validation doesn't erroneously fail when ratio doesn't matches
         $v = new Validator($trans, ['x' => $uploadedFile], ['x' => 'dimensions:ratio=1']);
@@ -4484,7 +4484,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testValidateMimetypes()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
 
         $uploadedFile = [__DIR__.'/ValidationMacroTest.php', '', null, null, true];
 
@@ -4510,7 +4510,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testValidateMime()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $uploadedFile = [__FILE__, '', null, null, true];
 
         $file = $this->getMockBuilder(UploadedFile::class)->onlyMethods(['guessExtension', 'getClientOriginalExtension'])->setConstructorArgs($uploadedFile)->getMock();
@@ -4540,7 +4540,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testValidateMimeEnforcesPhpCheck()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $uploadedFile = [__FILE__, '', null, null, true];
 
         $file = $this->getMockBuilder(UploadedFile::class)->onlyMethods(['guessExtension', 'getClientOriginalExtension'])->setConstructorArgs($uploadedFile)->getMock();
@@ -4561,7 +4561,7 @@ class ValidationValidatorTest extends TestCase
      */
     public function testValidateFile()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $file = new UploadedFile(__FILE__, '', null, null, true);
 
         $v = new Validator($trans, ['x' => '1'], ['x' => 'file']);
@@ -4573,7 +4573,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testEmptyRulesSkipped()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['x' => 'aslsdlks'], ['x' => ['alpha', [], '']]);
         $this->assertTrue($v->passes());
 
@@ -4583,18 +4583,18 @@ class ValidationValidatorTest extends TestCase
 
     public function testAlternativeFormat()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['x' => 'aslsdlks'], ['x' => ['alpha', ['min', 3], ['max', 10]]]);
         $this->assertTrue($v->passes());
     }
 
     public function testValidateAlpha()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['x' => 'aslsdlks'], ['x' => 'Alpha']);
         $this->assertTrue($v->passes());
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, [
             'x' => 'aslsdlks
 1
@@ -4641,7 +4641,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testValidateAlphaNum()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['x' => 'asls13dlks'], ['x' => 'AlphaNum']);
         $this->assertTrue($v->passes());
 
@@ -4663,7 +4663,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testValidateAlphaDash()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['x' => 'asls1-_3dlks'], ['x' => 'AlphaDash']);
         $this->assertTrue($v->passes());
 
@@ -4682,11 +4682,11 @@ class ValidationValidatorTest extends TestCase
 
     public function testValidateAlphaWithAsciiOption()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['x' => 'aslsdlks'], ['x' => 'Alpha:ascii']);
         $this->assertTrue($v->passes());
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, [
             'x' => 'aslsdlks
 1
@@ -4733,7 +4733,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testValidateAlphaNumWithAsciiOption()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['x' => 'asls13dlks'], ['x' => 'AlphaNum:ascii']);
         $this->assertTrue($v->passes());
 
@@ -4758,7 +4758,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testValidateAlphaDashWithAsciiOption()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['x' => 'asls1-_3dlks'], ['x' => 'AlphaDash:ascii']);
         $this->assertTrue($v->passes());
 
@@ -4780,7 +4780,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testValidateTimezone()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['foo' => 'India'], ['foo' => 'Timezone']);
         $this->assertFalse($v->passes());
 
@@ -4814,7 +4814,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testValidateTimezoneWithAfricaOption()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['foo' => 'India'], ['foo' => 'Timezone:Africa']);
         $this->assertFalse($v->passes());
 
@@ -4848,7 +4848,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testValidateTimezoneWithAmericaOption()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['foo' => 'India'], ['foo' => 'Timezone:America']);
         $this->assertFalse($v->passes());
 
@@ -4882,7 +4882,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testValidateTimezoneWithAntarcticaOption()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['foo' => 'India'], ['foo' => 'Timezone:Antarctica']);
         $this->assertFalse($v->passes());
 
@@ -4916,7 +4916,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testValidateTimezoneWithArcticOption()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['foo' => 'India'], ['foo' => 'Timezone:Arctic']);
         $this->assertFalse($v->passes());
 
@@ -4950,7 +4950,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testValidateTimezoneWithAsiaOption()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['foo' => 'India'], ['foo' => 'Timezone:Asia']);
         $this->assertFalse($v->passes());
 
@@ -4984,7 +4984,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testValidateTimezoneWithAtlanticOption()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['foo' => 'India'], ['foo' => 'Timezone:Atlantic']);
         $this->assertFalse($v->passes());
 
@@ -5018,7 +5018,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testValidateTimezoneWithAustraliaOption()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['foo' => 'India'], ['foo' => 'Timezone:Australia']);
         $this->assertFalse($v->passes());
 
@@ -5052,7 +5052,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testValidateTimezoneWithEuropeOption()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['foo' => 'India'], ['foo' => 'Timezone:Europe']);
         $this->assertFalse($v->passes());
 
@@ -5086,7 +5086,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testValidateTimezoneWithIndianOption()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['foo' => 'India'], ['foo' => 'Timezone:Indian']);
         $this->assertFalse($v->passes());
 
@@ -5120,7 +5120,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testValidateTimezoneWithPacificOption()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['foo' => 'India'], ['foo' => 'Timezone:Pacific']);
         $this->assertFalse($v->passes());
 
@@ -5154,7 +5154,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testValidateTimezoneWithUTCOption()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['foo' => 'India'], ['foo' => 'Timezone:UTC']);
         $this->assertFalse($v->passes());
 
@@ -5185,7 +5185,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testValidateTimezoneWithAllOption()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['foo' => 'India'], ['foo' => 'Timezone:All']);
         $this->assertFalse($v->passes());
 
@@ -5222,7 +5222,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testValidateTimezoneWithAllWithBCOption()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['foo' => 'India'], ['foo' => 'Timezone:All_with_BC']);
         $this->assertFalse($v->passes());
 
@@ -5259,7 +5259,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testValidateTimezoneWithPerCountryOptionWithoutSpecifyingCountry()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['foo' => 'India'], ['foo' => 'Timezone:Per_country,IN']);
         $this->assertFalse($v->passes());
 
@@ -5296,7 +5296,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testValidateRegex()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['x' => 'asdasdf'], ['x' => 'Regex:/^[a-z]+$/i']);
         $this->assertTrue($v->passes());
 
@@ -5319,7 +5319,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testValidateNotRegex()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['x' => 'foo bar'], ['x' => 'NotRegex:/[xyz]/i']);
         $this->assertTrue($v->passes());
 
@@ -5334,7 +5334,7 @@ class ValidationValidatorTest extends TestCase
     public function testValidateDateAndFormat()
     {
         date_default_timezone_set('UTC');
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['x' => '2000-01-01'], ['x' => 'date']);
         $this->assertTrue($v->passes());
 
@@ -5415,7 +5415,7 @@ class ValidationValidatorTest extends TestCase
     public function testDateEquals()
     {
         date_default_timezone_set('UTC');
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['x' => '2000-01-01'], ['x' => 'date_equals:2000-01-01']);
         $this->assertTrue($v->passes());
 
@@ -5477,7 +5477,7 @@ class ValidationValidatorTest extends TestCase
     public function testDateEqualsRespectsCarbonTestNowWhenParameterIsRelative()
     {
         date_default_timezone_set('UTC');
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         Carbon::setTestNow(new Carbon('2018-01-01'));
 
         $v = new Validator($trans, ['x' => '2018-01-01 00:00:00'], ['x' => 'date_equals:now']);
@@ -5523,7 +5523,7 @@ class ValidationValidatorTest extends TestCase
     public function testBeforeAndAfter()
     {
         date_default_timezone_set('UTC');
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['x' => '2000-01-01'], ['x' => 'Before:2012-01-01']);
         $this->assertTrue($v->passes());
 
@@ -5609,7 +5609,7 @@ class ValidationValidatorTest extends TestCase
     public function testBeforeAndAfterWithFormat()
     {
         date_default_timezone_set('UTC');
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['x' => '31/12/2000'], ['x' => 'before:31/02/2012']);
         $this->assertTrue($v->fails());
 
@@ -5722,7 +5722,7 @@ class ValidationValidatorTest extends TestCase
     public function testWeakBeforeAndAfter()
     {
         date_default_timezone_set('UTC');
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['x' => '2012-01-15'], ['x' => 'before_or_equal:2012-01-15']);
         $this->assertTrue($v->passes());
 
@@ -5822,42 +5822,42 @@ class ValidationValidatorTest extends TestCase
 
     public function testSometimesAddingRules()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['x' => 'foo'], ['x' => 'Required']);
         $v->sometimes('x', 'Confirmed', function ($i) {
             return $i->x === 'foo';
         });
         $this->assertEquals(['x' => ['Required', 'Confirmed']], $v->getRules());
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['x' => ''], ['y' => 'Required']);
         $v->sometimes('x', 'Required', function ($i) {
             return true;
         });
         $this->assertEquals(['x' => ['Required'], 'y' => ['Required']], $v->getRules());
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['x' => 'foo'], ['x' => 'Required']);
         $v->sometimes('x', 'Confirmed', function ($i) {
             return $i->x === 'bar';
         });
         $this->assertEquals(['x' => ['Required']], $v->getRules());
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['x' => 'foo'], ['x' => 'Required']);
         $v->sometimes('x', 'Foo|Bar', function ($i) {
             return $i->x === 'foo';
         });
         $this->assertEquals(['x' => ['Required', 'Foo', 'Bar']], $v->getRules());
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['x' => 'foo'], ['x' => 'Required']);
         $v->sometimes('x', ['Foo', 'Bar:Baz'], function ($i) {
             return $i->x === 'foo';
         });
         $this->assertEquals(['x' => ['Required', 'Foo', 'Bar:Baz']], $v->getRules());
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['foo' => [['name' => 'first', 'title' => null]]], []);
         $v->sometimes('foo.*.name', 'Required|String', function ($i) {
             return is_null($i['foo'][0]['title']);
@@ -5868,7 +5868,7 @@ class ValidationValidatorTest extends TestCase
     public function testItemAwareSometimesAddingRules()
     {
         // ['users'] -> if users is not empty it must be validated as array
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['users' => [['name' => 'Taylor'], ['name' => 'Abigail']]], ['users.*.name' => 'required|string']);
         $v->sometimes(['users'], 'array', function ($i, $item) {
             return $item !== null;
@@ -5876,7 +5876,7 @@ class ValidationValidatorTest extends TestCase
         $this->assertEquals(['users' => ['array'], 'users.0.name' => ['required', 'string'], 'users.1.name' => ['required', 'string']], $v->getRules());
 
         // ['users'] -> if users is null no rules will be applied
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['users' => null], ['users.*.name' => 'required|string']);
         $v->sometimes(['users'], 'array', function ($i, $item) {
             return (bool) $item;
@@ -5884,7 +5884,7 @@ class ValidationValidatorTest extends TestCase
         $this->assertEquals([], $v->getRules());
 
         // ['company.users'] -> if users is not empty it must be validated as array
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['company' => ['users' => [['name' => 'Taylor'], ['name' => 'Abigail']]]], ['company.users.*.name' => 'required|string']);
         $v->sometimes(['company.users'], 'array', function ($i, $item) {
             return $item->users !== null;
@@ -5892,7 +5892,7 @@ class ValidationValidatorTest extends TestCase
         $this->assertEquals(['company.users' => ['array'], 'company.users.0.name' => ['required', 'string'], 'company.users.1.name' => ['required', 'string']], $v->getRules());
 
         // ['company.users'] -> if users is null no rules will be applied
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['company' => ['users' => null]], ['company' => 'required', 'company.users.*.name' => 'required|string']);
         $v->sometimes(['company.users'], 'array', function ($i, $item) {
             return (bool) $item->users;
@@ -5900,7 +5900,7 @@ class ValidationValidatorTest extends TestCase
         $this->assertEquals(['company' => ['required']], $v->getRules());
 
         // ['company.*'] -> if users is not empty it must be validated as array
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['company' => ['users' => [['name' => 'Taylor'], ['name' => 'Abigail']]]], ['company.users.*.name' => 'required|string']);
         $v->sometimes(['company.*'], 'array', function ($i, $item) {
             return $item !== null;
@@ -5908,7 +5908,7 @@ class ValidationValidatorTest extends TestCase
         $this->assertEquals(['company.users' => ['array'], 'company.users.0.name' => ['required', 'string'], 'company.users.1.name' => ['required', 'string']], $v->getRules());
 
         // ['company.*'] -> if users is null no rules will be applied
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['company' => ['users' => null]], ['company' => 'required', 'company.users.*.name' => 'required|string']);
         $v->sometimes(['company.*'], 'array', function ($i, $item) {
             return (bool) $item;
@@ -5916,7 +5916,7 @@ class ValidationValidatorTest extends TestCase
         $this->assertEquals(['company' => ['required']], $v->getRules());
 
         // ['users.*'] -> all nested array items in users must be validated as array
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['users' => [['name' => 'Taylor'], ['name' => 'Abigail']]], ['users.*.name' => 'required|string']);
         $v->sometimes(['users.*'], 'array', function ($i, $item) {
             return (bool) $item;
@@ -5924,7 +5924,7 @@ class ValidationValidatorTest extends TestCase
         $this->assertEquals(['users.0' => ['array'], 'users.1' => ['array'], 'users.0.name' => ['required', 'string'], 'users.1.name' => ['required', 'string']], $v->getRules());
 
         // ['company.users.*'] -> all nested array items in users must be validated as array
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['company' => ['users' => [['name' => 'Taylor'], ['name' => 'Abigail']]]], ['company.users.*.name' => 'required|string']);
         $v->sometimes(['company.users.*'], 'array', function () {
             return true;
@@ -5932,7 +5932,7 @@ class ValidationValidatorTest extends TestCase
         $this->assertEquals(['company.users.0' => ['array'], 'company.users.1' => ['array'], 'company.users.0.name' => ['required', 'string'], 'company.users.1.name' => ['required', 'string']], $v->getRules());
 
         // ['company.*.*'] -> all nested array items in users must be validated as array
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['company' => ['users' => [['name' => 'Taylor'], ['name' => 'Abigail']]]], ['company.users.*.name' => 'required|string']);
         $v->sometimes(['company.*.*'], 'array', function ($i, $item) {
             return true;
@@ -5940,7 +5940,7 @@ class ValidationValidatorTest extends TestCase
         $this->assertEquals(['company.users.0' => ['array'], 'company.users.1' => ['array'], 'company.users.0.name' => ['required', 'string'], 'company.users.1.name' => ['required', 'string']], $v->getRules());
 
         // ['user.profile.value'] -> multiple true cases, the item based condition does match and the optional validation is added
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['user' => ['profile' => ['photo' => 'image.jpg', 'type' => 'email', 'value' => 'test@test.com']]], ['user.profile.*' => ['required']]);
         $v->sometimes(['user.profile.value'], 'email', function ($i, $item) {
             return $item->type === 'email';
@@ -5951,7 +5951,7 @@ class ValidationValidatorTest extends TestCase
         $this->assertEquals(['user.profile.value' => ['required', 'email'], 'user.profile.photo' => ['required', 'mimes:jpg,bmp,png'], 'user.profile.type' => ['required']], $v->getRules());
 
         // ['user.profile.value'] -> multiple true cases with middle wildcard, the item based condition does match and the optional validation is added
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['user' => ['profile' => ['photo' => 'image.jpg', 'type' => 'email', 'value' => 'test@test.com']]], ['user.profile.*' => ['required']]);
         $v->sometimes('user.*.value', 'email', function ($i, $item) {
             return $item->type === 'email';
@@ -5962,7 +5962,7 @@ class ValidationValidatorTest extends TestCase
         $this->assertEquals(['user.profile.value' => ['required', 'email'], 'user.profile.photo' => ['required', 'mimes:jpg,bmp,png'], 'user.profile.type' => ['required']], $v->getRules());
 
         // ['profiles.*.value'] -> true and false cases for the same field with middle wildcard, the item based condition does match and the optional validation is added
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['profiles' => [['type' => 'email'], ['type' => 'string']]], ['profiles.*.value' => ['required']]);
         $v->sometimes(['profiles.*.value'], 'email', function ($i, $item) {
             return $item->type === 'email';
@@ -5973,7 +5973,7 @@ class ValidationValidatorTest extends TestCase
         $this->assertEquals(['profiles.0.value' => ['required', 'email'], 'profiles.1.value' => ['required', 'url']], $v->getRules());
 
         // ['profiles.*.value'] -> true case with middle wildcard, the item based condition does match and the optional validation is added
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['profiles' => [['type' => 'email'], ['type' => 'string']]], ['profiles.*.value' => ['required']]);
         $v->sometimes(['profiles.*.value'], 'email', function ($i, $item) {
             return $item->type === 'email';
@@ -5981,7 +5981,7 @@ class ValidationValidatorTest extends TestCase
         $this->assertEquals(['profiles.0.value' => ['required', 'email'], 'profiles.1.value' => ['required']], $v->getRules());
 
         // ['profiles.*.value'] -> false case with middle wildcard, the item based condition does not match and the optional validation is not added
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['profiles' => [['type' => 'string'], ['type' => 'string']]], ['profiles.*.value' => ['required']]);
         $v->sometimes(['profiles.*.value'], 'email', function ($i, $item) {
             return $item->type === 'email';
@@ -5989,7 +5989,7 @@ class ValidationValidatorTest extends TestCase
         $this->assertEquals(['profiles.0.value' => ['required'], 'profiles.1.value' => ['required']], $v->getRules());
 
         // ['users.profiles.*.value'] -> true case nested and with middle wildcard, the item based condition does match and the optional validation is added
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['users' => ['profiles' => [['type' => 'email'], ['type' => 'string']]]], ['users.profiles.*.value' => ['required']]);
         $v->sometimes(['users.profiles.*.value'], 'email', function ($i, $item) {
             return $item->type === 'email';
@@ -5997,7 +5997,7 @@ class ValidationValidatorTest extends TestCase
         $this->assertEquals(['users.profiles.0.value' => ['required', 'email'], 'users.profiles.1.value' => ['required']], $v->getRules());
 
         // ['users.*.*.value'] -> true case nested and with double middle wildcard, the item based condition does match and the optional validation is added
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['users' => ['profiles' => [['type' => 'email'], ['type' => 'string']]]], ['users.profiles.*.value' => ['required']]);
         $v->sometimes(['users.*.*.value'], 'email', function ($i, $item) {
             return $item->type === 'email';
@@ -6005,7 +6005,7 @@ class ValidationValidatorTest extends TestCase
         $this->assertEquals(['users.profiles.0.value' => ['required', 'email'], 'users.profiles.1.value' => ['required']], $v->getRules());
 
         // 'user.value' -> true case nested with string, the item based condition does match and the optional validation is added
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['user' => ['name' => 'username', 'type' => 'email', 'value' => 'test@test.com']], ['user.*' => ['required']]);
         $v->sometimes('user.value', 'email', function ($i, $item) {
             return $item->type === 'email';
@@ -6013,7 +6013,7 @@ class ValidationValidatorTest extends TestCase
         $this->assertEquals(['user.name' => ['required'], 'user.type' => ['required'], 'user.value' => ['required', 'email']], $v->getRules());
 
         // 'user.value' -> standard true case with string, the INPUT based condition does match and the optional validation is added
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['name' => 'username', 'type' => 'email', 'value' => 'test@test.com'], ['*' => ['required']]);
         $v->sometimes('value', 'email', function ($i) {
             return $i->type === 'email';
@@ -6021,7 +6021,7 @@ class ValidationValidatorTest extends TestCase
         $this->assertEquals(['name' => ['required'], 'type' => ['required'], 'value' => ['required', 'email']], $v->getRules());
 
         // ['value'] -> standard true case with array, the INPUT based condition does match and the optional validation is added
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['name' => 'username', 'type' => 'email', 'value' => 'test@test.com'], ['*' => ['required']]);
         $v->sometimes(['value'], 'email', function ($i, $item) {
             return $i->type === 'email';
@@ -6029,7 +6029,7 @@ class ValidationValidatorTest extends TestCase
         $this->assertEquals(['name' => ['required'], 'type' => ['required'], 'value' => ['required', 'email']], $v->getRules());
 
         // ['email'] -> if value is set, it will be validated as string
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['email' => 'test@test.com'], ['*' => ['required']]);
         $v->sometimes(['email'], 'email', function ($i, $item) {
             return $item;
@@ -6037,8 +6037,8 @@ class ValidationValidatorTest extends TestCase
         $this->assertEquals(['email' => ['required', 'email']], $v->getRules());
 
         // ['attendee.*'] -> if attendee name is set, all other fields will be required as well
-        $trans = $this->getQuantaQuirkArrayTranslator();
-        $v = new Validator($trans, ['attendee' => ['name' => 'Taylor', 'title' => 'Creator of QuantaQuirk', 'type' => 'Developer']], ['attendee.*' => 'string']);
+        $trans = $this->getQuantaForgeArrayTranslator();
+        $v = new Validator($trans, ['attendee' => ['name' => 'Taylor', 'title' => 'Creator of QuantaForge', 'type' => 'Developer']], ['attendee.*' => 'string']);
         $v->sometimes(['attendee.*'], 'required', function ($i, $item) {
             return (bool) $item;
         });
@@ -6047,7 +6047,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testValidateSometimesImplicitEachWithAsterisksBeforeAndAfter()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
 
         $v = new Validator($trans, [
             'foo' => [
@@ -6103,7 +6103,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testCustomValidators()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $trans->addLines(['validation.foo' => 'foo!'], 'en');
         $v = new Validator($trans, ['name' => 'taylor'], ['name' => 'foo']);
         $v->addExtension('foo', function () {
@@ -6113,7 +6113,7 @@ class ValidationValidatorTest extends TestCase
         $v->messages()->setFormat(':message');
         $this->assertSame('foo!', $v->messages()->first('name'));
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $trans->addLines(['validation.foo_bar' => 'foo!'], 'en');
         $v = new Validator($trans, ['name' => 'taylor'], ['name' => 'foo_bar']);
         $v->addExtension('FooBar', function () {
@@ -6123,7 +6123,7 @@ class ValidationValidatorTest extends TestCase
         $v->messages()->setFormat(':message');
         $this->assertSame('foo!', $v->messages()->first('name'));
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['name' => 'taylor'], ['name' => 'foo_bar']);
         $v->addExtension('FooBar', function () {
             return false;
@@ -6133,7 +6133,7 @@ class ValidationValidatorTest extends TestCase
         $v->messages()->setFormat(':message');
         $this->assertSame('foo!', $v->messages()->first('name'));
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['name' => 'taylor'], ['name' => 'foo_bar']);
         $v->addExtensions([
             'FooBar' => function () {
@@ -6148,7 +6148,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testClassBasedCustomValidators()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $trans->addLines(['validation.foo' => 'foo!'], 'en');
         $v = new Validator($trans, ['name' => 'taylor'], ['name' => 'foo']);
         $v->setContainer($container = m::mock(Container::class));
@@ -6162,7 +6162,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testClassBasedCustomValidatorsUsingConventionalMethod()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $trans->addLines(['validation.foo' => 'foo!'], 'en');
         $v = new Validator($trans, ['name' => 'taylor'], ['name' => 'foo']);
         $v->setContainer($container = m::mock(Container::class));
@@ -6176,7 +6176,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testCustomImplicitValidators()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, [], ['implicit_rule' => 'foo']);
         $v->addImplicitExtension('implicit_rule', function () {
             return true;
@@ -6186,7 +6186,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testCustomDependentValidators()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans,
             [
                 ['name' => 'Jamie', 'age' => 27],
@@ -6211,7 +6211,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testValidateImplicitEachWithAsterisks()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $data = ['foo' => [5, 10, 15]];
 
         // pipe rules fails
@@ -6279,7 +6279,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testSometimesOnArraysInImplicitRules()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
 
         $v = new Validator($trans, [['bar' => 'baz']], ['*.foo' => 'sometimes|required|string']);
         $this->assertTrue($v->passes());
@@ -6296,7 +6296,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testValidateImplicitEachWithAsterisksForRequiredNonExistingKey()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
 
         $data = ['companies' => ['spark']];
         $v = new Validator($trans, $data, ['companies.*.name' => 'required']);
@@ -6373,7 +6373,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testParsingArrayKeysWithDot()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         // Interpreted dot fails on empty value
         $v = new Validator($trans, ['foo' => ['bar' => ''], 'foo.bar' => 'valid'], ['foo.bar' => 'required']);
         $this->assertTrue($v->fails());
@@ -6393,7 +6393,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testParsingArrayKeysWithDotWhenTestingExistence()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         // RequiredWith using escaped dot in a nested array
         $v = new Validator($trans, ['foo' => '', 'bar' => ['foo.bar' => 'valid']], ['foo' => 'required_with:bar.foo\.bar']);
         $this->assertFalse($v->passes());
@@ -6416,7 +6416,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testPassingSlashVulnerability()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
 
         $v = new Validator($trans, [
             'matrix' => ['\\' => ['invalid'], '1\\' => ['invalid']],
@@ -6442,7 +6442,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testPlaceholdersAreReplaced()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
 
         $v = new Validator($trans, [
             'matrix' => ['\\' => ['invalid'], '1\\' => ['invalid']],
@@ -6477,14 +6477,14 @@ class ValidationValidatorTest extends TestCase
 
     public function testCoveringEmptyKeys()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['foo' => ['' => ['bar' => '']]], ['foo.*.bar' => 'required']);
         $this->assertTrue($v->fails());
     }
 
     public function testImplicitEachWithAsterisksWithArrayValues()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
 
         $v = new Validator($trans, ['foo' => ['bar.baz' => '']], ['foo' => 'required']);
         $this->assertEquals(['foo' => ['bar.baz' => '']], $v->validated());
@@ -6492,7 +6492,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testValidateNestedArrayWithCommonParentChildKey()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
 
         $data = [
             'products' => [
@@ -6516,7 +6516,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testValidateNestedArrayWithNonNumericKeys()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
 
         $data = [
             'item_amounts' => [
@@ -6530,7 +6530,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testValidateImplicitEachWithAsterisksConfirmed()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
 
         // confirmed passes
         $v = new Validator($trans, [
@@ -6589,7 +6589,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testValidateImplicitEachWithAsterisksDifferent()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
 
         // different passes
         $v = new Validator($trans, [
@@ -6642,7 +6642,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testValidateImplicitEachWithAsterisksSame()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
 
         // same passes
         $v = new Validator($trans, [
@@ -6695,7 +6695,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testValidateImplicitEachWithAsterisksRequired()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
 
         // required passes
         $v = new Validator($trans, [
@@ -6744,7 +6744,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testValidateImplicitEachWithAsterisksRequiredIf()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
 
         // required_if passes
         $v = new Validator($trans, [
@@ -6793,7 +6793,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testValidateImplicitEachWithAsterisksRequiredUnless()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
 
         // required_unless passes
         $v = new Validator($trans, [
@@ -6842,7 +6842,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testValidateImplicitEachWithAsterisksRequiredWith()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
 
         // required_with passes
         $v = new Validator($trans, [
@@ -6899,7 +6899,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testValidateImplicitEachWithAsterisksRequiredWithAll()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
 
         // required_with_all passes
         $v = new Validator($trans, [
@@ -6948,7 +6948,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testValidateImplicitEachWithAsterisksRequiredWithout()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
 
         // required_without passes
         $v = new Validator($trans, [
@@ -6997,7 +6997,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testValidateImplicitEachWithAsterisksRequiredWithoutAll()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
 
         // required_without_all passes
         $v = new Validator($trans, [
@@ -7048,7 +7048,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testValidateImplicitEachWithAsterisksBeforeAndAfter()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
 
         $v = new Validator($trans, [
             'foo' => [
@@ -7101,7 +7101,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testParsingTablesFromModels()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, [], []);
 
         $implicit_no_connection = $v->parseTable(ImplicitTableModel::class);
@@ -7151,12 +7151,12 @@ class ValidationValidatorTest extends TestCase
 
     public function testUsingSettersWithImplicitRules()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['foo' => ['a', 'b', 'c']], ['foo.*' => 'string']);
         $v->setData(['foo' => ['a', 'b', 'c', 4]]);
         $this->assertFalse($v->passes());
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['foo' => ['a', 'b', 'c']], ['foo.*' => 'string']);
         $v->setRules(['foo.*' => 'integer']);
         $this->assertFalse($v->passes());
@@ -7164,7 +7164,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testInvalidMethod()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
 
         $v = new Validator($trans,
             [
@@ -7202,7 +7202,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testValidMethod()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
 
         $v = new Validator($trans,
             [
@@ -7246,7 +7246,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testNestedInvalidMethod()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, [
             'testvalid' => 'filled',
             'testinvalid' => '',
@@ -7277,7 +7277,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testMultipleFileUploads()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $file = new File(__FILE__, false);
         $file2 = new File(__FILE__, false);
         $v = new Validator($trans, ['file' => [$file, $file2]], ['file.*' => 'Required|mimes:xls']);
@@ -7286,7 +7286,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testFileUploads()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $file = new File(__FILE__, false);
         $v = new Validator($trans, ['file' => $file], ['file' => 'Required|mimes:xls']);
         $this->assertFalse($v->passes());
@@ -7296,7 +7296,7 @@ class ValidationValidatorTest extends TestCase
     {
         // Test passing case...
         $v = new Validator(
-            $this->getQuantaQuirkArrayTranslator(),
+            $this->getQuantaForgeArrayTranslator(),
             ['name' => 'taylor'],
             [
                 'name' => new class implements Rule
@@ -7318,7 +7318,7 @@ class ValidationValidatorTest extends TestCase
 
         // Test failing case...
         $v = new Validator(
-            $this->getQuantaQuirkArrayTranslator(),
+            $this->getQuantaForgeArrayTranslator(),
             ['name' => 'adam'],
             [
                 'name' => [
@@ -7343,7 +7343,7 @@ class ValidationValidatorTest extends TestCase
 
         // Test passing case with Closure...
         $v = new Validator(
-            $this->getQuantaQuirkArrayTranslator(),
+            $this->getQuantaForgeArrayTranslator(),
             ['name' => 'taylor'],
             [
                 'name.*' => function ($attribute, $value, $fail) {
@@ -7358,7 +7358,7 @@ class ValidationValidatorTest extends TestCase
 
         // Test failing case with Closure...
         $v = new Validator(
-            $this->getQuantaQuirkArrayTranslator(),
+            $this->getQuantaForgeArrayTranslator(),
             ['name' => 'adam'],
             [
                 'name' => function ($attribute, $value, $fail) {
@@ -7374,7 +7374,7 @@ class ValidationValidatorTest extends TestCase
 
         // Test complex failing case...
         $v = new Validator(
-            $this->getQuantaQuirkArrayTranslator(),
+            $this->getQuantaForgeArrayTranslator(),
             ['name' => 'taylor', 'states' => ['AR', 'TX'], 'number' => 9],
             [
                 'states.*' => new class implements Rule
@@ -7413,7 +7413,7 @@ class ValidationValidatorTest extends TestCase
 
         // Test array of messages with failing case...
         $v = new Validator(
-            $this->getQuantaQuirkArrayTranslator(),
+            $this->getQuantaForgeArrayTranslator(),
             ['name' => 42],
             [
                 'name' => new class implements Rule
@@ -7437,7 +7437,7 @@ class ValidationValidatorTest extends TestCase
 
         // Test array of messages with multiple rules for one attribute case...
         $v = new Validator(
-            $this->getQuantaQuirkArrayTranslator(),
+            $this->getQuantaForgeArrayTranslator(),
             ['name' => 42],
             [
                 'name' => [
@@ -7464,7 +7464,7 @@ class ValidationValidatorTest extends TestCase
 
         // Test access to the validator data
         $v = new Validator(
-            $this->getQuantaQuirkArrayTranslator(),
+            $this->getQuantaForgeArrayTranslator(),
             ['password' => 'foo', 'password_confirmation' => 'foo'],
             [
                 'password' => [
@@ -7494,7 +7494,7 @@ class ValidationValidatorTest extends TestCase
         $this->assertTrue($v->passes());
 
         $v = new Validator(
-            $this->getQuantaQuirkArrayTranslator(),
+            $this->getQuantaForgeArrayTranslator(),
             ['password' => 'foo', 'password_confirmation' => 'bar'],
             [
                 'password' => [
@@ -7526,7 +7526,7 @@ class ValidationValidatorTest extends TestCase
 
         // Test access to the validator
         $v = new Validator(
-            $this->getQuantaQuirkArrayTranslator(),
+            $this->getQuantaForgeArrayTranslator(),
             ['base' => 21, 'double' => 42],
             [
                 'base' => ['integer'],
@@ -7562,7 +7562,7 @@ class ValidationValidatorTest extends TestCase
         $this->assertTrue($v->passes());
 
         $v = new Validator(
-            $this->getQuantaQuirkArrayTranslator(),
+            $this->getQuantaForgeArrayTranslator(),
             ['base' => 21, 'double' => 10],
             [
                 'base' => ['integer'],
@@ -7599,7 +7599,7 @@ class ValidationValidatorTest extends TestCase
         $this->assertSame('The double must be the double of base.', $v->errors()->get('double')[0]);
 
         $v = new Validator(
-            $this->getQuantaQuirkArrayTranslator(),
+            $this->getQuantaForgeArrayTranslator(),
             ['base' => 21, 'double' => 'foo'],
             [
                 'base' => ['integer'],
@@ -7640,7 +7640,7 @@ class ValidationValidatorTest extends TestCase
     public function testCustomValidationObjectWithDotKeysIsCorrectlyPassedValue()
     {
         $v = new Validator(
-            $this->getQuantaQuirkArrayTranslator(),
+            $this->getQuantaForgeArrayTranslator(),
             ['foo' => ['foo.bar' => 'baz']],
             [
                 'foo' => new class implements Rule
@@ -7662,7 +7662,7 @@ class ValidationValidatorTest extends TestCase
 
         // Test failed attributes contains proper entries
         $v = new Validator(
-            $this->getQuantaQuirkArrayTranslator(),
+            $this->getQuantaForgeArrayTranslator(),
             ['foo' => ['foo.bar' => 'baz']],
             [
                 'foo.foo\.bar' => new class implements Rule
@@ -7688,7 +7688,7 @@ class ValidationValidatorTest extends TestCase
     {
         // Test passing case...
         $v = new Validator(
-            $this->getQuantaQuirkArrayTranslator(),
+            $this->getQuantaForgeArrayTranslator(),
             ['name' => ''],
             [
                 'name' => $rule = new class implements ImplicitRule
@@ -7718,7 +7718,7 @@ class ValidationValidatorTest extends TestCase
     {
         $post = ['first' => 'john', 'preferred' => 'john', 'last' => 'doe', 'type' => 'admin'];
 
-        $v = new Validator($this->getQuantaQuirkArrayTranslator(), $post, ['first' => 'required', 'preferred' => 'required']);
+        $v = new Validator($this->getQuantaForgeArrayTranslator(), $post, ['first' => 'required', 'preferred' => 'required']);
         $v->sometimes('type', 'required', function () {
             return false;
         });
@@ -7733,7 +7733,7 @@ class ValidationValidatorTest extends TestCase
 
         $rules = ['nested.foo' => 'required', 'array.*' => 'integer'];
 
-        $v = new Validator($this->getQuantaQuirkArrayTranslator(), $post, $rules);
+        $v = new Validator($this->getQuantaForgeArrayTranslator(), $post, $rules);
         $v->sometimes('type', 'required', function () {
             return false;
         });
@@ -7746,7 +7746,7 @@ class ValidationValidatorTest extends TestCase
     {
         $post = ['nested' => ['foo' => 'bar', 'with' => 'extras', 'type' => 'admin']];
 
-        $v = new Validator($this->getQuantaQuirkArrayTranslator(), $post, ['nested.foo' => 'required']);
+        $v = new Validator($this->getQuantaForgeArrayTranslator(), $post, ['nested.foo' => 'required']);
         $v->sometimes('nested.type', 'required', function () {
             return false;
         });
@@ -7759,7 +7759,7 @@ class ValidationValidatorTest extends TestCase
     {
         $post = ['nested' => [['bar' => 'baz', 'with' => 'extras', 'type' => 'admin'], ['bar' => 'baz2', 'with' => 'extras', 'type' => 'admin']]];
 
-        $v = new Validator($this->getQuantaQuirkArrayTranslator(), $post, ['nested.*.bar' => 'required']);
+        $v = new Validator($this->getQuantaForgeArrayTranslator(), $post, ['nested.*.bar' => 'required']);
         $v->sometimes('nested.*.type', 'required', function () {
             return false;
         });
@@ -7772,7 +7772,7 @@ class ValidationValidatorTest extends TestCase
     {
         $post = ['first' => 'john', 'preferred' => 'john', 'last' => 'doe', 'type' => 'admin'];
 
-        $v = new Validator($this->getQuantaQuirkArrayTranslator(), $post, ['first' => 'required', 'preferred' => 'required']);
+        $v = new Validator($this->getQuantaForgeArrayTranslator(), $post, ['first' => 'required', 'preferred' => 'required']);
         $v->sometimes('type', 'required', function () {
             return false;
         });
@@ -7788,7 +7788,7 @@ class ValidationValidatorTest extends TestCase
         $post = ['first' => 'john', 'preferred' => 'john', 'last' => 'doe', 'type' => 'admin'];
 
         $validateCount = 0;
-        $v = new Validator($this->getQuantaQuirkArrayTranslator(), $post, ['first' => 'required', 'preferred' => 'required']);
+        $v = new Validator($this->getQuantaForgeArrayTranslator(), $post, ['first' => 'required', 'preferred' => 'required']);
         $v->after(function () use (&$validateCount) {
             $validateCount++;
         });
@@ -7801,7 +7801,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testMultiplePassesCalls()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, [], ['foo' => 'string|required']);
         $this->assertFalse($v->passes());
         $this->assertFalse($v->passes());
@@ -7812,7 +7812,7 @@ class ValidationValidatorTest extends TestCase
      */
     public function testValidateWithValidUuid($uuid)
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['foo' => $uuid], ['foo' => 'uuid']);
         $this->assertTrue($v->passes());
     }
@@ -7822,7 +7822,7 @@ class ValidationValidatorTest extends TestCase
      */
     public function testValidateWithInvalidUuid($uuid)
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['foo' => $uuid], ['foo' => 'uuid']);
         $this->assertFalse($v->passes());
     }
@@ -7861,28 +7861,28 @@ class ValidationValidatorTest extends TestCase
 
     public function testValidateWithValidAscii()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['foo' => 'Dusseldorf'], ['foo' => 'ascii']);
         $this->assertTrue($v->passes());
     }
 
     public function testValidateWithInvalidAscii()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['foo' => 'Düsseldorf'], ['foo' => 'ascii']);
         $this->assertFalse($v->passes());
     }
 
     public function testValidateWithValidUlid()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['foo' => '01gd6r360bp37zj17nxb55yv40'], ['foo' => 'ulid']);
         $this->assertTrue($v->passes());
     }
 
     public function testValidateWithInvalidUlid()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['foo' => '01gd6r36-bp37z-17nx-55yv40'], ['foo' => 'ulid']);
         $this->assertFalse($v->passes());
     }
@@ -8103,7 +8103,7 @@ class ValidationValidatorTest extends TestCase
     public function testExcludeIf($rules, $data, $expectedValidatedData)
     {
         $validator = new Validator(
-            $this->getQuantaQuirkArrayTranslator(),
+            $this->getQuantaForgeArrayTranslator(),
             $data,
             $rules
         );
@@ -8218,7 +8218,7 @@ class ValidationValidatorTest extends TestCase
     public function testExcludeIfWhenValidationFails($rules, $data, $expectedMessages)
     {
         $validator = new Validator(
-            $this->getQuantaQuirkArrayTranslator(),
+            $this->getQuantaForgeArrayTranslator(),
             $data,
             $rules
         );
@@ -8260,7 +8260,7 @@ class ValidationValidatorTest extends TestCase
     public function testExclude($rules, $data, $expectedValidatedData)
     {
         $validator = new Validator(
-            $this->getQuantaQuirkArrayTranslator(),
+            $this->getQuantaForgeArrayTranslator(),
             $data,
             $rules
         );
@@ -8283,7 +8283,7 @@ class ValidationValidatorTest extends TestCase
     public function testExcludeBeforeADependentRule()
     {
         $validator = new Validator(
-            $this->getQuantaQuirkArrayTranslator(),
+            $this->getQuantaForgeArrayTranslator(),
             [
                 'profile_id' => null,
                 'type'       => 'denied',
@@ -8298,7 +8298,7 @@ class ValidationValidatorTest extends TestCase
         $this->assertSame(['profile_id' => null], $validator->validated());
 
         $validator = new Validator(
-            $this->getQuantaQuirkArrayTranslator(),
+            $this->getQuantaForgeArrayTranslator(),
             [
                 'profile_id' => null,
                 'type'       => 'profile',
@@ -8316,7 +8316,7 @@ class ValidationValidatorTest extends TestCase
     public function testExcludingArrays()
     {
         $validator = new Validator(
-            $this->getQuantaQuirkArrayTranslator(),
+            $this->getQuantaForgeArrayTranslator(),
             ['users' => [['name' => 'Mohamed', 'location' => 'cairo']]],
             ['users' => 'array', 'users.*.name' => 'string']
         );
@@ -8325,7 +8325,7 @@ class ValidationValidatorTest extends TestCase
         $this->assertSame(['users' => [['name' => 'Mohamed', 'location' => 'cairo']]], $validator->validated());
 
         $validator = new Validator(
-            $this->getQuantaQuirkArrayTranslator(),
+            $this->getQuantaForgeArrayTranslator(),
             ['users' => [['name' => 'Mohamed', 'location' => 'cairo']]],
             ['users' => 'array', 'users.*.name' => 'string']
         );
@@ -8334,7 +8334,7 @@ class ValidationValidatorTest extends TestCase
         $this->assertSame(['users' => [['name' => 'Mohamed']]], $validator->validated());
 
         $validator = new Validator(
-            $this->getQuantaQuirkArrayTranslator(),
+            $this->getQuantaForgeArrayTranslator(),
             ['admin' => ['name' => 'Mohamed', 'location' => 'cairo'], 'users' => [['name' => 'Mohamed', 'location' => 'cairo']]],
             ['admin' => 'array', 'admin.name' => 'string', 'users' => 'array', 'users.*.name' => 'string']
         );
@@ -8343,7 +8343,7 @@ class ValidationValidatorTest extends TestCase
         $this->assertSame(['admin' => ['name' => 'Mohamed'], 'users' => [['name' => 'Mohamed']]], $validator->validated());
 
         $validator = new Validator(
-            $this->getQuantaQuirkArrayTranslator(),
+            $this->getQuantaForgeArrayTranslator(),
             ['users' => [['name' => 'Mohamed', 'location' => 'cairo']]],
             ['users' => 'array']
         );
@@ -8352,7 +8352,7 @@ class ValidationValidatorTest extends TestCase
         $this->assertSame(['users' => [['name' => 'Mohamed', 'location' => 'cairo']]], $validator->validated());
 
         $validator = new Validator(
-            $this->getQuantaQuirkArrayTranslator(),
+            $this->getQuantaForgeArrayTranslator(),
             ['users' => ['mohamed', 'zain']],
             ['users' => 'array', 'users.*' => 'string']
         );
@@ -8361,7 +8361,7 @@ class ValidationValidatorTest extends TestCase
         $this->assertSame(['users' => ['mohamed', 'zain']], $validator->validated());
 
         $validator = new Validator(
-            $this->getQuantaQuirkArrayTranslator(),
+            $this->getQuantaForgeArrayTranslator(),
             ['users' => ['admins' => [['name' => 'mohamed', 'job' => 'dev']], 'unvalidated' => 'foobar']],
             ['users' => 'array', 'users.admins' => 'array', 'users.admins.*.name' => 'string']
         );
@@ -8370,7 +8370,7 @@ class ValidationValidatorTest extends TestCase
         $this->assertSame(['users' => ['admins' => [['name' => 'mohamed']]]], $validator->validated());
 
         $validator = new Validator(
-            $this->getQuantaQuirkArrayTranslator(),
+            $this->getQuantaForgeArrayTranslator(),
             ['users' => [1, 2, 3]],
             ['users' => 'array|max:10']
         );
@@ -8382,7 +8382,7 @@ class ValidationValidatorTest extends TestCase
     public function testExcludeUnless()
     {
         $validator = new Validator(
-            $this->getQuantaQuirkArrayTranslator(),
+            $this->getQuantaForgeArrayTranslator(),
             ['cat' => 'Felix', 'mouse' => 'Jerry'],
             ['cat' => 'required|string', 'mouse' => 'exclude_unless:cat,Tom|required|string']
         );
@@ -8390,7 +8390,7 @@ class ValidationValidatorTest extends TestCase
         $this->assertSame(['cat' => 'Felix'], $validator->validated());
 
         $validator = new Validator(
-            $this->getQuantaQuirkArrayTranslator(),
+            $this->getQuantaForgeArrayTranslator(),
             ['cat' => 'Felix'],
             ['cat' => 'required|string', 'mouse' => 'exclude_unless:cat,Tom|required|string']
         );
@@ -8398,7 +8398,7 @@ class ValidationValidatorTest extends TestCase
         $this->assertSame(['cat' => 'Felix'], $validator->validated());
 
         $validator = new Validator(
-            $this->getQuantaQuirkArrayTranslator(),
+            $this->getQuantaForgeArrayTranslator(),
             ['cat' => 'Tom', 'mouse' => 'Jerry'],
             ['cat' => 'required|string', 'mouse' => 'exclude_unless:cat,Tom|required|string']
         );
@@ -8406,7 +8406,7 @@ class ValidationValidatorTest extends TestCase
         $this->assertSame(['cat' => 'Tom', 'mouse' => 'Jerry'], $validator->validated());
 
         $validator = new Validator(
-            $this->getQuantaQuirkArrayTranslator(),
+            $this->getQuantaForgeArrayTranslator(),
             ['cat' => 'Tom'],
             ['cat' => 'required|string', 'mouse' => 'exclude_unless:cat,Tom|required|string']
         );
@@ -8414,19 +8414,19 @@ class ValidationValidatorTest extends TestCase
         $this->assertSame(['mouse' => ['validation.required']], $validator->messages()->toArray());
 
         $validator = new Validator(
-            $this->getQuantaQuirkArrayTranslator(),
+            $this->getQuantaForgeArrayTranslator(),
             ['foo' => true, 'bar' => 'baz'],
             ['foo' => 'nullable', 'bar' => 'exclude_unless:foo,null']
         );
         $this->assertTrue($validator->passes());
         $this->assertSame(['foo' => true], $validator->validated());
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['bar' => 'Hello'], ['bar' => 'exclude_unless:foo,true']);
         $this->assertTrue($v->passes());
         $this->assertSame([], $v->validated());
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, ['bar' => 'Hello'], ['bar' => 'exclude_unless:foo,null']);
         $this->assertTrue($v->passes());
         $this->assertSame(['bar' => 'Hello'], $v->validated());
@@ -8435,7 +8435,7 @@ class ValidationValidatorTest extends TestCase
     public function testExcludeWithout()
     {
         $validator = new Validator(
-            $this->getQuantaQuirkArrayTranslator(),
+            $this->getQuantaForgeArrayTranslator(),
             ['region' => 'South'],
             [
                 'country' => 'exclude_without:region|nullable|required_with:region|string|min:3',
@@ -8450,7 +8450,7 @@ class ValidationValidatorTest extends TestCase
     public function testExcludeValuesAreReallyRemoved()
     {
         $validator = new Validator(
-            $this->getQuantaQuirkArrayTranslator(),
+            $this->getQuantaForgeArrayTranslator(),
             ['cat' => 'Tom', 'mouse' => 'Jerry'],
             ['cat' => 'required|string', 'mouse' => 'exclude_if:cat,Tom|required|string']
         );
@@ -8460,7 +8460,7 @@ class ValidationValidatorTest extends TestCase
         $this->assertSame([], $validator->invalid());
 
         $validator = new Validator(
-            $this->getQuantaQuirkArrayTranslator(),
+            $this->getQuantaForgeArrayTranslator(),
             ['cat' => 'Tom', 'mouse' => null],
             ['cat' => 'required|string', 'mouse' => 'exclude_if:cat,Felix|required|string']
         );
@@ -8472,7 +8472,7 @@ class ValidationValidatorTest extends TestCase
     public function testExcludeWithValuesAreReallyRemoved()
     {
         $validator = new Validator(
-            $this->getQuantaQuirkArrayTranslator(),
+            $this->getQuantaForgeArrayTranslator(),
             [
                 'cat' => 'Tom',
                 'mouse' => 'Jerry',
@@ -8495,7 +8495,7 @@ class ValidationValidatorTest extends TestCase
 
         $rules = ['data.*.date' => 'required|date'];
 
-        $validator = new Validator($this->getQuantaQuirkArrayTranslator(), $post, $rules);
+        $validator = new Validator($this->getQuantaForgeArrayTranslator(), $post, $rules);
 
         $this->assertTrue($validator->fails());
         $this->assertSame(['data.1.date' => ['validation.date'], 'data.*.date' => ['validation.date']], $validator->messages()->toArray());
@@ -8503,7 +8503,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testFailOnFirstError()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $data = [
             'foo' => 'bar',
             'age' => 30,
@@ -8539,7 +8539,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testArrayKeysValidationPassedWhenHasKeys()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
 
         $data = [
             'baz' => [
@@ -8562,7 +8562,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testArrayKeysValidationPassedWithPartialMatch()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
 
         $data = [
             'baz' => [
@@ -8585,7 +8585,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testArrayKeysValidationFailsWithMissingKey()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $trans->addLines(['validation.required_array_keys' => 'The :attribute field must contain entries for :values'], 'en');
 
         $data = [
@@ -8613,7 +8613,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testArrayKeysValidationFailsWithNotAnArray()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $trans->addLines(['validation.required_array_keys' => 'The :attribute field must contain entries for :values'], 'en');
 
         $data = [
@@ -8636,7 +8636,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testArrayKeysWithDotIntegerMin()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
 
         $data = [
             'foo.bar' => -1,
@@ -8658,7 +8658,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testItCanTranslateMessagesForClosureBasedRules()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $trans->addLines(['validation.translated-error' => 'Translated error message.'], 'en');
         $rule = function ($attribute, $value, $fail) {
             $fail('validation.translated-error')->translate();
@@ -8678,7 +8678,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testItCanSpecifyTheValidationErrorKeyForTheErrorMessageForClosureBasedRules()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $rule = function ($attribute, $value, $fail) {
             $fail('bar.baz', 'Another attribute error.');
             $fail('This attribute error.');
@@ -8699,7 +8699,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testItTrimsSpaceFromParameters()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
 
         $validator = new Validator($trans, [
             'min' => ' 20 ',
@@ -8827,7 +8827,7 @@ class ValidationValidatorTest extends TestCase
     /** @dataProvider outsideRangeExponents */
     public function testItLimitsLengthOfScientificNotationExponent($value)
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $validator = new Validator($trans, ['foo' => $value], ['foo' => 'numeric|min:3']);
 
         $this->expectException(MathException::class);
@@ -8851,7 +8851,7 @@ class ValidationValidatorTest extends TestCase
     /** @dataProvider withinRangeExponents */
     public function testItAllowsScientificNotationWithinRange($value, $rule)
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $validator = new Validator($trans, ['foo' => $value], ['foo' => ['numeric', $rule]]);
 
         $this->assertTrue($validator->passes());
@@ -8871,7 +8871,7 @@ class ValidationValidatorTest extends TestCase
 
     public function testItCanConfigureAllowedExponentRange()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $validator = new Validator($trans, ['foo' => '1.0e-1000'], ['foo' => ['numeric', 'max:3']]);
         $scale = $attribute = $value = null;
         $withinRange = true;
@@ -8899,7 +8899,7 @@ class ValidationValidatorTest extends TestCase
         return m::mock(TranslatorContract::class);
     }
 
-    public function getQuantaQuirkArrayTranslator()
+    public function getQuantaForgeArrayTranslator()
     {
         return new Translator(
             new ArrayLoader, 'en'

@@ -1,6 +1,6 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Generators;
+namespace QuantaForge\Tests\Integration\Generators;
 
 class JobMakeCommandTest extends TestCase
 {
@@ -16,11 +16,11 @@ class JobMakeCommandTest extends TestCase
 
         $this->assertFileContains([
             'namespace App\Jobs;',
-            'use QuantaQuirk\Bus\Queueable;',
-            'use QuantaQuirk\Contracts\Queue\ShouldQueue;',
-            'use QuantaQuirk\Foundation\Bus\Dispatchable;',
-            'use QuantaQuirk\Queue\InteractsWithQueue;',
-            'use QuantaQuirk\Queue\SerializesModels;',
+            'use QuantaForge\Bus\Queueable;',
+            'use QuantaForge\Contracts\Queue\ShouldQueue;',
+            'use QuantaForge\Foundation\Bus\Dispatchable;',
+            'use QuantaForge\Queue\InteractsWithQueue;',
+            'use QuantaForge\Queue\SerializesModels;',
             'class FooCreated implements ShouldQueue',
         ], 'app/Jobs/FooCreated.php');
 
@@ -34,14 +34,14 @@ class JobMakeCommandTest extends TestCase
 
         $this->assertFileContains([
             'namespace App\Jobs;',
-            'use QuantaQuirk\Foundation\Bus\Dispatchable;',
+            'use QuantaForge\Foundation\Bus\Dispatchable;',
             'class FooCreated',
         ], 'app/Jobs/FooCreated.php');
 
         $this->assertFileNotContains([
-            'use QuantaQuirk\Contracts\Queue\ShouldQueue;',
-            'use QuantaQuirk\Queue\InteractsWithQueue;',
-            'use QuantaQuirk\Queue\SerializesModels;',
+            'use QuantaForge\Contracts\Queue\ShouldQueue;',
+            'use QuantaForge\Queue\InteractsWithQueue;',
+            'use QuantaForge\Queue\SerializesModels;',
         ], 'app/Jobs/FooCreated.php');
     }
 

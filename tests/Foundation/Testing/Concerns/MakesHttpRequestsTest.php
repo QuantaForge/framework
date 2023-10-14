@@ -1,11 +1,11 @@
 <?php
 
-namespace QuantaQuirk\Tests\Foundation\Testing\Concerns;
+namespace QuantaForge\Tests\Foundation\Testing\Concerns;
 
-use QuantaQuirk\Contracts\Routing\Registrar;
-use QuantaQuirk\Contracts\Routing\UrlGenerator;
-use QuantaQuirk\Foundation\Http\Middleware\HandlePrecognitiveRequests;
-use QuantaQuirk\Http\RedirectResponse;
+use QuantaForge\Contracts\Routing\Registrar;
+use QuantaForge\Contracts\Routing\UrlGenerator;
+use QuantaForge\Foundation\Http\Middleware\HandlePrecognitiveRequests;
+use QuantaForge\Http\RedirectResponse;
 use Orchestra\Testbench\TestCase;
 
 class MakesHttpRequestsTest extends TestCase

@@ -1,9 +1,9 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Encryption;
+namespace QuantaForge\Tests\Integration\Encryption;
 
-use QuantaQuirk\Encryption\Encrypter;
-use QuantaQuirk\Encryption\EncryptionServiceProvider;
+use QuantaForge\Encryption\Encrypter;
+use QuantaForge\Encryption\EncryptionServiceProvider;
 use Orchestra\Testbench\TestCase;
 use RuntimeException;
 

@@ -1,9 +1,9 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Routing;
+namespace QuantaForge\Tests\Integration\Routing;
 
-use QuantaQuirk\Support\Facades\Route;
-use QuantaQuirk\Support\Facades\View;
+use QuantaForge\Support\Facades\Route;
+use QuantaForge\Support\Facades\View;
 use Orchestra\Testbench\TestCase;
 
 class RouteViewTest extends TestCase
@@ -42,19 +42,19 @@ class RouteViewTest extends TestCase
 
     public function testRouteViewWithHeaders()
     {
-        Route::view('route', 'view', ['foo' => 'bar'], 418, ['Framework' => 'QuantaQuirk']);
+        Route::view('route', 'view', ['foo' => 'bar'], 418, ['Framework' => 'QuantaForge']);
 
         View::addLocation(__DIR__.'/Fixtures');
 
-        $this->assertSame('QuantaQuirk', $this->get('/route')->headers->get('Framework'));
+        $this->assertSame('QuantaForge', $this->get('/route')->headers->get('Framework'));
     }
 
     public function testRouteViewOverloadingStatusWithHeaders()
     {
-        Route::view('route', 'view', ['foo' => 'bar'], ['Framework' => 'QuantaQuirk']);
+        Route::view('route', 'view', ['foo' => 'bar'], ['Framework' => 'QuantaForge']);
 
         View::addLocation(__DIR__.'/Fixtures');
 
-        $this->assertSame('QuantaQuirk', $this->get('/route')->headers->get('Framework'));
+        $this->assertSame('QuantaForge', $this->get('/route')->headers->get('Framework'));
     }
 }

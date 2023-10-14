@@ -1,0 +1,53 @@
+<?php
+
+namespace {{ namespace }};
+
+use QuantaForge\Bus\Queueable;
+use QuantaForge\Contracts\Queue\ShouldQueue;
+use QuantaForge\Mail\Mailable;
+use QuantaForge\Mail\Mailables\Content;
+use QuantaForge\Mail\Mailables\Envelope;
+use QuantaForge\Queue\SerializesModels;
+
+class {{ class }} extends Mailable
+{
+    use Queueable, SerializesModels;
+
+    /**
+     * Create a new message instance.
+     */
+    public function __construct()
+    {
+        //
+    }
+
+    /**
+     * Get the message envelope.
+     */
+    public function envelope(): Envelope
+    {
+        return new Envelope(
+            subject: '{{ subject }}',
+        );
+    }
+
+    /**
+     * Get the message content definition.
+     */
+    public function content(): Content
+    {
+        return new Content(
+            view: 'view.name',
+        );
+    }
+
+    /**
+     * Get the attachments for the message.
+     *
+     * @return array<int, \QuantaForge\Mail\Mailables\Attachment>
+     */
+    public function attachments(): array
+    {
+        return [];
+    }
+}

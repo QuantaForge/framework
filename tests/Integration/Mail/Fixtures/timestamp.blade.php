@@ -1,1 +1,1 @@
-{{__('nom')}} {{ QuantaQuirk\Support\Carbon::tomorrow()->diffForHumans() }}
+{{__('nom')}} {{ QuantaForge\Support\Carbon::tomorrow()->diffForHumans() }}

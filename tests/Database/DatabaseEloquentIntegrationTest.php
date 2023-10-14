@@ -1,30 +1,30 @@
 <?php
 
-namespace QuantaQuirk\Tests\Database;
+namespace QuantaForge\Tests\Database;
 
 use DateTimeInterface;
 use Exception;
-use QuantaQuirk\Database\Capsule\Manager as DB;
-use QuantaQuirk\Database\Eloquent\Builder;
-use QuantaQuirk\Database\Eloquent\Collection;
-use QuantaQuirk\Database\Eloquent\Model;
-use QuantaQuirk\Database\Eloquent\Model as Eloquent;
-use QuantaQuirk\Database\Eloquent\ModelNotFoundException;
-use QuantaQuirk\Database\Eloquent\Relations\MorphPivot;
-use QuantaQuirk\Database\Eloquent\Relations\Pivot;
-use QuantaQuirk\Database\Eloquent\Relations\Relation;
-use QuantaQuirk\Database\Eloquent\SoftDeletes;
-use QuantaQuirk\Database\Eloquent\SoftDeletingScope;
-use QuantaQuirk\Database\QueryException;
-use QuantaQuirk\Database\UniqueConstraintViolationException;
-use QuantaQuirk\Pagination\AbstractPaginator as Paginator;
-use QuantaQuirk\Pagination\Cursor;
-use QuantaQuirk\Pagination\CursorPaginator;
-use QuantaQuirk\Pagination\LengthAwarePaginator;
-use QuantaQuirk\Support\Carbon;
-use QuantaQuirk\Support\Facades\Date;
-use QuantaQuirk\Tests\Integration\Database\Fixtures\Post;
-use QuantaQuirk\Tests\Integration\Database\Fixtures\User;
+use QuantaForge\Database\Capsule\Manager as DB;
+use QuantaForge\Database\Eloquent\Builder;
+use QuantaForge\Database\Eloquent\Collection;
+use QuantaForge\Database\Eloquent\Model;
+use QuantaForge\Database\Eloquent\Model as Eloquent;
+use QuantaForge\Database\Eloquent\ModelNotFoundException;
+use QuantaForge\Database\Eloquent\Relations\MorphPivot;
+use QuantaForge\Database\Eloquent\Relations\Pivot;
+use QuantaForge\Database\Eloquent\Relations\Relation;
+use QuantaForge\Database\Eloquent\SoftDeletes;
+use QuantaForge\Database\Eloquent\SoftDeletingScope;
+use QuantaForge\Database\QueryException;
+use QuantaForge\Database\UniqueConstraintViolationException;
+use QuantaForge\Pagination\AbstractPaginator as Paginator;
+use QuantaForge\Pagination\Cursor;
+use QuantaForge\Pagination\CursorPaginator;
+use QuantaForge\Pagination\LengthAwarePaginator;
+use QuantaForge\Support\Carbon;
+use QuantaForge\Support\Facades\Date;
+use QuantaForge\Tests\Integration\Database\Fixtures\Post;
+use QuantaForge\Tests\Integration\Database\Fixtures\User;
 use PHPUnit\Framework\TestCase;
 
 class DatabaseEloquentIntegrationTest extends TestCase
@@ -193,7 +193,7 @@ class DatabaseEloquentIntegrationTest extends TestCase
         $this->assertEquals(2, EloquentTestUser::count());
 
         $this->assertFalse(EloquentTestUser::where('email', 'taylorotwell@gmail.com')->doesntExist());
-        $this->assertTrue(EloquentTestUser::where('email', 'mohamed@quantaquirk.com')->doesntExist());
+        $this->assertTrue(EloquentTestUser::where('email', 'mohamed@quantaforge.com')->doesntExist());
 
         $model = EloquentTestUser::where('email', 'taylorotwell@gmail.com')->first();
         $this->assertSame('taylorotwell@gmail.com', $model->email);
@@ -516,7 +516,7 @@ class DatabaseEloquentIntegrationTest extends TestCase
 
         $user4 = EloquentTestUser::firstOrCreate(
             ['name' => 'Dries Vints'],
-            ['name' => 'Nuno Maduro', 'email' => 'nuno@quantaquirk.com']
+            ['name' => 'Nuno Maduro', 'email' => 'nuno@quantaforge.com']
         );
 
         $this->assertSame('Nuno Maduro', $user4->name);
@@ -549,7 +549,7 @@ class DatabaseEloquentIntegrationTest extends TestCase
 
         $user4 = EloquentTestUniqueUser::createOrFirst(
             ['name' => 'Dries Vints'],
-            ['name' => 'Nuno Maduro', 'email' => 'nuno@quantaquirk.com']
+            ['name' => 'Nuno Maduro', 'email' => 'nuno@quantaforge.com']
         );
 
         $this->assertSame('Nuno Maduro', $user4->name);
@@ -759,7 +759,7 @@ class DatabaseEloquentIntegrationTest extends TestCase
     public function testFindOrFailWithSingleIdThrowsModelNotFoundException()
     {
         $this->expectException(ModelNotFoundException::class);
-        $this->expectExceptionMessage('No query results for model [QuantaQuirk\Tests\Database\EloquentTestUser] 1');
+        $this->expectExceptionMessage('No query results for model [QuantaForge\Tests\Database\EloquentTestUser] 1');
         $this->expectExceptionObject(
             (new ModelNotFoundException())->setModel(EloquentTestUser::class, [1]),
         );
@@ -770,7 +770,7 @@ class DatabaseEloquentIntegrationTest extends TestCase
     public function testFindOrFailWithMultipleIdsThrowsModelNotFoundException()
     {
         $this->expectException(ModelNotFoundException::class);
-        $this->expectExceptionMessage('No query results for model [QuantaQuirk\Tests\Database\EloquentTestUser] 2, 3');
+        $this->expectExceptionMessage('No query results for model [QuantaForge\Tests\Database\EloquentTestUser] 2, 3');
         $this->expectExceptionObject(
             (new ModelNotFoundException())->setModel(EloquentTestUser::class, [2, 3]),
         );
@@ -782,7 +782,7 @@ class DatabaseEloquentIntegrationTest extends TestCase
     public function testFindOrFailWithMultipleIdsUsingCollectionThrowsModelNotFoundException()
     {
         $this->expectException(ModelNotFoundException::class);
-        $this->expectExceptionMessage('No query results for model [QuantaQuirk\Tests\Database\EloquentTestUser] 2, 3');
+        $this->expectExceptionMessage('No query results for model [QuantaForge\Tests\Database\EloquentTestUser] 2, 3');
         $this->expectExceptionObject(
             (new ModelNotFoundException())->setModel(EloquentTestUser::class, [2, 3]),
         );
@@ -1461,11 +1461,11 @@ class DatabaseEloquentIntegrationTest extends TestCase
 
     public function testNestedTransactions()
     {
-        $user = EloquentTestUser::create(['email' => 'taylor@quantaquirk.com']);
+        $user = EloquentTestUser::create(['email' => 'taylor@quantaforge.com']);
         $this->connection()->transaction(function () use ($user) {
             try {
                 $this->connection()->transaction(function () use ($user) {
-                    $user->email = 'otwell@quantaquirk.com';
+                    $user->email = 'otwell@quantaforge.com';
                     $user->save();
                     throw new Exception;
                 });
@@ -1473,41 +1473,41 @@ class DatabaseEloquentIntegrationTest extends TestCase
                 // ignore the exception
             }
             $user = EloquentTestUser::first();
-            $this->assertSame('taylor@quantaquirk.com', $user->email);
+            $this->assertSame('taylor@quantaforge.com', $user->email);
         });
     }
 
     public function testNestedTransactionsUsingSaveOrFailWillSucceed()
     {
-        $user = EloquentTestUser::create(['email' => 'taylor@quantaquirk.com']);
+        $user = EloquentTestUser::create(['email' => 'taylor@quantaforge.com']);
         $this->connection()->transaction(function () use ($user) {
             try {
-                $user->email = 'otwell@quantaquirk.com';
+                $user->email = 'otwell@quantaforge.com';
                 $user->saveOrFail();
             } catch (Exception) {
                 // ignore the exception
             }
 
             $user = EloquentTestUser::first();
-            $this->assertSame('otwell@quantaquirk.com', $user->email);
+            $this->assertSame('otwell@quantaforge.com', $user->email);
             $this->assertEquals(1, $user->id);
         });
     }
 
     public function testNestedTransactionsUsingSaveOrFailWillFails()
     {
-        $user = EloquentTestUser::create(['email' => 'taylor@quantaquirk.com']);
+        $user = EloquentTestUser::create(['email' => 'taylor@quantaforge.com']);
         $this->connection()->transaction(function () use ($user) {
             try {
                 $user->id = 'invalid';
-                $user->email = 'otwell@quantaquirk.com';
+                $user->email = 'otwell@quantaforge.com';
                 $user->saveOrFail();
             } catch (Exception) {
                 // ignore the exception
             }
 
             $user = EloquentTestUser::first();
-            $this->assertSame('taylor@quantaquirk.com', $user->email);
+            $this->assertSame('taylor@quantaforge.com', $user->email);
             $this->assertEquals(1, $user->id);
         });
     }
@@ -1831,7 +1831,7 @@ class DatabaseEloquentIntegrationTest extends TestCase
         $date = $model->getAttribute('updated_at');
         $this->assertSame('2017-11-14 08:23:19.734', $date->format('Y-m-d H:i:s.v'), 'the date should contains the precision');
         $this->assertSame('2017-11-14 08:23:19.000', $model->fromDateTime($date), 'the format should trims it');
-        // No longer throwing exception since QuantaQuirk 7,
+        // No longer throwing exception since QuantaForge 7,
         // but Date::hasFormat() can be used instead to check date formatting:
         $this->assertTrue(Date::hasFormat('2017-11-14 08:23:19.000', $model->getDateFormat()));
         $this->assertFalse(Date::hasFormat('2017-11-14 08:23:19.734', $model->getDateFormat()));
@@ -2189,7 +2189,7 @@ class DatabaseEloquentIntegrationTest extends TestCase
     /**
      * Get a database connection instance.
      *
-     * @return \QuantaQuirk\Database\Connection
+     * @return \QuantaForge\Database\Connection
      */
     protected function connection($connection = 'default')
     {
@@ -2199,7 +2199,7 @@ class DatabaseEloquentIntegrationTest extends TestCase
     /**
      * Get a schema builder instance.
      *
-     * @return \QuantaQuirk\Database\Schema\Builder
+     * @return \QuantaForge\Database\Schema\Builder
      */
     protected function schema($connection = 'default')
     {

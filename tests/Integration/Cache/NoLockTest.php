@@ -1,8 +1,8 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Cache;
+namespace QuantaForge\Tests\Integration\Cache;
 
-use QuantaQuirk\Support\Facades\Cache;
+use QuantaForge\Support\Facades\Cache;
 use Orchestra\Testbench\TestCase;
 
 class NoLockTest extends TestCase
@@ -10,7 +10,7 @@ class NoLockTest extends TestCase
     /**
      * Define environment setup.
      *
-     * @param  \QuantaQuirk\Foundation\Application  $app
+     * @param  \QuantaForge\Foundation\Application  $app
      * @return void
      */
     protected function getEnvironmentSetUp($app)

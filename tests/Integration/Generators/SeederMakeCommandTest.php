@@ -1,6 +1,6 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Generators;
+namespace QuantaForge\Tests\Integration\Generators;
 
 class SeederMakeCommandTest extends TestCase
 {
@@ -15,7 +15,7 @@ class SeederMakeCommandTest extends TestCase
 
         $this->assertFileContains([
             'namespace Database\Seeders;',
-            'use QuantaQuirk\Database\Seeder;',
+            'use QuantaForge\Database\Seeder;',
             'class FooSeeder extends Seeder',
             'public function run()',
         ], 'database/seeders/FooSeeder.php');

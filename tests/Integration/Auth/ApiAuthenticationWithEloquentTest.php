@@ -1,11 +1,11 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Auth;
+namespace QuantaForge\Tests\Integration\Auth;
 
-use QuantaQuirk\Database\QueryException;
-use QuantaQuirk\Foundation\Auth\User as FoundationUser;
-use QuantaQuirk\Support\Facades\Route;
-use QuantaQuirk\Support\Str;
+use QuantaForge\Database\QueryException;
+use QuantaForge\Foundation\Auth\User as FoundationUser;
+use QuantaForge\Support\Facades\Route;
+use QuantaForge\Support\Str;
 use Orchestra\Testbench\TestCase;
 
 /**

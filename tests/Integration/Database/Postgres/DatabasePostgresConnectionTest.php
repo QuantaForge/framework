@@ -1,10 +1,10 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Database\Postgres;
+namespace QuantaForge\Tests\Integration\Database\Postgres;
 
-use QuantaQuirk\Database\Schema\Blueprint;
-use QuantaQuirk\Support\Facades\DB;
-use QuantaQuirk\Support\Facades\Schema;
+use QuantaForge\Database\Schema\Blueprint;
+use QuantaForge\Support\Facades\DB;
+use QuantaForge\Support\Facades\Schema;
 
 /**
  * @requires extension pdo_pgsql

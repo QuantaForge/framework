@@ -1,48 +1,48 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Http;
+namespace QuantaForge\Tests\Integration\Http;
 
-use QuantaQuirk\Database\Eloquent\Model;
-use QuantaQuirk\Foundation\Http\Middleware\ValidatePostSize;
-use QuantaQuirk\Http\Exceptions\PostTooLargeException;
-use QuantaQuirk\Http\Request;
-use QuantaQuirk\Http\Resources\ConditionallyLoadsAttributes;
-use QuantaQuirk\Http\Resources\Json\JsonResource;
-use QuantaQuirk\Http\Resources\MergeValue;
-use QuantaQuirk\Http\Resources\MissingValue;
-use QuantaQuirk\Pagination\Cursor;
-use QuantaQuirk\Pagination\CursorPaginator;
-use QuantaQuirk\Pagination\LengthAwarePaginator;
-use QuantaQuirk\Support\Collection;
-use QuantaQuirk\Support\Facades\Route;
-use QuantaQuirk\Tests\Integration\Http\Fixtures\Author;
-use QuantaQuirk\Tests\Integration\Http\Fixtures\AuthorResourceWithOptionalRelationship;
-use QuantaQuirk\Tests\Integration\Http\Fixtures\EmptyPostCollectionResource;
-use QuantaQuirk\Tests\Integration\Http\Fixtures\ObjectResource;
-use QuantaQuirk\Tests\Integration\Http\Fixtures\Post;
-use QuantaQuirk\Tests\Integration\Http\Fixtures\PostCollectionResource;
-use QuantaQuirk\Tests\Integration\Http\Fixtures\PostCollectionResourceWithPaginationInformation;
-use QuantaQuirk\Tests\Integration\Http\Fixtures\PostModelCollectionResource;
-use QuantaQuirk\Tests\Integration\Http\Fixtures\PostResource;
-use QuantaQuirk\Tests\Integration\Http\Fixtures\PostResourceWithAnonymousResourceCollectionWithPaginationInformation;
-use QuantaQuirk\Tests\Integration\Http\Fixtures\PostResourceWithExtraData;
-use QuantaQuirk\Tests\Integration\Http\Fixtures\PostResourceWithJsonOptions;
-use QuantaQuirk\Tests\Integration\Http\Fixtures\PostResourceWithJsonOptionsAndTypeHints;
-use QuantaQuirk\Tests\Integration\Http\Fixtures\PostResourceWithOptionalAppendedAttributes;
-use QuantaQuirk\Tests\Integration\Http\Fixtures\PostResourceWithOptionalAttributes;
-use QuantaQuirk\Tests\Integration\Http\Fixtures\PostResourceWithOptionalData;
-use QuantaQuirk\Tests\Integration\Http\Fixtures\PostResourceWithOptionalHasAttributes;
-use QuantaQuirk\Tests\Integration\Http\Fixtures\PostResourceWithOptionalMerging;
-use QuantaQuirk\Tests\Integration\Http\Fixtures\PostResourceWithOptionalPivotRelationship;
-use QuantaQuirk\Tests\Integration\Http\Fixtures\PostResourceWithOptionalRelationship;
-use QuantaQuirk\Tests\Integration\Http\Fixtures\PostResourceWithOptionalRelationshipAggregates;
-use QuantaQuirk\Tests\Integration\Http\Fixtures\PostResourceWithOptionalRelationshipCounts;
-use QuantaQuirk\Tests\Integration\Http\Fixtures\PostResourceWithoutWrap;
-use QuantaQuirk\Tests\Integration\Http\Fixtures\PostResourceWithUnlessOptionalData;
-use QuantaQuirk\Tests\Integration\Http\Fixtures\ReallyEmptyPostResource;
-use QuantaQuirk\Tests\Integration\Http\Fixtures\ResourceWithPreservedKeys;
-use QuantaQuirk\Tests\Integration\Http\Fixtures\SerializablePostResource;
-use QuantaQuirk\Tests\Integration\Http\Fixtures\Subscription;
+use QuantaForge\Database\Eloquent\Model;
+use QuantaForge\Foundation\Http\Middleware\ValidatePostSize;
+use QuantaForge\Http\Exceptions\PostTooLargeException;
+use QuantaForge\Http\Request;
+use QuantaForge\Http\Resources\ConditionallyLoadsAttributes;
+use QuantaForge\Http\Resources\Json\JsonResource;
+use QuantaForge\Http\Resources\MergeValue;
+use QuantaForge\Http\Resources\MissingValue;
+use QuantaForge\Pagination\Cursor;
+use QuantaForge\Pagination\CursorPaginator;
+use QuantaForge\Pagination\LengthAwarePaginator;
+use QuantaForge\Support\Collection;
+use QuantaForge\Support\Facades\Route;
+use QuantaForge\Tests\Integration\Http\Fixtures\Author;
+use QuantaForge\Tests\Integration\Http\Fixtures\AuthorResourceWithOptionalRelationship;
+use QuantaForge\Tests\Integration\Http\Fixtures\EmptyPostCollectionResource;
+use QuantaForge\Tests\Integration\Http\Fixtures\ObjectResource;
+use QuantaForge\Tests\Integration\Http\Fixtures\Post;
+use QuantaForge\Tests\Integration\Http\Fixtures\PostCollectionResource;
+use QuantaForge\Tests\Integration\Http\Fixtures\PostCollectionResourceWithPaginationInformation;
+use QuantaForge\Tests\Integration\Http\Fixtures\PostModelCollectionResource;
+use QuantaForge\Tests\Integration\Http\Fixtures\PostResource;
+use QuantaForge\Tests\Integration\Http\Fixtures\PostResourceWithAnonymousResourceCollectionWithPaginationInformation;
+use QuantaForge\Tests\Integration\Http\Fixtures\PostResourceWithExtraData;
+use QuantaForge\Tests\Integration\Http\Fixtures\PostResourceWithJsonOptions;
+use QuantaForge\Tests\Integration\Http\Fixtures\PostResourceWithJsonOptionsAndTypeHints;
+use QuantaForge\Tests\Integration\Http\Fixtures\PostResourceWithOptionalAppendedAttributes;
+use QuantaForge\Tests\Integration\Http\Fixtures\PostResourceWithOptionalAttributes;
+use QuantaForge\Tests\Integration\Http\Fixtures\PostResourceWithOptionalData;
+use QuantaForge\Tests\Integration\Http\Fixtures\PostResourceWithOptionalHasAttributes;
+use QuantaForge\Tests\Integration\Http\Fixtures\PostResourceWithOptionalMerging;
+use QuantaForge\Tests\Integration\Http\Fixtures\PostResourceWithOptionalPivotRelationship;
+use QuantaForge\Tests\Integration\Http\Fixtures\PostResourceWithOptionalRelationship;
+use QuantaForge\Tests\Integration\Http\Fixtures\PostResourceWithOptionalRelationshipAggregates;
+use QuantaForge\Tests\Integration\Http\Fixtures\PostResourceWithOptionalRelationshipCounts;
+use QuantaForge\Tests\Integration\Http\Fixtures\PostResourceWithoutWrap;
+use QuantaForge\Tests\Integration\Http\Fixtures\PostResourceWithUnlessOptionalData;
+use QuantaForge\Tests\Integration\Http\Fixtures\ReallyEmptyPostResource;
+use QuantaForge\Tests\Integration\Http\Fixtures\ResourceWithPreservedKeys;
+use QuantaForge\Tests\Integration\Http\Fixtures\SerializablePostResource;
+use QuantaForge\Tests\Integration\Http\Fixtures\Subscription;
 use LogicException;
 use Mockery as m;
 use Orchestra\Testbench\TestCase;
@@ -933,7 +933,7 @@ class ResourceTest extends TestCase
     public function testPaginatorResourceCanPreserveQueryParameters()
     {
         Route::get('/', function () {
-            $collection = collect([new Post(['id' => 2, 'title' => 'QuantaQuirk Nova'])]);
+            $collection = collect([new Post(['id' => 2, 'title' => 'QuantaForge Nova'])]);
             $paginator = new LengthAwarePaginator(
                 $collection, 3, 1, 2
             );
@@ -942,7 +942,7 @@ class ResourceTest extends TestCase
         });
 
         $response = $this->withoutExceptionHandling()->get(
-            '/?framework=quantaquirk&author=Otwell&page=2', ['Accept' => 'application/json']
+            '/?framework=quantaforge&author=Otwell&page=2', ['Accept' => 'application/json']
         );
 
         $response->assertStatus(200);
@@ -951,14 +951,14 @@ class ResourceTest extends TestCase
             'data' => [
                 [
                     'id' => 2,
-                    'title' => 'QuantaQuirk Nova',
+                    'title' => 'QuantaForge Nova',
                 ],
             ],
             'links' => [
-                'first' => '/?framework=quantaquirk&author=Otwell&page=1',
-                'last' => '/?framework=quantaquirk&author=Otwell&page=3',
-                'prev' => '/?framework=quantaquirk&author=Otwell&page=1',
-                'next' => '/?framework=quantaquirk&author=Otwell&page=3',
+                'first' => '/?framework=quantaforge&author=Otwell&page=1',
+                'last' => '/?framework=quantaforge&author=Otwell&page=3',
+                'prev' => '/?framework=quantaforge&author=Otwell&page=1',
+                'next' => '/?framework=quantaforge&author=Otwell&page=3',
             ],
             'meta' => [
                 'current_page' => 2,
@@ -975,7 +975,7 @@ class ResourceTest extends TestCase
     public function testPaginatorResourceCanReceiveQueryParameters()
     {
         Route::get('/', function () {
-            $collection = collect([new Post(['id' => 2, 'title' => 'QuantaQuirk Nova'])]);
+            $collection = collect([new Post(['id' => 2, 'title' => 'QuantaForge Nova'])]);
             $paginator = new LengthAwarePaginator(
                 $collection, 3, 1, 2
             );
@@ -984,7 +984,7 @@ class ResourceTest extends TestCase
         });
 
         $response = $this->withoutExceptionHandling()->get(
-            '/?framework=quantaquirk&author=Otwell&page=2', ['Accept' => 'application/json']
+            '/?framework=quantaforge&author=Otwell&page=2', ['Accept' => 'application/json']
         );
 
         $response->assertStatus(200);
@@ -993,7 +993,7 @@ class ResourceTest extends TestCase
             'data' => [
                 [
                     'id' => 2,
-                    'title' => 'QuantaQuirk Nova',
+                    'title' => 'QuantaForge Nova',
                 ],
             ],
             'links' => [
@@ -1065,7 +1065,7 @@ class ResourceTest extends TestCase
         });
 
         $response = $this->withoutExceptionHandling()->get(
-            '/?framework=quantaquirk&author=Otwell', ['Accept' => 'application/json']
+            '/?framework=quantaforge&author=Otwell', ['Accept' => 'application/json']
         );
 
         $response->assertStatus(200);
@@ -1081,7 +1081,7 @@ class ResourceTest extends TestCase
                 'first' => null,
                 'last' => null,
                 'prev' => null,
-                'next' => '/?framework=quantaquirk&author=Otwell&cursor='.(new Cursor(['id' => 5]))->encode(),
+                'next' => '/?framework=quantaforge&author=Otwell&cursor='.(new Cursor(['id' => 5]))->encode(),
             ],
             'meta' => [
                 'path' => '/',
@@ -1102,7 +1102,7 @@ class ResourceTest extends TestCase
         });
 
         $response = $this->withoutExceptionHandling()->get(
-            '/?framework=quantaquirk&author=Otwell', ['Accept' => 'application/json']
+            '/?framework=quantaforge&author=Otwell', ['Accept' => 'application/json']
         );
 
         $response->assertStatus(200);

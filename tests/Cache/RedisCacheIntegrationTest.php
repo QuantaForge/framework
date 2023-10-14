@@ -1,10 +1,10 @@
 <?php
 
-namespace QuantaQuirk\Tests\Cache;
+namespace QuantaForge\Tests\Cache;
 
-use QuantaQuirk\Cache\RedisStore;
-use QuantaQuirk\Cache\Repository;
-use QuantaQuirk\Foundation\Testing\Concerns\InteractsWithRedis;
+use QuantaForge\Cache\RedisStore;
+use QuantaForge\Cache\Repository;
+use QuantaForge\Foundation\Testing\Concerns\InteractsWithRedis;
 use PHPUnit\Framework\TestCase;
 
 class RedisCacheIntegrationTest extends TestCase

@@ -1,10 +1,10 @@
 <?php
 
-namespace QuantaQuirk\Tests\Http;
+namespace QuantaForge\Tests\Http;
 
-use QuantaQuirk\Contracts\Support\Arrayable;
-use QuantaQuirk\Contracts\Support\Jsonable;
-use QuantaQuirk\Http\JsonResponse;
+use QuantaForge\Contracts\Support\Arrayable;
+use QuantaForge\Contracts\Support\Jsonable;
+use QuantaForge\Http\JsonResponse;
 use InvalidArgumentException;
 use JsonSerializable;
 use PHPUnit\Framework\TestCase;

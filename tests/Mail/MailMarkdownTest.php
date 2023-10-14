@@ -1,9 +1,9 @@
 <?php
 
-namespace QuantaQuirk\Tests\Mail;
+namespace QuantaForge\Tests\Mail;
 
-use QuantaQuirk\Mail\Markdown;
-use QuantaQuirk\View\Factory;
+use QuantaForge\Mail\Markdown;
+use QuantaForge\View\Factory;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 

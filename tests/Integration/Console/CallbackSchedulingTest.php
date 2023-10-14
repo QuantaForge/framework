@@ -1,18 +1,18 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Console;
+namespace QuantaForge\Tests\Integration\Console;
 
-use QuantaQuirk\Cache\ArrayStore;
-use QuantaQuirk\Cache\Repository;
-use QuantaQuirk\Console\Events\ScheduledTaskFailed;
-use QuantaQuirk\Console\Scheduling\CacheEventMutex;
-use QuantaQuirk\Console\Scheduling\CacheSchedulingMutex;
-use QuantaQuirk\Console\Scheduling\EventMutex;
-use QuantaQuirk\Console\Scheduling\Schedule;
-use QuantaQuirk\Console\Scheduling\SchedulingMutex;
-use QuantaQuirk\Container\Container;
-use QuantaQuirk\Contracts\Cache\Factory;
-use QuantaQuirk\Contracts\Events\Dispatcher;
+use QuantaForge\Cache\ArrayStore;
+use QuantaForge\Cache\Repository;
+use QuantaForge\Console\Events\ScheduledTaskFailed;
+use QuantaForge\Console\Scheduling\CacheEventMutex;
+use QuantaForge\Console\Scheduling\CacheSchedulingMutex;
+use QuantaForge\Console\Scheduling\EventMutex;
+use QuantaForge\Console\Scheduling\Schedule;
+use QuantaForge\Console\Scheduling\SchedulingMutex;
+use QuantaForge\Container\Container;
+use QuantaForge\Contracts\Cache\Factory;
+use QuantaForge\Contracts\Events\Dispatcher;
 use Orchestra\Testbench\TestCase;
 use RuntimeException;
 

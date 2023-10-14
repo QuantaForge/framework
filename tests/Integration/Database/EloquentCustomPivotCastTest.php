@@ -1,11 +1,11 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Database;
+namespace QuantaForge\Tests\Integration\Database;
 
-use QuantaQuirk\Database\Eloquent\Model;
-use QuantaQuirk\Database\Eloquent\Relations\Pivot;
-use QuantaQuirk\Database\Schema\Blueprint;
-use QuantaQuirk\Support\Facades\Schema;
+use QuantaForge\Database\Eloquent\Model;
+use QuantaForge\Database\Eloquent\Relations\Pivot;
+use QuantaForge\Database\Schema\Blueprint;
+use QuantaForge\Support\Facades\Schema;
 
 class EloquentCustomPivotCastTest extends DatabaseTestCase
 {
@@ -31,7 +31,7 @@ class EloquentCustomPivotCastTest extends DatabaseTestCase
     public function testCastsAreRespectedOnAttach()
     {
         $user = CustomPivotCastTestUser::forceCreate([
-            'email' => 'taylor@quantaquirk.com',
+            'email' => 'taylor@quantaforge.com',
         ]);
 
         $project = CustomPivotCastTestProject::forceCreate([
@@ -47,11 +47,11 @@ class EloquentCustomPivotCastTest extends DatabaseTestCase
     public function testCastsAreRespectedOnAttachArray()
     {
         $user = CustomPivotCastTestUser::forceCreate([
-            'email' => 'taylor@quantaquirk.com',
+            'email' => 'taylor@quantaforge.com',
         ]);
 
         $user2 = CustomPivotCastTestUser::forceCreate([
-            'email' => 'mohamed@quantaquirk.com',
+            'email' => 'mohamed@quantaforge.com',
         ]);
 
         $project = CustomPivotCastTestProject::forceCreate([
@@ -71,7 +71,7 @@ class EloquentCustomPivotCastTest extends DatabaseTestCase
     public function testCastsAreRespectedOnSync()
     {
         $user = CustomPivotCastTestUser::forceCreate([
-            'email' => 'taylor@quantaquirk.com',
+            'email' => 'taylor@quantaforge.com',
         ]);
 
         $project = CustomPivotCastTestProject::forceCreate([
@@ -87,11 +87,11 @@ class EloquentCustomPivotCastTest extends DatabaseTestCase
     public function testCastsAreRespectedOnSyncArray()
     {
         $user = CustomPivotCastTestUser::forceCreate([
-            'email' => 'taylor@quantaquirk.com',
+            'email' => 'taylor@quantaforge.com',
         ]);
 
         $user2 = CustomPivotCastTestUser::forceCreate([
-            'email' => 'mohamed@quantaquirk.com',
+            'email' => 'mohamed@quantaforge.com',
         ]);
 
         $project = CustomPivotCastTestProject::forceCreate([
@@ -111,11 +111,11 @@ class EloquentCustomPivotCastTest extends DatabaseTestCase
     public function testCastsAreRespectedOnSyncArrayWhileUpdatingExisting()
     {
         $user = CustomPivotCastTestUser::forceCreate([
-            'email' => 'taylor@quantaquirk.com',
+            'email' => 'taylor@quantaforge.com',
         ]);
 
         $user2 = CustomPivotCastTestUser::forceCreate([
-            'email' => 'mohamed@quantaquirk.com',
+            'email' => 'mohamed@quantaforge.com',
         ]);
 
         $project = CustomPivotCastTestProject::forceCreate([

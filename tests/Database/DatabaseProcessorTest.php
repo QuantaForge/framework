@@ -1,10 +1,10 @@
 <?php
 
-namespace QuantaQuirk\Tests\Database;
+namespace QuantaForge\Tests\Database;
 
-use QuantaQuirk\Database\Connection;
-use QuantaQuirk\Database\Query\Builder;
-use QuantaQuirk\Database\Query\Processors\Processor;
+use QuantaForge\Database\Connection;
+use QuantaForge\Database\Query\Builder;
+use QuantaForge\Database\Query\Processors\Processor;
 use Mockery as m;
 use PDO;
 use PHPUnit\Framework\TestCase;

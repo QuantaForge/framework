@@ -1,45 +1,45 @@
 <?php
 
-namespace QuantaQuirk\Tests\Database;
+namespace QuantaForge\Tests\Database;
 
 use DateTime;
 use DateTimeImmutable;
 use DateTimeInterface;
 use Exception;
 use Foo\Bar\EloquentModelNamespacedStub;
-use QuantaQuirk\Contracts\Database\Eloquent\CastsInboundAttributes;
-use QuantaQuirk\Contracts\Encryption\Encrypter;
-use QuantaQuirk\Contracts\Events\Dispatcher;
-use QuantaQuirk\Database\Connection;
-use QuantaQuirk\Database\ConnectionResolverInterface;
-use QuantaQuirk\Database\ConnectionResolverInterface as Resolver;
-use QuantaQuirk\Database\Eloquent\Builder;
-use QuantaQuirk\Database\Eloquent\Casts\ArrayObject;
-use QuantaQuirk\Database\Eloquent\Casts\AsArrayObject;
-use QuantaQuirk\Database\Eloquent\Casts\AsCollection;
-use QuantaQuirk\Database\Eloquent\Casts\AsEncryptedArrayObject;
-use QuantaQuirk\Database\Eloquent\Casts\AsEncryptedCollection;
-use QuantaQuirk\Database\Eloquent\Casts\AsEnumArrayObject;
-use QuantaQuirk\Database\Eloquent\Casts\AsEnumCollection;
-use QuantaQuirk\Database\Eloquent\Casts\AsStringable;
-use QuantaQuirk\Database\Eloquent\Collection;
-use QuantaQuirk\Database\Eloquent\Concerns\HasUlids;
-use QuantaQuirk\Database\Eloquent\Concerns\HasUuids;
-use QuantaQuirk\Database\Eloquent\JsonEncodingException;
-use QuantaQuirk\Database\Eloquent\MassAssignmentException;
-use QuantaQuirk\Database\Eloquent\MissingAttributeException;
-use QuantaQuirk\Database\Eloquent\Model;
-use QuantaQuirk\Database\Eloquent\Relations\BelongsTo;
-use QuantaQuirk\Database\Eloquent\Relations\Relation;
-use QuantaQuirk\Database\Query\Builder as BaseBuilder;
-use QuantaQuirk\Database\Query\Grammars\Grammar;
-use QuantaQuirk\Database\Query\Processors\Processor;
-use QuantaQuirk\Support\Carbon;
-use QuantaQuirk\Support\Collection as BaseCollection;
-use QuantaQuirk\Support\Facades\Crypt;
-use QuantaQuirk\Support\InteractsWithTime;
-use QuantaQuirk\Support\Str;
-use QuantaQuirk\Support\Stringable;
+use QuantaForge\Contracts\Database\Eloquent\CastsInboundAttributes;
+use QuantaForge\Contracts\Encryption\Encrypter;
+use QuantaForge\Contracts\Events\Dispatcher;
+use QuantaForge\Database\Connection;
+use QuantaForge\Database\ConnectionResolverInterface;
+use QuantaForge\Database\ConnectionResolverInterface as Resolver;
+use QuantaForge\Database\Eloquent\Builder;
+use QuantaForge\Database\Eloquent\Casts\ArrayObject;
+use QuantaForge\Database\Eloquent\Casts\AsArrayObject;
+use QuantaForge\Database\Eloquent\Casts\AsCollection;
+use QuantaForge\Database\Eloquent\Casts\AsEncryptedArrayObject;
+use QuantaForge\Database\Eloquent\Casts\AsEncryptedCollection;
+use QuantaForge\Database\Eloquent\Casts\AsEnumArrayObject;
+use QuantaForge\Database\Eloquent\Casts\AsEnumCollection;
+use QuantaForge\Database\Eloquent\Casts\AsStringable;
+use QuantaForge\Database\Eloquent\Collection;
+use QuantaForge\Database\Eloquent\Concerns\HasUlids;
+use QuantaForge\Database\Eloquent\Concerns\HasUuids;
+use QuantaForge\Database\Eloquent\JsonEncodingException;
+use QuantaForge\Database\Eloquent\MassAssignmentException;
+use QuantaForge\Database\Eloquent\MissingAttributeException;
+use QuantaForge\Database\Eloquent\Model;
+use QuantaForge\Database\Eloquent\Relations\BelongsTo;
+use QuantaForge\Database\Eloquent\Relations\Relation;
+use QuantaForge\Database\Query\Builder as BaseBuilder;
+use QuantaForge\Database\Query\Grammars\Grammar;
+use QuantaForge\Database\Query\Processors\Processor;
+use QuantaForge\Support\Carbon;
+use QuantaForge\Support\Collection as BaseCollection;
+use QuantaForge\Support\Facades\Crypt;
+use QuantaForge\Support\InteractsWithTime;
+use QuantaForge\Support\Str;
+use QuantaForge\Support\Stringable;
 use InvalidArgumentException;
 use LogicException;
 use Mockery as m;
@@ -475,9 +475,9 @@ class DatabaseEloquentModelTest extends TestCase
         $model = new EloquentModelStub;
         $model->first_name = 'taylor';
         $model->last_name = 'otwell';
-        $model->project = 'quantaquirk';
+        $model->project = 'quantaforge';
 
-        $this->assertEquals(['project' => 'quantaquirk'], $model->only('project'));
+        $this->assertEquals(['project' => 'quantaforge'], $model->only('project'));
         $this->assertEquals(['first_name' => 'taylor', 'last_name' => 'otwell'], $model->only('first_name', 'last_name'));
         $this->assertEquals(['first_name' => 'taylor', 'last_name' => 'otwell'], $model->only(['first_name', 'last_name']));
     }
@@ -853,7 +853,7 @@ class DatabaseEloquentModelTest extends TestCase
 
     public function testFromDateTimeMilliseconds()
     {
-        $model = $this->getMockBuilder('QuantaQuirk\Tests\Database\EloquentDateModelStub')->onlyMethods(['getDateFormat'])->getMock();
+        $model = $this->getMockBuilder('QuantaForge\Tests\Database\EloquentDateModelStub')->onlyMethods(['getDateFormat'])->getMock();
         $model->expects($this->any())->method('getDateFormat')->willReturn('Y-m-d H:s.vi');
         $model->setRawAttributes([
             'created_at' => '2012-12-04 22:59.32130',
@@ -1863,8 +1863,8 @@ class DatabaseEloquentModelTest extends TestCase
     public function testModelObserversCanBeAttachedToModels()
     {
         EloquentModelStub::setEventDispatcher($events = m::mock(Dispatcher::class));
-        $events->shouldReceive('listen')->once()->with('eloquent.creating: QuantaQuirk\Tests\Database\EloquentModelStub', EloquentTestObserverStub::class.'@creating');
-        $events->shouldReceive('listen')->once()->with('eloquent.saved: QuantaQuirk\Tests\Database\EloquentModelStub', EloquentTestObserverStub::class.'@saved');
+        $events->shouldReceive('listen')->once()->with('eloquent.creating: QuantaForge\Tests\Database\EloquentModelStub', EloquentTestObserverStub::class.'@creating');
+        $events->shouldReceive('listen')->once()->with('eloquent.saved: QuantaForge\Tests\Database\EloquentModelStub', EloquentTestObserverStub::class.'@saved');
         $events->shouldReceive('forget');
         EloquentModelStub::observe(new EloquentTestObserverStub);
         EloquentModelStub::flushEventListeners();
@@ -1873,8 +1873,8 @@ class DatabaseEloquentModelTest extends TestCase
     public function testModelObserversCanBeAttachedToModelsWithString()
     {
         EloquentModelStub::setEventDispatcher($events = m::mock(Dispatcher::class));
-        $events->shouldReceive('listen')->once()->with('eloquent.creating: QuantaQuirk\Tests\Database\EloquentModelStub', EloquentTestObserverStub::class.'@creating');
-        $events->shouldReceive('listen')->once()->with('eloquent.saved: QuantaQuirk\Tests\Database\EloquentModelStub', EloquentTestObserverStub::class.'@saved');
+        $events->shouldReceive('listen')->once()->with('eloquent.creating: QuantaForge\Tests\Database\EloquentModelStub', EloquentTestObserverStub::class.'@creating');
+        $events->shouldReceive('listen')->once()->with('eloquent.saved: QuantaForge\Tests\Database\EloquentModelStub', EloquentTestObserverStub::class.'@saved');
         $events->shouldReceive('forget');
         EloquentModelStub::observe(EloquentTestObserverStub::class);
         EloquentModelStub::flushEventListeners();
@@ -1883,8 +1883,8 @@ class DatabaseEloquentModelTest extends TestCase
     public function testModelObserversCanBeAttachedToModelsThroughAnArray()
     {
         EloquentModelStub::setEventDispatcher($events = m::mock(Dispatcher::class));
-        $events->shouldReceive('listen')->once()->with('eloquent.creating: QuantaQuirk\Tests\Database\EloquentModelStub', EloquentTestObserverStub::class.'@creating');
-        $events->shouldReceive('listen')->once()->with('eloquent.saved: QuantaQuirk\Tests\Database\EloquentModelStub', EloquentTestObserverStub::class.'@saved');
+        $events->shouldReceive('listen')->once()->with('eloquent.creating: QuantaForge\Tests\Database\EloquentModelStub', EloquentTestObserverStub::class.'@creating');
+        $events->shouldReceive('listen')->once()->with('eloquent.saved: QuantaForge\Tests\Database\EloquentModelStub', EloquentTestObserverStub::class.'@saved');
         $events->shouldReceive('forget');
         EloquentModelStub::observe([EloquentTestObserverStub::class]);
         EloquentModelStub::flushEventListeners();
@@ -1905,11 +1905,11 @@ class DatabaseEloquentModelTest extends TestCase
     public function testModelObserversCanBeAttachedToModelsThroughCallingObserveMethodOnlyOnce()
     {
         EloquentModelStub::setEventDispatcher($events = m::mock(Dispatcher::class));
-        $events->shouldReceive('listen')->once()->with('eloquent.creating: QuantaQuirk\Tests\Database\EloquentModelStub', EloquentTestObserverStub::class.'@creating');
-        $events->shouldReceive('listen')->once()->with('eloquent.saved: QuantaQuirk\Tests\Database\EloquentModelStub', EloquentTestObserverStub::class.'@saved');
+        $events->shouldReceive('listen')->once()->with('eloquent.creating: QuantaForge\Tests\Database\EloquentModelStub', EloquentTestObserverStub::class.'@creating');
+        $events->shouldReceive('listen')->once()->with('eloquent.saved: QuantaForge\Tests\Database\EloquentModelStub', EloquentTestObserverStub::class.'@saved');
 
-        $events->shouldReceive('listen')->once()->with('eloquent.creating: QuantaQuirk\Tests\Database\EloquentModelStub', EloquentTestAnotherObserverStub::class.'@creating');
-        $events->shouldReceive('listen')->once()->with('eloquent.saved: QuantaQuirk\Tests\Database\EloquentModelStub', EloquentTestAnotherObserverStub::class.'@saved');
+        $events->shouldReceive('listen')->once()->with('eloquent.creating: QuantaForge\Tests\Database\EloquentModelStub', EloquentTestAnotherObserverStub::class.'@creating');
+        $events->shouldReceive('listen')->once()->with('eloquent.saved: QuantaForge\Tests\Database\EloquentModelStub', EloquentTestAnotherObserverStub::class.'@saved');
 
         $events->shouldReceive('forget');
 
@@ -1924,8 +1924,8 @@ class DatabaseEloquentModelTest extends TestCase
     public function testWithoutEventDispatcher()
     {
         EloquentModelSaveStub::setEventDispatcher($events = m::mock(Dispatcher::class));
-        $events->shouldReceive('listen')->once()->with('eloquent.creating: QuantaQuirk\Tests\Database\EloquentModelSaveStub', EloquentTestObserverStub::class.'@creating');
-        $events->shouldReceive('listen')->once()->with('eloquent.saved: QuantaQuirk\Tests\Database\EloquentModelSaveStub', EloquentTestObserverStub::class.'@saved');
+        $events->shouldReceive('listen')->once()->with('eloquent.creating: QuantaForge\Tests\Database\EloquentModelSaveStub', EloquentTestObserverStub::class.'@creating');
+        $events->shouldReceive('listen')->once()->with('eloquent.saved: QuantaForge\Tests\Database\EloquentModelSaveStub', EloquentTestObserverStub::class.'@saved');
         $events->shouldNotReceive('until');
         $events->shouldNotReceive('dispatch');
         $events->shouldReceive('forget');
@@ -1943,8 +1943,8 @@ class DatabaseEloquentModelTest extends TestCase
             $model->save();
         });
 
-        $events->shouldReceive('until')->once()->with('eloquent.saving: QuantaQuirk\Tests\Database\EloquentModelSaveStub', $model);
-        $events->shouldReceive('dispatch')->once()->with('eloquent.saved: QuantaQuirk\Tests\Database\EloquentModelSaveStub', $model);
+        $events->shouldReceive('until')->once()->with('eloquent.saving: QuantaForge\Tests\Database\EloquentModelSaveStub', $model);
+        $events->shouldReceive('dispatch')->once()->with('eloquent.saved: QuantaForge\Tests\Database\EloquentModelSaveStub', $model);
 
         $model->last_name = 'Otwell';
         $model->save();
@@ -1999,7 +1999,7 @@ class DatabaseEloquentModelTest extends TestCase
     public function testGetModelAttributeMethodThrowsExceptionIfNotRelation()
     {
         $this->expectException(LogicException::class);
-        $this->expectExceptionMessage('QuantaQuirk\Tests\Database\EloquentModelStub::incorrectRelationStub must return a relationship instance.');
+        $this->expectExceptionMessage('QuantaForge\Tests\Database\EloquentModelStub::incorrectRelationStub must return a relationship instance.');
 
         $model = new EloquentModelStub;
         $model->incorrectRelationStub;
@@ -2351,7 +2351,7 @@ class DatabaseEloquentModelTest extends TestCase
     public function testModelAttributeCastingFailsOnUnencodableData()
     {
         $this->expectException(JsonEncodingException::class);
-        $this->expectExceptionMessage('Unable to encode attribute [objectAttribute] for model [QuantaQuirk\Tests\Database\EloquentModelCastingStub] to JSON: Malformed UTF-8 characters, possibly incorrectly encoded.');
+        $this->expectExceptionMessage('Unable to encode attribute [objectAttribute] for model [QuantaForge\Tests\Database\EloquentModelCastingStub] to JSON: Malformed UTF-8 characters, possibly incorrectly encoded.');
 
         $model = new EloquentModelCastingStub;
         $model->objectAttribute = ['foo' => "b\xF8r"];
@@ -2472,8 +2472,8 @@ class DatabaseEloquentModelTest extends TestCase
 
         $scopes = [
             'published',
-            'category' => 'QuantaQuirk',
-            'framework' => ['QuantaQuirk', '5.3'],
+            'category' => 'QuantaForge',
+            'framework' => ['QuantaForge', '5.3'],
             'date' => Carbon::now(),
         ];
 

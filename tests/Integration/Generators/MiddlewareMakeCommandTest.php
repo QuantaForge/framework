@@ -1,6 +1,6 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Generators;
+namespace QuantaForge\Tests\Integration\Generators;
 
 class MiddlewareMakeCommandTest extends TestCase
 {
@@ -17,7 +17,7 @@ class MiddlewareMakeCommandTest extends TestCase
         $this->assertFileContains([
             'namespace App\Http\Middleware;',
             'use Closure;',
-            'use QuantaQuirk\Http\Request;',
+            'use QuantaForge\Http\Request;',
             'class Foo',
             'public function handle(Request $request, Closure $next)',
             'return $next($request);',

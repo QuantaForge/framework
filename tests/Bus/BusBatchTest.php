@@ -1,23 +1,23 @@
 <?php
 
-namespace QuantaQuirk\Tests\Bus;
+namespace QuantaForge\Tests\Bus;
 
 use Carbon\CarbonImmutable;
-use QuantaQuirk\Bus\Batch;
-use QuantaQuirk\Bus\Batchable;
-use QuantaQuirk\Bus\BatchFactory;
-use QuantaQuirk\Bus\DatabaseBatchRepository;
-use QuantaQuirk\Bus\PendingBatch;
-use QuantaQuirk\Bus\Queueable;
-use QuantaQuirk\Container\Container;
-use QuantaQuirk\Contracts\Queue\Factory;
-use QuantaQuirk\Contracts\Queue\ShouldQueue;
-use QuantaQuirk\Database\Capsule\Manager as DB;
-use QuantaQuirk\Database\Eloquent\Model;
-use QuantaQuirk\Database\PostgresConnection;
-use QuantaQuirk\Database\Query\Builder;
-use QuantaQuirk\Foundation\Bus\Dispatchable;
-use QuantaQuirk\Queue\CallQueuedClosure;
+use QuantaForge\Bus\Batch;
+use QuantaForge\Bus\Batchable;
+use QuantaForge\Bus\BatchFactory;
+use QuantaForge\Bus\DatabaseBatchRepository;
+use QuantaForge\Bus\PendingBatch;
+use QuantaForge\Bus\Queueable;
+use QuantaForge\Container\Container;
+use QuantaForge\Contracts\Queue\Factory;
+use QuantaForge\Contracts\Queue\ShouldQueue;
+use QuantaForge\Database\Capsule\Manager as DB;
+use QuantaForge\Database\Eloquent\Model;
+use QuantaForge\Database\PostgresConnection;
+use QuantaForge\Database\Query\Builder;
+use QuantaForge\Foundation\Bus\Dispatchable;
+use QuantaForge\Queue\CallQueuedClosure;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 use RuntimeException;
@@ -486,7 +486,7 @@ class BusBatchTest extends TestCase
     /**
      * Get a database connection instance.
      *
-     * @return \QuantaQuirk\Database\Connection
+     * @return \QuantaForge\Database\Connection
      */
     protected function connection()
     {
@@ -496,7 +496,7 @@ class BusBatchTest extends TestCase
     /**
      * Get a schema builder instance.
      *
-     * @return \QuantaQuirk\Database\Schema\Builder
+     * @return \QuantaForge\Database\Schema\Builder
      */
     protected function schema()
     {

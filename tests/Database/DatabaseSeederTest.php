@@ -1,10 +1,10 @@
 <?php
 
-namespace QuantaQuirk\Tests\Database;
+namespace QuantaForge\Tests\Database;
 
-use QuantaQuirk\Console\Command;
-use QuantaQuirk\Container\Container;
-use QuantaQuirk\Database\Seeder;
+use QuantaForge\Console\Command;
+use QuantaForge\Container\Container;
+use QuantaForge\Database\Seeder;
 use Mockery as m;
 use Mockery\Mock;
 use PHPUnit\Framework\TestCase;

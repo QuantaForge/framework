@@ -1,13 +1,13 @@
 <?php
 
-namespace QuantaQuirk\Tests\Auth;
+namespace QuantaForge\Tests\Auth;
 
-use QuantaQuirk\Auth\Passwords\PasswordBroker;
-use QuantaQuirk\Auth\Passwords\TokenRepositoryInterface;
-use QuantaQuirk\Contracts\Auth\CanResetPassword;
-use QuantaQuirk\Contracts\Auth\PasswordBroker as PasswordBrokerContract;
-use QuantaQuirk\Contracts\Auth\UserProvider;
-use QuantaQuirk\Support\Arr;
+use QuantaForge\Auth\Passwords\PasswordBroker;
+use QuantaForge\Auth\Passwords\TokenRepositoryInterface;
+use QuantaForge\Contracts\Auth\CanResetPassword;
+use QuantaForge\Contracts\Auth\PasswordBroker as PasswordBrokerContract;
+use QuantaForge\Contracts\Auth\UserProvider;
+use QuantaForge\Support\Arr;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 use UnexpectedValueException;

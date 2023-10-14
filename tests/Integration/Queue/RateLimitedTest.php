@@ -1,16 +1,16 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Queue;
+namespace QuantaForge\Tests\Integration\Queue;
 
-use QuantaQuirk\Bus\Dispatcher;
-use QuantaQuirk\Bus\Queueable;
-use QuantaQuirk\Cache\RateLimiter;
-use QuantaQuirk\Cache\RateLimiting\Limit;
-use QuantaQuirk\Contracts\Cache\Repository as Cache;
-use QuantaQuirk\Contracts\Queue\Job;
-use QuantaQuirk\Queue\CallQueuedHandler;
-use QuantaQuirk\Queue\InteractsWithQueue;
-use QuantaQuirk\Queue\Middleware\RateLimited;
+use QuantaForge\Bus\Dispatcher;
+use QuantaForge\Bus\Queueable;
+use QuantaForge\Cache\RateLimiter;
+use QuantaForge\Cache\RateLimiting\Limit;
+use QuantaForge\Contracts\Cache\Repository as Cache;
+use QuantaForge\Contracts\Queue\Job;
+use QuantaForge\Queue\CallQueuedHandler;
+use QuantaForge\Queue\InteractsWithQueue;
+use QuantaForge\Queue\Middleware\RateLimited;
 use Mockery as m;
 use Orchestra\Testbench\TestCase;
 

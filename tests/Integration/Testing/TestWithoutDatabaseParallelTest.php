@@ -1,9 +1,9 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Testing;
+namespace QuantaForge\Tests\Integration\Testing;
 
-use QuantaQuirk\Support\Facades\ParallelTesting;
-use QuantaQuirk\Testing\ParallelTestingServiceProvider;
+use QuantaForge\Support\Facades\ParallelTesting;
+use QuantaForge\Testing\ParallelTestingServiceProvider;
 use Orchestra\Testbench\TestCase;
 
 class TestWithoutDatabaseParallelTest extends TestCase
@@ -16,7 +16,7 @@ class TestWithoutDatabaseParallelTest extends TestCase
     /**
      * Define the test environment.
      *
-     * @param  \QuantaQuirk\Foundation\Application  $app
+     * @param  \QuantaForge\Foundation\Application  $app
      * @return void
      */
     protected function defineEnvironment($app)
@@ -25,14 +25,14 @@ class TestWithoutDatabaseParallelTest extends TestCase
         $app['config']->set('database.default', null);
 
         // When we run parallel testing with `without-databases` option
-        $_SERVER['QUANTAQUIRK_PARALLEL_TESTING'] = 1;
-        $_SERVER['QUANTAQUIRK_PARALLEL_TESTING_WITHOUT_DATABASES'] = 1;
+        $_SERVER['QUANTAFORGE_PARALLEL_TESTING'] = 1;
+        $_SERVER['QUANTAFORGE_PARALLEL_TESTING_WITHOUT_DATABASES'] = 1;
         $_SERVER['TEST_TOKEN'] = '1';
 
         $this->beforeApplicationDestroyed(function () {
             unset(
-                $_SERVER['QUANTAQUIRK_PARALLEL_TESTING'],
-                $_SERVER['QUANTAQUIRK_PARALLEL_TESTING_WITHOUT_DATABASES'],
+                $_SERVER['QUANTAFORGE_PARALLEL_TESTING'],
+                $_SERVER['QUANTAFORGE_PARALLEL_TESTING_WITHOUT_DATABASES'],
                 $_SERVER['TEST_TOKEN'],
             );
         });

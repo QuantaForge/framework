@@ -1,10 +1,10 @@
 <?php
 
-namespace QuantaQuirk\Tests\Notifications;
+namespace QuantaForge\Tests\Notifications;
 
-use QuantaQuirk\Notifications\Channels\DatabaseChannel;
-use QuantaQuirk\Notifications\Messages\DatabaseMessage;
-use QuantaQuirk\Notifications\Notification;
+use QuantaForge\Notifications\Channels\DatabaseChannel;
+use QuantaForge\Notifications\Messages\DatabaseMessage;
+use QuantaForge\Notifications\Notification;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 

@@ -1,15 +1,15 @@
 <?php
 
-namespace QuantaQuirk\Tests\Cache;
+namespace QuantaForge\Tests\Cache;
 
-use QuantaQuirk\Cache\ArrayStore;
-use QuantaQuirk\Cache\Events\CacheHit;
-use QuantaQuirk\Cache\Events\CacheMissed;
-use QuantaQuirk\Cache\Events\KeyForgotten;
-use QuantaQuirk\Cache\Events\KeyWritten;
-use QuantaQuirk\Cache\Repository;
-use QuantaQuirk\Contracts\Cache\Store;
-use QuantaQuirk\Events\Dispatcher;
+use QuantaForge\Cache\ArrayStore;
+use QuantaForge\Cache\Events\CacheHit;
+use QuantaForge\Cache\Events\CacheMissed;
+use QuantaForge\Cache\Events\KeyForgotten;
+use QuantaForge\Cache\Events\KeyWritten;
+use QuantaForge\Cache\Repository;
+use QuantaForge\Contracts\Cache\Store;
+use QuantaForge\Events\Dispatcher;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 

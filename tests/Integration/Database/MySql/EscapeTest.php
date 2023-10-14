@@ -1,6 +1,6 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Database\MySql;
+namespace QuantaForge\Tests\Integration\Database\MySql;
 
 use RuntimeException;
 

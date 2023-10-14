@@ -1,6 +1,6 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Generators;
+namespace QuantaForge\Tests\Integration\Generators;
 
 class ComponentMakeCommandTest extends TestCase
 {
@@ -17,7 +17,7 @@ class ComponentMakeCommandTest extends TestCase
 
         $this->assertFileContains([
             'namespace App\View\Components;',
-            'use QuantaQuirk\View\Component;',
+            'use QuantaForge\View\Component;',
             'class Foo extends Component',
             "return view('components.foo');",
         ], 'app/View/Components/Foo.php');
@@ -33,7 +33,7 @@ class ComponentMakeCommandTest extends TestCase
 
         $this->assertFileContains([
             'namespace App\View\Components;',
-            'use QuantaQuirk\View\Component;',
+            'use QuantaForge\View\Component;',
             'class Foo extends Component',
             "return <<<'blade'",
         ], 'app/View/Components/Foo.php');

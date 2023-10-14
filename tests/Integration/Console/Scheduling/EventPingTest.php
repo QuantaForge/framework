@@ -1,16 +1,16 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Console\Scheduling;
+namespace QuantaForge\Tests\Integration\Console\Scheduling;
 
 use GuzzleHttp\Client as HttpClient;
 use GuzzleHttp\Exception\ServerException;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response as Psr7Response;
-use QuantaQuirk\Console\Scheduling\Event;
-use QuantaQuirk\Console\Scheduling\EventMutex;
-use QuantaQuirk\Contracts\Container\Container;
-use QuantaQuirk\Contracts\Debug\ExceptionHandler;
+use QuantaForge\Console\Scheduling\Event;
+use QuantaForge\Console\Scheduling\EventMutex;
+use QuantaForge\Contracts\Container\Container;
+use QuantaForge\Contracts\Debug\ExceptionHandler;
 use Mockery as m;
 use Orchestra\Testbench\TestCase;
 

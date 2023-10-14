@@ -1,11 +1,11 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Console\Events;
+namespace QuantaForge\Tests\Integration\Console\Events;
 
-use QuantaQuirk\Contracts\Broadcasting\ShouldBroadcast;
-use QuantaQuirk\Contracts\Queue\ShouldQueue;
-use QuantaQuirk\Events\Dispatcher;
-use QuantaQuirk\Foundation\Console\EventListCommand;
+use QuantaForge\Contracts\Broadcasting\ShouldBroadcast;
+use QuantaForge\Contracts\Queue\ShouldQueue;
+use QuantaForge\Events\Dispatcher;
+use QuantaForge\Foundation\Console\EventListCommand;
 use Orchestra\Testbench\TestCase;
 
 class EventListCommandTest extends TestCase
@@ -40,10 +40,10 @@ class EventListCommandTest extends TestCase
         $this->artisan(EventListCommand::class)
             ->assertSuccessful()
             ->expectsOutputToContain('ExampleSubscriberEventName')
-            ->expectsOutputToContain('⇂ QuantaQuirk\Tests\Integration\Console\Events\ExampleSubscriber@a')
-            ->expectsOutputToContain('QuantaQuirk\Tests\Integration\Console\Events\ExampleBroadcastEvent (ShouldBroadcast)')
-            ->expectsOutputToContain('⇂ QuantaQuirk\Tests\Integration\Console\Events\ExampleBroadcastListener')
-            ->expectsOutputToContain('QuantaQuirk\Tests\Integration\Console\Events\ExampleEvent')
+            ->expectsOutputToContain('⇂ QuantaForge\Tests\Integration\Console\Events\ExampleSubscriber@a')
+            ->expectsOutputToContain('QuantaForge\Tests\Integration\Console\Events\ExampleBroadcastEvent (ShouldBroadcast)')
+            ->expectsOutputToContain('⇂ QuantaForge\Tests\Integration\Console\Events\ExampleBroadcastListener')
+            ->expectsOutputToContain('QuantaForge\Tests\Integration\Console\Events\ExampleEvent')
             ->expectsOutputToContain('⇂ Closure at: '.$unixFilePath.':'.$closureLineNumber);
     }
 

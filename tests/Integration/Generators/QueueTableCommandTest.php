@@ -1,6 +1,6 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Generators;
+namespace QuantaForge\Tests\Integration\Generators;
 
 class QueueTableCommandTest extends TestCase
 {
@@ -9,7 +9,7 @@ class QueueTableCommandTest extends TestCase
         $this->artisan('queue:table')->assertExitCode(0);
 
         $this->assertMigrationFileContains([
-            'use QuantaQuirk\Database\Migrations\Migration;',
+            'use QuantaForge\Database\Migrations\Migration;',
             'return new class extends Migration',
             'Schema::create(\'jobs\', function (Blueprint $table) {',
             'Schema::dropIfExists(\'jobs\');',

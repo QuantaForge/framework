@@ -1,14 +1,14 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Database\EloquentHasManyThroughTest;
+namespace QuantaForge\Tests\Integration\Database\EloquentHasManyThroughTest;
 
-use QuantaQuirk\Database\Eloquent\Model;
-use QuantaQuirk\Database\Eloquent\SoftDeletes;
-use QuantaQuirk\Database\Schema\Blueprint;
-use QuantaQuirk\Support\Facades\DB;
-use QuantaQuirk\Support\Facades\Schema;
-use QuantaQuirk\Support\Str;
-use QuantaQuirk\Tests\Integration\Database\DatabaseTestCase;
+use QuantaForge\Database\Eloquent\Model;
+use QuantaForge\Database\Eloquent\SoftDeletes;
+use QuantaForge\Database\Schema\Blueprint;
+use QuantaForge\Support\Facades\DB;
+use QuantaForge\Support\Facades\Schema;
+use QuantaForge\Support\Str;
+use QuantaForge\Tests\Integration\Database\DatabaseTestCase;
 
 class EloquentHasManyThroughTest extends DatabaseTestCase
 {
@@ -65,25 +65,25 @@ class EloquentHasManyThroughTest extends DatabaseTestCase
 
         $result = $user->teamMates()->first();
         $this->assertEquals(
-            $mate1->refresh()->getAttributes() + ['quantaquirk_through_key' => '1'],
+            $mate1->refresh()->getAttributes() + ['quantaforge_through_key' => '1'],
             $result->getAttributes()
         );
 
         $result = $user->teamMatesWithPendingRelation()->first();
         $this->assertEquals(
-            $mate1->refresh()->getAttributes() + ['quantaquirk_through_key' => '1'],
+            $mate1->refresh()->getAttributes() + ['quantaforge_through_key' => '1'],
             $result->getAttributes()
         );
 
         $result = $user->teamMates()->firstWhere('name', 'Jack');
         $this->assertEquals(
-            $mate2->refresh()->getAttributes() + ['quantaquirk_through_key' => '1'],
+            $mate2->refresh()->getAttributes() + ['quantaforge_through_key' => '1'],
             $result->getAttributes()
         );
 
         $result = $user->teamMatesWithPendingRelation()->firstWhere('name', 'Jack');
         $this->assertEquals(
-            $mate2->refresh()->getAttributes() + ['quantaquirk_through_key' => '1'],
+            $mate2->refresh()->getAttributes() + ['quantaforge_through_key' => '1'],
             $result->getAttributes()
         );
     }
@@ -97,10 +97,10 @@ class EloquentHasManyThroughTest extends DatabaseTestCase
         User::create(['name' => Str::random(), 'team_id' => $team1->id]);
 
         $teamMates = $user->teamMatesWithGlobalScope;
-        $this->assertEquals(['id' => 2, 'quantaquirk_through_key' => 1], $teamMates[0]->getAttributes());
+        $this->assertEquals(['id' => 2, 'quantaforge_through_key' => 1], $teamMates[0]->getAttributes());
 
         $teamMates = $user->teamMatesWithGlobalScopeWithPendingRelation;
-        $this->assertEquals(['id' => 2, 'quantaquirk_through_key' => 1], $teamMates[0]->getAttributes());
+        $this->assertEquals(['id' => 2, 'quantaforge_through_key' => 1], $teamMates[0]->getAttributes());
     }
 
     public function testHasSelf()
@@ -247,12 +247,12 @@ class EloquentHasManyThroughTest extends DatabaseTestCase
         $tony = $team->members()->create(['name' => 'Tony']);
 
         $article = $team->articles()->createOrFirst(
-            ['title' => 'QuantaQuirk Forever'],
+            ['title' => 'QuantaForge Forever'],
             ['user_id' => $tony->id],
         );
 
         $this->assertTrue($article->wasRecentlyCreated);
-        $this->assertEquals('QuantaQuirk Forever', $article->title);
+        $this->assertEquals('QuantaForge Forever', $article->title);
         $this->assertTrue($tony->is($article->user));
     }
 
@@ -263,16 +263,16 @@ class EloquentHasManyThroughTest extends DatabaseTestCase
         $tony = $team->members()->create(['name' => 'Tony']);
 
         $existingArticle = $taylor->articles()->create([
-            'title' => 'QuantaQuirk Forever',
+            'title' => 'QuantaForge Forever',
         ]);
 
         $newArticle = $team->articles()->createOrFirst(
-            ['title' => 'QuantaQuirk Forever'],
+            ['title' => 'QuantaForge Forever'],
             ['user_id' => $tony->id],
         );
 
         $this->assertFalse($newArticle->wasRecentlyCreated);
-        $this->assertEquals('QuantaQuirk Forever', $newArticle->title);
+        $this->assertEquals('QuantaForge Forever', $newArticle->title);
         $this->assertTrue($taylor->is($newArticle->user));
         $this->assertTrue($existingArticle->is($newArticle));
     }
@@ -284,16 +284,16 @@ class EloquentHasManyThroughTest extends DatabaseTestCase
         $tony = $team->members()->create(['name' => 'Tony']);
 
         $existingArticle = $taylor->articles()->create([
-            'title' => 'QuantaQuirk Forever',
+            'title' => 'QuantaForge Forever',
         ]);
 
         $newArticle = DB::transaction(fn () => $team->articles()->createOrFirst(
-            ['title' => 'QuantaQuirk Forever'],
+            ['title' => 'QuantaForge Forever'],
             ['user_id' => $tony->id],
         ));
 
         $this->assertFalse($newArticle->wasRecentlyCreated);
-        $this->assertEquals('QuantaQuirk Forever', $newArticle->title);
+        $this->assertEquals('QuantaForge Forever', $newArticle->title);
         $this->assertTrue($taylor->is($newArticle->user));
         $this->assertTrue($existingArticle->is($newArticle));
     }
@@ -306,26 +306,26 @@ class EloquentHasManyThroughTest extends DatabaseTestCase
         $tony = $team1->members()->create(['name' => 'Tony']);
 
         $existingTonyArticle = $tony->articles()->create(['title' => 'The New createOrFirst Method']);
-        $existingTaylorArticle = $taylor->articles()->create(['title' => 'QuantaQuirk Forever']);
+        $existingTaylorArticle = $taylor->articles()->create(['title' => 'QuantaForge Forever']);
 
         $newArticle = $team1->articles()->createOrFirst(
-            ['title' => 'QuantaQuirk Forever'],
+            ['title' => 'QuantaForge Forever'],
             ['user_id' => $tony->id],
         );
 
         $this->assertFalse($newArticle->wasRecentlyCreated);
         $this->assertTrue($existingTaylorArticle->is($newArticle));
-        $this->assertEquals('QuantaQuirk Forever', $newArticle->refresh()->title);
+        $this->assertEquals('QuantaForge Forever', $newArticle->refresh()->title);
         $this->assertTrue($taylor->is($newArticle->user));
 
-        $this->assertSame('QuantaQuirk Forever', $existingTaylorArticle->refresh()->title);
+        $this->assertSame('QuantaForge Forever', $existingTaylorArticle->refresh()->title);
         $this->assertSame('The New createOrFirst Method', $existingTonyArticle->refresh()->title);
         $this->assertTrue($tony->is($existingTonyArticle->user));
     }
 
     public function testUpdateOrCreateAffectingWrongModelsRegression()
     {
-        // On QuantaQuirk 10.21.0, a bug was introduced that would update the wrong model when using `updateOrCreate()`,
+        // On QuantaForge 10.21.0, a bug was introduced that would update the wrong model when using `updateOrCreate()`,
         // because the UPDATE statement would target a model based on the ID from the parent instead of the actual
         // conditions that the `updateOrCreate()` targeted. This test replicates the case that causes this bug.
 

@@ -1,15 +1,15 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Mail;
+namespace QuantaForge\Tests\Integration\Mail;
 
-use QuantaQuirk\Database\Eloquent\Model;
-use QuantaQuirk\Database\Schema\Blueprint;
-use QuantaQuirk\Notifications\Events\NotificationSent;
-use QuantaQuirk\Notifications\Messages\MailMessage;
-use QuantaQuirk\Notifications\Notifiable;
-use QuantaQuirk\Notifications\Notification;
-use QuantaQuirk\Support\Facades\Event;
-use QuantaQuirk\Support\Facades\Schema;
+use QuantaForge\Database\Eloquent\Model;
+use QuantaForge\Database\Schema\Blueprint;
+use QuantaForge\Notifications\Events\NotificationSent;
+use QuantaForge\Notifications\Messages\MailMessage;
+use QuantaForge\Notifications\Notifiable;
+use QuantaForge\Notifications\Notification;
+use QuantaForge\Support\Facades\Event;
+use QuantaForge\Support\Facades\Schema;
 use Orchestra\Testbench\TestCase;
 
 class SentMessageMailTest extends TestCase

@@ -1,9 +1,9 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Foundation;
+namespace QuantaForge\Tests\Integration\Foundation;
 
-use QuantaQuirk\Http\Request;
-use QuantaQuirk\Support\Facades\Route;
+use QuantaForge\Http\Request;
+use QuantaForge\Support\Facades\Route;
 use Orchestra\Testbench\TestCase;
 use Psr\Http\Message\ServerRequestInterface;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Foundation\Fixtures\EventDiscovery\Events;
+namespace QuantaForge\Tests\Integration\Foundation\Fixtures\EventDiscovery\Events;
 
 class EventOne
 {

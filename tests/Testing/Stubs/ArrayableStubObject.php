@@ -1,8 +1,8 @@
 <?php
 
-namespace QuantaQuirk\Tests\Testing\Stubs;
+namespace QuantaForge\Tests\Testing\Stubs;
 
-use QuantaQuirk\Contracts\Support\Arrayable;
+use QuantaForge\Contracts\Support\Arrayable;
 
 class ArrayableStubObject implements Arrayable
 {

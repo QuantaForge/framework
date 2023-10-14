@@ -1,11 +1,11 @@
 <?php
 
-namespace QuantaQuirk\Tests\Support;
+namespace QuantaForge\Tests\Support;
 
-use QuantaQuirk\Config\Repository;
-use QuantaQuirk\Container\Container;
-use QuantaQuirk\Support\Fluent;
-use QuantaQuirk\Support\Traits\CapsuleManagerTrait;
+use QuantaForge\Config\Repository;
+use QuantaForge\Container\Container;
+use QuantaForge\Support\Fluent;
+use QuantaForge\Support\Traits\CapsuleManagerTrait;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 

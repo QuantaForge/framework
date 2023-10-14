@@ -1,10 +1,10 @@
 <?php
 
-namespace QuantaQuirk\Tests\Database;
+namespace QuantaForge\Tests\Database;
 
-use QuantaQuirk\Database\Query\Builder;
-use QuantaQuirk\Database\Query\Expression;
-use QuantaQuirk\Database\Query\Grammars\Grammar;
+use QuantaForge\Database\Query\Builder;
+use QuantaForge\Database\Query\Expression;
+use QuantaForge\Database\Query\Grammars\Grammar;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;

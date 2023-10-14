@@ -1,6 +1,6 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Generators;
+namespace QuantaForge\Tests\Integration\Generators;
 
 class NotificationMakeCommandTest extends TestCase
 {
@@ -17,7 +17,7 @@ class NotificationMakeCommandTest extends TestCase
 
         $this->assertFileContains([
             'namespace App\Notifications;',
-            'use QuantaQuirk\Notifications\Notification;',
+            'use QuantaForge\Notifications\Notification;',
             'class FooNotification extends Notification',
             'return (new MailMessage)',
         ], 'app/Notifications/FooNotification.php');

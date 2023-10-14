@@ -1,22 +1,22 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Notifications;
+namespace QuantaForge\Tests\Integration\Notifications;
 
-use QuantaQuirk\Contracts\Translation\HasLocalePreference;
-use QuantaQuirk\Database\Eloquent\Model;
-use QuantaQuirk\Database\Schema\Blueprint;
-use QuantaQuirk\Foundation\Events\LocaleUpdated;
-use QuantaQuirk\Mail\Mailable;
-use QuantaQuirk\Notifications\Channels\MailChannel;
-use QuantaQuirk\Notifications\Messages\MailMessage;
-use QuantaQuirk\Notifications\Notifiable;
-use QuantaQuirk\Notifications\Notification;
-use QuantaQuirk\Support\Carbon;
-use QuantaQuirk\Support\Facades\Event;
-use QuantaQuirk\Support\Facades\Notification as NotificationFacade;
-use QuantaQuirk\Support\Facades\Schema;
-use QuantaQuirk\Support\Facades\View;
-use QuantaQuirk\Testing\Assert;
+use QuantaForge\Contracts\Translation\HasLocalePreference;
+use QuantaForge\Database\Eloquent\Model;
+use QuantaForge\Database\Schema\Blueprint;
+use QuantaForge\Foundation\Events\LocaleUpdated;
+use QuantaForge\Mail\Mailable;
+use QuantaForge\Notifications\Channels\MailChannel;
+use QuantaForge\Notifications\Messages\MailMessage;
+use QuantaForge\Notifications\Notifiable;
+use QuantaForge\Notifications\Notification;
+use QuantaForge\Support\Carbon;
+use QuantaForge\Support\Facades\Event;
+use QuantaForge\Support\Facades\Notification as NotificationFacade;
+use QuantaForge\Support\Facades\Schema;
+use QuantaForge\Support\Facades\View;
+use QuantaForge\Testing\Assert;
 use Orchestra\Testbench\TestCase;
 
 class SendingNotificationsWithLocaleTest extends TestCase
@@ -56,7 +56,7 @@ class SendingNotificationsWithLocaleTest extends TestCase
     public function testMailIsSentWithDefaultLocale()
     {
         $user = NotifiableLocalizedUser::forceCreate([
-            'email' => 'taylor@quantaquirk.com',
+            'email' => 'taylor@quantaforge.com',
             'name' => 'Taylor Otwell',
         ]);
 
@@ -70,7 +70,7 @@ class SendingNotificationsWithLocaleTest extends TestCase
     public function testMailIsSentWithFacadeSelectedLocale()
     {
         $user = NotifiableLocalizedUser::forceCreate([
-            'email' => 'taylor@quantaquirk.com',
+            'email' => 'taylor@quantaforge.com',
             'name' => 'Taylor Otwell',
         ]);
 
@@ -85,11 +85,11 @@ class SendingNotificationsWithLocaleTest extends TestCase
     {
         $users = [
             NotifiableLocalizedUser::forceCreate([
-                'email' => 'taylor@quantaquirk.com',
+                'email' => 'taylor@quantaforge.com',
                 'name' => 'Taylor Otwell',
             ]),
             NotifiableLocalizedUser::forceCreate([
-                'email' => 'mohamed@quantaquirk.com',
+                'email' => 'mohamed@quantaforge.com',
                 'name' => 'Mohamed Said',
             ]),
         ];
@@ -108,7 +108,7 @@ class SendingNotificationsWithLocaleTest extends TestCase
     public function testMailableIsSentWithSelectedLocale()
     {
         $user = NotifiableLocalizedUser::forceCreate([
-            'email' => 'taylor@quantaquirk.com',
+            'email' => 'taylor@quantaforge.com',
             'name' => 'Taylor Otwell',
         ]);
 
@@ -128,7 +128,7 @@ class SendingNotificationsWithLocaleTest extends TestCase
         });
 
         $user = NotifiableLocalizedUser::forceCreate([
-            'email' => 'taylor@quantaquirk.com',
+            'email' => 'taylor@quantaforge.com',
             'name' => 'Taylor Otwell',
         ]);
 

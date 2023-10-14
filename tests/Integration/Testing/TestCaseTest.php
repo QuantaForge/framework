@@ -1,8 +1,8 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Testing;
+namespace QuantaForge\Tests\Integration\Testing;
 
-use QuantaQuirk\Support\Facades\Vite;
+use QuantaForge\Support\Facades\Vite;
 use Orchestra\Testbench\TestCase;
 
 class TestCaseTest extends TestCase

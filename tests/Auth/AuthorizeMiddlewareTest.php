@@ -1,20 +1,20 @@
 <?php
 
-namespace QuantaQuirk\Tests\Auth;
+namespace QuantaForge\Tests\Auth;
 
-use QuantaQuirk\Auth\Access\AuthorizationException;
-use QuantaQuirk\Auth\Access\Gate;
-use QuantaQuirk\Auth\Middleware\Authorize;
-use QuantaQuirk\Container\Container;
-use QuantaQuirk\Contracts\Auth\Access\Gate as GateContract;
-use QuantaQuirk\Contracts\Routing\Registrar;
-use QuantaQuirk\Database\Eloquent\Model;
-use QuantaQuirk\Events\Dispatcher;
-use QuantaQuirk\Http\Request;
-use QuantaQuirk\Routing\CallableDispatcher;
-use QuantaQuirk\Routing\Contracts\CallableDispatcher as CallableDispatcherContract;
-use QuantaQuirk\Routing\Middleware\SubstituteBindings;
-use QuantaQuirk\Routing\Router;
+use QuantaForge\Auth\Access\AuthorizationException;
+use QuantaForge\Auth\Access\Gate;
+use QuantaForge\Auth\Middleware\Authorize;
+use QuantaForge\Container\Container;
+use QuantaForge\Contracts\Auth\Access\Gate as GateContract;
+use QuantaForge\Contracts\Routing\Registrar;
+use QuantaForge\Database\Eloquent\Model;
+use QuantaForge\Events\Dispatcher;
+use QuantaForge\Http\Request;
+use QuantaForge\Routing\CallableDispatcher;
+use QuantaForge\Routing\Contracts\CallableDispatcher as CallableDispatcherContract;
+use QuantaForge\Routing\Middleware\SubstituteBindings;
+use QuantaForge\Routing\Router;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 use stdClass;
@@ -58,13 +58,13 @@ class AuthorizeMiddlewareTest extends TestCase
     public function testItCanGenerateDefinitionViaStaticMethod()
     {
         $signature = (string) Authorize::using('ability');
-        $this->assertSame('QuantaQuirk\Auth\Middleware\Authorize:ability', $signature);
+        $this->assertSame('QuantaForge\Auth\Middleware\Authorize:ability', $signature);
 
         $signature = (string) Authorize::using('ability', 'model');
-        $this->assertSame('QuantaQuirk\Auth\Middleware\Authorize:ability,model', $signature);
+        $this->assertSame('QuantaForge\Auth\Middleware\Authorize:ability,model', $signature);
 
         $signature = (string) Authorize::using('ability', 'model', \App\Models\Comment::class);
-        $this->assertSame('QuantaQuirk\Auth\Middleware\Authorize:ability,model,App\Models\Comment', $signature);
+        $this->assertSame('QuantaForge\Auth\Middleware\Authorize:ability,model,App\Models\Comment', $signature);
     }
 
     public function testSimpleAbilityUnauthorized()
@@ -331,7 +331,7 @@ class AuthorizeMiddlewareTest extends TestCase
     /**
      * Get the Gate instance from the container.
      *
-     * @return \QuantaQuirk\Auth\Access\Gate
+     * @return \QuantaForge\Auth\Access\Gate
      */
     protected function gate()
     {

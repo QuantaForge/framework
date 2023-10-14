@@ -1,12 +1,12 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Database\EloquentModelCustomEventsTest;
+namespace QuantaForge\Tests\Integration\Database\EloquentModelCustomEventsTest;
 
-use QuantaQuirk\Database\Eloquent\Model;
-use QuantaQuirk\Database\Schema\Blueprint;
-use QuantaQuirk\Support\Facades\Event;
-use QuantaQuirk\Support\Facades\Schema;
-use QuantaQuirk\Tests\Integration\Database\DatabaseTestCase;
+use QuantaForge\Database\Eloquent\Model;
+use QuantaForge\Database\Schema\Blueprint;
+use QuantaForge\Support\Facades\Event;
+use QuantaForge\Support\Facades\Schema;
+use QuantaForge\Tests\Integration\Database\DatabaseTestCase;
 
 class EloquentModelCustomEventsTest extends DatabaseTestCase
 {

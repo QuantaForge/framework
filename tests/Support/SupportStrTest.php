@@ -1,9 +1,9 @@
 <?php
 
-namespace QuantaQuirk\Tests\Support;
+namespace QuantaForge\Tests\Support;
 
 use Exception;
-use QuantaQuirk\Support\Str;
+use QuantaForge\Support\Str;
 use PHPUnit\Framework\TestCase;
 use Ramsey\Uuid\UuidInterface;
 use ReflectionClass;
@@ -41,14 +41,14 @@ class SupportStrTest extends TestCase
     {
         $this->assertSame('Jefferson Costella', Str::headline('jefferson costella'));
         $this->assertSame('Jefferson Costella', Str::headline('jefFErson coSTella'));
-        $this->assertSame('Jefferson Costella Uses QuantaQuirk', Str::headline('jefferson_costella uses-_QuantaQuirk'));
-        $this->assertSame('Jefferson Costella Uses QuantaQuirk', Str::headline('jefferson_costella uses__QuantaQuirk'));
+        $this->assertSame('Jefferson Costella Uses QuantaForge', Str::headline('jefferson_costella uses-_QuantaForge'));
+        $this->assertSame('Jefferson Costella Uses QuantaForge', Str::headline('jefferson_costella uses__QuantaForge'));
 
-        $this->assertSame('QuantaQuirk P H P Framework', Str::headline('quantaquirk_p_h_p_framework'));
-        $this->assertSame('QuantaQuirk P H P Framework', Str::headline('quantaquirk _p _h _p _framework'));
-        $this->assertSame('QuantaQuirk Php Framework', Str::headline('quantaquirk_php_framework'));
-        $this->assertSame('QuantaQuirk Ph P Framework', Str::headline('quantaquirk-phP-framework'));
-        $this->assertSame('QuantaQuirk Php Framework', Str::headline('quantaquirk  -_-  php   -_-   framework   '));
+        $this->assertSame('QuantaForge P H P Framework', Str::headline('quantaforge_p_h_p_framework'));
+        $this->assertSame('QuantaForge P H P Framework', Str::headline('quantaforge _p _h _p _framework'));
+        $this->assertSame('QuantaForge Php Framework', Str::headline('quantaforge_php_framework'));
+        $this->assertSame('QuantaForge Ph P Framework', Str::headline('quantaforge-phP-framework'));
+        $this->assertSame('QuantaForge Php Framework', Str::headline('quantaforge  -_-  php   -_-   framework   '));
 
         $this->assertSame('Foo Bar', Str::headline('fooBar'));
         $this->assertSame('Foo Bar', Str::headline('foo_bar'));
@@ -407,7 +407,7 @@ class SupportStrTest extends TestCase
 
     public function testIsUrl()
     {
-        $this->assertTrue(Str::isUrl('https://quantaquirk.com'));
+        $this->assertTrue(Str::isUrl('https://quantaforge.com'));
         $this->assertFalse(Str::isUrl('invalid url'));
     }
 
@@ -447,25 +447,25 @@ class SupportStrTest extends TestCase
 
     public function testIsMatch()
     {
-        $this->assertTrue(Str::isMatch('/.*,.*!/', 'Hello, QuantaQuirk!'));
-        $this->assertTrue(Str::isMatch('/^.*$(.*)/', 'Hello, QuantaQuirk!'));
-        $this->assertTrue(Str::isMatch('/quantaquirk/i', 'Hello, QuantaQuirk!'));
-        $this->assertTrue(Str::isMatch('/^(.*(.*(.*)))/', 'Hello, QuantaQuirk!'));
+        $this->assertTrue(Str::isMatch('/.*,.*!/', 'Hello, QuantaForge!'));
+        $this->assertTrue(Str::isMatch('/^.*$(.*)/', 'Hello, QuantaForge!'));
+        $this->assertTrue(Str::isMatch('/quantaforge/i', 'Hello, QuantaForge!'));
+        $this->assertTrue(Str::isMatch('/^(.*(.*(.*)))/', 'Hello, QuantaForge!'));
 
-        $this->assertFalse(Str::isMatch('/H.o/', 'Hello, QuantaQuirk!'));
-        $this->assertFalse(Str::isMatch('/^quantaquirk!/i', 'Hello, QuantaQuirk!'));
-        $this->assertFalse(Str::isMatch('/quantaquirk!(.*)/', 'Hello, QuantaQuirk!'));
-        $this->assertFalse(Str::isMatch('/^[a-zA-Z,!]+$/', 'Hello, QuantaQuirk!'));
+        $this->assertFalse(Str::isMatch('/H.o/', 'Hello, QuantaForge!'));
+        $this->assertFalse(Str::isMatch('/^quantaforge!/i', 'Hello, QuantaForge!'));
+        $this->assertFalse(Str::isMatch('/quantaforge!(.*)/', 'Hello, QuantaForge!'));
+        $this->assertFalse(Str::isMatch('/^[a-zA-Z,!]+$/', 'Hello, QuantaForge!'));
 
-        $this->assertTrue(Str::isMatch(['/.*,.*!/', '/H.o/'], 'Hello, QuantaQuirk!'));
-        $this->assertTrue(Str::isMatch(['/^quantaquirk!/i', '/^.*$(.*)/'], 'Hello, QuantaQuirk!'));
-        $this->assertTrue(Str::isMatch(['/quantaquirk/i', '/quantaquirk!(.*)/'], 'Hello, QuantaQuirk!'));
-        $this->assertTrue(Str::isMatch(['/^[a-zA-Z,!]+$/', '/^(.*(.*(.*)))/'], 'Hello, QuantaQuirk!'));
+        $this->assertTrue(Str::isMatch(['/.*,.*!/', '/H.o/'], 'Hello, QuantaForge!'));
+        $this->assertTrue(Str::isMatch(['/^quantaforge!/i', '/^.*$(.*)/'], 'Hello, QuantaForge!'));
+        $this->assertTrue(Str::isMatch(['/quantaforge/i', '/quantaforge!(.*)/'], 'Hello, QuantaForge!'));
+        $this->assertTrue(Str::isMatch(['/^[a-zA-Z,!]+$/', '/^(.*(.*(.*)))/'], 'Hello, QuantaForge!'));
     }
 
     public function testKebab()
     {
-        $this->assertSame('quantaquirk-php-framework', Str::kebab('QuantaQuirkPhpFramework'));
+        $this->assertSame('quantaforge-php-framework', Str::kebab('QuantaForgePhpFramework'));
     }
 
     public function testLower()
@@ -482,7 +482,7 @@ class SupportStrTest extends TestCase
 
     public function testLimit()
     {
-        $this->assertSame('QuantaQuirk is...', Str::limit('QuantaQuirk is a free, open source PHP web application framework.', 10));
+        $this->assertSame('QuantaForge is...', Str::limit('QuantaForge is a free, open source PHP web application framework.', 10));
         $this->assertSame('这是一...', Str::limit('这是一段中文', 6));
 
         $string = 'The PHP framework for web artisans.';
@@ -574,8 +574,8 @@ class SupportStrTest extends TestCase
 
     public function testReplace()
     {
-        $this->assertSame('foo bar quantaquirk', Str::replace('baz', 'quantaquirk', 'foo bar baz'));
-        $this->assertSame('foo bar quantaquirk', Str::replace('baz', 'quantaquirk', 'foo bar Baz', false));
+        $this->assertSame('foo bar quantaforge', Str::replace('baz', 'quantaforge', 'foo bar baz'));
+        $this->assertSame('foo bar quantaforge', Str::replace('baz', 'quantaforge', 'foo bar Baz', false));
         $this->assertSame('foo bar baz 8.x', Str::replace('?', '8.x', 'foo bar baz ?'));
         $this->assertSame('foo bar baz 8.x', Str::replace('x', '8.x', 'foo bar baz X', false));
         $this->assertSame('foo/bar/baz', Str::replace(' ', '/', 'foo bar baz'));
@@ -673,16 +673,16 @@ class SupportStrTest extends TestCase
 
     public function testSnake()
     {
-        $this->assertSame('quantaquirk_p_h_p_framework', Str::snake('QuantaQuirkPHPFramework'));
-        $this->assertSame('quantaquirk_php_framework', Str::snake('QuantaQuirkPhpFramework'));
-        $this->assertSame('quantaquirk php framework', Str::snake('QuantaQuirkPhpFramework', ' '));
-        $this->assertSame('quantaquirk_php_framework', Str::snake('QuantaQuirk Php Framework'));
-        $this->assertSame('quantaquirk_php_framework', Str::snake('QuantaQuirk    Php      Framework   '));
+        $this->assertSame('quantaforge_p_h_p_framework', Str::snake('QuantaForgePHPFramework'));
+        $this->assertSame('quantaforge_php_framework', Str::snake('QuantaForgePhpFramework'));
+        $this->assertSame('quantaforge php framework', Str::snake('QuantaForgePhpFramework', ' '));
+        $this->assertSame('quantaforge_php_framework', Str::snake('QuantaForge Php Framework'));
+        $this->assertSame('quantaforge_php_framework', Str::snake('QuantaForge    Php      Framework   '));
         // ensure cache keys don't overlap
-        $this->assertSame('quantaquirk__php__framework', Str::snake('QuantaQuirkPhpFramework', '__'));
-        $this->assertSame('quantaquirk_php_framework_', Str::snake('QuantaQuirkPhpFramework_', '_'));
-        $this->assertSame('quantaquirk_php_framework', Str::snake('quantaquirk php Framework'));
-        $this->assertSame('quantaquirk_php_frame_work', Str::snake('quantaquirk php FrameWork'));
+        $this->assertSame('quantaforge__php__framework', Str::snake('QuantaForgePhpFramework', '__'));
+        $this->assertSame('quantaforge_php_framework_', Str::snake('QuantaForgePhpFramework_', '_'));
+        $this->assertSame('quantaforge_php_framework', Str::snake('quantaforge php Framework'));
+        $this->assertSame('quantaforge_php_frame_work', Str::snake('quantaforge php FrameWork'));
         // prevent breaking changes
         $this->assertSame('foo-bar', Str::snake('foo-bar'));
         $this->assertSame('foo-_bar', Str::snake('Foo-Bar'));
@@ -692,29 +692,29 @@ class SupportStrTest extends TestCase
 
     public function testSquish()
     {
-        $this->assertSame('quantaquirk php framework', Str::squish(' quantaquirk   php  framework '));
-        $this->assertSame('quantaquirk php framework', Str::squish("quantaquirk\t\tphp\n\nframework"));
-        $this->assertSame('quantaquirk php framework', Str::squish('
-            quantaquirk
+        $this->assertSame('quantaforge php framework', Str::squish(' quantaforge   php  framework '));
+        $this->assertSame('quantaforge php framework', Str::squish("quantaforge\t\tphp\n\nframework"));
+        $this->assertSame('quantaforge php framework', Str::squish('
+            quantaforge
             php
             framework
         '));
-        $this->assertSame('quantaquirk php framework', Str::squish('   quantaquirk   php   framework   '));
+        $this->assertSame('quantaforge php framework', Str::squish('   quantaforge   php   framework   '));
         $this->assertSame('123', Str::squish('   123    '));
         $this->assertSame('だ', Str::squish('だ'));
         $this->assertSame('ム', Str::squish('ム'));
         $this->assertSame('だ', Str::squish('   だ    '));
         $this->assertSame('ム', Str::squish('   ム    '));
-        $this->assertSame('quantaquirk php framework', Str::squish('quantaquirkㅤㅤㅤphpㅤframework'));
-        $this->assertSame('quantaquirk php framework', Str::squish('quantaquirkᅠᅠᅠᅠᅠᅠᅠᅠᅠᅠphpᅠᅠframework'));
+        $this->assertSame('quantaforge php framework', Str::squish('quantaforgeㅤㅤㅤphpㅤframework'));
+        $this->assertSame('quantaforge php framework', Str::squish('quantaforgeᅠᅠᅠᅠᅠᅠᅠᅠᅠᅠphpᅠᅠframework'));
     }
 
     public function testStudly()
     {
-        $this->assertSame('QuantaQuirkPHPFramework', Str::studly('quantaquirk_p_h_p_framework'));
-        $this->assertSame('QuantaQuirkPhpFramework', Str::studly('quantaquirk_php_framework'));
-        $this->assertSame('QuantaQuirkPhPFramework', Str::studly('quantaquirk-phP-framework'));
-        $this->assertSame('QuantaQuirkPhpFramework', Str::studly('quantaquirk  -_-  php   -_-   framework   '));
+        $this->assertSame('QuantaForgePHPFramework', Str::studly('quantaforge_p_h_p_framework'));
+        $this->assertSame('QuantaForgePhpFramework', Str::studly('quantaforge_php_framework'));
+        $this->assertSame('QuantaForgePhPFramework', Str::studly('quantaforge-phP-framework'));
+        $this->assertSame('QuantaForgePhpFramework', Str::studly('quantaforge  -_-  php   -_-   framework   '));
 
         $this->assertSame('FooBar', Str::studly('fooBar'));
         $this->assertSame('FooBar', Str::studly('foo_bar'));
@@ -774,10 +774,10 @@ class SupportStrTest extends TestCase
 
     public function testCamel()
     {
-        $this->assertSame('quantaquirkPHPFramework', Str::camel('QuantaQuirk_p_h_p_framework'));
-        $this->assertSame('quantaquirkPhpFramework', Str::camel('QuantaQuirk_php_framework'));
-        $this->assertSame('quantaquirkPhPFramework', Str::camel('QuantaQuirk-phP-framework'));
-        $this->assertSame('quantaquirkPhpFramework', Str::camel('QuantaQuirk  -_-  php   -_-   framework   '));
+        $this->assertSame('quantaforgePHPFramework', Str::camel('QuantaForge_p_h_p_framework'));
+        $this->assertSame('quantaforgePhpFramework', Str::camel('QuantaForge_php_framework'));
+        $this->assertSame('quantaforgePhPFramework', Str::camel('QuantaForge-phP-framework'));
+        $this->assertSame('quantaforgePhpFramework', Str::camel('QuantaForge  -_-  php   -_-   framework   '));
 
         $this->assertSame('fooBar', Str::camel('FooBar'));
         $this->assertSame('fooBar', Str::camel('foo_bar'));
@@ -813,16 +813,16 @@ class SupportStrTest extends TestCase
 
     public function testSubstrCount()
     {
-        $this->assertSame(3, Str::substrCount('quantaquirkPHPFramework', 'a'));
-        $this->assertSame(0, Str::substrCount('quantaquirkPHPFramework', 'z'));
-        $this->assertSame(1, Str::substrCount('quantaquirkPHPFramework', 'l', 2));
-        $this->assertSame(0, Str::substrCount('quantaquirkPHPFramework', 'z', 2));
-        $this->assertSame(1, Str::substrCount('quantaquirkPHPFramework', 'k', -1));
-        $this->assertSame(1, Str::substrCount('quantaquirkPHPFramework', 'k', -1));
-        $this->assertSame(1, Str::substrCount('quantaquirkPHPFramework', 'a', 1, 2));
-        $this->assertSame(1, Str::substrCount('quantaquirkPHPFramework', 'a', 1, 2));
-        $this->assertSame(3, Str::substrCount('quantaquirkPHPFramework', 'a', 1, -2));
-        $this->assertSame(1, Str::substrCount('quantaquirkPHPFramework', 'a', -10, -3));
+        $this->assertSame(3, Str::substrCount('quantaforgePHPFramework', 'a'));
+        $this->assertSame(0, Str::substrCount('quantaforgePHPFramework', 'z'));
+        $this->assertSame(1, Str::substrCount('quantaforgePHPFramework', 'l', 2));
+        $this->assertSame(0, Str::substrCount('quantaforgePHPFramework', 'z', 2));
+        $this->assertSame(1, Str::substrCount('quantaforgePHPFramework', 'k', -1));
+        $this->assertSame(1, Str::substrCount('quantaforgePHPFramework', 'k', -1));
+        $this->assertSame(1, Str::substrCount('quantaforgePHPFramework', 'a', 1, 2));
+        $this->assertSame(1, Str::substrCount('quantaforgePHPFramework', 'a', 1, 2));
+        $this->assertSame(3, Str::substrCount('quantaforgePHPFramework', 'a', 1, -2));
+        $this->assertSame(1, Str::substrCount('quantaforgePHPFramework', 'a', -10, -3));
     }
 
     public function testPosition()
@@ -845,8 +845,8 @@ class SupportStrTest extends TestCase
     public function testSubstrReplace()
     {
         $this->assertSame('12:00', Str::substrReplace('1200', ':', 2, 0));
-        $this->assertSame('The QuantaQuirk Framework', Str::substrReplace('The Framework', 'QuantaQuirk ', 4, 0));
-        $this->assertSame('QuantaQuirk – The PHP Framework for Web Artisans', Str::substrReplace('QuantaQuirk Framework', '– The PHP Framework for Web Artisans', 8));
+        $this->assertSame('The QuantaForge Framework', Str::substrReplace('The Framework', 'QuantaForge ', 4, 0));
+        $this->assertSame('QuantaForge – The PHP Framework for Web Artisans', Str::substrReplace('QuantaForge Framework', '– The PHP Framework for Web Artisans', 8));
     }
 
     public function testTake()
@@ -857,26 +857,26 @@ class SupportStrTest extends TestCase
 
     public function testLcfirst()
     {
-        $this->assertSame('quantaquirk', Str::lcfirst('QuantaQuirk'));
-        $this->assertSame('quantaquirk framework', Str::lcfirst('QuantaQuirk framework'));
+        $this->assertSame('quantaforge', Str::lcfirst('QuantaForge'));
+        $this->assertSame('quantaforge framework', Str::lcfirst('QuantaForge framework'));
         $this->assertSame('мама', Str::lcfirst('Мама'));
         $this->assertSame('мама мыла раму', Str::lcfirst('Мама мыла раму'));
     }
 
     public function testUcfirst()
     {
-        $this->assertSame('QuantaQuirk', Str::ucfirst('quantaquirk'));
-        $this->assertSame('QuantaQuirk framework', Str::ucfirst('quantaquirk framework'));
+        $this->assertSame('QuantaForge', Str::ucfirst('quantaforge'));
+        $this->assertSame('QuantaForge framework', Str::ucfirst('quantaforge framework'));
         $this->assertSame('Мама', Str::ucfirst('мама'));
         $this->assertSame('Мама мыла раму', Str::ucfirst('мама мыла раму'));
     }
 
     public function testUcsplit()
     {
-        $this->assertSame(['QuantaQuirk_p_h_p_framework'], Str::ucsplit('QuantaQuirk_p_h_p_framework'));
-        $this->assertSame(['QuantaQuirk_', 'P_h_p_framework'], Str::ucsplit('QuantaQuirk_P_h_p_framework'));
-        $this->assertSame(['quantaquirk', 'P', 'H', 'P', 'Framework'], Str::ucsplit('quantaquirkPHPFramework'));
-        $this->assertSame(['QuantaQuirk-ph', 'P-framework'], Str::ucsplit('QuantaQuirk-phP-framework'));
+        $this->assertSame(['QuantaForge_p_h_p_framework'], Str::ucsplit('QuantaForge_p_h_p_framework'));
+        $this->assertSame(['QuantaForge_', 'P_h_p_framework'], Str::ucsplit('QuantaForge_P_h_p_framework'));
+        $this->assertSame(['quantaforge', 'P', 'H', 'P', 'Framework'], Str::ucsplit('quantaforgePHPFramework'));
+        $this->assertSame(['QuantaForge-ph', 'P-framework'], Str::ucsplit('QuantaForge-phP-framework'));
 
         $this->assertSame(['Żółta', 'Łódka'], Str::ucsplit('ŻółtaŁódka'));
         $this->assertSame(['sind', 'Öde', 'Und', 'So'], Str::ucsplit('sindÖdeUndSo'));
@@ -941,7 +941,7 @@ class SupportStrTest extends TestCase
     public function testWordCount()
     {
         $this->assertEquals(2, Str::wordCount('Hello, world!'));
-        $this->assertEquals(10, Str::wordCount('Hi, this is my first contribution to the QuantaQuirk framework.'));
+        $this->assertEquals(10, Str::wordCount('Hi, this is my first contribution to the QuantaForge framework.'));
 
         $this->assertEquals(0, Str::wordCount('мама'));
         $this->assertEquals(0, Str::wordCount('мама мыла раму'));
@@ -1033,7 +1033,7 @@ class SupportStrTest extends TestCase
     public function testInlineMarkdown()
     {
         $this->assertSame("<em>hello world</em>\n", Str::inlineMarkdown('*hello world*'));
-        $this->assertSame("<a href=\"https://quantaquirk.com\"><strong>QuantaQuirk</strong></a>\n", Str::inlineMarkdown('[**QuantaQuirk**](https://quantaquirk.com)'));
+        $this->assertSame("<a href=\"https://quantaforge.com\"><strong>QuantaForge</strong></a>\n", Str::inlineMarkdown('[**QuantaForge**](https://quantaforge.com)'));
     }
 
     public function testRepeat()
@@ -1057,7 +1057,7 @@ class SupportStrTest extends TestCase
             ['⓪①②③④⑤⑥⑦⑧⑨⑩⑪⑫⑬⑭⑮⑯⑰⑱⑲⑳', '01234567891011121314151617181920'],
             ['⓵⓶⓷⓸⓹⓺⓻⓼⓽⓾', '12345678910'],
             ['⓿⓫⓬⓭⓮⓯⓰⓱⓲⓳⓴', '011121314151617181920'],
-            ['ⓣⓔⓢⓣ@ⓛⓐⓡⓐⓥⓔⓛ.ⓒⓞⓜ', 'test@quantaquirk.com'],
+            ['ⓣⓔⓢⓣ@ⓛⓐⓡⓐⓥⓔⓛ.ⓒⓞⓜ', 'test@quantaforge.com'],
             ['🎂', '?'],
             ['abcdefghijklmnopqrstuvwxyz', 'abcdefghijklmnopqrstuvwxyz'],
             ['0123456789', '0123456789'],

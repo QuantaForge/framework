@@ -1,10 +1,10 @@
 <?php
 
-namespace QuantaQuirk\Tests\Database;
+namespace QuantaForge\Tests\Database;
 
-use QuantaQuirk\Database\Eloquent\Collection;
-use QuantaQuirk\Database\Eloquent\Model;
-use QuantaQuirk\Database\Eloquent\Relations\Pivot;
+use QuantaForge\Database\Eloquent\Collection;
+use QuantaForge\Database\Eloquent\Model;
+use QuantaForge\Database\Eloquent\Relations\Pivot;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 

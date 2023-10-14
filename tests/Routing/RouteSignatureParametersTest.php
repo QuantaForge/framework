@@ -1,10 +1,10 @@
 <?php
 
-namespace QuantaQuirk\Tests\Routing;
+namespace QuantaForge\Tests\Routing;
 
-use QuantaQuirk\Database\Eloquent\Model;
-use QuantaQuirk\Routing\RouteSignatureParameters;
-use QuantaQuirk\SerializableClosure\SerializableClosure;
+use QuantaForge\Database\Eloquent\Model;
+use QuantaForge\Routing\RouteSignatureParameters;
+use QuantaForge\SerializableClosure\SerializableClosure;
 use PHPUnit\Framework\TestCase;
 use ReflectionParameter;
 

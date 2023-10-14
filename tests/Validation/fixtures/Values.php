@@ -1,8 +1,8 @@
 <?php
 
-namespace QuantaQuirk\Tests\Validation\fixtures;
+namespace QuantaForge\Tests\Validation\fixtures;
 
-use QuantaQuirk\Contracts\Support\Arrayable;
+use QuantaForge\Contracts\Support\Arrayable;
 
 class Values implements Arrayable
 {

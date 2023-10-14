@@ -1,14 +1,14 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Notifications;
+namespace QuantaForge\Tests\Integration\Notifications;
 
-use QuantaQuirk\Database\Eloquent\Model;
-use QuantaQuirk\Database\Schema\Blueprint;
-use QuantaQuirk\Notifications\Messages\MailMessage;
-use QuantaQuirk\Notifications\Notifiable;
-use QuantaQuirk\Notifications\Notification;
-use QuantaQuirk\Support\Facades\Schema;
-use QuantaQuirk\Support\Facades\View;
+use QuantaForge\Database\Eloquent\Model;
+use QuantaForge\Database\Schema\Blueprint;
+use QuantaForge\Notifications\Messages\MailMessage;
+use QuantaForge\Notifications\Notifiable;
+use QuantaForge\Notifications\Notification;
+use QuantaForge\Support\Facades\Schema;
+use QuantaForge\Support\Facades\View;
 use Orchestra\Testbench\TestCase;
 
 class SendingMailableNotificationsTest extends TestCase
@@ -40,7 +40,7 @@ class SendingMailableNotificationsTest extends TestCase
     public function testMarkdownNotification()
     {
         $user = MailableNotificationUser::forceCreate([
-            'email' => 'nuno@quantaquirk.com',
+            'email' => 'nuno@quantaforge.com',
         ]);
 
         $user->notify(new MarkdownNotification());
@@ -61,7 +61,7 @@ class SendingMailableNotificationsTest extends TestCase
     public function testCanSetTheme()
     {
         $user = MailableNotificationUser::forceCreate([
-            'email' => 'nuno@quantaquirk.com',
+            'email' => 'nuno@quantaforge.com',
         ]);
 
         $user->notify(new MarkdownNotification('color-test'));

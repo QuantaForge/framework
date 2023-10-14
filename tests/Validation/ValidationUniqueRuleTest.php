@@ -1,9 +1,9 @@
 <?php
 
-namespace QuantaQuirk\Tests\Validation;
+namespace QuantaForge\Tests\Validation;
 
-use QuantaQuirk\Database\Eloquent\Model;
-use QuantaQuirk\Validation\Rules\Unique;
+use QuantaForge\Database\Eloquent\Model;
+use QuantaForge\Validation\Rules\Unique;
 use PHPUnit\Framework\TestCase;
 
 class ValidationUniqueRuleTest extends TestCase
@@ -22,7 +22,7 @@ class ValidationUniqueRuleTest extends TestCase
         $rule->where('foo', 'bar');
         $this->assertSame('unique:no_table_names,NULL,NULL,id,foo,"bar"', (string) $rule);
 
-        $rule = new Unique('QuantaQuirk\Tests\Validation\NoTableName');
+        $rule = new Unique('QuantaForge\Tests\Validation\NoTableName');
         $rule->where('foo', 'bar');
         $this->assertSame('unique:no_table_names,NULL,NULL,id,foo,"bar"', (string) $rule);
 

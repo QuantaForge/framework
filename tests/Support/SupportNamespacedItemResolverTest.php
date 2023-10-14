@@ -1,8 +1,8 @@
 <?php
 
-namespace QuantaQuirk\Tests\Support;
+namespace QuantaForge\Tests\Support;
 
-use QuantaQuirk\Support\NamespacedItemResolver;
+use QuantaForge\Support\NamespacedItemResolver;
 use PHPUnit\Framework\TestCase;
 
 class SupportNamespacedItemResolverTest extends TestCase

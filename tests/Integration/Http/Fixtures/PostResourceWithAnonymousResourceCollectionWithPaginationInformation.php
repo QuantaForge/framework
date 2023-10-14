@@ -1,8 +1,8 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Http\Fixtures;
+namespace QuantaForge\Tests\Integration\Http\Fixtures;
 
-use QuantaQuirk\Http\Resources\Json\JsonResource;
+use QuantaForge\Http\Resources\Json\JsonResource;
 
 class PostResourceWithAnonymousResourceCollectionWithPaginationInformation extends JsonResource
 {
@@ -15,7 +15,7 @@ class PostResourceWithAnonymousResourceCollectionWithPaginationInformation exten
      * Create a new anonymous resource collection.
      *
      * @param  mixed  $resource
-     * @return \QuantaQuirk\Tests\Integration\Http\Fixtures\AnonymousResourceCollectionWithPaginationInformation
+     * @return \QuantaForge\Tests\Integration\Http\Fixtures\AnonymousResourceCollectionWithPaginationInformation
      */
     public static function collection($resource)
     {

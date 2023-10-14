@@ -1,10 +1,10 @@
 <?php
 
-namespace QuantaQuirk\Tests\Routing;
+namespace QuantaForge\Tests\Routing;
 
-use QuantaQuirk\Database\Eloquent\Model;
-use QuantaQuirk\Routing\RouteAction;
-use QuantaQuirk\SerializableClosure\SerializableClosure;
+use QuantaForge\Database\Eloquent\Model;
+use QuantaForge\Routing\RouteAction;
+use QuantaForge\SerializableClosure\SerializableClosure;
 use PHPUnit\Framework\TestCase;
 
 class RouteActionTest extends TestCase

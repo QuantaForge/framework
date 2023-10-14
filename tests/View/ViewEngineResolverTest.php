@@ -1,8 +1,8 @@
 <?php
 
-namespace QuantaQuirk\Tests\View;
+namespace QuantaForge\Tests\View;
 
-use QuantaQuirk\View\Engines\EngineResolver;
+use QuantaForge\View\Engines\EngineResolver;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use stdClass;

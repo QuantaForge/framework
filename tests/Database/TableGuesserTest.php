@@ -1,8 +1,8 @@
 <?php
 
-namespace QuantaQuirk\Tests\Database;
+namespace QuantaForge\Tests\Database;
 
-use QuantaQuirk\Database\Console\Migrations\TableGuesser;
+use QuantaForge\Database\Console\Migrations\TableGuesser;
 use PHPUnit\Framework\TestCase;
 
 class TableGuesserTest extends TestCase

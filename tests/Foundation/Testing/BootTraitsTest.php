@@ -1,8 +1,8 @@
 <?php
 
-namespace QuantaQuirk\Tests\Foundation\Testing;
+namespace QuantaForge\Tests\Foundation\Testing;
 
-use QuantaQuirk\Foundation\Testing\TestCase as FoundationTestCase;
+use QuantaForge\Foundation\Testing\TestCase as FoundationTestCase;
 use Orchestra\Testbench\Concerns\CreatesApplication;
 use PHPUnit\Framework\TestCase;
 use ReflectionMethod;

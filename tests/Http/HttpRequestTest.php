@@ -1,15 +1,15 @@
 <?php
 
-namespace QuantaQuirk\Tests\Http;
+namespace QuantaForge\Tests\Http;
 
-use QuantaQuirk\Http\Request;
-use QuantaQuirk\Http\UploadedFile;
-use QuantaQuirk\Routing\Route;
-use QuantaQuirk\Session\Store;
-use QuantaQuirk\Support\Carbon;
-use QuantaQuirk\Support\Collection;
-use QuantaQuirk\Support\Stringable;
-use QuantaQuirk\Tests\Database\Fixtures\Models\Money\Price;
+use QuantaForge\Http\Request;
+use QuantaForge\Http\UploadedFile;
+use QuantaForge\Routing\Route;
+use QuantaForge\Session\Store;
+use QuantaForge\Support\Carbon;
+use QuantaForge\Support\Collection;
+use QuantaForge\Support\Stringable;
+use QuantaForge\Tests\Database\Fixtures\Models\Money\Price;
 use InvalidArgumentException;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
@@ -279,10 +279,10 @@ class HttpRequestTest extends TestCase
     public function testUserAgentMethod()
     {
         $request = Request::create('/', 'GET', [], [], [], [
-            'HTTP_USER_AGENT' => 'QuantaQuirk',
+            'HTTP_USER_AGENT' => 'QuantaForge',
         ]);
 
-        $this->assertSame('QuantaQuirk', $request->userAgent());
+        $this->assertSame('QuantaForge', $request->userAgent());
     }
 
     public function testHostMethod()
@@ -1151,7 +1151,7 @@ class HttpRequestTest extends TestCase
         $request = Request::create('/');
         $session = m::mock(Store::class);
         $session->shouldReceive('getOldInput')->once()->with('foo', 'bar')->andReturn('boom');
-        $request->setQuantaQuirkSession($session);
+        $request->setQuantaForgeSession($session);
         $this->assertSame('boom', $request->old('foo', 'bar'));
     }
 
@@ -1160,7 +1160,7 @@ class HttpRequestTest extends TestCase
         $request = Request::create('/');
         $session = m::mock(Store::class);
         $session->shouldReceive('getOldInput')->once()->with('foo', ['bar'])->andReturn(['bar']);
-        $request->setQuantaQuirkSession($session);
+        $request->setQuantaForgeSession($session);
         $this->assertSame(['bar'], $request->old('foo', ['bar']));
     }
 
@@ -1171,7 +1171,7 @@ class HttpRequestTest extends TestCase
         $model->shouldReceive('getAttribute')->once()->with('name')->andReturn('foobar');
         $session = m::mock(Store::class);
         $session->shouldReceive('getOldInput')->once()->with('name', 'foobar')->andReturn('foobar');
-        $request->setQuantaQuirkSession($session);
+        $request->setQuantaForgeSession($session);
         $this->assertSame('foobar', $request->old('name', $model));
     }
 
@@ -1180,7 +1180,7 @@ class HttpRequestTest extends TestCase
         $request = Request::create('/');
         $session = m::mock(Store::class);
         $session->shouldReceive('flashInput')->once();
-        $request->setQuantaQuirkSession($session);
+        $request->setQuantaForgeSession($session);
         $request->flush();
     }
 
@@ -1353,26 +1353,26 @@ class HttpRequestTest extends TestCase
         $this->assertFalse($request->hasSession());
 
         $session = m::mock(Store::class);
-        $request->setQuantaQuirkSession($session);
+        $request->setQuantaForgeSession($session);
 
         $this->assertTrue($request->hasSession());
     }
 
-    public function testGetSessionMethodWithQuantaQuirkSession()
+    public function testGetSessionMethodWithQuantaForgeSession()
     {
         $request = Request::create('/');
 
-        $quantaquirkSession = m::mock(Store::class);
-        $request->setQuantaQuirkSession($quantaquirkSession);
+        $quantaforgeSession = m::mock(Store::class);
+        $request->setQuantaForgeSession($quantaforgeSession);
 
         $session = $request->getSession();
         $this->assertInstanceOf(SessionInterface::class, $session);
 
-        $quantaquirkSession->shouldReceive('start')->once()->andReturn(true);
+        $quantaforgeSession->shouldReceive('start')->once()->andReturn(true);
         $session->start();
     }
 
-    public function testGetSessionMethodWithoutQuantaQuirkSession()
+    public function testGetSessionMethodWithoutQuantaForgeSession()
     {
         $this->expectException(SessionNotFoundException::class);
         $this->expectExceptionMessage('There is currently no session available.');
@@ -1416,7 +1416,7 @@ class HttpRequestTest extends TestCase
     /**
      * Ensure JSON GET requests populate $request->request with the JSON content.
      *
-     * @link https://github.com/quantaquirk/framework/pull/7052 Correctly fill the $request->request parameter bag on creation.
+     * @link https://github.com/quantaforge/framework/pull/7052 Correctly fill the $request->request parameter bag on creation.
      */
     public function testJsonRequestFillsRequestBodyParams()
     {
@@ -1439,7 +1439,7 @@ class HttpRequestTest extends TestCase
     /**
      * Ensure non-JSON GET requests don't pollute $request->request with the GET parameters.
      *
-     * @link https://github.com/quantaquirk/framework/pull/37921 Manually populate POST request body with JSON data only when required.
+     * @link https://github.com/quantaforge/framework/pull/37921 Manually populate POST request body with JSON data only when required.
      */
     public function testNonJsonRequestDoesntFillRequestBodyParams()
     {
@@ -1457,7 +1457,7 @@ class HttpRequestTest extends TestCase
     /**
      * Tests for Http\Request magic methods `__get()` and `__isset()`.
      *
-     * @link https://github.com/quantaquirk/framework/issues/10403 Form request object attribute returns empty when have some string.
+     * @link https://github.com/quantaforge/framework/issues/10403 Form request object attribute returns empty when have some string.
      */
     public function testMagicMethods()
     {
@@ -1534,7 +1534,7 @@ class HttpRequestTest extends TestCase
         $session = m::mock(Store::class);
         $session->shouldReceive('flashInput')->once()->with(['name' => 'Taylor', 'email' => 'foo']);
         $request = Request::create('/', 'GET', ['name' => 'Taylor', 'email' => 'foo']);
-        $request->setQuantaQuirkSession($session);
+        $request->setQuantaForgeSession($session);
         $request->flash();
     }
 
@@ -1543,7 +1543,7 @@ class HttpRequestTest extends TestCase
         $session = m::mock(Store::class);
         $session->shouldReceive('flashInput')->once()->with(['name' => 'Taylor']);
         $request = Request::create('/', 'GET', ['name' => 'Taylor', 'email' => 'foo']);
-        $request->setQuantaQuirkSession($session);
+        $request->setQuantaForgeSession($session);
         $request->flashOnly(['name']);
     }
 
@@ -1552,7 +1552,7 @@ class HttpRequestTest extends TestCase
         $session = m::mock(Store::class);
         $session->shouldReceive('flashInput')->once()->with(['name' => 'Taylor']);
         $request = Request::create('/', 'GET', ['name' => 'Taylor', 'email' => 'foo']);
-        $request->setQuantaQuirkSession($session);
+        $request->setQuantaForgeSession($session);
         $request->flashExcept(['email']);
     }
 
@@ -1592,11 +1592,11 @@ class HttpRequestTest extends TestCase
             return;
         }
 
-        $base = SymfonyRequest::create('/', 'POST', server: ['CONTENT_TYPE' => 'application/json'], content: '{"framework":{"name":"QuantaQuirk"}}');
+        $base = SymfonyRequest::create('/', 'POST', server: ['CONTENT_TYPE' => 'application/json'], content: '{"framework":{"name":"QuantaForge"}}');
         $request = Request::createFromBase($base);
 
         $value = $request->get('framework');
 
-        $this->assertSame(['name' => 'QuantaQuirk'], $request->get('framework'));
+        $this->assertSame(['name' => 'QuantaForge'], $request->get('framework'));
     }
 }

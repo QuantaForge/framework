@@ -1,9 +1,9 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Filesystem;
+namespace QuantaForge\Tests\Integration\Filesystem;
 
-use QuantaQuirk\Support\Facades\File;
-use QuantaQuirk\Support\Facades\Storage;
+use QuantaForge\Support\Facades\File;
+use QuantaForge\Support\Facades\Storage;
 use Orchestra\Testbench\TestCase;
 use Symfony\Component\Process\Process;
 

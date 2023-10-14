@@ -1,6 +1,6 @@
 <?php
 
-namespace QuantaQuirk\Tests\View\Blade;
+namespace QuantaForge\Tests\View\Blade;
 
 class BladeExtendsTest extends AbstractBladeTestCase
 {
@@ -8,11 +8,11 @@ class BladeExtendsTest extends AbstractBladeTestCase
     {
         $string = '@extends(\'foo\')
 test';
-        $expected = "test\n".'<?php echo $__env->make(\'foo\', \QuantaQuirk\Support\Arr::except(get_defined_vars(), [\'__data\', \'__path\']))->render(); ?>';
+        $expected = "test\n".'<?php echo $__env->make(\'foo\', \QuantaForge\Support\Arr::except(get_defined_vars(), [\'__data\', \'__path\']))->render(); ?>';
         $this->assertEquals($expected, $this->compiler->compileString($string));
 
         $string = '@extends(name(foo))'."\n".'test';
-        $expected = "test\n".'<?php echo $__env->make(name(foo), \QuantaQuirk\Support\Arr::except(get_defined_vars(), [\'__data\', \'__path\']))->render(); ?>';
+        $expected = "test\n".'<?php echo $__env->make(name(foo), \QuantaForge\Support\Arr::except(get_defined_vars(), [\'__data\', \'__path\']))->render(); ?>';
         $this->assertEquals($expected, $this->compiler->compileString($string));
     }
 
@@ -20,12 +20,12 @@ test';
     {
         $string = '@extends(\'foo\')
 test';
-        $expected = "test\n".'<?php echo $__env->make(\'foo\', \QuantaQuirk\Support\Arr::except(get_defined_vars(), [\'__data\', \'__path\']))->render(); ?>';
+        $expected = "test\n".'<?php echo $__env->make(\'foo\', \QuantaForge\Support\Arr::except(get_defined_vars(), [\'__data\', \'__path\']))->render(); ?>';
         $this->assertEquals($expected, $this->compiler->compileString($string));
 
         // use the same compiler instance to compile another template with @extends directive
         $string = "@extends(name(foo))\ntest";
-        $expected = "test\n".'<?php echo $__env->make(name(foo), \QuantaQuirk\Support\Arr::except(get_defined_vars(), [\'__data\', \'__path\']))->render(); ?>';
+        $expected = "test\n".'<?php echo $__env->make(name(foo), \QuantaForge\Support\Arr::except(get_defined_vars(), [\'__data\', \'__path\']))->render(); ?>';
         $this->assertEquals($expected, $this->compiler->compileString($string));
     }
 
@@ -33,11 +33,11 @@ test';
     {
         $string = '@extendsFirst([\'foo\', \'milwad\'])
 test';
-        $expected = "test\n".'<?php echo $__env->first([\'foo\', \'milwad\'], \QuantaQuirk\Support\Arr::except(get_defined_vars(), [\'__data\', \'__path\']))->render(); ?>';
+        $expected = "test\n".'<?php echo $__env->first([\'foo\', \'milwad\'], \QuantaForge\Support\Arr::except(get_defined_vars(), [\'__data\', \'__path\']))->render(); ?>';
         $this->assertEquals($expected, $this->compiler->compileString($string));
 
         $string = '@extendsFirst([name(foo), name(milwad)])'."\n".'test';
-        $expected = "test\n".'<?php echo $__env->first([name(foo), name(milwad)], \QuantaQuirk\Support\Arr::except(get_defined_vars(), [\'__data\', \'__path\']))->render(); ?>';
+        $expected = "test\n".'<?php echo $__env->first([name(foo), name(milwad)], \QuantaForge\Support\Arr::except(get_defined_vars(), [\'__data\', \'__path\']))->render(); ?>';
         $this->assertEquals($expected, $this->compiler->compileString($string));
     }
 }

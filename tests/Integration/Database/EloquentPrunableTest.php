@@ -1,14 +1,14 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Database;
+namespace QuantaForge\Tests\Integration\Database;
 
-use QuantaQuirk\Database\Eloquent\Model;
-use QuantaQuirk\Database\Eloquent\Prunable;
-use QuantaQuirk\Database\Eloquent\SoftDeletes;
-use QuantaQuirk\Database\Events\ModelsPruned;
-use QuantaQuirk\Database\Schema\Blueprint;
-use QuantaQuirk\Support\Facades\Event;
-use QuantaQuirk\Support\Facades\Schema;
+use QuantaForge\Database\Eloquent\Model;
+use QuantaForge\Database\Eloquent\Prunable;
+use QuantaForge\Database\Eloquent\SoftDeletes;
+use QuantaForge\Database\Events\ModelsPruned;
+use QuantaForge\Database\Schema\Blueprint;
+use QuantaForge\Support\Facades\Event;
+use QuantaForge\Support\Facades\Schema;
 use LogicException;
 
 class EloquentPrunableTest extends DatabaseTestCase

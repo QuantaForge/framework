@@ -1,14 +1,14 @@
 <?php
 
-namespace QuantaQuirk\Tests\Support;
+namespace QuantaForge\Tests\Support;
 
 use Carbon\CarbonImmutable;
 use Carbon\Factory;
 use DateTime;
-use QuantaQuirk\Support\Carbon;
-use QuantaQuirk\Support\DateFactory;
-use QuantaQuirk\Support\Facades\Date;
-use QuantaQuirk\Tests\Support\Fixtures\CustomDateClass;
+use QuantaForge\Support\Carbon;
+use QuantaForge\Support\DateFactory;
+use QuantaForge\Support\Facades\Date;
+use QuantaForge\Tests\Support\Fixtures\CustomDateClass;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 

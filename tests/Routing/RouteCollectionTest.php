@@ -1,11 +1,11 @@
 <?php
 
-namespace QuantaQuirk\Tests\Routing;
+namespace QuantaForge\Tests\Routing;
 
 use ArrayIterator;
-use QuantaQuirk\Http\Request;
-use QuantaQuirk\Routing\Route;
-use QuantaQuirk\Routing\RouteCollection;
+use QuantaForge\Http\Request;
+use QuantaForge\Routing\Route;
+use QuantaForge\Routing\RouteCollection;
 use LogicException;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
@@ -14,7 +14,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 class RouteCollectionTest extends TestCase
 {
     /**
-     * @var \QuantaQuirk\Routing\RouteCollection
+     * @var \QuantaForge\Routing\RouteCollection
      */
     protected $routeCollection;
 
@@ -129,7 +129,7 @@ class RouteCollectionTest extends TestCase
         // The name of the route is not yet set. It will be while adding if to the RouteCollection.
         $this->assertNull($routeIndex->getName());
 
-        // The route name is set by calling \QuantaQuirk\Routing\Route::name()
+        // The route name is set by calling \QuantaForge\Routing\Route::name()
         $this->routeCollection->add($routeIndex)->name('route_name');
 
         // No route is found. This is normal, as no refresh as been done.

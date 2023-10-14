@@ -1,10 +1,10 @@
 <?php
 
-namespace QuantaQuirk\Tests\Database;
+namespace QuantaForge\Tests\Database;
 
-use QuantaQuirk\Database\Eloquent\Model;
-use QuantaQuirk\Database\Eloquent\SoftDeletes;
-use QuantaQuirk\Support\Carbon;
+use QuantaForge\Database\Eloquent\Model;
+use QuantaForge\Database\Eloquent\SoftDeletes;
+use QuantaForge\Support\Carbon;
 use PHPUnit\Framework\TestCase;
 
 class DatabaseSoftDeletingTest extends TestCase

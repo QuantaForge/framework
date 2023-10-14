@@ -1,9 +1,9 @@
 <?php
 
-namespace QuantaQuirk\Tests\Testing;
+namespace QuantaForge\Tests\Testing;
 
-use QuantaQuirk\Container\Container;
-use QuantaQuirk\Testing\ParallelTesting;
+use QuantaForge\Container\Container;
+use QuantaForge\Testing\ParallelTesting;
 use PHPUnit\Framework\TestCase;
 
 class ParallelTestingTest extends TestCase
@@ -14,7 +14,7 @@ class ParallelTestingTest extends TestCase
 
         Container::setInstance(new Container);
 
-        $_SERVER['QUANTAQUIRK_PARALLEL_TESTING'] = 1;
+        $_SERVER['QUANTAFORGE_PARALLEL_TESTING'] = 1;
     }
 
     /**
@@ -103,6 +103,6 @@ class ParallelTestingTest extends TestCase
 
         Container::setInstance(null);
 
-        unset($_SERVER['QUANTAQUIRK_PARALLEL_TESTING']);
+        unset($_SERVER['QUANTAFORGE_PARALLEL_TESTING']);
     }
 }

@@ -1,9 +1,9 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\View;
+namespace QuantaForge\Tests\Integration\View;
 
-use QuantaQuirk\Support\Facades\Blade;
-use QuantaQuirk\Support\Facades\View;
+use QuantaForge\Support\Facades\Blade;
+use QuantaForge\Support\Facades\View;
 use InvalidArgumentException;
 use Orchestra\Testbench\TestCase;
 

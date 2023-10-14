@@ -1,9 +1,9 @@
 <?php
 
-namespace QuantaQuirk\Tests\Foundation\Testing\Concerns;
+namespace QuantaForge\Tests\Foundation\Testing\Concerns;
 
-use QuantaQuirk\Foundation\Testing\Concerns\InteractsWithViews;
-use QuantaQuirk\View\Component;
+use QuantaForge\Foundation\Testing\Concerns\InteractsWithViews;
+use QuantaForge\View\Component;
 use Orchestra\Testbench\TestCase;
 
 class InteractsWithViewsTest extends TestCase

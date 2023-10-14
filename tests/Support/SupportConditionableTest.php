@@ -1,8 +1,8 @@
 <?php
 
-namespace QuantaQuirk\Tests\Support;
+namespace QuantaForge\Tests\Support;
 
-use QuantaQuirk\Support\Traits\Conditionable;
+use QuantaForge\Support\Traits\Conditionable;
 use PHPUnit\Framework\TestCase;
 
 class SupportConditionableTest extends TestCase

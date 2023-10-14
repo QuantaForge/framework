@@ -1,6 +1,6 @@
 <?php
 
-namespace QuantaQuirk\Tests\View\Blade;
+namespace QuantaForge\Tests\View\Blade;
 
 class BladeElseIfStatementsTest extends AbstractBladeTestCase
 {

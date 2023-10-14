@@ -1,26 +1,26 @@
 <?php
 
-namespace QuantaQuirk\Tests\Testing;
+namespace QuantaForge\Tests\Testing;
 
-use QuantaQuirk\Container\Container;
-use QuantaQuirk\Contracts\View\View;
-use QuantaQuirk\Cookie\CookieValuePrefix;
-use QuantaQuirk\Database\Eloquent\Collection as EloquentCollection;
-use QuantaQuirk\Database\Eloquent\Model;
-use QuantaQuirk\Encryption\Encrypter;
-use QuantaQuirk\Filesystem\Filesystem;
-use QuantaQuirk\Http\RedirectResponse;
-use QuantaQuirk\Http\Request;
-use QuantaQuirk\Http\Response;
-use QuantaQuirk\Routing\RouteCollection;
-use QuantaQuirk\Routing\UrlGenerator;
-use QuantaQuirk\Session\ArraySessionHandler;
-use QuantaQuirk\Session\Store;
-use QuantaQuirk\Support\Collection;
-use QuantaQuirk\Support\MessageBag;
-use QuantaQuirk\Support\ViewErrorBag;
-use QuantaQuirk\Testing\Fluent\AssertableJson;
-use QuantaQuirk\Testing\TestResponse;
+use QuantaForge\Container\Container;
+use QuantaForge\Contracts\View\View;
+use QuantaForge\Cookie\CookieValuePrefix;
+use QuantaForge\Database\Eloquent\Collection as EloquentCollection;
+use QuantaForge\Database\Eloquent\Model;
+use QuantaForge\Encryption\Encrypter;
+use QuantaForge\Filesystem\Filesystem;
+use QuantaForge\Http\RedirectResponse;
+use QuantaForge\Http\Request;
+use QuantaForge\Http\Response;
+use QuantaForge\Routing\RouteCollection;
+use QuantaForge\Routing\UrlGenerator;
+use QuantaForge\Session\ArraySessionHandler;
+use QuantaForge\Session\Store;
+use QuantaForge\Support\Collection;
+use QuantaForge\Support\MessageBag;
+use QuantaForge\Support\ViewErrorBag;
+use QuantaForge\Testing\Fluent\AssertableJson;
+use QuantaForge\Testing\TestResponse;
 use JsonSerializable;
 use Mockery as m;
 use PHPUnit\Framework\AssertionFailedError;
@@ -310,11 +310,11 @@ class TestResponseTest extends TestCase
     public function testAssertSeeEscaped()
     {
         $response = $this->makeMockResponse([
-            'render' => 'quantaquirk &amp; php &amp; friends',
+            'render' => 'quantaforge &amp; php &amp; friends',
         ]);
 
-        $response->assertSee('quantaquirk & php');
-        $response->assertSee(['php & friends', 'quantaquirk & php']);
+        $response->assertSee('quantaforge & php');
+        $response->assertSee(['php & friends', 'quantaforge & php']);
     }
 
     public function testAssertSeeEscapedCanFail()
@@ -322,7 +322,7 @@ class TestResponseTest extends TestCase
         $this->expectException(AssertionFailedError::class);
 
         $response = $this->makeMockResponse([
-            'render' => 'quantaquirk &amp; php &amp; friends',
+            'render' => 'quantaforge &amp; php &amp; friends',
         ]);
 
         $response->assertSee('foo & bar');
@@ -387,11 +387,11 @@ class TestResponseTest extends TestCase
     public function testAssertSeeTextEscaped()
     {
         $response = $this->makeMockResponse([
-            'render' => 'quantaquirk &amp; php &amp; friends',
+            'render' => 'quantaforge &amp; php &amp; friends',
         ]);
 
-        $response->assertSeeText('quantaquirk & php');
-        $response->assertSeeText(['php & friends', 'quantaquirk & php']);
+        $response->assertSeeText('quantaforge & php');
+        $response->assertSeeText(['php & friends', 'quantaforge & php']);
     }
 
     public function testAssertSeeTextEscapedCanFail()
@@ -399,7 +399,7 @@ class TestResponseTest extends TestCase
         $this->expectException(AssertionFailedError::class);
 
         $response = $this->makeMockResponse([
-            'render' => 'quantaquirk &amp; php &amp; friends',
+            'render' => 'quantaforge &amp; php &amp; friends',
         ]);
 
         $response->assertSeeText('foo & bar');
@@ -420,10 +420,10 @@ class TestResponseTest extends TestCase
     public function testAssertSeeTextInOrderEscaped()
     {
         $response = $this->makeMockResponse([
-            'render' => '<strong>quantaquirk &amp; php</strong> <i>phpstorm &gt; sublime</i>',
+            'render' => '<strong>quantaforge &amp; php</strong> <i>phpstorm &gt; sublime</i>',
         ]);
 
-        $response->assertSeeTextInOrder(['quantaquirk & php', 'phpstorm > sublime']);
+        $response->assertSeeTextInOrder(['quantaforge & php', 'phpstorm > sublime']);
     }
 
     public function testAssertSeeTextInOrderCanFail()
@@ -454,7 +454,7 @@ class TestResponseTest extends TestCase
             'render' => '<ul><li>foo</li><li>bar</li><li>baz</li><li>foo</li></ul>',
         ]);
 
-        $response->assertDontSee('quantaquirk');
+        $response->assertDontSee('quantaforge');
         $response->assertDontSee(['php', 'friends']);
     }
 
@@ -473,7 +473,7 @@ class TestResponseTest extends TestCase
     public function testAssertDontSeeEscaped()
     {
         $response = $this->makeMockResponse([
-            'render' => 'quantaquirk &amp; php &amp; friends',
+            'render' => 'quantaforge &amp; php &amp; friends',
         ]);
 
         $response->assertDontSee('foo & bar');
@@ -485,11 +485,11 @@ class TestResponseTest extends TestCase
         $this->expectException(AssertionFailedError::class);
 
         $response = $this->makeMockResponse([
-            'render' => 'quantaquirk &amp; php &amp; friends',
+            'render' => 'quantaforge &amp; php &amp; friends',
         ]);
 
-        $response->assertDontSee('quantaquirk & php');
-        $response->assertDontSee(['php & friends', 'quantaquirk & php']);
+        $response->assertDontSee('quantaforge & php');
+        $response->assertDontSee(['php & friends', 'quantaforge & php']);
     }
 
     public function testAssertDontSeeText()
@@ -498,8 +498,8 @@ class TestResponseTest extends TestCase
             'render' => 'foo<strong>bar</strong>baz<strong>qux</strong>',
         ]);
 
-        $response->assertDontSeeText('quantaquirkphp');
-        $response->assertDontSeeText(['phpfriends', 'quantaquirkphp']);
+        $response->assertDontSeeText('quantaforgephp');
+        $response->assertDontSeeText(['phpfriends', 'quantaforgephp']);
     }
 
     public function testAssertDontSeeTextCanFail()
@@ -517,7 +517,7 @@ class TestResponseTest extends TestCase
     public function testAssertDontSeeTextEscaped()
     {
         $response = $this->makeMockResponse([
-            'render' => 'quantaquirk &amp; php &amp; friends',
+            'render' => 'quantaforge &amp; php &amp; friends',
         ]);
 
         $response->assertDontSeeText('foo & bar');
@@ -529,11 +529,11 @@ class TestResponseTest extends TestCase
         $this->expectException(AssertionFailedError::class);
 
         $response = $this->makeMockResponse([
-            'render' => 'quantaquirk &amp; php &amp; friends',
+            'render' => 'quantaforge &amp; php &amp; friends',
         ]);
 
-        $response->assertDontSeeText('quantaquirk & php');
-        $response->assertDontSeeText(['php & friends', 'quantaquirk & php']);
+        $response->assertDontSeeText('quantaforge & php');
+        $response->assertDontSeeText(['php & friends', 'quantaforge & php']);
     }
 
     public function testAssertOk()

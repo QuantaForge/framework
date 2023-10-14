@@ -1,6 +1,6 @@
 <?php
 
-namespace QuantaQuirk\Tests\Mail;
+namespace QuantaForge\Tests\Mail;
 
 use InvalidArgumentException;
 use Orchestra\Testbench\TestCase;

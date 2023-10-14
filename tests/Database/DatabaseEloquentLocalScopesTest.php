@@ -1,9 +1,9 @@
 <?php
 
-namespace QuantaQuirk\Tests\Database;
+namespace QuantaForge\Tests\Database;
 
-use QuantaQuirk\Database\Capsule\Manager as DB;
-use QuantaQuirk\Database\Eloquent\Model;
+use QuantaForge\Database\Capsule\Manager as DB;
+use QuantaForge\Database\Eloquent\Model;
 use PHPUnit\Framework\TestCase;
 
 class DatabaseEloquentLocalScopesTest extends TestCase

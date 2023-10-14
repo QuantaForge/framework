@@ -1,16 +1,16 @@
 <?php
 
-namespace QuantaQuirk\Tests\Auth;
+namespace QuantaForge\Tests\Auth;
 
-use QuantaQuirk\Auth\AuthenticationException;
-use QuantaQuirk\Auth\AuthManager;
-use QuantaQuirk\Auth\EloquentUserProvider;
-use QuantaQuirk\Auth\Middleware\Authenticate;
-use QuantaQuirk\Auth\Middleware\AuthenticateWithBasicAuth;
-use QuantaQuirk\Auth\RequestGuard;
-use QuantaQuirk\Config\Repository as Config;
-use QuantaQuirk\Container\Container;
-use QuantaQuirk\Http\Request;
+use QuantaForge\Auth\AuthenticationException;
+use QuantaForge\Auth\AuthManager;
+use QuantaForge\Auth\EloquentUserProvider;
+use QuantaForge\Auth\Middleware\Authenticate;
+use QuantaForge\Auth\Middleware\AuthenticateWithBasicAuth;
+use QuantaForge\Auth\RequestGuard;
+use QuantaForge\Config\Repository as Config;
+use QuantaForge\Container\Container;
+use QuantaForge\Http\Request;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 use stdClass;
@@ -40,25 +40,25 @@ class AuthenticateMiddlewareTest extends TestCase
     public function testItCanGenerateDefinitionViaStaticMethod()
     {
         $signature = (string) Authenticate::using('foo');
-        $this->assertSame('QuantaQuirk\Auth\Middleware\Authenticate:foo', $signature);
+        $this->assertSame('QuantaForge\Auth\Middleware\Authenticate:foo', $signature);
 
         $signature = (string) Authenticate::using('foo', 'bar');
-        $this->assertSame('QuantaQuirk\Auth\Middleware\Authenticate:foo,bar', $signature);
+        $this->assertSame('QuantaForge\Auth\Middleware\Authenticate:foo,bar', $signature);
 
         $signature = (string) Authenticate::using('foo', 'bar', 'baz');
-        $this->assertSame('QuantaQuirk\Auth\Middleware\Authenticate:foo,bar,baz', $signature);
+        $this->assertSame('QuantaForge\Auth\Middleware\Authenticate:foo,bar,baz', $signature);
     }
 
     public function testItCanGenerateDefinitionViaStaticMethodForBasic()
     {
         $signature = (string) AuthenticateWithBasicAuth::using('guard');
-        $this->assertSame('QuantaQuirk\Auth\Middleware\AuthenticateWithBasicAuth:guard', $signature);
+        $this->assertSame('QuantaForge\Auth\Middleware\AuthenticateWithBasicAuth:guard', $signature);
 
         $signature = (string) AuthenticateWithBasicAuth::using('guard', 'field');
-        $this->assertSame('QuantaQuirk\Auth\Middleware\AuthenticateWithBasicAuth:guard,field', $signature);
+        $this->assertSame('QuantaForge\Auth\Middleware\AuthenticateWithBasicAuth:guard,field', $signature);
 
         $signature = (string) AuthenticateWithBasicAuth::using(field: 'field');
-        $this->assertSame('QuantaQuirk\Auth\Middleware\AuthenticateWithBasicAuth:,field', $signature);
+        $this->assertSame('QuantaForge\Auth\Middleware\AuthenticateWithBasicAuth:,field', $signature);
     }
 
     public function testDefaultUnauthenticatedThrows()
@@ -151,7 +151,7 @@ class AuthenticateMiddlewareTest extends TestCase
     /**
      * Create a new config repository instance.
      *
-     * @return \QuantaQuirk\Config\Repository
+     * @return \QuantaForge\Config\Repository
      */
     protected function createConfig()
     {
@@ -171,7 +171,7 @@ class AuthenticateMiddlewareTest extends TestCase
      *
      * @param  string  $name
      * @param  bool  $authenticated
-     * @return \QuantaQuirk\Auth\RequestGuard
+     * @return \QuantaForge\Auth\RequestGuard
      */
     protected function registerAuthDriver($name, $authenticated)
     {
@@ -188,7 +188,7 @@ class AuthenticateMiddlewareTest extends TestCase
      * Create a new auth driver.
      *
      * @param  bool  $authenticated
-     * @return \QuantaQuirk\Auth\RequestGuard
+     * @return \QuantaForge\Auth\RequestGuard
      */
     protected function createAuthDriver($authenticated)
     {
@@ -203,7 +203,7 @@ class AuthenticateMiddlewareTest extends TestCase
      * @param  string  ...$guards
      * @return void
      *
-     * @throws \QuantaQuirk\Auth\AuthenticationException
+     * @throws \QuantaForge\Auth\AuthenticationException
      */
     protected function authenticate(...$guards)
     {

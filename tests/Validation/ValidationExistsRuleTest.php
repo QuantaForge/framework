@@ -1,14 +1,14 @@
 <?php
 
-namespace QuantaQuirk\Tests\Validation;
+namespace QuantaForge\Tests\Validation;
 
-use QuantaQuirk\Database\Capsule\Manager as DB;
-use QuantaQuirk\Database\Eloquent\Model as Eloquent;
-use QuantaQuirk\Translation\ArrayLoader;
-use QuantaQuirk\Translation\Translator;
-use QuantaQuirk\Validation\DatabasePresenceVerifier;
-use QuantaQuirk\Validation\Rules\Exists;
-use QuantaQuirk\Validation\Validator;
+use QuantaForge\Database\Capsule\Manager as DB;
+use QuantaForge\Database\Eloquent\Model as Eloquent;
+use QuantaForge\Translation\ArrayLoader;
+use QuantaForge\Translation\Translator;
+use QuantaForge\Validation\DatabasePresenceVerifier;
+use QuantaForge\Validation\Rules\Exists;
+use QuantaForge\Validation\Validator;
 use PHPUnit\Framework\TestCase;
 
 class ValidationExistsRuleTest extends TestCase
@@ -59,7 +59,7 @@ class ValidationExistsRuleTest extends TestCase
         $rule->where('foo', 'bar');
         $this->assertSame('exists:mysql.users,column,foo,"bar"', (string) $rule);
 
-        $rule = new Exists('QuantaQuirk\Tests\Validation\User', 'column');
+        $rule = new Exists('QuantaForge\Tests\Validation\User', 'column');
         $rule->where('foo', 'bar');
         $this->assertSame('exists:users,column,foo,"bar"', (string) $rule);
 
@@ -82,7 +82,7 @@ class ValidationExistsRuleTest extends TestCase
         User::create(['id' => '3', 'type' => 'baz']);
         User::create(['id' => '4', 'type' => 'other']);
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, [], ['id' => $rule]);
         $v->setPresenceVerifier(new DatabasePresenceVerifier(Eloquent::getConnectionResolver()));
 
@@ -112,7 +112,7 @@ class ValidationExistsRuleTest extends TestCase
         User::create(['id' => '3', 'type' => 'baz']);
         User::create(['id' => '4', 'type' => 'other']);
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, [], ['id' => $rule]);
         $v->setPresenceVerifier(new DatabasePresenceVerifier(Eloquent::getConnectionResolver()));
 
@@ -147,7 +147,7 @@ class ValidationExistsRuleTest extends TestCase
         User::create(['id' => '3', 'type' => 'baz']);
         User::create(['id' => '4', 'type' => 'other']);
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, [], ['id' => $rule]);
         $v->setPresenceVerifier(new DatabasePresenceVerifier(Eloquent::getConnectionResolver()));
 
@@ -178,7 +178,7 @@ class ValidationExistsRuleTest extends TestCase
         User::create(['id' => '4', 'type' => 'other']);
         User::create(['id' => '5', 'type' => 'baz']);
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, [], ['id' => $rule]);
         $v->setPresenceVerifier(new DatabasePresenceVerifier(Eloquent::getConnectionResolver()));
 
@@ -212,7 +212,7 @@ class ValidationExistsRuleTest extends TestCase
         User::create(['id' => '4', 'type' => 'other']);
         User::create(['id' => '5', 'type' => 'baz']);
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $v = new Validator($trans, [], ['id' => $rule]);
         $v->setPresenceVerifier(new DatabasePresenceVerifier(Eloquent::getConnectionResolver()));
 
@@ -256,7 +256,7 @@ class ValidationExistsRuleTest extends TestCase
     /**
      * Get a schema builder instance.
      *
-     * @return \QuantaQuirk\Database\Schema\Builder
+     * @return \QuantaForge\Database\Schema\Builder
      */
     protected function schema($connection = 'default')
     {
@@ -266,7 +266,7 @@ class ValidationExistsRuleTest extends TestCase
     /**
      * Get a database connection instance.
      *
-     * @return \QuantaQuirk\Database\Connection
+     * @return \QuantaForge\Database\Connection
      */
     protected function connection($connection = 'default')
     {
@@ -276,7 +276,7 @@ class ValidationExistsRuleTest extends TestCase
     /**
      * Get connection resolver.
      *
-     * @return \QuantaQuirk\Database\ConnectionResolverInterface
+     * @return \QuantaForge\Database\ConnectionResolverInterface
      */
     protected function getConnectionResolver()
     {
@@ -293,7 +293,7 @@ class ValidationExistsRuleTest extends TestCase
         $this->schema('default')->drop('users');
     }
 
-    public function getQuantaQuirkArrayTranslator()
+    public function getQuantaForgeArrayTranslator()
     {
         return new Translator(
             new ArrayLoader, 'en'

@@ -1,10 +1,10 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Cache;
+namespace QuantaForge\Tests\Integration\Cache;
 
 use Exception;
-use QuantaQuirk\Foundation\Testing\Concerns\InteractsWithRedis;
-use QuantaQuirk\Support\Facades\Cache;
+use QuantaForge\Foundation\Testing\Concerns\InteractsWithRedis;
+use QuantaForge\Support\Facades\Cache;
 use Orchestra\Testbench\TestCase;
 
 class RedisCacheLockTest extends TestCase

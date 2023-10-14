@@ -1,13 +1,13 @@
 <?php
 
-namespace QuantaQuirk\Tests\Database;
+namespace QuantaForge\Tests\Database;
 
-use QuantaQuirk\Database\Capsule\Manager as DB;
-use QuantaQuirk\Database\Eloquent\Builder;
-use QuantaQuirk\Database\Eloquent\Collection;
-use QuantaQuirk\Database\Eloquent\Model;
-use QuantaQuirk\Database\Eloquent\Model as Eloquent;
-use QuantaQuirk\Support\Collection as BaseCollection;
+use QuantaForge\Database\Capsule\Manager as DB;
+use QuantaForge\Database\Eloquent\Builder;
+use QuantaForge\Database\Eloquent\Collection;
+use QuantaForge\Database\Eloquent\Model;
+use QuantaForge\Database\Eloquent\Model as Eloquent;
+use QuantaForge\Support\Collection as BaseCollection;
 use LogicException;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
@@ -650,7 +650,7 @@ class DatabaseEloquentCollectionTest extends TestCase
     /**
      * Get a database connection instance.
      *
-     * @return \QuantaQuirk\Database\ConnectionInterface
+     * @return \QuantaForge\Database\ConnectionInterface
      */
     protected function connection()
     {
@@ -660,7 +660,7 @@ class DatabaseEloquentCollectionTest extends TestCase
     /**
      * Get a schema builder instance.
      *
-     * @return \QuantaQuirk\Database\Schema\Builder
+     * @return \QuantaForge\Database\Schema\Builder
      */
     protected function schema()
     {

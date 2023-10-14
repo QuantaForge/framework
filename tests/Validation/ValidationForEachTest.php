@@ -1,11 +1,11 @@
 <?php
 
-namespace QuantaQuirk\Tests\Validation;
+namespace QuantaForge\Tests\Validation;
 
-use QuantaQuirk\Translation\ArrayLoader;
-use QuantaQuirk\Translation\Translator;
-use QuantaQuirk\Validation\Rule;
-use QuantaQuirk\Validation\Validator;
+use QuantaForge\Translation\ArrayLoader;
+use QuantaForge\Translation\Translator;
+use QuantaForge\Validation\Rule;
+use QuantaForge\Validation\Validator;
 use PHPUnit\Framework\TestCase;
 
 class ValidationForEachTest extends TestCase
@@ -26,7 +26,7 @@ class ValidationForEachTest extends TestCase
             }),
         ];
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
 
         $v = new Validator($trans, $data, $rules);
 
@@ -58,7 +58,7 @@ class ValidationForEachTest extends TestCase
             }),
         ];
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
 
         $v = new Validator($trans, $data, $rules);
 
@@ -105,7 +105,7 @@ class ValidationForEachTest extends TestCase
             }),
         ];
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
 
         $v = new Validator($trans, $data, $rules);
 
@@ -139,7 +139,7 @@ class ValidationForEachTest extends TestCase
             }),
         ];
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
 
         $v = new Validator($trans, $data, $rules);
 
@@ -186,7 +186,7 @@ class ValidationForEachTest extends TestCase
             }),
         ];
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
 
         $v = new Validator($trans, $data, $rules);
 
@@ -214,7 +214,7 @@ class ValidationForEachTest extends TestCase
             }),
         ];
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
 
         $v = new Validator($trans, $data, $rules);
 
@@ -242,7 +242,7 @@ class ValidationForEachTest extends TestCase
             }),
         ];
 
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
 
         $v = new Validator($trans, $data, $rules);
 
@@ -259,7 +259,7 @@ class ValidationForEachTest extends TestCase
     public function testConditionalRulesCanBeAddedToForEachWithAssociativeArray()
     {
         $v = new Validator(
-            $this->getQuantaQuirkArrayTranslator(),
+            $this->getQuantaForgeArrayTranslator(),
             [
                 'foo' => [
                     ['bar' => true],
@@ -281,7 +281,7 @@ class ValidationForEachTest extends TestCase
     public function testConditionalRulesCanBeAddedToForEachWithList()
     {
         $v = new Validator(
-            $this->getQuantaQuirkArrayTranslator(),
+            $this->getQuantaForgeArrayTranslator(),
             [
                 'foo' => [
                     ['bar' => true],
@@ -302,7 +302,7 @@ class ValidationForEachTest extends TestCase
     public function testConditionalRulesCanBeAddedToForEachWithObject()
     {
         $v = new Validator(
-            $this->getQuantaQuirkArrayTranslator(),
+            $this->getQuantaForgeArrayTranslator(),
             [
                 'foo' => [
                     ['bar' => true],
@@ -319,7 +319,7 @@ class ValidationForEachTest extends TestCase
         ], $v->getMessageBag()->toArray());
     }
 
-    public function getQuantaQuirkArrayTranslator()
+    public function getQuantaForgeArrayTranslator()
     {
         return new Translator(
             new ArrayLoader, 'en'

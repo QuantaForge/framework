@@ -1,10 +1,10 @@
 <?php
 
-namespace QuantaQuirk\Tests\Database;
+namespace QuantaForge\Tests\Database;
 
-use QuantaQuirk\Database\Schema\SqliteSchemaState;
-use QuantaQuirk\Database\SQLiteConnection;
-use QuantaQuirk\Filesystem\Filesystem;
+use QuantaForge\Database\Schema\SqliteSchemaState;
+use QuantaForge\Database\SQLiteConnection;
+use QuantaForge\Filesystem\Filesystem;
 use Mockery as m;
 use PDO;
 use PHPUnit\Framework\TestCase;
@@ -33,11 +33,11 @@ class DatabaseSqliteSchemaStateTest extends TestCase
         $schemaState = new SqliteSchemaState($connection, null, $processFactory);
         $schemaState->load('database/schema/sqlite-schema.dump');
 
-        $processFactory->shouldHaveBeenCalled()->with('sqlite3 "${:QUANTAQUIRK_LOAD_DATABASE}" < "${:QUANTAQUIRK_LOAD_PATH}"');
+        $processFactory->shouldHaveBeenCalled()->with('sqlite3 "${:QUANTAFORGE_LOAD_DATABASE}" < "${:QUANTAFORGE_LOAD_PATH}"');
 
         $process->shouldHaveReceived('mustRun')->with(null, [
-            'QUANTAQUIRK_LOAD_DATABASE' => 'database/database.sqlite',
-            'QUANTAQUIRK_LOAD_PATH' => 'database/schema/sqlite-schema.dump',
+            'QUANTAFORGE_LOAD_DATABASE' => 'database/database.sqlite',
+            'QUANTAFORGE_LOAD_PATH' => 'database/schema/sqlite-schema.dump',
         ]);
     }
 

@@ -1,12 +1,12 @@
 <?php
 
-namespace QuantaQuirk\Tests\Support;
+namespace QuantaForge\Tests\Support;
 
 use Exception;
-use QuantaQuirk\Support\Carbon;
-use QuantaQuirk\Support\ItemNotFoundException;
-use QuantaQuirk\Support\LazyCollection;
-use QuantaQuirk\Support\MultipleItemsFoundException;
+use QuantaForge\Support\Carbon;
+use QuantaForge\Support\ItemNotFoundException;
+use QuantaForge\Support\LazyCollection;
+use QuantaForge\Support\MultipleItemsFoundException;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 use stdClass;

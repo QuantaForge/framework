@@ -1,10 +1,10 @@
 <?php
 
-namespace QuantaQuirk\Tests\Bus;
+namespace QuantaForge\Tests\Bus;
 
-use QuantaQuirk\Bus\Batchable;
-use QuantaQuirk\Bus\BatchRepository;
-use QuantaQuirk\Container\Container;
+use QuantaForge\Bus\Batchable;
+use QuantaForge\Bus\BatchRepository;
+use QuantaForge\Container\Container;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 

@@ -1,19 +1,19 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Database;
+namespace QuantaForge\Tests\Integration\Database;
 
-use QuantaQuirk\Bus\Queueable;
-use QuantaQuirk\Contracts\Queue\ShouldQueue;
-use QuantaQuirk\Foundation\Auth\User;
-use QuantaQuirk\Foundation\Bus\Dispatchable;
-use QuantaQuirk\Queue\InteractsWithQueue;
-use QuantaQuirk\Support\Facades\DB;
-use Orchestra\Testbench\Concerns\WithQuantaQuirkMigrations;
+use QuantaForge\Bus\Queueable;
+use QuantaForge\Contracts\Queue\ShouldQueue;
+use QuantaForge\Foundation\Auth\User;
+use QuantaForge\Foundation\Bus\Dispatchable;
+use QuantaForge\Queue\InteractsWithQueue;
+use QuantaForge\Support\Facades\DB;
+use Orchestra\Testbench\Concerns\WithQuantaForgeMigrations;
 use Orchestra\Testbench\Factories\UserFactory;
 
 trait EloquentTransactionWithAfterCommitTests
 {
-    use WithQuantaQuirkMigrations;
+    use WithQuantaForgeMigrations;
 
     protected function setUpEloquentTransactionWithAfterCommitTests(): void
     {

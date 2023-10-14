@@ -1,8 +1,8 @@
 <?php
 
-namespace QuantaQuirk\Tests\Database;
+namespace QuantaForge\Tests\Database;
 
-use QuantaQuirk\Database\Query\Processors\SQLiteProcessor;
+use QuantaForge\Database\Query\Processors\SQLiteProcessor;
 use PHPUnit\Framework\TestCase;
 
 class DatabaseSQLiteProcessorTest extends TestCase

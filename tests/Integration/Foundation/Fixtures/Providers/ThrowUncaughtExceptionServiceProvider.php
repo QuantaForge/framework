@@ -1,11 +1,11 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Foundation\Fixtures\Providers;
+namespace QuantaForge\Tests\Integration\Foundation\Fixtures\Providers;
 
-use QuantaQuirk\Console\Application;
-use QuantaQuirk\Support\ServiceProvider;
-use QuantaQuirk\Tests\Integration\Foundation\Fixtures\Console\ThrowExceptionCommand;
-use QuantaQuirk\Tests\Integration\Foundation\Fixtures\Logs\ThrowExceptionLogHandler;
+use QuantaForge\Console\Application;
+use QuantaForge\Support\ServiceProvider;
+use QuantaForge\Tests\Integration\Foundation\Fixtures\Console\ThrowExceptionCommand;
+use QuantaForge\Tests\Integration\Foundation\Fixtures\Logs\ThrowExceptionLogHandler;
 
 class ThrowUncaughtExceptionServiceProvider extends ServiceProvider
 {

@@ -1,11 +1,11 @@
 <?php
 
-namespace QuantaQuirk\Tests\Database;
+namespace QuantaForge\Tests\Database;
 
-use QuantaQuirk\Database\Connection;
-use QuantaQuirk\Database\Query\Processors\PostgresProcessor;
-use QuantaQuirk\Database\Schema\Grammars\PostgresGrammar;
-use QuantaQuirk\Database\Schema\PostgresBuilder;
+use QuantaForge\Database\Connection;
+use QuantaForge\Database\Query\Processors\PostgresProcessor;
+use QuantaForge\Database\Schema\Grammars\PostgresGrammar;
+use QuantaForge\Database\Schema\PostgresBuilder;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 
@@ -54,9 +54,9 @@ class DatabasePostgresBuilderTest extends TestCase
         $grammar = m::mock(PostgresGrammar::class);
         $connection->shouldReceive('getSchemaGrammar')->once()->andReturn($grammar);
         $grammar->shouldReceive('compileTableExists')->andReturn("select * from information_schema.tables where table_catalog = ? and table_schema = ? and table_name = ? and table_type = 'BASE TABLE'");
-        $connection->shouldReceive('selectFromWriteConnection')->with("select * from information_schema.tables where table_catalog = ? and table_schema = ? and table_name = ? and table_type = 'BASE TABLE'", ['quantaquirk', 'public', 'foo'])->andReturn(['countable_result']);
+        $connection->shouldReceive('selectFromWriteConnection')->with("select * from information_schema.tables where table_catalog = ? and table_schema = ? and table_name = ? and table_type = 'BASE TABLE'", ['quantaforge', 'public', 'foo'])->andReturn(['countable_result']);
         $connection->shouldReceive('getTablePrefix');
-        $connection->shouldReceive('getConfig')->with('database')->andReturn('quantaquirk');
+        $connection->shouldReceive('getConfig')->with('database')->andReturn('quantaforge');
         $builder = $this->getBuilder($connection);
 
         $builder->hasTable('foo');
@@ -69,9 +69,9 @@ class DatabasePostgresBuilderTest extends TestCase
         $grammar = m::mock(PostgresGrammar::class);
         $connection->shouldReceive('getSchemaGrammar')->once()->andReturn($grammar);
         $grammar->shouldReceive('compileTableExists')->andReturn("select * from information_schema.tables where table_catalog = ? and table_schema = ? and table_name = ? and table_type = 'BASE TABLE'");
-        $connection->shouldReceive('selectFromWriteConnection')->with("select * from information_schema.tables where table_catalog = ? and table_schema = ? and table_name = ? and table_type = 'BASE TABLE'", ['quantaquirk', 'myapp', 'foo'])->andReturn(['countable_result']);
+        $connection->shouldReceive('selectFromWriteConnection')->with("select * from information_schema.tables where table_catalog = ? and table_schema = ? and table_name = ? and table_type = 'BASE TABLE'", ['quantaforge', 'myapp', 'foo'])->andReturn(['countable_result']);
         $connection->shouldReceive('getTablePrefix');
-        $connection->shouldReceive('getConfig')->with('database')->andReturn('quantaquirk');
+        $connection->shouldReceive('getConfig')->with('database')->andReturn('quantaforge');
         $builder = $this->getBuilder($connection);
 
         $builder->hasTable('foo');
@@ -85,9 +85,9 @@ class DatabasePostgresBuilderTest extends TestCase
         $grammar = m::mock(PostgresGrammar::class);
         $connection->shouldReceive('getSchemaGrammar')->once()->andReturn($grammar);
         $grammar->shouldReceive('compileTableExists')->andReturn("select * from information_schema.tables where table_catalog = ? and table_schema = ? and table_name = ? and table_type = 'BASE TABLE'");
-        $connection->shouldReceive('selectFromWriteConnection')->with("select * from information_schema.tables where table_catalog = ? and table_schema = ? and table_name = ? and table_type = 'BASE TABLE'", ['quantaquirk', 'myapp', 'foo'])->andReturn(['countable_result']);
+        $connection->shouldReceive('selectFromWriteConnection')->with("select * from information_schema.tables where table_catalog = ? and table_schema = ? and table_name = ? and table_type = 'BASE TABLE'", ['quantaforge', 'myapp', 'foo'])->andReturn(['countable_result']);
         $connection->shouldReceive('getTablePrefix');
-        $connection->shouldReceive('getConfig')->with('database')->andReturn('quantaquirk');
+        $connection->shouldReceive('getConfig')->with('database')->andReturn('quantaforge');
         $builder = $this->getBuilder($connection);
 
         $builder->hasTable('foo');
@@ -101,9 +101,9 @@ class DatabasePostgresBuilderTest extends TestCase
         $grammar = m::mock(PostgresGrammar::class);
         $connection->shouldReceive('getSchemaGrammar')->once()->andReturn($grammar);
         $grammar->shouldReceive('compileTableExists')->andReturn("select * from information_schema.tables where table_catalog = ? and table_schema = ? and table_name = ? and table_type = 'BASE TABLE'");
-        $connection->shouldReceive('selectFromWriteConnection')->with("select * from information_schema.tables where table_catalog = ? and table_schema = ? and table_name = ? and table_type = 'BASE TABLE'", ['quantaquirk', 'foouser', 'foo'])->andReturn(['countable_result']);
+        $connection->shouldReceive('selectFromWriteConnection')->with("select * from information_schema.tables where table_catalog = ? and table_schema = ? and table_name = ? and table_type = 'BASE TABLE'", ['quantaforge', 'foouser', 'foo'])->andReturn(['countable_result']);
         $connection->shouldReceive('getTablePrefix');
-        $connection->shouldReceive('getConfig')->with('database')->andReturn('quantaquirk');
+        $connection->shouldReceive('getConfig')->with('database')->andReturn('quantaforge');
         $builder = $this->getBuilder($connection);
 
         $builder->hasTable('foo');
@@ -116,9 +116,9 @@ class DatabasePostgresBuilderTest extends TestCase
         $grammar = m::mock(PostgresGrammar::class);
         $connection->shouldReceive('getSchemaGrammar')->once()->andReturn($grammar);
         $grammar->shouldReceive('compileTableExists')->andReturn("select * from information_schema.tables where table_catalog = ? and table_schema = ? and table_name = ? and table_type = 'BASE TABLE'");
-        $connection->shouldReceive('selectFromWriteConnection')->with("select * from information_schema.tables where table_catalog = ? and table_schema = ? and table_name = ? and table_type = 'BASE TABLE'", ['quantaquirk', 'myapp', 'foo'])->andReturn(['countable_result']);
+        $connection->shouldReceive('selectFromWriteConnection')->with("select * from information_schema.tables where table_catalog = ? and table_schema = ? and table_name = ? and table_type = 'BASE TABLE'", ['quantaforge', 'myapp', 'foo'])->andReturn(['countable_result']);
         $connection->shouldReceive('getTablePrefix');
-        $connection->shouldReceive('getConfig')->with('database')->andReturn('quantaquirk');
+        $connection->shouldReceive('getConfig')->with('database')->andReturn('quantaforge');
         $builder = $this->getBuilder($connection);
 
         $builder->hasTable('myapp.foo');
@@ -133,7 +133,7 @@ class DatabasePostgresBuilderTest extends TestCase
         $grammar->shouldReceive('compileTableExists')->andReturn("select * from information_schema.tables where table_catalog = ? and table_schema = ? and table_name = ? and table_type = 'BASE TABLE'");
         $connection->shouldReceive('selectFromWriteConnection')->with("select * from information_schema.tables where table_catalog = ? and table_schema = ? and table_name = ? and table_type = 'BASE TABLE'", ['mydatabase', 'myapp', 'foo'])->andReturn(['countable_result']);
         $connection->shouldReceive('getTablePrefix');
-        $connection->shouldReceive('getConfig')->with('database')->andReturn('quantaquirk');
+        $connection->shouldReceive('getConfig')->with('database')->andReturn('quantaforge');
         $builder = $this->getBuilder($connection);
 
         $builder->hasTable('mydatabase.myapp.foo');
@@ -147,9 +147,9 @@ class DatabasePostgresBuilderTest extends TestCase
         $grammar = m::mock(PostgresGrammar::class);
         $connection->shouldReceive('getSchemaGrammar')->once()->andReturn($grammar);
         $grammar->shouldReceive('compileColumnListing')->andReturn('select column_name from information_schema.columns where table_catalog = ? and table_schema = ? and table_name = ?');
-        $connection->shouldReceive('selectFromWriteConnection')->with('select column_name from information_schema.columns where table_catalog = ? and table_schema = ? and table_name = ?', ['quantaquirk', 'public', 'foo'])->andReturn(['countable_result']);
+        $connection->shouldReceive('selectFromWriteConnection')->with('select column_name from information_schema.columns where table_catalog = ? and table_schema = ? and table_name = ?', ['quantaforge', 'public', 'foo'])->andReturn(['countable_result']);
         $connection->shouldReceive('getTablePrefix');
-        $connection->shouldReceive('getConfig')->with('database')->andReturn('quantaquirk');
+        $connection->shouldReceive('getConfig')->with('database')->andReturn('quantaforge');
         $processor = m::mock(PostgresProcessor::class);
         $connection->shouldReceive('getPostProcessor')->andReturn($processor);
         $processor->shouldReceive('processColumnListing')->andReturn(['some_column']);
@@ -165,9 +165,9 @@ class DatabasePostgresBuilderTest extends TestCase
         $grammar = m::mock(PostgresGrammar::class);
         $connection->shouldReceive('getSchemaGrammar')->once()->andReturn($grammar);
         $grammar->shouldReceive('compileColumnListing')->andReturn('select column_name from information_schema.columns where table_catalog = ? and table_schema = ? and table_name = ?');
-        $connection->shouldReceive('selectFromWriteConnection')->with('select column_name from information_schema.columns where table_catalog = ? and table_schema = ? and table_name = ?', ['quantaquirk', 'myapp', 'foo'])->andReturn(['countable_result']);
+        $connection->shouldReceive('selectFromWriteConnection')->with('select column_name from information_schema.columns where table_catalog = ? and table_schema = ? and table_name = ?', ['quantaforge', 'myapp', 'foo'])->andReturn(['countable_result']);
         $connection->shouldReceive('getTablePrefix');
-        $connection->shouldReceive('getConfig')->with('database')->andReturn('quantaquirk');
+        $connection->shouldReceive('getConfig')->with('database')->andReturn('quantaforge');
         $processor = m::mock(PostgresProcessor::class);
         $connection->shouldReceive('getPostProcessor')->andReturn($processor);
         $processor->shouldReceive('processColumnListing')->andReturn(['some_column']);
@@ -184,9 +184,9 @@ class DatabasePostgresBuilderTest extends TestCase
         $grammar = m::mock(PostgresGrammar::class);
         $connection->shouldReceive('getSchemaGrammar')->once()->andReturn($grammar);
         $grammar->shouldReceive('compileColumnListing')->andReturn('select column_name from information_schema.columns where table_catalog = ? and table_schema = ? and table_name = ?');
-        $connection->shouldReceive('selectFromWriteConnection')->with('select column_name from information_schema.columns where table_catalog = ? and table_schema = ? and table_name = ?', ['quantaquirk', 'foouser', 'foo'])->andReturn(['countable_result']);
+        $connection->shouldReceive('selectFromWriteConnection')->with('select column_name from information_schema.columns where table_catalog = ? and table_schema = ? and table_name = ?', ['quantaforge', 'foouser', 'foo'])->andReturn(['countable_result']);
         $connection->shouldReceive('getTablePrefix');
-        $connection->shouldReceive('getConfig')->with('database')->andReturn('quantaquirk');
+        $connection->shouldReceive('getConfig')->with('database')->andReturn('quantaforge');
         $processor = m::mock(PostgresProcessor::class);
         $connection->shouldReceive('getPostProcessor')->andReturn($processor);
         $processor->shouldReceive('processColumnListing')->andReturn(['some_column']);
@@ -202,9 +202,9 @@ class DatabasePostgresBuilderTest extends TestCase
         $grammar = m::mock(PostgresGrammar::class);
         $connection->shouldReceive('getSchemaGrammar')->once()->andReturn($grammar);
         $grammar->shouldReceive('compileColumnListing')->andReturn('select column_name from information_schema.columns where table_catalog = ? and table_schema = ? and table_name = ?');
-        $connection->shouldReceive('selectFromWriteConnection')->with('select column_name from information_schema.columns where table_catalog = ? and table_schema = ? and table_name = ?', ['quantaquirk', 'myapp', 'foo'])->andReturn(['countable_result']);
+        $connection->shouldReceive('selectFromWriteConnection')->with('select column_name from information_schema.columns where table_catalog = ? and table_schema = ? and table_name = ?', ['quantaforge', 'myapp', 'foo'])->andReturn(['countable_result']);
         $connection->shouldReceive('getTablePrefix');
-        $connection->shouldReceive('getConfig')->with('database')->andReturn('quantaquirk');
+        $connection->shouldReceive('getConfig')->with('database')->andReturn('quantaforge');
         $processor = m::mock(PostgresProcessor::class);
         $connection->shouldReceive('getPostProcessor')->andReturn($processor);
         $processor->shouldReceive('processColumnListing')->andReturn(['some_column']);
@@ -222,7 +222,7 @@ class DatabasePostgresBuilderTest extends TestCase
         $grammar->shouldReceive('compileColumnListing')->andReturn('select column_name from information_schema.columns where table_catalog = ? and table_schema = ? and table_name = ?');
         $connection->shouldReceive('selectFromWriteConnection')->with('select column_name from information_schema.columns where table_catalog = ? and table_schema = ? and table_name = ?', ['mydatabase', 'myapp', 'foo'])->andReturn(['countable_result']);
         $connection->shouldReceive('getTablePrefix');
-        $connection->shouldReceive('getConfig')->with('database')->andReturn('quantaquirk');
+        $connection->shouldReceive('getConfig')->with('database')->andReturn('quantaforge');
         $processor = m::mock(PostgresProcessor::class);
         $connection->shouldReceive('getPostProcessor')->andReturn($processor);
         $processor->shouldReceive('processColumnListing')->andReturn(['some_column']);

@@ -1,6 +1,6 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Generators;
+namespace QuantaForge\Tests\Integration\Generators;
 
 class CastMakeCommandTest extends TestCase
 {
@@ -15,7 +15,7 @@ class CastMakeCommandTest extends TestCase
 
         $this->assertFileContains([
             'namespace App\Casts;',
-            'use QuantaQuirk\Contracts\Database\Eloquent\CastsAttributes;',
+            'use QuantaForge\Contracts\Database\Eloquent\CastsAttributes;',
             'class Foo implements CastsAttributes',
             'public function get(Model $model, string $key, mixed $value, array $attributes): mixed',
             'public function set(Model $model, string $key, mixed $value, array $attributes): mixed',
@@ -29,7 +29,7 @@ class CastMakeCommandTest extends TestCase
 
         $this->assertFileContains([
             'namespace App\Casts;',
-            'use QuantaQuirk\Contracts\Database\Eloquent\CastsInboundAttributes;',
+            'use QuantaForge\Contracts\Database\Eloquent\CastsInboundAttributes;',
             'class Foo implements CastsInboundAttributes',
             'public function set(Model $model, string $key, mixed $value, array $attributes): mixed',
         ], 'app/Casts/Foo.php');

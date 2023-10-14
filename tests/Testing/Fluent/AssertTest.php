@@ -1,10 +1,10 @@
 <?php
 
-namespace QuantaQuirk\Tests\Testing\Fluent;
+namespace QuantaForge\Tests\Testing\Fluent;
 
-use QuantaQuirk\Support\Collection;
-use QuantaQuirk\Testing\Fluent\AssertableJson;
-use QuantaQuirk\Tests\Testing\Stubs\ArrayableStubObject;
+use QuantaForge\Support\Collection;
+use QuantaForge\Testing\Fluent\AssertableJson;
+use QuantaForge\Tests\Testing\Stubs\ArrayableStubObject;
 use PHPUnit\Framework\AssertionFailedError;
 use PHPUnit\Framework\TestCase;
 use RuntimeException;
@@ -477,7 +477,7 @@ class AssertTest extends TestCase
             'baz' => [
                 'id' => 1,
                 'name' => 'Taylor Otwell',
-                'email' => 'taylor@quantaquirk.com',
+                'email' => 'taylor@quantaforge.com',
                 'email_verified_at' => '2021-01-22T10:34:42.000000Z',
                 'created_at' => '2021-01-22T10:34:42.000000Z',
                 'updated_at' => '2021-01-22T10:34:42.000000Z',
@@ -488,7 +488,7 @@ class AssertTest extends TestCase
             ->where('bar', ArrayableStubObject::make(['name' => 'Example', 'id' => 1]))
             ->where('baz', [
                 'name' => 'Taylor Otwell',
-                'email' => 'taylor@quantaquirk.com',
+                'email' => 'taylor@quantaforge.com',
                 'id' => 1,
                 'email_verified_at' => '2021-01-22T10:34:42.000000Z',
                 'updated_at' => '2021-01-22T10:34:42.000000Z',

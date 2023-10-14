@@ -1,18 +1,18 @@
 <?php
 
-namespace QuantaQuirk\Tests\Database;
+namespace QuantaForge\Tests\Database;
 
-use QuantaQuirk\Console\OutputStyle;
-use QuantaQuirk\Console\View\Components\Factory;
-use QuantaQuirk\Container\Container;
-use QuantaQuirk\Contracts\Events\Dispatcher;
-use QuantaQuirk\Database\ConnectionResolverInterface;
-use QuantaQuirk\Database\Console\Seeds\SeedCommand;
-use QuantaQuirk\Database\Console\Seeds\WithoutModelEvents;
-use QuantaQuirk\Database\Eloquent\Model;
-use QuantaQuirk\Database\Seeder;
-use QuantaQuirk\Events\NullDispatcher;
-use QuantaQuirk\Testing\Assert;
+use QuantaForge\Console\OutputStyle;
+use QuantaForge\Console\View\Components\Factory;
+use QuantaForge\Container\Container;
+use QuantaForge\Contracts\Events\Dispatcher;
+use QuantaForge\Database\ConnectionResolverInterface;
+use QuantaForge\Database\Console\Seeds\SeedCommand;
+use QuantaForge\Database\Console\Seeds\WithoutModelEvents;
+use QuantaForge\Database\Eloquent\Model;
+use QuantaForge\Database\Seeder;
+use QuantaForge\Events\NullDispatcher;
+use QuantaForge\Testing\Assert;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Input\ArrayInput;
@@ -48,7 +48,7 @@ class SeedCommandTest extends TestCase
         );
 
         $command = new SeedCommand($resolver);
-        $command->setQuantaQuirk($container);
+        $command->setQuantaForge($container);
 
         // call run to set up IO, then fire manually.
         $command->run($input, $output);
@@ -90,7 +90,7 @@ class SeedCommandTest extends TestCase
         );
 
         $command = new SeedCommand($resolver);
-        $command->setQuantaQuirk($container);
+        $command->setQuantaForge($container);
 
         Model::setEventDispatcher($dispatcher = m::mock(Dispatcher::class));
 

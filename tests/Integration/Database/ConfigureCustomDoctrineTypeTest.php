@@ -1,14 +1,14 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Database\SchemaTest;
+namespace QuantaForge\Tests\Integration\Database\SchemaTest;
 
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\Type;
-use QuantaQuirk\Database\Grammar;
-use QuantaQuirk\Database\Schema\Blueprint;
-use QuantaQuirk\Support\Facades\DB;
-use QuantaQuirk\Support\Facades\Schema;
-use QuantaQuirk\Tests\Integration\Database\DatabaseTestCase;
+use QuantaForge\Database\Grammar;
+use QuantaForge\Database\Schema\Blueprint;
+use QuantaForge\Support\Facades\DB;
+use QuantaForge\Support\Facades\Schema;
+use QuantaForge\Tests\Integration\Database\DatabaseTestCase;
 
 class ConfigureCustomDoctrineTypeTest extends DatabaseTestCase
 {

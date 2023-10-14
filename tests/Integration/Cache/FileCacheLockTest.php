@@ -1,9 +1,9 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Cache;
+namespace QuantaForge\Tests\Integration\Cache;
 
 use Exception;
-use QuantaQuirk\Support\Facades\Cache;
+use QuantaForge\Support\Facades\Cache;
 use Orchestra\Testbench\TestCase;
 
 class FileCacheLockTest extends TestCase
@@ -11,7 +11,7 @@ class FileCacheLockTest extends TestCase
     /**
      * Define environment setup.
      *
-     * @param  \QuantaQuirk\Foundation\Application  $app
+     * @param  \QuantaForge\Foundation\Application  $app
      * @return void
      */
     protected function getEnvironmentSetUp($app)

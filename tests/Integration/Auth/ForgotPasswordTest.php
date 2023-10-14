@@ -1,13 +1,13 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Auth;
+namespace QuantaForge\Tests\Integration\Auth;
 
-use QuantaQuirk\Auth\Notifications\ResetPassword;
-use QuantaQuirk\Notifications\Messages\MailMessage;
-use QuantaQuirk\Support\Facades\Notification;
-use QuantaQuirk\Support\Facades\Password;
-use QuantaQuirk\Support\Str;
-use QuantaQuirk\Tests\Integration\Auth\Fixtures\AuthenticationTestUser;
+use QuantaForge\Auth\Notifications\ResetPassword;
+use QuantaForge\Notifications\Messages\MailMessage;
+use QuantaForge\Support\Facades\Notification;
+use QuantaForge\Support\Facades\Password;
+use QuantaForge\Support\Str;
+use QuantaForge\Tests\Integration\Auth\Fixtures\AuthenticationTestUser;
 use Orchestra\Testbench\Factories\UserFactory;
 use Orchestra\Testbench\TestCase;
 
@@ -29,7 +29,7 @@ class ForgotPasswordTest extends TestCase
 
     protected function defineDatabaseMigrations()
     {
-        $this->loadQuantaQuirkMigrations();
+        $this->loadQuantaForgeMigrations();
     }
 
     protected function defineRoutes($router)

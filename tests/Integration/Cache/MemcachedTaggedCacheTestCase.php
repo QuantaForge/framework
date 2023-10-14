@@ -1,8 +1,8 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Cache;
+namespace QuantaForge\Tests\Integration\Cache;
 
-use QuantaQuirk\Support\Facades\Cache;
+use QuantaForge\Support\Facades\Cache;
 
 /**
  * @requires extension memcached

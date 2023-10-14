@@ -1,8 +1,8 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Http\Middleware;
+namespace QuantaForge\Tests\Integration\Http\Middleware;
 
-use QuantaQuirk\Foundation\Http\Middleware\VerifyCsrfToken;
+use QuantaForge\Foundation\Http\Middleware\VerifyCsrfToken;
 
 class VerifyCsrfTokenExceptStub extends VerifyCsrfToken
 {

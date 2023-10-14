@@ -1,12 +1,12 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Console\Scheduling;
+namespace QuantaForge\Tests\Integration\Console\Scheduling;
 
-use QuantaQuirk\Console\Command;
-use QuantaQuirk\Console\Scheduling\Schedule;
-use QuantaQuirk\Console\Scheduling\ScheduleListCommand;
-use QuantaQuirk\Support\Carbon;
-use QuantaQuirk\Support\ProcessUtils;
+use QuantaForge\Console\Command;
+use QuantaForge\Console\Scheduling\Schedule;
+use QuantaForge\Console\Scheduling\ScheduleListCommand;
+use QuantaForge\Support\Carbon;
+use QuantaForge\Support\ProcessUtils;
 use Orchestra\Testbench\TestCase;
 
 class ScheduleListCommandTest extends TestCase
@@ -53,14 +53,14 @@ class ScheduleListCommandTest extends TestCase
             ->expectsOutput('  0 0     1 1-12/3 *  php artisan foo:command .... Next Due: 3 months from now')
             ->expectsOutput('  0 14,18 * *      *  php artisan inspire ........ Next Due: 14 hours from now')
             ->expectsOutput('  * *     * *      *  php artisan foobar a='.ProcessUtils::escapeArgument('b').' ... Next Due: 1 minute from now')
-            ->expectsOutput('  * *     * *      *  QuantaQuirk\Tests\Integration\Console\Scheduling\FooJob  Next Due: 1 minute from now')
-            ->expectsOutput('  * *     * *      *  QuantaQuirk\Tests\Integration\Console\Scheduling\FooParamJob  Next Due: 1 minute from now')
+            ->expectsOutput('  * *     * *      *  QuantaForge\Tests\Integration\Console\Scheduling\FooJob  Next Due: 1 minute from now')
+            ->expectsOutput('  * *     * *      *  QuantaForge\Tests\Integration\Console\Scheduling\FooParamJob  Next Due: 1 minute from now')
             ->expectsOutput('  * *     * *      *  foo-named-job .............. Next Due: 1 minute from now')
             ->expectsOutput('  * *     * *      *  foo-named-param-job ........ Next Due: 1 minute from now')
             ->expectsOutput('  0 9,17  * *      *  php artisan inspire ......... Next Due: 9 hours from now')
             ->expectsOutput('  0 10    * *      *  php artisan inspire ........ Next Due: 10 hours from now')
-            ->expectsOutput('  * *     * *      *  QuantaQuirk\Tests\Integration\Console\Scheduling\FooCall  Next Due: 1 minute from now')
-            ->expectsOutput('  * *     * *      *  Closure at: QuantaQuirk\Tests\Integration\Console\Scheduling\FooCall::fooFunction  Next Due: 1 minute from now')
+            ->expectsOutput('  * *     * *      *  QuantaForge\Tests\Integration\Console\Scheduling\FooCall  Next Due: 1 minute from now')
+            ->expectsOutput('  * *     * *      *  Closure at: QuantaForge\Tests\Integration\Console\Scheduling\FooCall::fooFunction  Next Due: 1 minute from now')
             ->expectsOutput('  * *     * *      *  Closure at: '.$closureFilePath.':'.$closureLineNumber.'  Next Due: 1 minute from now');
     }
 
@@ -85,12 +85,12 @@ class ScheduleListCommandTest extends TestCase
         $this->artisan(ScheduleListCommand::class, ['--next' => true])
             ->assertSuccessful()
             ->expectsOutput('  * *     * *      *  php artisan foobar a='.ProcessUtils::escapeArgument('b').' ... Next Due: 1 minute from now')
-            ->expectsOutput('  * *     * *      *  QuantaQuirk\Tests\Integration\Console\Scheduling\FooJob  Next Due: 1 minute from now')
-            ->expectsOutput('  * *     * *      *  QuantaQuirk\Tests\Integration\Console\Scheduling\FooParamJob  Next Due: 1 minute from now')
+            ->expectsOutput('  * *     * *      *  QuantaForge\Tests\Integration\Console\Scheduling\FooJob  Next Due: 1 minute from now')
+            ->expectsOutput('  * *     * *      *  QuantaForge\Tests\Integration\Console\Scheduling\FooParamJob  Next Due: 1 minute from now')
             ->expectsOutput('  * *     * *      *  foo-named-job .............. Next Due: 1 minute from now')
             ->expectsOutput('  * *     * *      *  foo-named-param-job ........ Next Due: 1 minute from now')
-            ->expectsOutput('  * *     * *      *  QuantaQuirk\Tests\Integration\Console\Scheduling\FooCall  Next Due: 1 minute from now')
-            ->expectsOutput('  * *     * *      *  Closure at: QuantaQuirk\Tests\Integration\Console\Scheduling\FooCall::fooFunction  Next Due: 1 minute from now')
+            ->expectsOutput('  * *     * *      *  QuantaForge\Tests\Integration\Console\Scheduling\FooCall  Next Due: 1 minute from now')
+            ->expectsOutput('  * *     * *      *  Closure at: QuantaForge\Tests\Integration\Console\Scheduling\FooCall::fooFunction  Next Due: 1 minute from now')
             ->expectsOutput('  * *     * *      *  Closure at: '.$closureFilePath.':'.$closureLineNumber.'  Next Due: 1 minute from now')
             ->expectsOutput('  0 9,17  * *      *  php artisan inspire ......... Next Due: 9 hours from now')
             ->expectsOutput('  0 10    * *      *  php artisan inspire ........ Next Due: 10 hours from now')

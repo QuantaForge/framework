@@ -1,8 +1,8 @@
 <?php
 
-namespace QuantaQuirk\Tests\Auth;
+namespace QuantaForge\Tests\Auth;
 
-use QuantaQuirk\Foundation\Auth\User;
+use QuantaForge\Foundation\Auth\User;
 use PHPUnit\Framework\TestCase;
 
 class AuthenticatableTest extends TestCase

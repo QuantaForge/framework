@@ -1,14 +1,14 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Routing;
+namespace QuantaForge\Tests\Integration\Routing;
 
-use QuantaQuirk\Database\Eloquent\Concerns\HasUlids;
-use QuantaQuirk\Database\Eloquent\Concerns\HasUuids;
-use QuantaQuirk\Database\Eloquent\Model;
-use QuantaQuirk\Database\Eloquent\SoftDeletes;
-use QuantaQuirk\Database\Schema\Blueprint;
-use QuantaQuirk\Support\Facades\Route;
-use QuantaQuirk\Support\Facades\Schema;
+use QuantaForge\Database\Eloquent\Concerns\HasUlids;
+use QuantaForge\Database\Eloquent\Concerns\HasUuids;
+use QuantaForge\Database\Eloquent\Model;
+use QuantaForge\Database\Eloquent\SoftDeletes;
+use QuantaForge\Database\Schema\Blueprint;
+use QuantaForge\Support\Facades\Route;
+use QuantaForge\Support\Facades\Schema;
 use Orchestra\Testbench\Concerns\InteractsWithPublishedFiles;
 use Orchestra\Testbench\TestCase;
 
@@ -74,7 +74,7 @@ class ImplicitModelRouteBindingTest extends TestCase
         $this->defineCacheRoutes(<<<PHP
 <?php
 
-use QuantaQuirk\Tests\Integration\Routing\ImplicitBindingUser;
+use QuantaForge\Tests\Integration\Routing\ImplicitBindingUser;
 
 Route::post('/user/{user}', function (ImplicitBindingUser \$user) {
     return \$user;
@@ -203,8 +203,8 @@ PHP);
         $this->defineCacheRoutes(<<<PHP
 <?php
 
-use QuantaQuirk\Tests\Integration\Routing\ImplicitBindingUser;
-use QuantaQuirk\Tests\Integration\Routing\ImplicitBindingPost;
+use QuantaForge\Tests\Integration\Routing\ImplicitBindingUser;
+use QuantaForge\Tests\Integration\Routing\ImplicitBindingPost;
 
 Route::group(['scope_bindings' => true], function () {
     Route::get('/user/{user}/post/{post}', function (ImplicitBindingUser \$user, ImplicitBindingPost \$post) {

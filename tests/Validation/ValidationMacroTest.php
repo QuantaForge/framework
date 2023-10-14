@@ -1,8 +1,8 @@
 <?php
 
-namespace QuantaQuirk\Tests\Validation;
+namespace QuantaForge\Tests\Validation;
 
-use QuantaQuirk\Validation\Rule;
+use QuantaForge\Validation\Rule;
 use PHPUnit\Framework\TestCase;
 
 class ValidationMacroTest extends TestCase

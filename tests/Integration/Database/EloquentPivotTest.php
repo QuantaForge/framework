@@ -1,11 +1,11 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Database;
+namespace QuantaForge\Tests\Integration\Database;
 
-use QuantaQuirk\Database\Eloquent\Model;
-use QuantaQuirk\Database\Eloquent\Relations\Pivot;
-use QuantaQuirk\Database\Schema\Blueprint;
-use QuantaQuirk\Support\Facades\Schema;
+use QuantaForge\Database\Eloquent\Model;
+use QuantaForge\Database\Eloquent\Relations\Pivot;
+use QuantaForge\Database\Schema\Blueprint;
+use QuantaForge\Support\Facades\Schema;
 
 class EloquentPivotTest extends DatabaseTestCase
 {
@@ -45,7 +45,7 @@ class EloquentPivotTest extends DatabaseTestCase
 
     public function testPivotConvenientHelperReturnExpectedResult()
     {
-        $user = PivotTestUser::forceCreate(['email' => 'taylor@quantaquirk.com']);
+        $user = PivotTestUser::forceCreate(['email' => 'taylor@quantaforge.com']);
         $user2 = PivotTestUser::forceCreate(['email' => 'ralph@ralphschindler.com']);
         $project = PivotTestProject::forceCreate(['name' => 'Test Project']);
 
@@ -69,7 +69,7 @@ class EloquentPivotTest extends DatabaseTestCase
 
     public function testPivotValuesCanBeSetFromRelationDefinition()
     {
-        $user = PivotTestUser::forceCreate(['email' => 'taylor@quantaquirk.com']);
+        $user = PivotTestUser::forceCreate(['email' => 'taylor@quantaforge.com']);
         $active = PivotTestProject::forceCreate(['name' => 'Active Project']);
         $inactive = PivotTestProject::forceCreate(['name' => 'Inactive Project']);
 

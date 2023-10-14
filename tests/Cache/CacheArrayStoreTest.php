@@ -1,9 +1,9 @@
 <?php
 
-namespace QuantaQuirk\Tests\Cache;
+namespace QuantaForge\Tests\Cache;
 
-use QuantaQuirk\Cache\ArrayStore;
-use QuantaQuirk\Support\Carbon;
+use QuantaForge\Cache\ArrayStore;
+use QuantaForge\Support\Carbon;
 use PHPUnit\Framework\TestCase;
 use stdClass;
 

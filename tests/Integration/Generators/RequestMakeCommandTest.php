@@ -1,6 +1,6 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Generators;
+namespace QuantaForge\Tests\Integration\Generators;
 
 class RequestMakeCommandTest extends TestCase
 {
@@ -15,7 +15,7 @@ class RequestMakeCommandTest extends TestCase
 
         $this->assertFileContains([
             'namespace App\Http\Requests;',
-            'use QuantaQuirk\Foundation\Http\FormRequest;',
+            'use QuantaForge\Foundation\Http\FormRequest;',
             'class FooRequest extends FormRequest',
         ], 'app/Http/Requests/FooRequest.php');
     }

@@ -1,11 +1,11 @@
 <?php
 
-namespace QuantaQuirk\Tests\Foundation\Http;
+namespace QuantaForge\Tests\Foundation\Http;
 
-use QuantaQuirk\Events\Dispatcher;
-use QuantaQuirk\Foundation\Application;
-use QuantaQuirk\Foundation\Http\Kernel;
-use QuantaQuirk\Routing\Router;
+use QuantaForge\Events\Dispatcher;
+use QuantaForge\Foundation\Application;
+use QuantaForge\Foundation\Http\Kernel;
+use QuantaForge\Routing\Router;
 use PHPUnit\Framework\TestCase;
 
 class KernelTest extends TestCase
@@ -29,22 +29,22 @@ class KernelTest extends TestCase
         $kernel = new Kernel($this->getApplication(), $this->getRouter());
 
         $this->assertEquals([
-            \QuantaQuirk\Foundation\Http\Middleware\HandlePrecognitiveRequests::class,
-            \QuantaQuirk\Cookie\Middleware\EncryptCookies::class,
-            \QuantaQuirk\Cookie\Middleware\AddQueuedCookiesToResponse::class,
-            \QuantaQuirk\Session\Middleware\StartSession::class,
-            \QuantaQuirk\View\Middleware\ShareErrorsFromSession::class,
-            \QuantaQuirk\Contracts\Auth\Middleware\AuthenticatesRequests::class,
-            \QuantaQuirk\Routing\Middleware\ThrottleRequests::class,
-            \QuantaQuirk\Routing\Middleware\ThrottleRequestsWithRedis::class,
-            \QuantaQuirk\Contracts\Session\Middleware\AuthenticatesSessions::class,
-            \QuantaQuirk\Routing\Middleware\SubstituteBindings::class,
-            \QuantaQuirk\Auth\Middleware\Authorize::class,
+            \QuantaForge\Foundation\Http\Middleware\HandlePrecognitiveRequests::class,
+            \QuantaForge\Cookie\Middleware\EncryptCookies::class,
+            \QuantaForge\Cookie\Middleware\AddQueuedCookiesToResponse::class,
+            \QuantaForge\Session\Middleware\StartSession::class,
+            \QuantaForge\View\Middleware\ShareErrorsFromSession::class,
+            \QuantaForge\Contracts\Auth\Middleware\AuthenticatesRequests::class,
+            \QuantaForge\Routing\Middleware\ThrottleRequests::class,
+            \QuantaForge\Routing\Middleware\ThrottleRequestsWithRedis::class,
+            \QuantaForge\Contracts\Session\Middleware\AuthenticatesSessions::class,
+            \QuantaForge\Routing\Middleware\SubstituteBindings::class,
+            \QuantaForge\Auth\Middleware\Authorize::class,
         ], $kernel->getMiddlewarePriority());
     }
 
     /**
-     * @return \QuantaQuirk\Contracts\Foundation\Application
+     * @return \QuantaForge\Contracts\Foundation\Application
      */
     protected function getApplication()
     {
@@ -52,7 +52,7 @@ class KernelTest extends TestCase
     }
 
     /**
-     * @return \QuantaQuirk\Routing\Router
+     * @return \QuantaForge\Routing\Router
      */
     protected function getRouter()
     {

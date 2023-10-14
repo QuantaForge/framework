@@ -1,9 +1,9 @@
 <?php
 
-namespace QuantaQuirk\Tests\View\Blade;
+namespace QuantaForge\Tests\View\Blade;
 
-use QuantaQuirk\View\Component;
-use QuantaQuirk\View\ComponentAttributeBag;
+use QuantaForge\View\Component;
+use QuantaForge\View\ComponentAttributeBag;
 use Mockery as m;
 
 class BladeComponentsTest extends AbstractBladeTestCase
@@ -17,10 +17,10 @@ class BladeComponentsTest extends AbstractBladeTestCase
     public function testClassComponentsAreCompiled()
     {
         $this->assertSame('<?php if (isset($component)) { $__componentOriginal2dda3d2f2f9b76bd400bf03f0b84e87f = $component; } ?>
-<?php $component = QuantaQuirk\Tests\View\Blade\ComponentStub::class::resolve(["foo" => "bar"] + (isset($attributes) && $attributes instanceof QuantaQuirk\View\ComponentAttributeBag ? (array) $attributes->getIterator() : [])); ?>
+<?php $component = QuantaForge\Tests\View\Blade\ComponentStub::class::resolve(["foo" => "bar"] + (isset($attributes) && $attributes instanceof QuantaForge\View\ComponentAttributeBag ? (array) $attributes->getIterator() : [])); ?>
 <?php $component->withName(\'test\'); ?>
 <?php if ($component->shouldRender()): ?>
-<?php $__env->startComponent($component->resolveView(), $component->data()); ?>', $this->compiler->compileString('@component(\'QuantaQuirk\Tests\View\Blade\ComponentStub::class\', \'test\', ["foo" => "bar"])'));
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>', $this->compiler->compileString('@component(\'QuantaForge\Tests\View\Blade\ComponentStub::class\', \'test\', ["foo" => "bar"])'));
     }
 
     public function testEndComponentsAreCompiled()
@@ -63,7 +63,7 @@ class BladeComponentsTest extends AbstractBladeTestCase
 
         Component::resolveComponentsUsing(fn () => $component);
 
-        $template = $this->compiler->compileString('@component(\'QuantaQuirk\Tests\View\Blade\ComponentStub::class\', \'test\', ["foo" => "bar"])');
+        $template = $this->compiler->compileString('@component(\'QuantaForge\Tests\View\Blade\ComponentStub::class\', \'test\', ["foo" => "bar"])');
 
         ob_start();
         eval(" ?> $template <?php endif; ");

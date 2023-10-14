@@ -1,10 +1,10 @@
 <?php
 
-namespace QuantaQuirk\Tests\View\Blade;
+namespace QuantaForge\Tests\View\Blade;
 
 use Exception;
-use QuantaQuirk\Support\Fluent;
-use QuantaQuirk\Support\Str;
+use QuantaForge\Support\Fluent;
+use QuantaForge\Support\Str;
 
 class BladeEchoHandlerTest extends AbstractBladeTestCase
 {

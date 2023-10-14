@@ -1,6 +1,6 @@
 <?php
 
-namespace QuantaQuirk\Tests\Support;
+namespace QuantaForge\Tests\Support;
 
 enum TestEnum
 {

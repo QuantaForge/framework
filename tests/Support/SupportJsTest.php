@@ -1,12 +1,12 @@
 <?php
 
-namespace QuantaQuirk\Tests\Support;
+namespace QuantaForge\Tests\Support;
 
-use QuantaQuirk\Contracts\Support\Arrayable;
-use QuantaQuirk\Contracts\Support\Jsonable;
-use QuantaQuirk\Support\Js;
-use QuantaQuirk\Tests\Support\Fixtures\IntBackedEnum;
-use QuantaQuirk\Tests\Support\Fixtures\StringBackedEnum;
+use QuantaForge\Contracts\Support\Arrayable;
+use QuantaForge\Contracts\Support\Jsonable;
+use QuantaForge\Support\Js;
+use QuantaForge\Tests\Support\Fixtures\IntBackedEnum;
+use QuantaForge\Tests\Support\Fixtures\StringBackedEnum;
 use JsonSerializable;
 use PHPUnit\Framework\TestCase;
 

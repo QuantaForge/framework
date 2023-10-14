@@ -1,12 +1,12 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Cache;
+namespace QuantaForge\Tests\Integration\Cache;
 
 use Aws\DynamoDb\DynamoDbClient;
 use Aws\Exception\AwsException;
-use QuantaQuirk\Contracts\Cache\Repository;
-use QuantaQuirk\Support\Facades\Cache;
-use QuantaQuirk\Support\Str;
+use QuantaForge\Contracts\Cache\Repository;
+use QuantaForge\Support\Facades\Cache;
+use QuantaForge\Support\Str;
 use Orchestra\Testbench\TestCase;
 
 class DynamoDbStoreTest extends TestCase
@@ -69,7 +69,7 @@ class DynamoDbStoreTest extends TestCase
     /**
      * Define environment setup.
      *
-     * @param  \QuantaQuirk\Foundation\Application  $app
+     * @param  \QuantaForge\Foundation\Application  $app
      * @return void
      */
     protected function getEnvironmentSetUp($app)

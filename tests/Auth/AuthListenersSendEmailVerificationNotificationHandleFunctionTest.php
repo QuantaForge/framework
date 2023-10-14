@@ -1,11 +1,11 @@
 <?php
 
-namespace QuantaQuirk\Tests\Auth;
+namespace QuantaForge\Tests\Auth;
 
-use QuantaQuirk\Auth\Events\Registered;
-use QuantaQuirk\Auth\Listeners\SendEmailVerificationNotification;
-use QuantaQuirk\Contracts\Auth\MustVerifyEmail;
-use QuantaQuirk\Foundation\Auth\User;
+use QuantaForge\Auth\Events\Registered;
+use QuantaForge\Auth\Listeners\SendEmailVerificationNotification;
+use QuantaForge\Contracts\Auth\MustVerifyEmail;
+use QuantaForge\Foundation\Auth\User;
 use PHPUnit\Framework\TestCase;
 
 class AuthListenersSendEmailVerificationNotificationHandleFunctionTest extends TestCase

@@ -1,40 +1,40 @@
 <?php
 
-namespace QuantaQuirk\Tests\Routing;
+namespace QuantaForge\Tests\Routing;
 
 use Closure;
 use DateTime;
 use Exception;
-use QuantaQuirk\Auth\Middleware\Authenticate;
-use QuantaQuirk\Auth\Middleware\Authorize;
-use QuantaQuirk\Container\Container;
-use QuantaQuirk\Contracts\Routing\Registrar;
-use QuantaQuirk\Contracts\Support\Responsable;
-use QuantaQuirk\Database\Eloquent\Model;
-use QuantaQuirk\Database\Eloquent\ModelNotFoundException;
-use QuantaQuirk\Events\Dispatcher;
-use QuantaQuirk\Http\Exceptions\HttpResponseException;
-use QuantaQuirk\Http\JsonResponse;
-use QuantaQuirk\Http\RedirectResponse;
-use QuantaQuirk\Http\Request;
-use QuantaQuirk\Http\Response;
-use QuantaQuirk\Routing\CallableDispatcher;
-use QuantaQuirk\Routing\Contracts\CallableDispatcher as CallableDispatcherContract;
-use QuantaQuirk\Routing\Contracts\ControllerDispatcher as ControllerDispatcherContract;
-use QuantaQuirk\Routing\Controller;
-use QuantaQuirk\Routing\ControllerDispatcher;
-use QuantaQuirk\Routing\Events\PreparingResponse;
-use QuantaQuirk\Routing\Events\ResponsePrepared;
-use QuantaQuirk\Routing\Events\Routing;
-use QuantaQuirk\Routing\Exceptions\UrlGenerationException;
-use QuantaQuirk\Routing\Middleware\SubstituteBindings;
-use QuantaQuirk\Routing\ResourceRegistrar;
-use QuantaQuirk\Routing\Route;
-use QuantaQuirk\Routing\RouteCollection;
-use QuantaQuirk\Routing\RouteGroup;
-use QuantaQuirk\Routing\Router;
-use QuantaQuirk\Routing\UrlGenerator;
-use QuantaQuirk\Support\Str;
+use QuantaForge\Auth\Middleware\Authenticate;
+use QuantaForge\Auth\Middleware\Authorize;
+use QuantaForge\Container\Container;
+use QuantaForge\Contracts\Routing\Registrar;
+use QuantaForge\Contracts\Support\Responsable;
+use QuantaForge\Database\Eloquent\Model;
+use QuantaForge\Database\Eloquent\ModelNotFoundException;
+use QuantaForge\Events\Dispatcher;
+use QuantaForge\Http\Exceptions\HttpResponseException;
+use QuantaForge\Http\JsonResponse;
+use QuantaForge\Http\RedirectResponse;
+use QuantaForge\Http\Request;
+use QuantaForge\Http\Response;
+use QuantaForge\Routing\CallableDispatcher;
+use QuantaForge\Routing\Contracts\CallableDispatcher as CallableDispatcherContract;
+use QuantaForge\Routing\Contracts\ControllerDispatcher as ControllerDispatcherContract;
+use QuantaForge\Routing\Controller;
+use QuantaForge\Routing\ControllerDispatcher;
+use QuantaForge\Routing\Events\PreparingResponse;
+use QuantaForge\Routing\Events\ResponsePrepared;
+use QuantaForge\Routing\Events\Routing;
+use QuantaForge\Routing\Exceptions\UrlGenerationException;
+use QuantaForge\Routing\Middleware\SubstituteBindings;
+use QuantaForge\Routing\ResourceRegistrar;
+use QuantaForge\Routing\Route;
+use QuantaForge\Routing\RouteCollection;
+use QuantaForge\Routing\RouteGroup;
+use QuantaForge\Routing\Router;
+use QuantaForge\Routing\UrlGenerator;
+use QuantaForge\Support\Str;
 use LogicException;
 use PHPUnit\Framework\TestCase;
 use stdClass;
@@ -1044,7 +1044,7 @@ class RoutingRouteTest extends TestCase
     public function testModelBindingWithNullReturn()
     {
         $this->expectException(ModelNotFoundException::class);
-        $this->expectExceptionMessage('No query results for model [QuantaQuirk\Tests\Routing\RouteModelBindingNullStub].');
+        $this->expectExceptionMessage('No query results for model [QuantaForge\Tests\Routing\RouteModelBindingNullStub].');
 
         $router = $this->getRouter();
         $router->get('foo/{bar}', ['middleware' => SubstituteBindings::class, 'uses' => function ($name) {
@@ -1385,7 +1385,7 @@ class RoutingRouteTest extends TestCase
     public function testInvalidActionException()
     {
         $this->expectException(UnexpectedValueException::class);
-        $this->expectExceptionMessage('Invalid route action: [QuantaQuirk\Tests\Routing\RouteTestControllerStub].');
+        $this->expectExceptionMessage('Invalid route action: [QuantaForge\Tests\Routing\RouteTestControllerStub].');
 
         $router = $this->getRouter();
         $router->get('/', ['uses' => RouteTestControllerStub::class]);
@@ -1902,7 +1902,7 @@ class RoutingRouteTest extends TestCase
         $router = $this->getRouter();
         $router->get('foo/{bar?}', [
             'middleware' => SubstituteBindings::class,
-            'uses' => function (?\QuantaQuirk\Tests\Routing\CategoryBackedEnum $bar = null) {
+            'uses' => function (?\QuantaForge\Tests\Routing\CategoryBackedEnum $bar = null) {
                 $this->assertInstanceOf(CategoryBackedEnum::class, $bar);
             },
         ]);
@@ -2080,7 +2080,7 @@ class RoutingRouteTest extends TestCase
     public function testRouteRedirectExceptionWhenMissingExpectedParameters()
     {
         $this->expectException(UrlGenerationException::class);
-        $this->expectExceptionMessage('Missing required parameter for [Route: quantaquirk_route_redirect_destination] [URI: users/{user}] [Missing parameter: user].');
+        $this->expectExceptionMessage('Missing required parameter for [Route: quantaforge_route_redirect_destination] [URI: users/{user}] [Missing parameter: user].');
 
         $container = new Container;
         $router = new Router(new Dispatcher, $container);
@@ -2160,7 +2160,7 @@ class RoutingRouteTest extends TestCase
 
         $this->assertEquals([
             'foo',
-            'can:create,QuantaQuirk\Routing\Route',
+            'can:create,QuantaForge\Routing\Route',
         ], $route->middleware());
 
         $route = new Route(['GET'], '/', []);

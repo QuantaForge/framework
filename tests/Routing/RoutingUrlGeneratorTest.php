@@ -1,14 +1,14 @@
 <?php
 
-namespace QuantaQuirk\Tests\Routing;
+namespace QuantaForge\Tests\Routing;
 
-use QuantaQuirk\Contracts\Routing\UrlRoutable;
-use QuantaQuirk\Database\Eloquent\Model;
-use QuantaQuirk\Http\Request;
-use QuantaQuirk\Routing\Exceptions\UrlGenerationException;
-use QuantaQuirk\Routing\Route;
-use QuantaQuirk\Routing\RouteCollection;
-use QuantaQuirk\Routing\UrlGenerator;
+use QuantaForge\Contracts\Routing\UrlRoutable;
+use QuantaForge\Database\Eloquent\Model;
+use QuantaForge\Http\Request;
+use QuantaForge\Routing\Exceptions\UrlGenerationException;
+use QuantaForge\Routing\Route;
+use QuantaForge\Routing\RouteCollection;
+use QuantaForge\Routing\UrlGenerator;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request as SymfonyRequest;
@@ -83,7 +83,7 @@ class RoutingUrlGeneratorTest extends TestCase
     {
         $request = Request::create('http://www.foo.com/subfolder/foo/bar/subfolder/');
 
-        $request->server->set('SCRIPT_FILENAME', '/var/www/quantaquirk-project/public/subfolder/index.php');
+        $request->server->set('SCRIPT_FILENAME', '/var/www/quantaforge-project/public/subfolder/index.php');
         $request->server->set('PHP_SELF', '/subfolder/index.php');
 
         $url = new UrlGenerator(
@@ -102,7 +102,7 @@ class RoutingUrlGeneratorTest extends TestCase
     {
         $request = Request::create('http://www.foo.com/subfolder/index.php');
 
-        $request->server->set('SCRIPT_FILENAME', '/var/www/quantaquirk-project/public/subfolder/index.php');
+        $request->server->set('SCRIPT_FILENAME', '/var/www/quantaforge-project/public/subfolder/index.php');
         $request->server->set('PHP_SELF', '/subfolder/index.php');
 
         $url = new UrlGenerator(
@@ -122,7 +122,7 @@ class RoutingUrlGeneratorTest extends TestCase
     {
         $request = Request::create('http://www.foo.com/other.php');
 
-        $request->server->set('SCRIPT_FILENAME', '/var/www/quantaquirk-project/public/other.php');
+        $request->server->set('SCRIPT_FILENAME', '/var/www/quantaforge-project/public/other.php');
         $request->server->set('PHP_SELF', '/other.php');
 
         $url = new UrlGenerator(
@@ -405,11 +405,11 @@ class RoutingUrlGeneratorTest extends TestCase
     /**
      * @todo Fix bug related to route keys
      *
-     * @link https://github.com/quantaquirk/framework/pull/42425
+     * @link https://github.com/quantaforge/framework/pull/42425
      */
     public function testRoutableInterfaceRoutingWithSeparateBindingFieldOnlyForSecondParameter()
     {
-        $this->markTestSkipped('See https://github.com/quantaquirk/framework/pull/43255');
+        $this->markTestSkipped('See https://github.com/quantaforge/framework/pull/43255');
 
         $url = new UrlGenerator(
             $routes = new RouteCollection,

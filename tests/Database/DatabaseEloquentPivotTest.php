@@ -1,13 +1,13 @@
 <?php
 
-namespace QuantaQuirk\Tests\Database;
+namespace QuantaForge\Tests\Database;
 
-use QuantaQuirk\Database\Connection;
-use QuantaQuirk\Database\ConnectionResolverInterface;
-use QuantaQuirk\Database\Eloquent\Model;
-use QuantaQuirk\Database\Eloquent\Relations\Pivot;
-use QuantaQuirk\Database\Query\Grammars\Grammar;
-use QuantaQuirk\Database\Query\Processors\Processor;
+use QuantaForge\Database\Connection;
+use QuantaForge\Database\ConnectionResolverInterface;
+use QuantaForge\Database\Eloquent\Model;
+use QuantaForge\Database\Eloquent\Relations\Pivot;
+use QuantaForge\Database\Query\Grammars\Grammar;
+use QuantaForge\Database\Query\Processors\Processor;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 use stdClass;

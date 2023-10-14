@@ -1,8 +1,8 @@
 <?php
 
-namespace QuantaQuirk\Tests\Foundation;
+namespace QuantaForge\Tests\Foundation;
 
-use QuantaQuirk\Foundation\AliasLoader;
+use QuantaForge\Foundation\AliasLoader;
 use PHPUnit\Framework\TestCase;
 
 class FoundationAliasLoaderTest extends TestCase

@@ -1,8 +1,8 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Support\Fixtures;
+namespace QuantaForge\Tests\Integration\Support\Fixtures;
 
-use QuantaQuirk\Support\MultipleInstanceManager as BaseMultipleInstanceManager;
+use QuantaForge\Support\MultipleInstanceManager as BaseMultipleInstanceManager;
 
 class MultipleInstanceManager extends BaseMultipleInstanceManager
 {

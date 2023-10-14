@@ -1,8 +1,8 @@
 <?php
 
-namespace QuantaQuirk\Tests\Support;
+namespace QuantaForge\Tests\Support;
 
-use QuantaQuirk\Support\ConfigurationUrlParser;
+use QuantaForge\Support\ConfigurationUrlParser;
 use PHPUnit\Framework\TestCase;
 
 class ConfigurationUrlParserTest extends TestCase

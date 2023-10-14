@@ -1,8 +1,8 @@
 <?php
 
-namespace QuantaQuirk\Tests\Database;
+namespace QuantaForge\Tests\Database;
 
-use QuantaQuirk\Database\Query\Processors\PostgresProcessor;
+use QuantaForge\Database\Query\Processors\PostgresProcessor;
 use PHPUnit\Framework\TestCase;
 
 class DatabasePostgresProcessorTest extends TestCase

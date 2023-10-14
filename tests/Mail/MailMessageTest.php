@@ -1,11 +1,11 @@
 <?php
 
-namespace QuantaQuirk\Tests\Mail;
+namespace QuantaForge\Tests\Mail;
 
-use QuantaQuirk\Contracts\Mail\Attachable;
-use QuantaQuirk\Mail\Attachment;
-use QuantaQuirk\Mail\Message;
-use QuantaQuirk\Support\Str;
+use QuantaForge\Contracts\Mail\Attachable;
+use QuantaForge\Mail\Attachment;
+use QuantaForge\Mail\Message;
+use QuantaForge\Support\Str;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Mime\Address;
 use Symfony\Component\Mime\Email;
@@ -13,7 +13,7 @@ use Symfony\Component\Mime\Email;
 class MailMessageTest extends TestCase
 {
     /**
-     * @var \QuantaQuirk\Mail\Message
+     * @var \QuantaForge\Mail\Message
      */
     protected $message;
 

@@ -1,10 +1,10 @@
 <?php
 
-namespace QuantaQuirk\Tests\Database;
+namespace QuantaForge\Tests\Database;
 
 use Exception;
-use QuantaQuirk\Database\Capsule\Manager as DB;
-use QuantaQuirk\Database\DatabaseTransactionsManager;
+use QuantaForge\Database\Capsule\Manager as DB;
+use QuantaForge\Database\DatabaseTransactionsManager;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 use Throwable;
@@ -242,7 +242,7 @@ class DatabaseTransactionsTest extends TestCase
     /**
      * Get a schema builder instance.
      *
-     * @return \QuantaQuirk\Database\Schema\Builder
+     * @return \QuantaForge\Database\Schema\Builder
      */
     protected function schema($connection = 'default')
     {

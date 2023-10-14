@@ -1,14 +1,14 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Routing;
+namespace QuantaForge\Tests\Integration\Routing;
 
-use QuantaQuirk\Contracts\Routing\UrlRoutable;
-use QuantaQuirk\Http\Request;
-use QuantaQuirk\Routing\Exceptions\InvalidSignatureException;
-use QuantaQuirk\Routing\Middleware\ValidateSignature;
-use QuantaQuirk\Support\Carbon;
-use QuantaQuirk\Support\Facades\Route;
-use QuantaQuirk\Support\Facades\URL;
+use QuantaForge\Contracts\Routing\UrlRoutable;
+use QuantaForge\Http\Request;
+use QuantaForge\Routing\Exceptions\InvalidSignatureException;
+use QuantaForge\Routing\Middleware\ValidateSignature;
+use QuantaForge\Support\Carbon;
+use QuantaForge\Support\Facades\Route;
+use QuantaForge\Support\Facades\URL;
 use InvalidArgumentException;
 use Orchestra\Testbench\TestCase;
 
@@ -312,16 +312,16 @@ class UrlSigningTest extends TestCase
     public function testItCanGenerateMiddlewareDefinitionViaStaticMethod()
     {
         $signature = (string) ValidateSignature::relative();
-        $this->assertSame('QuantaQuirk\Routing\Middleware\ValidateSignature:relative', $signature);
+        $this->assertSame('QuantaForge\Routing\Middleware\ValidateSignature:relative', $signature);
 
         $signature = (string) ValidateSignature::absolute();
-        $this->assertSame('QuantaQuirk\Routing\Middleware\ValidateSignature', $signature);
+        $this->assertSame('QuantaForge\Routing\Middleware\ValidateSignature', $signature);
 
         $signature = (string) ValidateSignature::relative(['foo', 'bar']);
-        $this->assertSame('QuantaQuirk\Routing\Middleware\ValidateSignature:relative,foo,bar', $signature);
+        $this->assertSame('QuantaForge\Routing\Middleware\ValidateSignature:relative,foo,bar', $signature);
 
         $signature = (string) ValidateSignature::absolute(['foo', 'bar']);
-        $this->assertSame('QuantaQuirk\Routing\Middleware\ValidateSignature:foo,bar', $signature);
+        $this->assertSame('QuantaForge\Routing\Middleware\ValidateSignature:foo,bar', $signature);
     }
 
     protected function createValidateSignatureMiddleware(array $ignore)

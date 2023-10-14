@@ -1,10 +1,10 @@
 <?php
 
-namespace QuantaQuirk\Tests\Redis;
+namespace QuantaForge\Tests\Redis;
 
-use QuantaQuirk\Contracts\Redis\LimiterTimeoutException;
-use QuantaQuirk\Foundation\Testing\Concerns\InteractsWithRedis;
-use QuantaQuirk\Redis\Limiters\DurationLimiter;
+use QuantaForge\Contracts\Redis\LimiterTimeoutException;
+use QuantaForge\Foundation\Testing\Concerns\InteractsWithRedis;
+use QuantaForge\Redis\Limiters\DurationLimiter;
 use PHPUnit\Framework\TestCase;
 use Throwable;
 

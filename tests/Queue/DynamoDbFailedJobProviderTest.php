@@ -1,14 +1,14 @@
 <?php
 
-namespace QuantaQuirk\Tests\Queue;
+namespace QuantaForge\Tests\Queue;
 
 use Aws\DynamoDb\DynamoDbClient;
 use Carbon\CarbonImmutable;
 use DateTimeInterface;
 use Exception;
-use QuantaQuirk\Queue\Failed\DynamoDbFailedJobProvider;
-use QuantaQuirk\Support\Carbon;
-use QuantaQuirk\Support\Str;
+use QuantaForge\Queue\Failed\DynamoDbFailedJobProvider;
+use QuantaForge\Support\Carbon;
+use QuantaForge\Support\Str;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 

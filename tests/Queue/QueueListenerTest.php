@@ -1,9 +1,9 @@
 <?php
 
-namespace QuantaQuirk\Tests\Queue;
+namespace QuantaForge\Tests\Queue;
 
-use QuantaQuirk\Queue\Listener;
-use QuantaQuirk\Queue\ListenerOptions;
+use QuantaForge\Queue\Listener;
+use QuantaForge\Queue\ListenerOptions;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Process\Process;

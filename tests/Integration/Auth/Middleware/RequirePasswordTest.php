@@ -1,13 +1,13 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Auth\Middleware;
+namespace QuantaForge\Tests\Integration\Auth\Middleware;
 
-use QuantaQuirk\Auth\Middleware\RequirePassword;
-use QuantaQuirk\Contracts\Config\Repository;
-use QuantaQuirk\Contracts\Routing\Registrar;
-use QuantaQuirk\Contracts\Routing\UrlGenerator;
-use QuantaQuirk\Http\Response;
-use QuantaQuirk\Session\Middleware\StartSession;
+use QuantaForge\Auth\Middleware\RequirePassword;
+use QuantaForge\Contracts\Config\Repository;
+use QuantaForge\Contracts\Routing\Registrar;
+use QuantaForge\Contracts\Routing\UrlGenerator;
+use QuantaForge\Http\Response;
+use QuantaForge\Session\Middleware\StartSession;
 use Orchestra\Testbench\TestCase;
 
 class RequirePasswordTest extends TestCase
@@ -15,20 +15,20 @@ class RequirePasswordTest extends TestCase
     public function testItCanGenerateDefinitionViaStaticMethod()
     {
         $signature = (string) RequirePassword::using('route.name');
-        $this->assertSame('QuantaQuirk\Auth\Middleware\RequirePassword:route.name', $signature);
+        $this->assertSame('QuantaForge\Auth\Middleware\RequirePassword:route.name', $signature);
 
         $signature = (string) RequirePassword::using('route.name', 100);
-        $this->assertSame('QuantaQuirk\Auth\Middleware\RequirePassword:route.name,100', $signature);
+        $this->assertSame('QuantaForge\Auth\Middleware\RequirePassword:route.name,100', $signature);
 
         $signature = (string) RequirePassword::using(passwordTimeoutSeconds: 100);
-        $this->assertSame('QuantaQuirk\Auth\Middleware\RequirePassword:,100', $signature);
+        $this->assertSame('QuantaForge\Auth\Middleware\RequirePassword:,100', $signature);
     }
 
     public function testUserSeesTheWantedPageIfThePasswordWasRecentlyConfirmed()
     {
         $this->withoutExceptionHandling();
 
-        /** @var \QuantaQuirk\Contracts\Routing\Registrar $router */
+        /** @var \QuantaForge\Contracts\Routing\Registrar $router */
         $router = $this->app->make(Registrar::class);
 
         $router->get('test-route', function (): Response {
@@ -45,7 +45,7 @@ class RequirePasswordTest extends TestCase
     {
         $this->withoutExceptionHandling();
 
-        /** @var \QuantaQuirk\Contracts\Routing\Registrar $router */
+        /** @var \QuantaForge\Contracts\Routing\Registrar $router */
         $router = $this->app->make(Registrar::class);
 
         $router->get('password-confirm', function (): Response {
@@ -66,7 +66,7 @@ class RequirePasswordTest extends TestCase
     {
         $this->withoutExceptionHandling();
 
-        /** @var \QuantaQuirk\Contracts\Routing\Registrar $router */
+        /** @var \QuantaForge\Contracts\Routing\Registrar $router */
         $router = $this->app->make(Registrar::class);
 
         $router->get('confirm', function (): Response {
@@ -87,7 +87,7 @@ class RequirePasswordTest extends TestCase
     {
         $this->withoutExceptionHandling();
 
-        /** @var \QuantaQuirk\Contracts\Routing\Registrar $router */
+        /** @var \QuantaForge\Contracts\Routing\Registrar $router */
         $router = $this->app->make(Registrar::class);
 
         $router->get('password-confirm', function (): Response {

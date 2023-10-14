@@ -1,10 +1,10 @@
 <?php
 
-namespace QuantaQuirk\Tests\Validation;
+namespace QuantaForge\Tests\Validation;
 
 use Closure;
-use QuantaQuirk\Database\ConnectionResolverInterface;
-use QuantaQuirk\Validation\DatabasePresenceVerifier;
+use QuantaForge\Database\ConnectionResolverInterface;
+use QuantaForge\Validation\DatabasePresenceVerifier;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 use stdClass;

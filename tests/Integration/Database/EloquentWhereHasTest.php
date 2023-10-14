@@ -1,14 +1,14 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Database\EloquentWhereHasTest;
+namespace QuantaForge\Tests\Integration\Database\EloquentWhereHasTest;
 
-use QuantaQuirk\Database\Eloquent\Builder as EloquentBuilder;
-use QuantaQuirk\Database\Eloquent\Model;
-use QuantaQuirk\Database\Query\Builder as QueryBuilder;
-use QuantaQuirk\Database\Schema\Blueprint;
-use QuantaQuirk\Support\Facades\DB;
-use QuantaQuirk\Support\Facades\Schema;
-use QuantaQuirk\Tests\Integration\Database\DatabaseTestCase;
+use QuantaForge\Database\Eloquent\Builder as EloquentBuilder;
+use QuantaForge\Database\Eloquent\Model;
+use QuantaForge\Database\Query\Builder as QueryBuilder;
+use QuantaForge\Database\Schema\Blueprint;
+use QuantaForge\Support\Facades\DB;
+use QuantaForge\Support\Facades\Schema;
+use QuantaForge\Tests\Integration\Database\DatabaseTestCase;
 
 class EloquentWhereHasTest extends DatabaseTestCase
 {

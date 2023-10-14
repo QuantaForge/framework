@@ -1,6 +1,6 @@
 <?php
 
-namespace QuantaQuirk\Tests\Validation;
+namespace QuantaForge\Tests\Validation;
 
 enum StringStatus: string
 {

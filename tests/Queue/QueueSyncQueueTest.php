@@ -1,15 +1,15 @@
 <?php
 
-namespace QuantaQuirk\Tests\Queue;
+namespace QuantaForge\Tests\Queue;
 
 use Exception;
-use QuantaQuirk\Container\Container;
-use QuantaQuirk\Contracts\Events\Dispatcher;
-use QuantaQuirk\Contracts\Queue\QueueableEntity;
-use QuantaQuirk\Contracts\Queue\ShouldQueue;
-use QuantaQuirk\Queue\InteractsWithQueue;
-use QuantaQuirk\Queue\Jobs\SyncJob;
-use QuantaQuirk\Queue\SyncQueue;
+use QuantaForge\Container\Container;
+use QuantaForge\Contracts\Events\Dispatcher;
+use QuantaForge\Contracts\Queue\QueueableEntity;
+use QuantaForge\Contracts\Queue\ShouldQueue;
+use QuantaForge\Queue\InteractsWithQueue;
+use QuantaForge\Queue\Jobs\SyncJob;
+use QuantaForge\Queue\SyncQueue;
 use LogicException;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
@@ -62,9 +62,9 @@ class QueueSyncQueueTest extends TestCase
     {
         $sync = new SyncQueue;
         $container = new Container;
-        $container->bind(\QuantaQuirk\Contracts\Events\Dispatcher::class, \QuantaQuirk\Events\Dispatcher::class);
-        $container->bind(\QuantaQuirk\Contracts\Bus\Dispatcher::class, \QuantaQuirk\Bus\Dispatcher::class);
-        $container->bind(\QuantaQuirk\Contracts\Container\Container::class, \QuantaQuirk\Container\Container::class);
+        $container->bind(\QuantaForge\Contracts\Events\Dispatcher::class, \QuantaForge\Events\Dispatcher::class);
+        $container->bind(\QuantaForge\Contracts\Bus\Dispatcher::class, \QuantaForge\Bus\Dispatcher::class);
+        $container->bind(\QuantaForge\Contracts\Container\Container::class, \QuantaForge\Container\Container::class);
         $sync->setContainer($container);
 
         SyncQueue::createPayloadUsing(function ($connection, $queue, $payload) {

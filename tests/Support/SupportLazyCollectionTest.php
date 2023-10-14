@@ -1,10 +1,10 @@
 <?php
 
-namespace QuantaQuirk\Tests\Support;
+namespace QuantaForge\Tests\Support;
 
-use QuantaQuirk\Support\Carbon;
-use QuantaQuirk\Support\Collection;
-use QuantaQuirk\Support\LazyCollection;
+use QuantaForge\Support\Carbon;
+use QuantaForge\Support\Collection;
+use QuantaForge\Support\LazyCollection;
 use InvalidArgumentException;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
@@ -73,10 +73,10 @@ class SupportLazyCollectionTest extends TestCase
     public function testCanCreateCollectionFromNonGeneratorFunction()
     {
         $data = LazyCollection::make(function () {
-            return 'quantaquirk';
+            return 'quantaforge';
         });
 
-        $this->assertSame(['quantaquirk'], $data->all());
+        $this->assertSame(['quantaforge'], $data->all());
     }
 
     public function testDoesNotCreateCollectionFromGenerator()

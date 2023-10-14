@@ -1,9 +1,9 @@
 <?php
 
-namespace QuantaQuirk\Tests\View;
+namespace QuantaForge\Tests\View;
 
-use QuantaQuirk\Filesystem\Filesystem;
-use QuantaQuirk\View\FileViewFinder;
+use QuantaForge\Filesystem\Filesystem;
+use QuantaForge\View\FileViewFinder;
 use InvalidArgumentException;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;

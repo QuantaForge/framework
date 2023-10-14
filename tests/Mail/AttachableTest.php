@@ -1,10 +1,10 @@
 <?php
 
-namespace QuantaQuirk\Tests\Mail;
+namespace QuantaForge\Tests\Mail;
 
-use QuantaQuirk\Contracts\Mail\Attachable;
-use QuantaQuirk\Mail\Attachment;
-use QuantaQuirk\Mail\Mailable;
+use QuantaForge\Contracts\Mail\Attachable;
+use QuantaForge\Mail\Attachment;
+use QuantaForge\Mail\Mailable;
 use PHPUnit\Framework\TestCase;
 
 class AttachableTest extends TestCase

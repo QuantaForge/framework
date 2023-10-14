@@ -1,8 +1,8 @@
 <?php
 
-namespace QuantaQuirk\Tests\Database\Fixtures\Factories\Money;
+namespace QuantaForge\Tests\Database\Fixtures\Factories\Money;
 
-use QuantaQuirk\Database\Eloquent\Factories\Factory;
+use QuantaForge\Database\Eloquent\Factories\Factory;
 
 class PriceFactory extends Factory
 {

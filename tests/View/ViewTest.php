@@ -1,17 +1,17 @@
 <?php
 
-namespace QuantaQuirk\Tests\View;
+namespace QuantaForge\Tests\View;
 
 use ArrayAccess;
 use BadMethodCallException;
 use Closure;
-use QuantaQuirk\Contracts\Support\Arrayable;
-use QuantaQuirk\Contracts\Support\Renderable;
-use QuantaQuirk\Contracts\View\Engine;
-use QuantaQuirk\Support\MessageBag;
-use QuantaQuirk\Support\ViewErrorBag;
-use QuantaQuirk\View\Factory;
-use QuantaQuirk\View\View;
+use QuantaForge\Contracts\Support\Arrayable;
+use QuantaForge\Contracts\Support\Renderable;
+use QuantaForge\Contracts\View\Engine;
+use QuantaForge\Support\MessageBag;
+use QuantaForge\Support\ViewErrorBag;
+use QuantaForge\View\Factory;
+use QuantaForge\View\View;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 
@@ -175,7 +175,7 @@ class ViewTest extends TestCase
     public function testViewBadMethod()
     {
         $this->expectException(BadMethodCallException::class);
-        $this->expectExceptionMessage('Method QuantaQuirk\View\View::badMethodCall does not exist.');
+        $this->expectExceptionMessage('Method QuantaForge\View\View::badMethodCall does not exist.');
 
         $view = $this->getView();
         $view->badMethodCall();

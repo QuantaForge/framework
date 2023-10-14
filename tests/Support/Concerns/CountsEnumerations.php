@@ -1,9 +1,9 @@
 <?php
 
-namespace QuantaQuirk\Tests\Support\Concerns;
+namespace QuantaForge\Tests\Support\Concerns;
 
-use QuantaQuirk\Support\Collection;
-use QuantaQuirk\Support\LazyCollection;
+use QuantaForge\Support\Collection;
+use QuantaForge\Support\LazyCollection;
 
 trait CountsEnumerations
 {

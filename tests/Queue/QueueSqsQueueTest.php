@@ -1,13 +1,13 @@
 <?php
 
-namespace QuantaQuirk\Tests\Queue;
+namespace QuantaForge\Tests\Queue;
 
 use Aws\Result;
 use Aws\Sqs\SqsClient;
-use QuantaQuirk\Container\Container;
-use QuantaQuirk\Queue\Jobs\SqsJob;
-use QuantaQuirk\Queue\SqsQueue;
-use QuantaQuirk\Support\Carbon;
+use QuantaForge\Container\Container;
+use QuantaForge\Queue\Jobs\SqsJob;
+use QuantaForge\Queue\SqsQueue;
+use QuantaForge\Support\Carbon;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 

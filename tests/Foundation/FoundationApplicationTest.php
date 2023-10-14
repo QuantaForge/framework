@@ -1,13 +1,13 @@
 <?php
 
-namespace QuantaQuirk\Tests\Foundation;
+namespace QuantaForge\Tests\Foundation;
 
-use QuantaQuirk\Config\Repository;
-use QuantaQuirk\Contracts\Support\DeferrableProvider;
-use QuantaQuirk\Foundation\Application;
-use QuantaQuirk\Foundation\Bootstrap\RegisterFacades;
-use QuantaQuirk\Foundation\Events\LocaleUpdated;
-use QuantaQuirk\Support\ServiceProvider;
+use QuantaForge\Config\Repository;
+use QuantaForge\Contracts\Support\DeferrableProvider;
+use QuantaForge\Foundation\Application;
+use QuantaForge\Foundation\Bootstrap\RegisterFacades;
+use QuantaForge\Foundation\Events\LocaleUpdated;
+use QuantaForge\Support\ServiceProvider;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 use stdClass;
@@ -266,7 +266,7 @@ class FoundationApplicationTest extends TestCase
             //
         };
         $app->afterLoadingEnvironment($closure);
-        $this->assertArrayHasKey(0, $app['events']->getListeners('bootstrapped: QuantaQuirk\Foundation\Bootstrap\LoadEnvironmentVariables'));
+        $this->assertArrayHasKey(0, $app['events']->getListeners('bootstrapped: QuantaForge\Foundation\Bootstrap\LoadEnvironmentVariables'));
     }
 
     public function testBeforeBootstrappingAddsClosure()
@@ -276,7 +276,7 @@ class FoundationApplicationTest extends TestCase
             //
         };
         $app->beforeBootstrapping(RegisterFacades::class, $closure);
-        $this->assertArrayHasKey(0, $app['events']->getListeners('bootstrapping: QuantaQuirk\Foundation\Bootstrap\RegisterFacades'));
+        $this->assertArrayHasKey(0, $app['events']->getListeners('bootstrapping: QuantaForge\Foundation\Bootstrap\RegisterFacades'));
     }
 
     public function testTerminationTests()
@@ -312,7 +312,7 @@ class FoundationApplicationTest extends TestCase
             //
         };
         $app->afterBootstrapping(RegisterFacades::class, $closure);
-        $this->assertArrayHasKey(0, $app['events']->getListeners('bootstrapped: QuantaQuirk\Foundation\Bootstrap\RegisterFacades'));
+        $this->assertArrayHasKey(0, $app['events']->getListeners('bootstrapped: QuantaForge\Foundation\Bootstrap\RegisterFacades'));
     }
 
     public function testTerminationCallbacksCanAcceptAtNotation()
@@ -382,11 +382,11 @@ class FoundationApplicationTest extends TestCase
 
     public function testGetNamespace()
     {
-        $app1 = new Application(realpath(__DIR__.'/fixtures/quantaquirk1'));
-        $app2 = new Application(realpath(__DIR__.'/fixtures/quantaquirk2'));
+        $app1 = new Application(realpath(__DIR__.'/fixtures/quantaforge1'));
+        $app2 = new Application(realpath(__DIR__.'/fixtures/quantaforge2'));
 
-        $this->assertSame('QuantaQuirk\\One\\', $app1->getNamespace());
-        $this->assertSame('QuantaQuirk\\Two\\', $app2->getNamespace());
+        $this->assertSame('QuantaForge\\One\\', $app1->getNamespace());
+        $this->assertSame('QuantaForge\\Two\\', $app2->getNamespace());
     }
 
     public function testCachePathsResolveToBootstrapCacheDirectory()
@@ -522,7 +522,7 @@ class FoundationApplicationTest extends TestCase
     {
         $app = new Application;
         $app->useConfigPath(__DIR__.'/fixtures/config');
-        $app->bootstrapWith([\QuantaQuirk\Foundation\Bootstrap\LoadConfiguration::class]);
+        $app->bootstrapWith([\QuantaForge\Foundation\Bootstrap\LoadConfiguration::class]);
 
         $this->assertSame('bar', $app->make('config')->get('app.foo'));
     }

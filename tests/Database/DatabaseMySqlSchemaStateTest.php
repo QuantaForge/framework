@@ -1,10 +1,10 @@
 <?php
 
-namespace QuantaQuirk\Tests\Database;
+namespace QuantaForge\Tests\Database;
 
 use Generator;
-use QuantaQuirk\Database\MySqlConnection;
-use QuantaQuirk\Database\Schema\MySqlSchemaState;
+use QuantaForge\Database\MySqlConnection;
+use QuantaForge\Database\Schema\MySqlSchemaState;
 use PHPUnit\Framework\TestCase;
 use ReflectionMethod;
 
@@ -36,14 +36,14 @@ class DatabaseMySqlSchemaStateTest extends TestCase
     public static function provider(): Generator
     {
         yield 'default' => [
-            ' --user="${:QUANTAQUIRK_LOAD_USER}" --password="${:QUANTAQUIRK_LOAD_PASSWORD}" --host="${:QUANTAQUIRK_LOAD_HOST}" --port="${:QUANTAQUIRK_LOAD_PORT}"', [
-                'QUANTAQUIRK_LOAD_SOCKET' => '',
-                'QUANTAQUIRK_LOAD_HOST' => '127.0.0.1',
-                'QUANTAQUIRK_LOAD_PORT' => '',
-                'QUANTAQUIRK_LOAD_USER' => 'root',
-                'QUANTAQUIRK_LOAD_PASSWORD' => '',
-                'QUANTAQUIRK_LOAD_DATABASE' => 'forge',
-                'QUANTAQUIRK_LOAD_SSL_CA' => '',
+            ' --user="${:QUANTAFORGE_LOAD_USER}" --password="${:QUANTAFORGE_LOAD_PASSWORD}" --host="${:QUANTAFORGE_LOAD_HOST}" --port="${:QUANTAFORGE_LOAD_PORT}"', [
+                'QUANTAFORGE_LOAD_SOCKET' => '',
+                'QUANTAFORGE_LOAD_HOST' => '127.0.0.1',
+                'QUANTAFORGE_LOAD_PORT' => '',
+                'QUANTAFORGE_LOAD_USER' => 'root',
+                'QUANTAFORGE_LOAD_PASSWORD' => '',
+                'QUANTAFORGE_LOAD_DATABASE' => 'forge',
+                'QUANTAFORGE_LOAD_SSL_CA' => '',
             ], [
                 'username' => 'root',
                 'host' => '127.0.0.1',
@@ -52,14 +52,14 @@ class DatabaseMySqlSchemaStateTest extends TestCase
         ];
 
         yield 'ssl_ca' => [
-            ' --user="${:QUANTAQUIRK_LOAD_USER}" --password="${:QUANTAQUIRK_LOAD_PASSWORD}" --host="${:QUANTAQUIRK_LOAD_HOST}" --port="${:QUANTAQUIRK_LOAD_PORT}" --ssl-ca="${:QUANTAQUIRK_LOAD_SSL_CA}"', [
-                'QUANTAQUIRK_LOAD_SOCKET' => '',
-                'QUANTAQUIRK_LOAD_HOST' => '',
-                'QUANTAQUIRK_LOAD_PORT' => '',
-                'QUANTAQUIRK_LOAD_USER' => 'root',
-                'QUANTAQUIRK_LOAD_PASSWORD' => '',
-                'QUANTAQUIRK_LOAD_DATABASE' => 'forge',
-                'QUANTAQUIRK_LOAD_SSL_CA' => 'ssl.ca',
+            ' --user="${:QUANTAFORGE_LOAD_USER}" --password="${:QUANTAFORGE_LOAD_PASSWORD}" --host="${:QUANTAFORGE_LOAD_HOST}" --port="${:QUANTAFORGE_LOAD_PORT}" --ssl-ca="${:QUANTAFORGE_LOAD_SSL_CA}"', [
+                'QUANTAFORGE_LOAD_SOCKET' => '',
+                'QUANTAFORGE_LOAD_HOST' => '',
+                'QUANTAFORGE_LOAD_PORT' => '',
+                'QUANTAFORGE_LOAD_USER' => 'root',
+                'QUANTAFORGE_LOAD_PASSWORD' => '',
+                'QUANTAFORGE_LOAD_DATABASE' => 'forge',
+                'QUANTAFORGE_LOAD_SSL_CA' => 'ssl.ca',
             ], [
                 'username' => 'root',
                 'database' => 'forge',
@@ -70,14 +70,14 @@ class DatabaseMySqlSchemaStateTest extends TestCase
         ];
 
         yield 'unix socket' => [
-            ' --user="${:QUANTAQUIRK_LOAD_USER}" --password="${:QUANTAQUIRK_LOAD_PASSWORD}" --socket="${:QUANTAQUIRK_LOAD_SOCKET}"', [
-                'QUANTAQUIRK_LOAD_SOCKET' => '/tmp/mysql.sock',
-                'QUANTAQUIRK_LOAD_HOST' => '',
-                'QUANTAQUIRK_LOAD_PORT' => '',
-                'QUANTAQUIRK_LOAD_USER' => 'root',
-                'QUANTAQUIRK_LOAD_PASSWORD' => '',
-                'QUANTAQUIRK_LOAD_DATABASE' => 'forge',
-                'QUANTAQUIRK_LOAD_SSL_CA' => '',
+            ' --user="${:QUANTAFORGE_LOAD_USER}" --password="${:QUANTAFORGE_LOAD_PASSWORD}" --socket="${:QUANTAFORGE_LOAD_SOCKET}"', [
+                'QUANTAFORGE_LOAD_SOCKET' => '/tmp/mysql.sock',
+                'QUANTAFORGE_LOAD_HOST' => '',
+                'QUANTAFORGE_LOAD_PORT' => '',
+                'QUANTAFORGE_LOAD_USER' => 'root',
+                'QUANTAFORGE_LOAD_PASSWORD' => '',
+                'QUANTAFORGE_LOAD_DATABASE' => 'forge',
+                'QUANTAFORGE_LOAD_SSL_CA' => '',
             ], [
                 'username' => 'root',
                 'database' => 'forge',

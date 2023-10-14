@@ -1,8 +1,8 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Database\SqlServer;
+namespace QuantaForge\Tests\Integration\Database\SqlServer;
 
-use QuantaQuirk\Tests\Integration\Database\DatabaseTestCase;
+use QuantaForge\Tests\Integration\Database\DatabaseTestCase;
 
 abstract class SqlServerTestCase extends DatabaseTestCase
 {

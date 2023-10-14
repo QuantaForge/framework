@@ -1,10 +1,10 @@
 <?php
 
-namespace QuantaQuirk\Tests\Support;
+namespace QuantaForge\Tests\Support;
 
 use BadMethodCallException;
 use Error;
-use QuantaQuirk\Support\Traits\ForwardsCalls;
+use QuantaForge\Support\Traits\ForwardsCalls;
 use PHPUnit\Framework\TestCase;
 
 class ForwardsCallsTest extends TestCase
@@ -26,7 +26,7 @@ class ForwardsCallsTest extends TestCase
     public function testMissingForwardedCallThrowsCorrectError()
     {
         $this->expectException(BadMethodCallException::class);
-        $this->expectExceptionMessage('Call to undefined method QuantaQuirk\Tests\Support\ForwardsCallsOne::missingMethod()');
+        $this->expectExceptionMessage('Call to undefined method QuantaForge\Tests\Support\ForwardsCallsOne::missingMethod()');
 
         (new ForwardsCallsOne)->missingMethod('foo', 'bar');
     }
@@ -34,7 +34,7 @@ class ForwardsCallsTest extends TestCase
     public function testMissingAlphanumericForwardedCallThrowsCorrectError()
     {
         $this->expectException(BadMethodCallException::class);
-        $this->expectExceptionMessage('Call to undefined method QuantaQuirk\Tests\Support\ForwardsCallsOne::this1_shouldWork_too()');
+        $this->expectExceptionMessage('Call to undefined method QuantaForge\Tests\Support\ForwardsCallsOne::this1_shouldWork_too()');
 
         (new ForwardsCallsOne)->this1_shouldWork_too('foo', 'bar');
     }
@@ -42,7 +42,7 @@ class ForwardsCallsTest extends TestCase
     public function testNonForwardedErrorIsNotTamperedWith()
     {
         $this->expectException(Error::class);
-        $this->expectExceptionMessage('Call to undefined method QuantaQuirk\Tests\Support\ForwardsCallsBase::missingMethod()');
+        $this->expectExceptionMessage('Call to undefined method QuantaForge\Tests\Support\ForwardsCallsBase::missingMethod()');
 
         (new ForwardsCallsOne)->baseError('foo', 'bar');
     }
@@ -50,7 +50,7 @@ class ForwardsCallsTest extends TestCase
     public function testThrowBadMethodCallException()
     {
         $this->expectException(BadMethodCallException::class);
-        $this->expectExceptionMessage('Call to undefined method QuantaQuirk\Tests\Support\ForwardsCallsOne::test()');
+        $this->expectExceptionMessage('Call to undefined method QuantaForge\Tests\Support\ForwardsCallsOne::test()');
 
         (new ForwardsCallsOne)->throwTestException('test');
     }

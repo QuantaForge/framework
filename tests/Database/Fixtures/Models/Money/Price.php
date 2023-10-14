@@ -1,10 +1,10 @@
 <?php
 
-namespace QuantaQuirk\Tests\Database\Fixtures\Models\Money;
+namespace QuantaForge\Tests\Database\Fixtures\Models\Money;
 
-use QuantaQuirk\Database\Eloquent\Factories\HasFactory;
-use QuantaQuirk\Database\Eloquent\Model;
-use QuantaQuirk\Tests\Database\Fixtures\Factories\Money\PriceFactory;
+use QuantaForge\Database\Eloquent\Factories\HasFactory;
+use QuantaForge\Database\Eloquent\Model;
+use QuantaForge\Tests\Database\Fixtures\Factories\Money\PriceFactory;
 
 class Price extends Model
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Generators;
+namespace QuantaForge\Tests\Integration\Generators;
 
 class ConsoleMakeCommandTest extends TestCase
 {
@@ -15,7 +15,7 @@ class ConsoleMakeCommandTest extends TestCase
 
         $this->assertFileContains([
             'namespace App\Console\Commands;',
-            'use QuantaQuirk\Console\Command;',
+            'use QuantaForge\Console\Command;',
             'class FooCommand extends Command',
             'protected $signature = \'app:foo-command\';',
         ], 'app/Console/Commands/FooCommand.php');
@@ -28,7 +28,7 @@ class ConsoleMakeCommandTest extends TestCase
 
         $this->assertFileContains([
             'namespace App\Console\Commands;',
-            'use QuantaQuirk\Console\Command;',
+            'use QuantaForge\Console\Command;',
             'class FooCommand extends Command',
             'protected $signature = \'foo:bar\';',
         ], 'app/Console/Commands/FooCommand.php');

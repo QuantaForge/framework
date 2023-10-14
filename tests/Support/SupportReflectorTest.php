@@ -1,13 +1,13 @@
 <?php
 
-namespace QuantaQuirk\Tests\Support;
+namespace QuantaForge\Tests\Support;
 
-use QuantaQuirk\Contracts\Mail\Mailable;
-use QuantaQuirk\Database\Eloquent\Model;
-use QuantaQuirk\Support\Reflector;
-use QuantaQuirk\Support\Testing\Fakes\BusFake;
-use QuantaQuirk\Support\Testing\Fakes\MailFake;
-use QuantaQuirk\Support\Testing\Fakes\PendingMailFake;
+use QuantaForge\Contracts\Mail\Mailable;
+use QuantaForge\Database\Eloquent\Model;
+use QuantaForge\Support\Reflector;
+use QuantaForge\Support\Testing\Fakes\BusFake;
+use QuantaForge\Support\Testing\Fakes\MailFake;
+use QuantaForge\Support\Testing\Fakes\PendingMailFake;
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;
 

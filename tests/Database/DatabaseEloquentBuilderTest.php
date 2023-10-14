@@ -1,23 +1,23 @@
 <?php
 
-namespace QuantaQuirk\Tests\Database;
+namespace QuantaForge\Tests\Database;
 
 use BadMethodCallException;
 use Closure;
-use QuantaQuirk\Database\ConnectionInterface;
-use QuantaQuirk\Database\ConnectionResolverInterface;
-use QuantaQuirk\Database\Eloquent\Builder;
-use QuantaQuirk\Database\Eloquent\Collection;
-use QuantaQuirk\Database\Eloquent\Model;
-use QuantaQuirk\Database\Eloquent\ModelNotFoundException;
-use QuantaQuirk\Database\Eloquent\RelationNotFoundException;
-use QuantaQuirk\Database\Eloquent\Relations\Relation;
-use QuantaQuirk\Database\Eloquent\SoftDeletes;
-use QuantaQuirk\Database\Query\Builder as BaseBuilder;
-use QuantaQuirk\Database\Query\Grammars\Grammar;
-use QuantaQuirk\Database\Query\Processors\Processor;
-use QuantaQuirk\Support\Carbon;
-use QuantaQuirk\Support\Collection as BaseCollection;
+use QuantaForge\Database\ConnectionInterface;
+use QuantaForge\Database\ConnectionResolverInterface;
+use QuantaForge\Database\Eloquent\Builder;
+use QuantaForge\Database\Eloquent\Collection;
+use QuantaForge\Database\Eloquent\Model;
+use QuantaForge\Database\Eloquent\ModelNotFoundException;
+use QuantaForge\Database\Eloquent\RelationNotFoundException;
+use QuantaForge\Database\Eloquent\Relations\Relation;
+use QuantaForge\Database\Eloquent\SoftDeletes;
+use QuantaForge\Database\Query\Builder as BaseBuilder;
+use QuantaForge\Database\Query\Grammars\Grammar;
+use QuantaForge\Database\Query\Processors\Processor;
+use QuantaForge\Support\Carbon;
+use QuantaForge\Support\Collection as BaseCollection;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 use stdClass;
@@ -712,7 +712,7 @@ class DatabaseEloquentBuilderTest extends TestCase
     public function testMissingStaticMacrosThrowsProperException()
     {
         $this->expectException(BadMethodCallException::class);
-        $this->expectExceptionMessage('Call to undefined method QuantaQuirk\Database\Eloquent\Builder::missingMacro()');
+        $this->expectExceptionMessage('Call to undefined method QuantaForge\Database\Eloquent\Builder::missingMacro()');
 
         Builder::missingMacro();
     }
@@ -1290,7 +1290,7 @@ class DatabaseEloquentBuilderTest extends TestCase
 
         // alias has a dynamic hash, so replace with a static string for comparison
         $alias = 'self_alias_hash';
-        $aliasRegex = '/\b(quantaquirk_reserved_\d)(\b|$)/i';
+        $aliasRegex = '/\b(quantaforge_reserved_\d)(\b|$)/i';
 
         $sql = preg_replace($aliasRegex, $alias, $sql);
 
@@ -1407,7 +1407,7 @@ class DatabaseEloquentBuilderTest extends TestCase
 
         // alias has a dynamic hash, so replace with a static string for comparison
         $alias = 'self_alias_hash';
-        $aliasRegex = '/\b(quantaquirk_reserved_\d)(\b|$)/i';
+        $aliasRegex = '/\b(quantaforge_reserved_\d)(\b|$)/i';
 
         $sql = preg_replace($aliasRegex, $alias, $sql);
 
@@ -1590,7 +1590,7 @@ class DatabaseEloquentBuilderTest extends TestCase
 
         // alias has a dynamic hash, so replace with a static string for comparison
         $alias = 'self_alias_hash';
-        $aliasRegex = '/\b(quantaquirk_reserved_\d)(\b|$)/i';
+        $aliasRegex = '/\b(quantaforge_reserved_\d)(\b|$)/i';
 
         $nestedSql = preg_replace($aliasRegex, $alias, $nestedSql);
         $dotSql = preg_replace($aliasRegex, $alias, $dotSql);
@@ -1606,7 +1606,7 @@ class DatabaseEloquentBuilderTest extends TestCase
 
         // alias has a dynamic hash, so replace with a static string for comparison
         $alias = 'self_alias_hash';
-        $aliasRegex = '/\b(quantaquirk_reserved_\d)(\b|$)/i';
+        $aliasRegex = '/\b(quantaforge_reserved_\d)(\b|$)/i';
 
         $sql = preg_replace($aliasRegex, $alias, $sql);
 
@@ -2248,8 +2248,8 @@ class DatabaseEloquentBuilderTest extends TestCase
 
     protected function mockConnectionForModel($model, $database)
     {
-        $grammarClass = 'QuantaQuirk\Database\Query\Grammars\\'.$database.'Grammar';
-        $processorClass = 'QuantaQuirk\Database\Query\Processors\\'.$database.'Processor';
+        $grammarClass = 'QuantaForge\Database\Query\Grammars\\'.$database.'Grammar';
+        $processorClass = 'QuantaForge\Database\Query\Processors\\'.$database.'Processor';
         $grammar = new $grammarClass;
         $processor = new $processorClass;
         $connection = m::mock(ConnectionInterface::class, ['getQueryGrammar' => $grammar, 'getPostProcessor' => $processor]);

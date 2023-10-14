@@ -1,20 +1,20 @@
 <?php
 
-namespace QuantaQuirk\Tests\Support;
+namespace QuantaForge\Tests\Support;
 
 use ArrayAccess;
 use ArrayIterator;
 use ArrayObject;
 use CachingIterator;
 use Exception;
-use QuantaQuirk\Contracts\Support\Arrayable;
-use QuantaQuirk\Contracts\Support\Jsonable;
-use QuantaQuirk\Support\Collection;
-use QuantaQuirk\Support\HtmlString;
-use QuantaQuirk\Support\ItemNotFoundException;
-use QuantaQuirk\Support\LazyCollection;
-use QuantaQuirk\Support\MultipleItemsFoundException;
-use QuantaQuirk\Support\Str;
+use QuantaForge\Contracts\Support\Arrayable;
+use QuantaForge\Contracts\Support\Jsonable;
+use QuantaForge\Support\Collection;
+use QuantaForge\Support\HtmlString;
+use QuantaForge\Support\ItemNotFoundException;
+use QuantaForge\Support\LazyCollection;
+use QuantaForge\Support\MultipleItemsFoundException;
+use QuantaForge\Support\Str;
 use InvalidArgumentException;
 use IteratorAggregate;
 use JsonSerializable;
@@ -1570,20 +1570,20 @@ class SupportCollectionTest extends TestCase
      */
     public function testDuplicates($collection)
     {
-        $duplicates = $collection::make([1, 2, 1, 'quantaquirk', null, 'quantaquirk', 'php', null])->duplicates()->all();
-        $this->assertSame([2 => 1, 5 => 'quantaquirk', 7 => null], $duplicates);
+        $duplicates = $collection::make([1, 2, 1, 'quantaforge', null, 'quantaforge', 'php', null])->duplicates()->all();
+        $this->assertSame([2 => 1, 5 => 'quantaforge', 7 => null], $duplicates);
 
         // does loose comparison
         $duplicates = $collection::make([2, '2', [], null])->duplicates()->all();
         $this->assertSame([1 => '2', 3 => null], $duplicates);
 
         // works with mix of primitives
-        $duplicates = $collection::make([1, '2', ['quantaquirk'], ['quantaquirk'], null, '2'])->duplicates()->all();
-        $this->assertSame([3 => ['quantaquirk'], 5 => '2'], $duplicates);
+        $duplicates = $collection::make([1, '2', ['quantaforge'], ['quantaforge'], null, '2'])->duplicates()->all();
+        $this->assertSame([3 => ['quantaforge'], 5 => '2'], $duplicates);
 
         // works with mix of objects and primitives **excepts numbers**.
-        $expected = new Collection(['quantaquirk']);
-        $duplicates = $collection::make([new Collection(['quantaquirk']), $expected, $expected, [], '2', '2'])->duplicates()->all();
+        $expected = new Collection(['quantaforge']);
+        $duplicates = $collection::make([new Collection(['quantaforge']), $expected, $expected, [], '2', '2'])->duplicates()->all();
         $this->assertSame([1 => $expected, 2 => $expected, 5 => '2'], $duplicates);
     }
 
@@ -1592,9 +1592,9 @@ class SupportCollectionTest extends TestCase
      */
     public function testDuplicatesWithKey($collection)
     {
-        $items = [['framework' => 'vue'], ['framework' => 'quantaquirk'], ['framework' => 'quantaquirk']];
+        $items = [['framework' => 'vue'], ['framework' => 'quantaforge'], ['framework' => 'quantaforge']];
         $duplicates = $collection::make($items)->duplicates('framework')->all();
-        $this->assertSame([2 => 'quantaquirk'], $duplicates);
+        $this->assertSame([2 => 'quantaforge'], $duplicates);
 
         // works with key and strict
         $items = [['Framework' => 'vue'], ['framework' => 'vue'], ['Framework' => 'vue']];
@@ -1607,11 +1607,11 @@ class SupportCollectionTest extends TestCase
      */
     public function testDuplicatesWithCallback($collection)
     {
-        $items = [['framework' => 'vue'], ['framework' => 'quantaquirk'], ['framework' => 'quantaquirk']];
+        $items = [['framework' => 'vue'], ['framework' => 'quantaforge'], ['framework' => 'quantaforge']];
         $duplicates = $collection::make($items)->duplicates(function ($item) {
             return $item['framework'];
         })->all();
-        $this->assertSame([2 => 'quantaquirk'], $duplicates);
+        $this->assertSame([2 => 'quantaforge'], $duplicates);
     }
 
     /**
@@ -1619,20 +1619,20 @@ class SupportCollectionTest extends TestCase
      */
     public function testDuplicatesWithStrict($collection)
     {
-        $duplicates = $collection::make([1, 2, 1, 'quantaquirk', null, 'quantaquirk', 'php', null])->duplicatesStrict()->all();
-        $this->assertSame([2 => 1, 5 => 'quantaquirk', 7 => null], $duplicates);
+        $duplicates = $collection::make([1, 2, 1, 'quantaforge', null, 'quantaforge', 'php', null])->duplicatesStrict()->all();
+        $this->assertSame([2 => 1, 5 => 'quantaforge', 7 => null], $duplicates);
 
         // does strict comparison
         $duplicates = $collection::make([2, '2', [], null])->duplicatesStrict()->all();
         $this->assertSame([], $duplicates);
 
         // works with mix of primitives
-        $duplicates = $collection::make([1, '2', ['quantaquirk'], ['quantaquirk'], null, '2'])->duplicatesStrict()->all();
-        $this->assertSame([3 => ['quantaquirk'], 5 => '2'], $duplicates);
+        $duplicates = $collection::make([1, '2', ['quantaforge'], ['quantaforge'], null, '2'])->duplicatesStrict()->all();
+        $this->assertSame([3 => ['quantaforge'], 5 => '2'], $duplicates);
 
         // works with mix of primitives, objects, and numbers
-        $expected = new $collection(['quantaquirk']);
-        $duplicates = $collection::make([new $collection(['quantaquirk']), $expected, $expected, [], '2', '2'])->duplicatesStrict()->all();
+        $expected = new $collection(['quantaforge']);
+        $duplicates = $collection::make([new $collection(['quantaforge']), $expected, $expected, [], '2', '2'])->duplicatesStrict()->all();
         $this->assertSame([2 => $expected, 5 => '2'], $duplicates);
     }
 
@@ -2115,10 +2115,10 @@ class SupportCollectionTest extends TestCase
 
         $this->assertSame([1 => 'alan', 0 => 'zaeed'], $reversed->all());
 
-        $data = new $collection(['name' => 'taylor', 'framework' => 'quantaquirk']);
+        $data = new $collection(['name' => 'taylor', 'framework' => 'quantaforge']);
         $reversed = $data->reverse();
 
-        $this->assertSame(['framework' => 'quantaquirk', 'name' => 'taylor'], $reversed->all());
+        $this->assertSame(['framework' => 'quantaforge', 'name' => 'taylor'], $reversed->all());
     }
 
     /**
@@ -2126,8 +2126,8 @@ class SupportCollectionTest extends TestCase
      */
     public function testFlip($collection)
     {
-        $data = new $collection(['name' => 'taylor', 'framework' => 'quantaquirk']);
-        $this->assertEquals(['taylor' => 'name', 'quantaquirk' => 'framework'], $data->flip()->toArray());
+        $data = new $collection(['name' => 'taylor', 'framework' => 'quantaforge']);
+        $this->assertEquals(['taylor' => 'name', 'quantaforge' => 'framework'], $data->flip()->toArray());
     }
 
     /**
@@ -3302,8 +3302,8 @@ class SupportCollectionTest extends TestCase
     public function testGroupByAttributeWithStringableKey($collection)
     {
         $data = new $collection($payload = [
-            ['name' => Str::of('QuantaQuirk'), 'url' => '1'],
-            ['name' => new HtmlString('QuantaQuirk'), 'url' => '1'],
+            ['name' => Str::of('QuantaForge'), 'url' => '1'],
+            ['name' => new HtmlString('QuantaForge'), 'url' => '1'],
             ['name' => new class()
             {
                 public function __toString()
@@ -3314,7 +3314,7 @@ class SupportCollectionTest extends TestCase
         ]);
 
         $result = $data->groupBy('name');
-        $this->assertEquals(['QuantaQuirk' => [$payload[0], $payload[1]], 'Framework' => [$payload[2]]], $result->toArray());
+        $this->assertEquals(['QuantaForge' => [$payload[0], $payload[1]], 'Framework' => [$payload[2]]], $result->toArray());
 
         $result = $data->groupBy('url');
         $this->assertEquals(['1' => [$payload[0], $payload[1]], '2' => [$payload[2]]], $result->toArray());
@@ -4002,10 +4002,10 @@ class SupportCollectionTest extends TestCase
      */
     public function testKeys($collection)
     {
-        $c = new $collection(['name' => 'taylor', 'framework' => 'quantaquirk']);
+        $c = new $collection(['name' => 'taylor', 'framework' => 'quantaforge']);
         $this->assertEquals(['name', 'framework'], $c->keys()->all());
 
-        $c = new $collection(['taylor', 'quantaquirk']);
+        $c = new $collection(['taylor', 'quantaforge']);
         $this->assertEquals([0, 1], $c->keys()->all());
     }
 
@@ -5415,7 +5415,7 @@ class SupportCollectionTest extends TestCase
      */
     public function testGetWithDefaultValue($collection)
     {
-        $data = new $collection(['name' => 'taylor', 'framework' => 'quantaquirk']);
+        $data = new $collection(['name' => 'taylor', 'framework' => 'quantaforge']);
         $this->assertEquals('34', $data->get('age', 34));
     }
 
@@ -5424,7 +5424,7 @@ class SupportCollectionTest extends TestCase
      */
     public function testGetWithCallbackAsDefaultValue($collection)
     {
-        $data = new $collection(['name' => 'taylor', 'framework' => 'quantaquirk']);
+        $data = new $collection(['name' => 'taylor', 'framework' => 'quantaforge']);
         $result = $data->get('email', function () {
             return 'taylor@example.com';
         });

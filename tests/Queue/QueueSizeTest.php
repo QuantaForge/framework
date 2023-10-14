@@ -1,10 +1,10 @@
 <?php
 
-namespace QuantaQuirk\Tests\Queue;
+namespace QuantaForge\Tests\Queue;
 
-use QuantaQuirk\Bus\Queueable;
-use QuantaQuirk\Contracts\Queue\ShouldQueue;
-use QuantaQuirk\Support\Facades\Queue;
+use QuantaForge\Bus\Queueable;
+use QuantaForge\Contracts\Queue\ShouldQueue;
+use QuantaForge\Support\Facades\Queue;
 use Orchestra\Testbench\TestCase;
 
 class QueueSizeTest extends TestCase

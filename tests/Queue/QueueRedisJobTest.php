@@ -1,10 +1,10 @@
 <?php
 
-namespace QuantaQuirk\Tests\Queue;
+namespace QuantaForge\Tests\Queue;
 
-use QuantaQuirk\Container\Container;
-use QuantaQuirk\Queue\Jobs\RedisJob;
-use QuantaQuirk\Queue\RedisQueue;
+use QuantaForge\Container\Container;
+use QuantaForge\Queue\Jobs\RedisJob;
+use QuantaForge\Queue\RedisQueue;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 use stdClass;

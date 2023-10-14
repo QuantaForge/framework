@@ -1,9 +1,9 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Foundation\Fixtures\Console;
+namespace QuantaForge\Tests\Integration\Foundation\Fixtures\Console;
 
 use Exception;
-use QuantaQuirk\Console\Command;
+use QuantaForge\Console\Command;
 
 class ThrowExceptionCommand extends Command
 {

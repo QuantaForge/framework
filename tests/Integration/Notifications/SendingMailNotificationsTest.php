@@ -1,21 +1,21 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Notifications;
+namespace QuantaForge\Tests\Integration\Notifications;
 
-use QuantaQuirk\Contracts\Mail\Factory as MailFactory;
-use QuantaQuirk\Contracts\Mail\Mailable;
-use QuantaQuirk\Contracts\Mail\Mailer;
-use QuantaQuirk\Database\Eloquent\Model;
-use QuantaQuirk\Database\Schema\Blueprint;
-use QuantaQuirk\Mail\Markdown;
-use QuantaQuirk\Mail\Message;
-use QuantaQuirk\Notifications\Channels\MailChannel;
-use QuantaQuirk\Notifications\Messages\MailMessage;
-use QuantaQuirk\Notifications\Notifiable;
-use QuantaQuirk\Notifications\Notification;
-use QuantaQuirk\Support\Facades\Schema;
-use QuantaQuirk\Support\Facades\View;
-use QuantaQuirk\Support\Str;
+use QuantaForge\Contracts\Mail\Factory as MailFactory;
+use QuantaForge\Contracts\Mail\Mailable;
+use QuantaForge\Contracts\Mail\Mailer;
+use QuantaForge\Database\Eloquent\Model;
+use QuantaForge\Database\Schema\Blueprint;
+use QuantaForge\Mail\Markdown;
+use QuantaForge\Mail\Message;
+use QuantaForge\Notifications\Channels\MailChannel;
+use QuantaForge\Notifications\Messages\MailMessage;
+use QuantaForge\Notifications\Notifiable;
+use QuantaForge\Notifications\Notification;
+use QuantaForge\Support\Facades\Schema;
+use QuantaForge\Support\Facades\View;
+use QuantaForge\Support\Str;
 use Mockery as m;
 use Orchestra\Testbench\TestCase;
 
@@ -71,7 +71,7 @@ class SendingMailNotificationsTest extends TestCase
         $notification->id = Str::uuid()->toString();
 
         $user = NotifiableUser::forceCreate([
-            'email' => 'taylor@quantaquirk.com',
+            'email' => 'taylor@quantaforge.com',
         ]);
 
         $this->markdown->shouldReceive('theme')->twice()->with('default')->andReturn($this->markdown);
@@ -81,7 +81,7 @@ class SendingMailNotificationsTest extends TestCase
         $this->setMailerSendAssertions($notification, $user, function ($closure) {
             $message = m::mock(Message::class);
 
-            $message->shouldReceive('to')->once()->with(['taylor@quantaquirk.com']);
+            $message->shouldReceive('to')->once()->with(['taylor@quantaforge.com']);
 
             $message->shouldReceive('cc')->once()->with('cc@deepblue.com', 'cc');
 
@@ -109,7 +109,7 @@ class SendingMailNotificationsTest extends TestCase
         $notification->id = Str::uuid()->toString();
 
         $user = NotifiableUser::forceCreate([
-            'email' => 'taylor@quantaquirk.com',
+            'email' => 'taylor@quantaforge.com',
         ]);
 
         $this->markdown->shouldReceive('theme')->twice()->with('my-custom-theme')->andReturn($this->markdown);
@@ -119,7 +119,7 @@ class SendingMailNotificationsTest extends TestCase
         $this->setMailerSendAssertions($notification, $user, function ($closure) {
             $message = m::mock(Message::class);
 
-            $message->shouldReceive('to')->once()->with(['taylor@quantaquirk.com']);
+            $message->shouldReceive('to')->once()->with(['taylor@quantaforge.com']);
 
             $message->shouldReceive('cc')->once()->with('cc@deepblue.com', 'cc');
 
@@ -160,9 +160,9 @@ class SendingMailNotificationsTest extends TestCase
             $data = $args[1];
 
             $expected = array_merge($notification->toMail($user)->toArray(), [
-                '__quantaquirk_notification_id' => $notification->id,
-                '__quantaquirk_notification' => get_class($notification),
-                '__quantaquirk_notification_queued' => false,
+                '__quantaforge_notification_id' => $notification->id,
+                '__quantaforge_notification' => get_class($notification),
+                '__quantaforge_notification_queued' => false,
             ]);
 
             if (array_keys($data) !== array_keys($expected)) {
@@ -182,7 +182,7 @@ class SendingMailNotificationsTest extends TestCase
         $notification->id = Str::uuid()->toString();
 
         $user = NotifiableUserWithNamedAddress::forceCreate([
-            'email' => 'taylor@quantaquirk.com',
+            'email' => 'taylor@quantaforge.com',
             'name' => 'Taylor Otwell',
         ]);
 
@@ -193,7 +193,7 @@ class SendingMailNotificationsTest extends TestCase
         $this->setMailerSendAssertions($notification, $user, function ($closure) {
             $message = m::mock(Message::class);
 
-            $message->shouldReceive('to')->once()->with(['taylor@quantaquirk.com' => 'Taylor Otwell', 'foo_taylor@quantaquirk.com']);
+            $message->shouldReceive('to')->once()->with(['taylor@quantaforge.com' => 'Taylor Otwell', 'foo_taylor@quantaforge.com']);
 
             $message->shouldReceive('cc')->once()->with('cc@deepblue.com', 'cc');
 
@@ -221,7 +221,7 @@ class SendingMailNotificationsTest extends TestCase
         $notification->id = Str::uuid()->toString();
 
         $user = NotifiableUser::forceCreate([
-            'email' => 'taylor@quantaquirk.com',
+            'email' => 'taylor@quantaforge.com',
         ]);
 
         $this->markdown->shouldReceive('theme')->with('default')->twice()->andReturn($this->markdown);
@@ -231,7 +231,7 @@ class SendingMailNotificationsTest extends TestCase
         $this->setMailerSendAssertions($notification, $user, function ($closure) {
             $message = m::mock(Message::class);
 
-            $message->shouldReceive('to')->once()->with(['taylor@quantaquirk.com']);
+            $message->shouldReceive('to')->once()->with(['taylor@quantaforge.com']);
 
             $message->shouldReceive('subject')->once()->with('mail custom subject');
 
@@ -249,7 +249,7 @@ class SendingMailNotificationsTest extends TestCase
         $notification->id = Str::uuid()->toString();
 
         $user = NotifiableUserWithMultipleAddresses::forceCreate([
-            'email' => 'taylor@quantaquirk.com',
+            'email' => 'taylor@quantaforge.com',
         ]);
 
         $this->markdown->shouldReceive('theme')->with('default')->twice()->andReturn($this->markdown);
@@ -259,7 +259,7 @@ class SendingMailNotificationsTest extends TestCase
         $this->setMailerSendAssertions($notification, $user, function ($closure) {
             $message = m::mock(Message::class);
 
-            $message->shouldReceive('to')->once()->with(['foo_taylor@quantaquirk.com', 'bar_taylor@quantaquirk.com']);
+            $message->shouldReceive('to')->once()->with(['foo_taylor@quantaforge.com', 'bar_taylor@quantaforge.com']);
 
             $message->shouldReceive('subject')->once()->with('mail custom subject');
 
@@ -276,7 +276,7 @@ class SendingMailNotificationsTest extends TestCase
         $notification = new TestMailNotificationWithMailable;
 
         $user = NotifiableUser::forceCreate([
-            'email' => 'taylor@quantaquirk.com',
+            'email' => 'taylor@quantaforge.com',
         ]);
 
         $user->notify($notification);
@@ -288,20 +288,20 @@ class SendingMailNotificationsTest extends TestCase
         $notification->id = Str::uuid()->toString();
 
         $user = NotifiableUser::forceCreate([
-            'email' => 'taylor@quantaquirk.com',
+            'email' => 'taylor@quantaforge.com',
         ]);
 
         $this->mailer->shouldReceive('send')->once()->with(
             ['html', 'plain'],
             array_merge($notification->toMail($user)->toArray(), [
-                '__quantaquirk_notification_id' => $notification->id,
-                '__quantaquirk_notification' => get_class($notification),
-                '__quantaquirk_notification_queued' => false,
+                '__quantaforge_notification_id' => $notification->id,
+                '__quantaforge_notification' => get_class($notification),
+                '__quantaforge_notification_queued' => false,
             ]),
             m::on(function ($closure) {
                 $message = m::mock(Message::class);
 
-                $message->shouldReceive('to')->once()->with(['taylor@quantaquirk.com']);
+                $message->shouldReceive('to')->once()->with(['taylor@quantaforge.com']);
 
                 $message->shouldReceive('subject')->once()->with('Test Mail Notification With Html And Plain');
 
@@ -320,20 +320,20 @@ class SendingMailNotificationsTest extends TestCase
         $notification->id = Str::uuid()->toString();
 
         $user = NotifiableUser::forceCreate([
-            'email' => 'taylor@quantaquirk.com',
+            'email' => 'taylor@quantaforge.com',
         ]);
 
         $this->mailer->shouldReceive('send')->once()->with(
             'html',
             array_merge($notification->toMail($user)->toArray(), [
-                '__quantaquirk_notification_id' => $notification->id,
-                '__quantaquirk_notification' => get_class($notification),
-                '__quantaquirk_notification_queued' => false,
+                '__quantaforge_notification_id' => $notification->id,
+                '__quantaforge_notification' => get_class($notification),
+                '__quantaforge_notification_queued' => false,
             ]),
             m::on(function ($closure) {
                 $message = m::mock(Message::class);
 
-                $message->shouldReceive('to')->once()->with(['taylor@quantaquirk.com']);
+                $message->shouldReceive('to')->once()->with(['taylor@quantaforge.com']);
 
                 $message->shouldReceive('subject')->once()->with('Test Mail Notification With Html Only');
 
@@ -352,20 +352,20 @@ class SendingMailNotificationsTest extends TestCase
         $notification->id = Str::uuid()->toString();
 
         $user = NotifiableUser::forceCreate([
-            'email' => 'taylor@quantaquirk.com',
+            'email' => 'taylor@quantaforge.com',
         ]);
 
         $this->mailer->shouldReceive('send')->once()->with(
             [null, 'plain'],
             array_merge($notification->toMail($user)->toArray(), [
-                '__quantaquirk_notification_id' => $notification->id,
-                '__quantaquirk_notification' => get_class($notification),
-                '__quantaquirk_notification_queued' => false,
+                '__quantaforge_notification_id' => $notification->id,
+                '__quantaforge_notification' => get_class($notification),
+                '__quantaforge_notification_queued' => false,
             ]),
             m::on(function ($closure) {
                 $message = m::mock(Message::class);
 
-                $message->shouldReceive('to')->once()->with(['taylor@quantaquirk.com']);
+                $message->shouldReceive('to')->once()->with(['taylor@quantaforge.com']);
 
                 $message->shouldReceive('subject')->once()->with('Test Mail Notification With Plain Only');
 

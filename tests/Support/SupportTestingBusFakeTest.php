@@ -1,13 +1,13 @@
 <?php
 
-namespace QuantaQuirk\Tests\Support;
+namespace QuantaForge\Tests\Support;
 
-use QuantaQuirk\Bus\Batch;
-use QuantaQuirk\Bus\Queueable;
-use QuantaQuirk\Contracts\Bus\QueueingDispatcher;
-use QuantaQuirk\Support\Testing\Fakes\BatchRepositoryFake;
-use QuantaQuirk\Support\Testing\Fakes\BusFake;
-use QuantaQuirk\Support\Testing\Fakes\PendingBatchFake;
+use QuantaForge\Bus\Batch;
+use QuantaForge\Bus\Queueable;
+use QuantaForge\Contracts\Bus\QueueingDispatcher;
+use QuantaForge\Support\Testing\Fakes\BatchRepositoryFake;
+use QuantaForge\Support\Testing\Fakes\BusFake;
+use QuantaForge\Support\Testing\Fakes\PendingBatchFake;
 use Mockery as m;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\ExpectationFailedException;
@@ -15,7 +15,7 @@ use PHPUnit\Framework\TestCase;
 
 class SupportTestingBusFakeTest extends TestCase
 {
-    /** @var \QuantaQuirk\Support\Testing\Fakes\BusFake */
+    /** @var \QuantaForge\Support\Testing\Fakes\BusFake */
     protected $fake;
 
     protected function setUp(): void
@@ -50,7 +50,7 @@ class SupportTestingBusFakeTest extends TestCase
             $this->fake->assertDispatched(BusJobStub::class);
             $this->fail();
         } catch (ExpectationFailedException $e) {
-            $this->assertStringContainsString('The expected [QuantaQuirk\Tests\Support\BusJobStub] job was not dispatched.', $e->getMessage());
+            $this->assertStringContainsString('The expected [QuantaForge\Tests\Support\BusJobStub] job was not dispatched.', $e->getMessage());
         }
 
         $this->fake->dispatch(new BusJobStub);
@@ -73,7 +73,7 @@ class SupportTestingBusFakeTest extends TestCase
             $this->fake->assertDispatchedAfterResponse(BusJobStub::class);
             $this->fail();
         } catch (ExpectationFailedException $e) {
-            $this->assertStringContainsString('The expected [QuantaQuirk\Tests\Support\BusJobStub] job was not dispatched after sending the response.', $e->getMessage());
+            $this->assertStringContainsString('The expected [QuantaForge\Tests\Support\BusJobStub] job was not dispatched after sending the response.', $e->getMessage());
         }
 
         $this->fake->dispatchAfterResponse(new BusJobStub);
@@ -89,7 +89,7 @@ class SupportTestingBusFakeTest extends TestCase
             });
             $this->fail();
         } catch (ExpectationFailedException $e) {
-            $this->assertStringContainsString('The expected [QuantaQuirk\Tests\Support\BusJobStub] job was not dispatched after sending the response.', $e->getMessage());
+            $this->assertStringContainsString('The expected [QuantaForge\Tests\Support\BusJobStub] job was not dispatched after sending the response.', $e->getMessage());
         }
     }
 
@@ -99,7 +99,7 @@ class SupportTestingBusFakeTest extends TestCase
             $this->fake->assertDispatchedSync(BusJobStub::class);
             $this->fail();
         } catch (ExpectationFailedException $e) {
-            $this->assertStringContainsString('The expected [QuantaQuirk\Tests\Support\BusJobStub] job was not dispatched synchronously.', $e->getMessage());
+            $this->assertStringContainsString('The expected [QuantaForge\Tests\Support\BusJobStub] job was not dispatched synchronously.', $e->getMessage());
         }
 
         $this->fake->dispatch(new BusJobStub);
@@ -108,7 +108,7 @@ class SupportTestingBusFakeTest extends TestCase
             $this->fake->assertDispatchedSync(BusJobStub::class);
             $this->fail();
         } catch (ExpectationFailedException $e) {
-            $this->assertStringContainsString('The expected [QuantaQuirk\Tests\Support\BusJobStub] job was not dispatched synchronously.', $e->getMessage());
+            $this->assertStringContainsString('The expected [QuantaForge\Tests\Support\BusJobStub] job was not dispatched synchronously.', $e->getMessage());
         }
 
         $this->fake->dispatchSync(new BusJobStub);
@@ -124,7 +124,7 @@ class SupportTestingBusFakeTest extends TestCase
             });
             $this->fail();
         } catch (ExpectationFailedException $e) {
-            $this->assertStringContainsString('The expected [QuantaQuirk\Tests\Support\BusJobStub] job was not dispatched synchronously.', $e->getMessage());
+            $this->assertStringContainsString('The expected [QuantaForge\Tests\Support\BusJobStub] job was not dispatched synchronously.', $e->getMessage());
         }
     }
 
@@ -144,7 +144,7 @@ class SupportTestingBusFakeTest extends TestCase
             $this->fake->assertDispatched(BusJobStub::class, 1);
             $this->fail();
         } catch (ExpectationFailedException $e) {
-            $this->assertStringContainsString('The expected [QuantaQuirk\Tests\Support\BusJobStub] job was pushed 2 times instead of 1 times.', $e->getMessage());
+            $this->assertStringContainsString('The expected [QuantaForge\Tests\Support\BusJobStub] job was pushed 2 times instead of 1 times.', $e->getMessage());
         }
 
         $this->fake->assertDispatched(BusJobStub::class, 2);
@@ -159,7 +159,7 @@ class SupportTestingBusFakeTest extends TestCase
             $this->fake->assertDispatchedAfterResponse(BusJobStub::class, 1);
             $this->fail();
         } catch (ExpectationFailedException $e) {
-            $this->assertStringContainsString('The expected [QuantaQuirk\Tests\Support\BusJobStub] job was pushed 2 times instead of 1 times.', $e->getMessage());
+            $this->assertStringContainsString('The expected [QuantaForge\Tests\Support\BusJobStub] job was pushed 2 times instead of 1 times.', $e->getMessage());
         }
 
         $this->fake->assertDispatchedAfterResponse(BusJobStub::class, 2);
@@ -174,7 +174,7 @@ class SupportTestingBusFakeTest extends TestCase
             $this->fake->assertDispatchedSync(BusJobStub::class, 1);
             $this->fail();
         } catch (ExpectationFailedException $e) {
-            $this->assertStringContainsString('The expected [QuantaQuirk\Tests\Support\BusJobStub] job was synchronously pushed 2 times instead of 1 times.', $e->getMessage());
+            $this->assertStringContainsString('The expected [QuantaForge\Tests\Support\BusJobStub] job was synchronously pushed 2 times instead of 1 times.', $e->getMessage());
         }
 
         $this->fake->assertDispatchedSync(BusJobStub::class, 2);
@@ -191,7 +191,7 @@ class SupportTestingBusFakeTest extends TestCase
             });
             $this->fail();
         } catch (ExpectationFailedException $e) {
-            $this->assertStringContainsString('The expected [QuantaQuirk\Tests\Support\OtherBusJobStub] job was not dispatched.', $e->getMessage());
+            $this->assertStringContainsString('The expected [QuantaForge\Tests\Support\OtherBusJobStub] job was not dispatched.', $e->getMessage());
         }
 
         $this->fake->assertDispatched(OtherBusJobStub::class, function ($job) {
@@ -214,7 +214,7 @@ class SupportTestingBusFakeTest extends TestCase
             });
             $this->fail();
         } catch (ExpectationFailedException $e) {
-            $this->assertStringContainsString('The expected [QuantaQuirk\Tests\Support\OtherBusJobStub] job was not dispatched after sending the response.', $e->getMessage());
+            $this->assertStringContainsString('The expected [QuantaForge\Tests\Support\OtherBusJobStub] job was not dispatched after sending the response.', $e->getMessage());
         }
 
         $this->fake->assertDispatchedAfterResponse(OtherBusJobStub::class, function ($job) {
@@ -238,7 +238,7 @@ class SupportTestingBusFakeTest extends TestCase
             }, 2);
             $this->fail();
         } catch (ExpectationFailedException $e) {
-            $this->assertStringContainsString('The expected [QuantaQuirk\Tests\Support\OtherBusJobStub] job was pushed 1 times instead of 2 times.', $e->getMessage());
+            $this->assertStringContainsString('The expected [QuantaForge\Tests\Support\OtherBusJobStub] job was pushed 1 times instead of 2 times.', $e->getMessage());
         }
 
         $this->fake->assertDispatchedAfterResponseTimes(function (OtherBusJobStub $job) {
@@ -261,7 +261,7 @@ class SupportTestingBusFakeTest extends TestCase
             });
             $this->fail();
         } catch (ExpectationFailedException $e) {
-            $this->assertStringContainsString('The expected [QuantaQuirk\Tests\Support\OtherBusJobStub] job was not dispatched synchronously.', $e->getMessage());
+            $this->assertStringContainsString('The expected [QuantaForge\Tests\Support\OtherBusJobStub] job was not dispatched synchronously.', $e->getMessage());
         }
 
         $this->fake->assertDispatchedSync(OtherBusJobStub::class, function ($job) {
@@ -282,7 +282,7 @@ class SupportTestingBusFakeTest extends TestCase
             $this->fake->assertDispatchedTimes(BusJobStub::class, 1);
             $this->fail();
         } catch (ExpectationFailedException $e) {
-            $this->assertStringContainsString('The expected [QuantaQuirk\Tests\Support\BusJobStub] job was pushed 2 times instead of 1 times.', $e->getMessage());
+            $this->assertStringContainsString('The expected [QuantaForge\Tests\Support\BusJobStub] job was pushed 2 times instead of 1 times.', $e->getMessage());
         }
 
         $this->fake->assertDispatchedTimes(BusJobStub::class, 2);
@@ -300,7 +300,7 @@ class SupportTestingBusFakeTest extends TestCase
             }, 2);
             $this->fail();
         } catch (ExpectationFailedException $e) {
-            $this->assertStringContainsString('The expected [QuantaQuirk\Tests\Support\OtherBusJobStub] job was pushed 1 times instead of 2 times.', $e->getMessage());
+            $this->assertStringContainsString('The expected [QuantaForge\Tests\Support\OtherBusJobStub] job was pushed 1 times instead of 2 times.', $e->getMessage());
         }
 
         $this->fake->assertDispatchedTimes(function (OtherBusJobStub $job) {
@@ -321,7 +321,7 @@ class SupportTestingBusFakeTest extends TestCase
             $this->fake->assertDispatchedAfterResponseTimes(BusJobStub::class, 1);
             $this->fail();
         } catch (ExpectationFailedException $e) {
-            $this->assertStringContainsString('The expected [QuantaQuirk\Tests\Support\BusJobStub] job was pushed 2 times instead of 1 times.', $e->getMessage());
+            $this->assertStringContainsString('The expected [QuantaForge\Tests\Support\BusJobStub] job was pushed 2 times instead of 1 times.', $e->getMessage());
         }
 
         $this->fake->assertDispatchedAfterResponseTimes(BusJobStub::class, 2);
@@ -336,7 +336,7 @@ class SupportTestingBusFakeTest extends TestCase
             $this->fake->assertDispatchedSyncTimes(BusJobStub::class, 1);
             $this->fail();
         } catch (ExpectationFailedException $e) {
-            $this->assertStringContainsString('The expected [QuantaQuirk\Tests\Support\BusJobStub] job was synchronously pushed 2 times instead of 1 times.', $e->getMessage());
+            $this->assertStringContainsString('The expected [QuantaForge\Tests\Support\BusJobStub] job was synchronously pushed 2 times instead of 1 times.', $e->getMessage());
         }
 
         $this->fake->assertDispatchedSyncTimes(BusJobStub::class, 2);
@@ -354,7 +354,7 @@ class SupportTestingBusFakeTest extends TestCase
             }, 2);
             $this->fail();
         } catch (ExpectationFailedException $e) {
-            $this->assertStringContainsString('The expected [QuantaQuirk\Tests\Support\OtherBusJobStub] job was synchronously pushed 1 times instead of 2 times.', $e->getMessage());
+            $this->assertStringContainsString('The expected [QuantaForge\Tests\Support\OtherBusJobStub] job was synchronously pushed 1 times instead of 2 times.', $e->getMessage());
         }
 
         $this->fake->assertDispatchedSyncTimes(function (OtherBusJobStub $job) {
@@ -377,7 +377,7 @@ class SupportTestingBusFakeTest extends TestCase
             $this->fake->assertNotDispatched(BusJobStub::class);
             $this->fail();
         } catch (ExpectationFailedException $e) {
-            $this->assertStringContainsString('The unexpected [QuantaQuirk\Tests\Support\BusJobStub] job was dispatched.', $e->getMessage());
+            $this->assertStringContainsString('The unexpected [QuantaForge\Tests\Support\BusJobStub] job was dispatched.', $e->getMessage());
         }
     }
 
@@ -392,7 +392,7 @@ class SupportTestingBusFakeTest extends TestCase
             });
             $this->fail();
         } catch (ExpectationFailedException $e) {
-            $this->assertStringContainsString('The unexpected [QuantaQuirk\Tests\Support\BusJobStub] job was dispatched.', $e->getMessage());
+            $this->assertStringContainsString('The unexpected [QuantaForge\Tests\Support\BusJobStub] job was dispatched.', $e->getMessage());
         }
     }
 
@@ -406,7 +406,7 @@ class SupportTestingBusFakeTest extends TestCase
             $this->fake->assertNotDispatchedAfterResponse(BusJobStub::class);
             $this->fail();
         } catch (ExpectationFailedException $e) {
-            $this->assertStringContainsString('The unexpected [QuantaQuirk\Tests\Support\BusJobStub] job was dispatched after sending the response.', $e->getMessage());
+            $this->assertStringContainsString('The unexpected [QuantaForge\Tests\Support\BusJobStub] job was dispatched after sending the response.', $e->getMessage());
         }
     }
 
@@ -420,7 +420,7 @@ class SupportTestingBusFakeTest extends TestCase
             });
             $this->fail();
         } catch (ExpectationFailedException $e) {
-            $this->assertStringContainsString('The unexpected [QuantaQuirk\Tests\Support\BusJobStub] job was dispatched after sending the response.', $e->getMessage());
+            $this->assertStringContainsString('The unexpected [QuantaForge\Tests\Support\BusJobStub] job was dispatched after sending the response.', $e->getMessage());
         }
     }
 
@@ -434,7 +434,7 @@ class SupportTestingBusFakeTest extends TestCase
             $this->fake->assertNotDispatchedSync(BusJobStub::class);
             $this->fail();
         } catch (ExpectationFailedException $e) {
-            $this->assertStringContainsString('The unexpected [QuantaQuirk\Tests\Support\BusJobStub] job was dispatched synchronously.', $e->getMessage());
+            $this->assertStringContainsString('The unexpected [QuantaForge\Tests\Support\BusJobStub] job was dispatched synchronously.', $e->getMessage());
         }
     }
 
@@ -448,7 +448,7 @@ class SupportTestingBusFakeTest extends TestCase
             });
             $this->fail();
         } catch (ExpectationFailedException $e) {
-            $this->assertStringContainsString('The unexpected [QuantaQuirk\Tests\Support\BusJobStub] job was dispatched synchronously.', $e->getMessage());
+            $this->assertStringContainsString('The unexpected [QuantaForge\Tests\Support\BusJobStub] job was dispatched synchronously.', $e->getMessage());
         }
     }
 

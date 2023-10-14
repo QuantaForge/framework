@@ -1,9 +1,9 @@
 <?php
 
-namespace QuantaQuirk\Tests\Foundation\Testing\Concerns;
+namespace QuantaForge\Tests\Foundation\Testing\Concerns;
 
-use QuantaQuirk\Foundation\Mix;
-use QuantaQuirk\Foundation\Vite;
+use QuantaForge\Foundation\Mix;
+use QuantaForge\Foundation\Vite;
 use Orchestra\Testbench\TestCase;
 use stdClass;
 

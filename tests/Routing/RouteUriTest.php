@@ -1,8 +1,8 @@
 <?php
 
-namespace QuantaQuirk\Tests\Routing;
+namespace QuantaForge\Tests\Routing;
 
-use QuantaQuirk\Routing\RouteUri;
+use QuantaForge\Routing\RouteUri;
 use PHPUnit\Framework\TestCase;
 
 class RouteUriTest extends TestCase

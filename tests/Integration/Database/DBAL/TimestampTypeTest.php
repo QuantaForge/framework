@@ -1,11 +1,11 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Database\DBAL;
+namespace QuantaForge\Tests\Integration\Database\DBAL;
 
-use QuantaQuirk\Database\DBAL\TimestampType;
-use QuantaQuirk\Database\Schema\Blueprint;
-use QuantaQuirk\Support\Facades\Schema;
-use QuantaQuirk\Tests\Integration\Database\DatabaseTestCase;
+use QuantaForge\Database\DBAL\TimestampType;
+use QuantaForge\Database\Schema\Blueprint;
+use QuantaForge\Support\Facades\Schema;
+use QuantaForge\Tests\Integration\Database\DatabaseTestCase;
 
 class TimestampTypeTest extends DatabaseTestCase
 {

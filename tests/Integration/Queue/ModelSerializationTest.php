@@ -1,13 +1,13 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Queue;
+namespace QuantaForge\Tests\Integration\Queue;
 
-use QuantaQuirk\Database\Eloquent\Collection;
-use QuantaQuirk\Database\Eloquent\Model;
-use QuantaQuirk\Database\Eloquent\Relations\Pivot;
-use QuantaQuirk\Database\Schema\Blueprint;
-use QuantaQuirk\Queue\Attributes\WithoutRelations;
-use QuantaQuirk\Queue\SerializesModels;
+use QuantaForge\Database\Eloquent\Collection;
+use QuantaForge\Database\Eloquent\Model;
+use QuantaForge\Database\Eloquent\Relations\Pivot;
+use QuantaForge\Database\Schema\Blueprint;
+use QuantaForge\Queue\Attributes\WithoutRelations;
+use QuantaForge\Queue\SerializesModels;
 use LogicException;
 use Orchestra\Testbench\TestCase;
 use Schema;
@@ -64,11 +64,11 @@ class ModelSerializationTest extends TestCase
     public function testItSerializeUserOnDefaultConnection()
     {
         $user = ModelSerializationTestUser::create([
-            'email' => 'mohamed@quantaquirk.com',
+            'email' => 'mohamed@quantaforge.com',
         ]);
 
         ModelSerializationTestUser::create([
-            'email' => 'taylor@quantaquirk.com',
+            'email' => 'taylor@quantaforge.com',
         ]);
 
         $serialized = serialize(new ModelSerializationTestClass($user));
@@ -76,26 +76,26 @@ class ModelSerializationTest extends TestCase
         $unSerialized = unserialize($serialized);
 
         $this->assertSame('testing', $unSerialized->user->getConnectionName());
-        $this->assertSame('mohamed@quantaquirk.com', $unSerialized->user->email);
+        $this->assertSame('mohamed@quantaforge.com', $unSerialized->user->email);
 
         $serialized = serialize(new CollectionSerializationTestClass(ModelSerializationTestUser::on('testing')->get()));
 
         $unSerialized = unserialize($serialized);
 
         $this->assertSame('testing', $unSerialized->users[0]->getConnectionName());
-        $this->assertSame('mohamed@quantaquirk.com', $unSerialized->users[0]->email);
+        $this->assertSame('mohamed@quantaforge.com', $unSerialized->users[0]->email);
         $this->assertSame('testing', $unSerialized->users[1]->getConnectionName());
-        $this->assertSame('taylor@quantaquirk.com', $unSerialized->users[1]->email);
+        $this->assertSame('taylor@quantaforge.com', $unSerialized->users[1]->email);
     }
 
     public function testItSerializeUserOnDifferentConnection()
     {
         $user = ModelSerializationTestUser::on('custom')->create([
-            'email' => 'mohamed@quantaquirk.com',
+            'email' => 'mohamed@quantaforge.com',
         ]);
 
         ModelSerializationTestUser::on('custom')->create([
-            'email' => 'taylor@quantaquirk.com',
+            'email' => 'taylor@quantaforge.com',
         ]);
 
         $serialized = serialize(new ModelSerializationTestClass($user));
@@ -103,16 +103,16 @@ class ModelSerializationTest extends TestCase
         $unSerialized = unserialize($serialized);
 
         $this->assertSame('custom', $unSerialized->user->getConnectionName());
-        $this->assertSame('mohamed@quantaquirk.com', $unSerialized->user->email);
+        $this->assertSame('mohamed@quantaforge.com', $unSerialized->user->email);
 
         $serialized = serialize(new CollectionSerializationTestClass(ModelSerializationTestUser::on('custom')->get()));
 
         $unSerialized = unserialize($serialized);
 
         $this->assertSame('custom', $unSerialized->users[0]->getConnectionName());
-        $this->assertSame('mohamed@quantaquirk.com', $unSerialized->users[0]->email);
+        $this->assertSame('mohamed@quantaforge.com', $unSerialized->users[0]->email);
         $this->assertSame('custom', $unSerialized->users[1]->getConnectionName());
-        $this->assertSame('taylor@quantaquirk.com', $unSerialized->users[1]->email);
+        $this->assertSame('taylor@quantaforge.com', $unSerialized->users[1]->email);
     }
 
     public function testItFailsIfModelsOnMultiConnections()
@@ -121,11 +121,11 @@ class ModelSerializationTest extends TestCase
         $this->expectExceptionMessage('Queueing collections with multiple model connections is not supported.');
 
         $user = ModelSerializationTestUser::on('custom')->create([
-            'email' => 'mohamed@quantaquirk.com',
+            'email' => 'mohamed@quantaforge.com',
         ]);
 
         $user2 = ModelSerializationTestUser::create([
-            'email' => 'taylor@quantaquirk.com',
+            'email' => 'taylor@quantaforge.com',
         ]);
 
         $serialized = serialize(new CollectionSerializationTestClass(
@@ -193,12 +193,12 @@ class ModelSerializationTest extends TestCase
     }
 
     /**
-     * Regression test for https://github.com/quantaquirk/framework/issues/23068.
+     * Regression test for https://github.com/quantaforge/framework/issues/23068.
      */
     public function testItCanUnserializeNestedRelationshipsWithoutPivot()
     {
         $user = tap(User::create([
-            'email' => 'taylor@quantaquirk.com',
+            'email' => 'taylor@quantaforge.com',
         ]), function (User $user) {
             $user->wasRecentlyCreated = false;
         });
@@ -228,8 +228,8 @@ class ModelSerializationTest extends TestCase
 
     public function testItSerializesACollectionInCorrectOrder()
     {
-        ModelSerializationTestUser::create(['email' => 'mohamed@quantaquirk.com']);
-        ModelSerializationTestUser::create(['email' => 'taylor@quantaquirk.com']);
+        ModelSerializationTestUser::create(['email' => 'mohamed@quantaforge.com']);
+        ModelSerializationTestUser::create(['email' => 'taylor@quantaforge.com']);
 
         $serialized = serialize(new CollectionSerializationTestClass(
             ModelSerializationTestUser::orderByDesc('email')->get()
@@ -237,34 +237,34 @@ class ModelSerializationTest extends TestCase
 
         $unserialized = unserialize($serialized);
 
-        $this->assertSame('taylor@quantaquirk.com', $unserialized->users->first()->email);
-        $this->assertSame('mohamed@quantaquirk.com', $unserialized->users->last()->email);
+        $this->assertSame('taylor@quantaforge.com', $unserialized->users->first()->email);
+        $this->assertSame('mohamed@quantaforge.com', $unserialized->users->last()->email);
     }
 
     public function testItCanUnserializeACollectionInCorrectOrderAndHandleDeletedModels()
     {
-        ModelSerializationTestUser::create(['email' => '2@quantaquirk.com']);
-        ModelSerializationTestUser::create(['email' => '3@quantaquirk.com']);
-        ModelSerializationTestUser::create(['email' => '1@quantaquirk.com']);
+        ModelSerializationTestUser::create(['email' => '2@quantaforge.com']);
+        ModelSerializationTestUser::create(['email' => '3@quantaforge.com']);
+        ModelSerializationTestUser::create(['email' => '1@quantaforge.com']);
 
         $serialized = serialize(new CollectionSerializationTestClass(
             ModelSerializationTestUser::orderByDesc('email')->get()
         ));
 
-        ModelSerializationTestUser::where(['email' => '2@quantaquirk.com'])->delete();
+        ModelSerializationTestUser::where(['email' => '2@quantaforge.com'])->delete();
 
         $unserialized = unserialize($serialized);
 
         $this->assertCount(2, $unserialized->users);
 
-        $this->assertSame('3@quantaquirk.com', $unserialized->users->first()->email);
-        $this->assertSame('1@quantaquirk.com', $unserialized->users->last()->email);
+        $this->assertSame('3@quantaforge.com', $unserialized->users->first()->email);
+        $this->assertSame('1@quantaforge.com', $unserialized->users->last()->email);
     }
 
     public function testItCanUnserializeCustomCollection()
     {
-        ModelSerializationTestCustomUser::create(['email' => 'mohamed@quantaquirk.com']);
-        ModelSerializationTestCustomUser::create(['email' => 'taylor@quantaquirk.com']);
+        ModelSerializationTestCustomUser::create(['email' => 'mohamed@quantaforge.com']);
+        ModelSerializationTestCustomUser::create(['email' => 'taylor@quantaforge.com']);
 
         $serialized = serialize(new CollectionSerializationTestClass(
             ModelSerializationTestCustomUser::all()
@@ -280,11 +280,11 @@ class ModelSerializationTest extends TestCase
         require_once __DIR__.'/typed-properties.php';
 
         $user = ModelSerializationTestUser::create([
-            'email' => 'mohamed@quantaquirk.com',
+            'email' => 'mohamed@quantaforge.com',
         ]);
 
         ModelSerializationTestUser::create([
-            'email' => 'taylor@quantaquirk.com',
+            'email' => 'taylor@quantaforge.com',
         ]);
 
         $serialized = serialize(new TypedPropertyTestClass($user, 5, ['James', 'Taylor', 'Mohamed']));
@@ -292,7 +292,7 @@ class ModelSerializationTest extends TestCase
         $unSerialized = unserialize($serialized);
 
         $this->assertSame('testing', $unSerialized->user->getConnectionName());
-        $this->assertSame('mohamed@quantaquirk.com', $unSerialized->user->email);
+        $this->assertSame('mohamed@quantaforge.com', $unSerialized->user->email);
         $this->assertSame(5, $unSerialized->getId());
         $this->assertSame(['James', 'Taylor', 'Mohamed'], $unSerialized->getNames());
 
@@ -301,47 +301,47 @@ class ModelSerializationTest extends TestCase
         $unSerialized = unserialize($serialized);
 
         $this->assertSame('testing', $unSerialized->users[0]->getConnectionName());
-        $this->assertSame('mohamed@quantaquirk.com', $unSerialized->users[0]->email);
+        $this->assertSame('mohamed@quantaforge.com', $unSerialized->users[0]->email);
         $this->assertSame('testing', $unSerialized->users[1]->getConnectionName());
-        $this->assertSame('taylor@quantaquirk.com', $unSerialized->users[1]->email);
+        $this->assertSame('taylor@quantaforge.com', $unSerialized->users[1]->email);
     }
 
     public function test_model_serialization_structure()
     {
         $user = ModelSerializationTestUser::create([
-            'email' => 'taylor@quantaquirk.com',
+            'email' => 'taylor@quantaforge.com',
         ]);
 
         $serialized = serialize(new ModelSerializationParentAccessibleTestClass($user, $user, $user));
 
         $this->assertSame(
-            'O:78:"QuantaQuirk\\Tests\\Integration\\Queue\\ModelSerializationParentAccessibleTestClass":2:{s:4:"user";O:45:"QuantaQuirk\\Contracts\\Database\\ModelIdentifier":5:{s:5:"class";s:61:"QuantaQuirk\\Tests\\Integration\\Queue\\ModelSerializationTestUser";s:2:"id";i:1;s:9:"relations";a:0:{}s:10:"connection";s:7:"testing";s:15:"collectionClass";N;}s:8:"'."\0".'*'."\0".'user2";O:45:"QuantaQuirk\\Contracts\\Database\\ModelIdentifier":5:{s:5:"class";s:61:"QuantaQuirk\\Tests\\Integration\\Queue\\ModelSerializationTestUser";s:2:"id";i:1;s:9:"relations";a:0:{}s:10:"connection";s:7:"testing";s:15:"collectionClass";N;}}', $serialized
+            'O:78:"QuantaForge\\Tests\\Integration\\Queue\\ModelSerializationParentAccessibleTestClass":2:{s:4:"user";O:45:"QuantaForge\\Contracts\\Database\\ModelIdentifier":5:{s:5:"class";s:61:"QuantaForge\\Tests\\Integration\\Queue\\ModelSerializationTestUser";s:2:"id";i:1;s:9:"relations";a:0:{}s:10:"connection";s:7:"testing";s:15:"collectionClass";N;}s:8:"'."\0".'*'."\0".'user2";O:45:"QuantaForge\\Contracts\\Database\\ModelIdentifier":5:{s:5:"class";s:61:"QuantaForge\\Tests\\Integration\\Queue\\ModelSerializationTestUser";s:2:"id";i:1;s:9:"relations";a:0:{}s:10:"connection";s:7:"testing";s:15:"collectionClass";N;}}', $serialized
         );
     }
 
     public function test_it_respects_without_relations_attribute()
     {
         $user = User::create([
-            'email' => 'taylor@quantaquirk.com',
+            'email' => 'taylor@quantaforge.com',
         ])->load(['roles']);
 
         $serialized = serialize(new ModelSerializationWithoutRelations($user));
 
         $this->assertSame(
-            'O:69:"QuantaQuirk\Tests\Integration\Queue\ModelSerializationWithoutRelations":1:{s:4:"user";O:45:"QuantaQuirk\Contracts\Database\ModelIdentifier":5:{s:5:"class";s:39:"QuantaQuirk\Tests\Integration\Queue\User";s:2:"id";i:1;s:9:"relations";a:0:{}s:10:"connection";s:7:"testing";s:15:"collectionClass";N;}}', $serialized
+            'O:69:"QuantaForge\Tests\Integration\Queue\ModelSerializationWithoutRelations":1:{s:4:"user";O:45:"QuantaForge\Contracts\Database\ModelIdentifier":5:{s:5:"class";s:39:"QuantaForge\Tests\Integration\Queue\User";s:2:"id";i:1;s:9:"relations";a:0:{}s:10:"connection";s:7:"testing";s:15:"collectionClass";N;}}', $serialized
         );
     }
 
     public function test_it_respects_without_relations_attribute_applied_to_class()
     {
         $user = User::create([
-            'email' => 'taylor@quantaquirk.com',
+            'email' => 'taylor@quantaforge.com',
         ])->load(['roles']);
 
         $serialized = serialize(new ModelSerializationAttributeTargetsClassTestClass($user, new DataValueObject('hello')));
 
         $this->assertSame(
-            'O:83:"QuantaQuirk\Tests\Integration\Queue\ModelSerializationAttributeTargetsClassTestClass":2:{s:4:"user";O:45:"QuantaQuirk\Contracts\Database\ModelIdentifier":5:{s:5:"class";s:39:"QuantaQuirk\Tests\Integration\Queue\User";s:2:"id";i:1;s:9:"relations";a:0:{}s:10:"connection";s:7:"testing";s:15:"collectionClass";N;}s:5:"value";O:50:"QuantaQuirk\Tests\Integration\Queue\DataValueObject":1:{s:5:"value";s:5:"hello";}}',
+            'O:83:"QuantaForge\Tests\Integration\Queue\ModelSerializationAttributeTargetsClassTestClass":2:{s:4:"user";O:45:"QuantaForge\Contracts\Database\ModelIdentifier":5:{s:5:"class";s:39:"QuantaForge\Tests\Integration\Queue\User";s:2:"id";i:1;s:9:"relations";a:0:{}s:10:"connection";s:7:"testing";s:15:"collectionClass";N;}s:5:"value";O:50:"QuantaForge\Tests\Integration\Queue\DataValueObject":1:{s:5:"value";s:5:"hello";}}',
             $serialized
         );
 

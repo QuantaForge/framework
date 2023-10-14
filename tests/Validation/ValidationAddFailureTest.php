@@ -1,8 +1,8 @@
 <?php
 
-namespace QuantaQuirk\Tests\Validation;
+namespace QuantaForge\Tests\Validation;
 
-use QuantaQuirk\Validation\Validator;
+use QuantaForge\Validation\Validator;
 use PHPUnit\Framework\TestCase;
 
 class ValidationAddFailureTest extends TestCase
@@ -10,12 +10,12 @@ class ValidationAddFailureTest extends TestCase
     /**
      * Making Validator using ValidationValidatorTest.
      *
-     * @return \QuantaQuirk\Validation\Validator
+     * @return \QuantaForge\Validation\Validator
      */
     public function makeValidator()
     {
         $mainTest = new ValidationValidatorTest('foo');
-        $trans = $mainTest->getQuantaQuirkArrayTranslator();
+        $trans = $mainTest->getQuantaForgeArrayTranslator();
 
         return new Validator($trans, ['foo' => ['bar' => ['baz' => '']]], ['foo.bar.baz' => 'sometimes|required']);
     }

@@ -1,13 +1,13 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Events;
+namespace QuantaForge\Tests\Integration\Events;
 
 use Closure;
-use QuantaQuirk\Database\Eloquent\Model;
-use QuantaQuirk\Database\Schema\Blueprint;
-use QuantaQuirk\Support\Arr;
-use QuantaQuirk\Support\Facades\Event;
-use QuantaQuirk\Support\Facades\Schema;
+use QuantaForge\Database\Eloquent\Model;
+use QuantaForge\Database\Schema\Blueprint;
+use QuantaForge\Support\Arr;
+use QuantaForge\Support\Facades\Event;
+use QuantaForge\Support\Facades\Schema;
 use Orchestra\Testbench\TestCase;
 
 class EventFakeTest extends TestCase
@@ -144,7 +144,7 @@ class EventFakeTest extends TestCase
 
         $listenersOfSameEventInRandomOrder = Arr::shuffle([
             'listener',
-            'QuantaQuirk\\Tests\\Integration\\Events\\PostAutoEventSubscriber@handle',
+            'QuantaForge\\Tests\\Integration\\Events\\PostAutoEventSubscriber@handle',
             PostEventSubscriber::class,
             [PostEventSubscriber::class, 'foo'],
             InvokableEventSubscriber::class,

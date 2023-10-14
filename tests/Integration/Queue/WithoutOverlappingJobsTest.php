@@ -1,15 +1,15 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Queue;
+namespace QuantaForge\Tests\Integration\Queue;
 
 use Exception;
-use QuantaQuirk\Bus\Dispatcher;
-use QuantaQuirk\Bus\Queueable;
-use QuantaQuirk\Contracts\Cache\Repository as Cache;
-use QuantaQuirk\Contracts\Queue\Job;
-use QuantaQuirk\Queue\CallQueuedHandler;
-use QuantaQuirk\Queue\InteractsWithQueue;
-use QuantaQuirk\Queue\Middleware\WithoutOverlapping;
+use QuantaForge\Bus\Dispatcher;
+use QuantaForge\Bus\Queueable;
+use QuantaForge\Contracts\Cache\Repository as Cache;
+use QuantaForge\Contracts\Queue\Job;
+use QuantaForge\Queue\CallQueuedHandler;
+use QuantaForge\Queue\InteractsWithQueue;
+use QuantaForge\Queue\Middleware\WithoutOverlapping;
 use Mockery as m;
 use Orchestra\Testbench\TestCase;
 
@@ -140,17 +140,17 @@ class WithoutOverlappingJobsTest extends TestCase
         $job = new OverlappingTestJob;
 
         $this->assertSame(
-            'quantaquirk-queue-overlap:QuantaQuirk\\Tests\\Integration\\Queue\\OverlappingTestJob:key',
+            'quantaforge-queue-overlap:QuantaForge\\Tests\\Integration\\Queue\\OverlappingTestJob:key',
             (new WithoutOverlapping('key'))->getLockKey($job)
         );
 
         $this->assertSame(
-            'quantaquirk-queue-overlap:key',
+            'quantaforge-queue-overlap:key',
             (new WithoutOverlapping('key'))->shared()->getLockKey($job)
         );
 
         $this->assertSame(
-            'prefix:QuantaQuirk\\Tests\\Integration\\Queue\\OverlappingTestJob:key',
+            'prefix:QuantaForge\\Tests\\Integration\\Queue\\OverlappingTestJob:key',
             (new WithoutOverlapping('key'))->withPrefix('prefix:')->getLockKey($job)
         );
 

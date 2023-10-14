@@ -1,8 +1,8 @@
 <?php
 
-namespace QuantaQuirk\Tests\Notifications;
+namespace QuantaForge\Tests\Notifications;
 
-use QuantaQuirk\Notifications\Action;
+use QuantaForge\Notifications\Action;
 use PHPUnit\Framework\TestCase;
 
 class NotificationActionTest extends TestCase

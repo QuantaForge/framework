@@ -1,10 +1,10 @@
 <?php
 
-namespace QuantaQuirk\Tests\Foundation;
+namespace QuantaForge\Tests\Foundation;
 
-use QuantaQuirk\Contracts\Console\Kernel;
-use QuantaQuirk\Foundation\Console\DocsCommand;
-use QuantaQuirk\Support\Facades\Http;
+use QuantaForge\Contracts\Console\Kernel;
+use QuantaForge\Foundation\Console\DocsCommand;
+use QuantaForge\Support\Facades\Http;
 use Orchestra\Testbench\TestCase;
 use RuntimeException;
 use Symfony\Component\Process\Exception\ProcessFailedException;
@@ -21,7 +21,7 @@ class FoundationDocsCommandTest extends TestCase
     /**
      * The command registered to the container.
      *
-     * @var \QuantaQuirk\Foundation\Console\DocsCommand
+     * @var \QuantaForge\Foundation\Console\DocsCommand
      */
     protected $command;
 
@@ -30,7 +30,7 @@ class FoundationDocsCommandTest extends TestCase
         parent::setUp();
 
         Http::preventStrayRequests()->fake([
-            'https://quantaquirk.com/docs/8.x/index.json' => Http::response(file_get_contents(__DIR__.'/fixtures/docs.json')),
+            'https://quantaforge.com/docs/8.x/index.json' => Http::response(file_get_contents(__DIR__.'/fixtures/docs.json')),
         ]);
 
         $this->app[Kernel::class]->registerCommand($this->command());
@@ -44,70 +44,70 @@ class FoundationDocsCommandTest extends TestCase
         putenv('ARTISAN_DOCS_OPEN_STRATEGY');
     }
 
-    public function testItCanOpenTheQuantaQuirkDocumentation(): void
+    public function testItCanOpenTheQuantaForgeDocumentation(): void
     {
         $this->artisan('docs')
             ->expectsQuestion('Which page would you like to open?', '')
-            ->expectsOutputToContain('Opening the docs to: https://quantaquirk.com/docs/8.x/installation')
+            ->expectsOutputToContain('Opening the docs to: https://quantaforge.com/docs/8.x/installation')
             ->assertSuccessful();
 
-        $this->assertSame($this->openedUrl, 'https://quantaquirk.com/docs/8.x/installation');
+        $this->assertSame($this->openedUrl, 'https://quantaforge.com/docs/8.x/installation');
     }
 
     public function testItCanSpecifyAutocompleteInOriginalCasing(): void
     {
         $this->artisan('docs')
-            ->expectsQuestion('Which page would you like to open?', 'QuantaQuirk Dusk')
-            ->expectsOutputToContain('Opening the docs to: https://quantaquirk.com/docs/8.x/dusk')
+            ->expectsQuestion('Which page would you like to open?', 'QuantaForge Dusk')
+            ->expectsOutputToContain('Opening the docs to: https://quantaforge.com/docs/8.x/dusk')
             ->assertSuccessful();
 
-        $this->assertSame($this->openedUrl, 'https://quantaquirk.com/docs/8.x/dusk');
+        $this->assertSame($this->openedUrl, 'https://quantaforge.com/docs/8.x/dusk');
     }
 
     public function testItCanSpecifyAutocompleteInLowerCasing(): void
     {
         $this->artisan('docs')
-            ->expectsQuestion('Which page would you like to open?', 'quantaquirk dusk')
-            ->expectsOutputToContain('Opening the docs to: https://quantaquirk.com/docs/8.x/dusk')
+            ->expectsQuestion('Which page would you like to open?', 'quantaforge dusk')
+            ->expectsOutputToContain('Opening the docs to: https://quantaforge.com/docs/8.x/dusk')
             ->assertSuccessful();
 
-        $this->assertSame($this->openedUrl, 'https://quantaquirk.com/docs/8.x/dusk');
+        $this->assertSame($this->openedUrl, 'https://quantaforge.com/docs/8.x/dusk');
     }
 
     public function testItMatchesSectionsThatStartWithInput()
     {
         $this->artisan('docs el-col uni')
-            ->expectsOutputToContain('Opening the docs to: https://quantaquirk.com/docs/8.x/eloquent-collections#method-unique')
+            ->expectsOutputToContain('Opening the docs to: https://quantaforge.com/docs/8.x/eloquent-collections#method-unique')
             ->assertSuccessful();
 
-        $this->assertSame($this->openedUrl, 'https://quantaquirk.com/docs/8.x/eloquent-collections#method-unique');
+        $this->assertSame($this->openedUrl, 'https://quantaforge.com/docs/8.x/eloquent-collections#method-unique');
     }
 
     public function testItMatchesSectionsWithFuzzyMatching()
     {
         $this->artisan('docs el-col qery')
-            ->expectsOutputToContain('Opening the docs to: https://quantaquirk.com/docs/8.x/eloquent-collections#method-toquery')
+            ->expectsOutputToContain('Opening the docs to: https://quantaforge.com/docs/8.x/eloquent-collections#method-toquery')
             ->assertSuccessful();
 
-        $this->assertSame($this->openedUrl, 'https://quantaquirk.com/docs/8.x/eloquent-collections#method-toquery');
+        $this->assertSame($this->openedUrl, 'https://quantaforge.com/docs/8.x/eloquent-collections#method-toquery');
     }
 
     public function testItCanProvidePageToVisit(): void
     {
         $this->artisan('docs eloquent\ collections')
-            ->expectsOutputToContain('Opening the docs to: https://quantaquirk.com/docs/8.x/eloquent-collections')
+            ->expectsOutputToContain('Opening the docs to: https://quantaforge.com/docs/8.x/eloquent-collections')
             ->assertSuccessful();
 
-        $this->assertSame($this->openedUrl, 'https://quantaquirk.com/docs/8.x/eloquent-collections');
+        $this->assertSame($this->openedUrl, 'https://quantaforge.com/docs/8.x/eloquent-collections');
     }
 
     public function testItCanUseHyphensInsteadOfEscapingSpaces(): void
     {
         $this->artisan('docs eloquent-collections')
-            ->expectsOutputToContain('Opening the docs to: https://quantaquirk.com/docs/8.x/eloquent-collections')
+            ->expectsOutputToContain('Opening the docs to: https://quantaforge.com/docs/8.x/eloquent-collections')
             ->assertSuccessful();
 
-        $this->assertSame($this->openedUrl, 'https://quantaquirk.com/docs/8.x/eloquent-collections');
+        $this->assertSame($this->openedUrl, 'https://quantaforge.com/docs/8.x/eloquent-collections');
     }
 
     public function testItHasMinimumScoreToMatch(): void
@@ -116,16 +116,16 @@ class FoundationDocsCommandTest extends TestCase
             ->expectsOutputToContain('Unable to determine the page you are trying to visit.')
             ->assertSuccessful();
 
-        $this->assertSame($this->openedUrl, 'https://quantaquirk.com/docs/8.x');
+        $this->assertSame($this->openedUrl, 'https://quantaforge.com/docs/8.x');
     }
 
     public function testItMinimumScoreAccountsForInputLength(): void
     {
         $this->artisan('docs z')
-            ->expectsOutputToContain('Opening the docs to: https://quantaquirk.com/docs/8.x/localization')
+            ->expectsOutputToContain('Opening the docs to: https://quantaforge.com/docs/8.x/localization')
             ->assertSuccessful();
 
-        $this->assertSame($this->openedUrl, 'https://quantaquirk.com/docs/8.x/localization');
+        $this->assertSame($this->openedUrl, 'https://quantaforge.com/docs/8.x/localization');
     }
 
     public function testItCanUseCustomAskStrategy()
@@ -133,10 +133,10 @@ class FoundationDocsCommandTest extends TestCase
         putenv('ARTISAN_DOCS_ASK_STRATEGY='.__DIR__.'/fixtures/always-dusk-ask-strategy.php');
 
         $this->artisan('docs')
-            ->expectsOutputToContain('Opening the docs to: https://quantaquirk.com/docs/8.x/dusk')
+            ->expectsOutputToContain('Opening the docs to: https://quantaforge.com/docs/8.x/dusk')
             ->assertSuccessful();
 
-        $this->assertSame($this->openedUrl, 'https://quantaquirk.com/docs/8.x/dusk');
+        $this->assertSame($this->openedUrl, 'https://quantaforge.com/docs/8.x/dusk');
     }
 
     public function testItFallsbackToAutocompleteWhenAskStrategyContainsBadSyntax(): void
@@ -144,11 +144,11 @@ class FoundationDocsCommandTest extends TestCase
         putenv('ARTISAN_DOCS_ASK_STRATEGY='.__DIR__.'/fixtures/bad-syntax-strategy.php');
 
         $this->artisan('docs')
-            ->expectsQuestion('Which page would you like to open?', 'quantaquirk dusk')
-            ->expectsOutputToContain('Opening the docs to: https://quantaquirk.com/docs/8.x/dusk')
+            ->expectsQuestion('Which page would you like to open?', 'quantaforge dusk')
+            ->expectsOutputToContain('Opening the docs to: https://quantaforge.com/docs/8.x/dusk')
             ->assertSuccessful();
 
-        $this->assertSame($this->openedUrl, 'https://quantaquirk.com/docs/8.x/dusk');
+        $this->assertSame($this->openedUrl, 'https://quantaforge.com/docs/8.x/dusk');
     }
 
     public function testItFallsbackToAutocompleteWithBadAskStrategyReturnValue(): void
@@ -156,11 +156,11 @@ class FoundationDocsCommandTest extends TestCase
         putenv('ARTISAN_DOCS_ASK_STRATEGY='.__DIR__.'/fixtures/bad-return-strategy.php');
 
         $this->artisan('docs')
-            ->expectsQuestion('Which page would you like to open?', 'quantaquirk dusk')
-            ->expectsOutputToContain('Opening the docs to: https://quantaquirk.com/docs/8.x/dusk')
+            ->expectsQuestion('Which page would you like to open?', 'quantaforge dusk')
+            ->expectsOutputToContain('Opening the docs to: https://quantaforge.com/docs/8.x/dusk')
             ->assertSuccessful();
 
-        $this->assertSame($this->openedUrl, 'https://quantaquirk.com/docs/8.x/dusk');
+        $this->assertSame($this->openedUrl, 'https://quantaforge.com/docs/8.x/dusk');
     }
 
     public function testItCatchesAndHandlesProcessInterruptExceptionsInAskStrategies()
@@ -206,28 +206,28 @@ Working directory: expected-working-directory');
     public function testItCanGuessTheRequestedPageWhenItIsTheStartOfAPageTitle()
     {
         $this->artisan('docs elo')
-            ->expectsOutputToContain('Opening the docs to: https://quantaquirk.com/docs/8.x/eloquent')
+            ->expectsOutputToContain('Opening the docs to: https://quantaforge.com/docs/8.x/eloquent')
             ->assertSuccessful();
 
-        $this->assertSame($this->openedUrl, 'https://quantaquirk.com/docs/8.x/eloquent');
+        $this->assertSame($this->openedUrl, 'https://quantaforge.com/docs/8.x/eloquent');
     }
 
     public function testItCanGuessTheRequestedPageWhenItIsContainedSomewhereInThePageTitle()
     {
         $this->artisan('docs quent')
-            ->expectsOutputToContain('Opening the docs to: https://quantaquirk.com/docs/8.x/eloquent')
+            ->expectsOutputToContain('Opening the docs to: https://quantaforge.com/docs/8.x/eloquent')
             ->assertSuccessful();
 
-        $this->assertSame($this->openedUrl, 'https://quantaquirk.com/docs/8.x/eloquent');
+        $this->assertSame($this->openedUrl, 'https://quantaforge.com/docs/8.x/eloquent');
     }
 
     public function testItCanGuessTheWithTopAndTailMatching()
     {
         $this->artisan('docs elo-col')
-            ->expectsOutputToContain('Opening the docs to: https://quantaquirk.com/docs/8.x/eloquent-collections')
+            ->expectsOutputToContain('Opening the docs to: https://quantaforge.com/docs/8.x/eloquent-collections')
             ->assertSuccessful();
 
-        $this->assertSame($this->openedUrl, 'https://quantaquirk.com/docs/8.x/eloquent-collections');
+        $this->assertSame($this->openedUrl, 'https://quantaforge.com/docs/8.x/eloquent-collections');
     }
 
     public function testItCanSpecifyCustomOpenCommandsViaEnvVariables()
@@ -239,13 +239,13 @@ Working directory: expected-working-directory');
         @unlink($GLOBALS['open-strategy-output-path']);
 
         $this->artisan('docs installation')
-            ->expectsOutputToContain('Opening the docs to: https://quantaquirk.com/docs/8.x/installation')
+            ->expectsOutputToContain('Opening the docs to: https://quantaforge.com/docs/8.x/installation')
             ->assertSuccessful();
 
         if (PHP_OS_FAMILY === 'Windows') {
-            $this->assertSame('"https://quantaquirk.com/docs/8.x/installation?expected-query=1"', trim(file_get_contents($GLOBALS['open-strategy-output-path'])));
+            $this->assertSame('"https://quantaforge.com/docs/8.x/installation?expected-query=1"', trim(file_get_contents($GLOBALS['open-strategy-output-path'])));
         } else {
-            $this->assertSame('https://quantaquirk.com/docs/8.x/installation?expected-query=1', trim(file_get_contents($GLOBALS['open-strategy-output-path'])));
+            $this->assertSame('https://quantaforge.com/docs/8.x/installation?expected-query=1', trim(file_get_contents($GLOBALS['open-strategy-output-path'])));
         }
 
         @unlink($GLOBALS['open-strategy-output-path']);
@@ -272,24 +272,24 @@ Working directory: expected-working-directory');
             ->assertSuccessful();
     }
 
-    public function testItCanPerformSearchAgainstQuantaQuirkDotCom()
+    public function testItCanPerformSearchAgainstQuantaForgeDotCom()
     {
         $argCache = $_SERVER['argv'];
-        $_SERVER['argv'] = explode(' ', 'artisan docs -- here is my search term for the quantaquirk website');
+        $_SERVER['argv'] = explode(' ', 'artisan docs -- here is my search term for the quantaforge website');
         $this->app[Kernel::class]->registerCommand($this->command());
 
-        $this->artisan('docs -- here is my search term for the quantaquirk website')
-            ->expectsOutputToContain('Opening the docs to: https://quantaquirk.com/docs/8.x?q=here%20is%20my%20search%20term%20for%20the%20quantaquirk%20website')
+        $this->artisan('docs -- here is my search term for the quantaforge website')
+            ->expectsOutputToContain('Opening the docs to: https://quantaforge.com/docs/8.x?q=here%20is%20my%20search%20term%20for%20the%20quantaforge%20website')
             ->assertSuccessful();
 
-        $this->assertSame($this->openedUrl, 'https://quantaquirk.com/docs/8.x?q=here%20is%20my%20search%20term%20for%20the%20quantaquirk%20website');
+        $this->assertSame($this->openedUrl, 'https://quantaforge.com/docs/8.x?q=here%20is%20my%20search%20term%20for%20the%20quantaforge%20website');
 
         $_SERVER['argv'] = $argCache;
     }
 
     public function testUnknownSystemNotifiedToOpenManually()
     {
-        $this->app[Kernel::class]->registerCommand($this->command()->setUrlOpener(null)->setSystemOsFamily('QuantaQuirk OS'));
+        $this->app[Kernel::class]->registerCommand($this->command()->setUrlOpener(null)->setSystemOsFamily('QuantaForge OS'));
 
         $this->artisan('docs validation')
             ->expectsOutputToContain('Unable to open the URL on your system. You will need to open it yourself or create a custom opener for your system.')
@@ -299,28 +299,28 @@ Working directory: expected-working-directory');
     public function testGuessedMatchesThatDirectlyContainTheGivenStringRankHigherThanArbitraryMatches()
     {
         $this->artisan('docs ora')
-            ->expectsOutputToContain('Opening the docs to: https://quantaquirk.com/docs/8.x/filesystem')
+            ->expectsOutputToContain('Opening the docs to: https://quantaforge.com/docs/8.x/filesystem')
             ->assertSuccessful();
 
-        $this->assertSame($this->openedUrl, 'https://quantaquirk.com/docs/8.x/filesystem');
+        $this->assertSame($this->openedUrl, 'https://quantaforge.com/docs/8.x/filesystem');
     }
 
     public function testItHandlesPoorSpelling()
     {
         $this->artisan('docs vewis')
-            ->expectsOutputToContain('Opening the docs to: https://quantaquirk.com/docs/8.x/views')
+            ->expectsOutputToContain('Opening the docs to: https://quantaforge.com/docs/8.x/views')
             ->assertSuccessful();
 
-        $this->assertSame($this->openedUrl, 'https://quantaquirk.com/docs/8.x/views');
+        $this->assertSame($this->openedUrl, 'https://quantaforge.com/docs/8.x/views');
     }
 
     public function testItHandlesNoInteractionOption()
     {
         $this->artisan('docs -n')
-            ->expectsOutputToContain('Opening the docs to: https://quantaquirk.com/docs/8.x')
+            ->expectsOutputToContain('Opening the docs to: https://quantaforge.com/docs/8.x')
             ->assertSuccessful();
 
-        $this->assertSame($this->openedUrl, 'https://quantaquirk.com/docs/8.x');
+        $this->assertSame($this->openedUrl, 'https://quantaforge.com/docs/8.x');
     }
 
     public function testCanGetHelpWithoutInstantiatingDependencies()

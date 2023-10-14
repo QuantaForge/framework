@@ -1,6 +1,6 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Translation;
+namespace QuantaForge\Tests\Integration\Translation;
 
 use Orchestra\Testbench\TestCase;
 
@@ -9,7 +9,7 @@ class TranslatorTest extends TestCase
     /**
      * Define environment setup.
      *
-     * @param  \QuantaQuirk\Foundation\Application  $app
+     * @param  \QuantaForge\Foundation\Application  $app
      * @return void
      */
     protected function defineEnvironment($app)

@@ -1,13 +1,13 @@
 <?php
 
-namespace QuantaQuirk\Tests\Hashing;
+namespace QuantaForge\Tests\Hashing;
 
-use QuantaQuirk\Config\Repository as Config;
-use QuantaQuirk\Container\Container;
-use QuantaQuirk\Hashing\Argon2IdHasher;
-use QuantaQuirk\Hashing\ArgonHasher;
-use QuantaQuirk\Hashing\BcryptHasher;
-use QuantaQuirk\Hashing\HashManager;
+use QuantaForge\Config\Repository as Config;
+use QuantaForge\Container\Container;
+use QuantaForge\Hashing\Argon2IdHasher;
+use QuantaForge\Hashing\ArgonHasher;
+use QuantaForge\Hashing\BcryptHasher;
+use QuantaForge\Hashing\HashManager;
 use PHPUnit\Framework\TestCase;
 use RuntimeException;
 

@@ -1,31 +1,31 @@
 <?php
 
-namespace QuantaQuirk\Tests\Support;
+namespace QuantaForge\Tests\Support;
 
 use Exception;
-use QuantaQuirk\Contracts\Translation\HasLocalePreference;
-use QuantaQuirk\Foundation\Auth\User;
-use QuantaQuirk\Notifications\AnonymousNotifiable;
-use QuantaQuirk\Notifications\Notification;
-use QuantaQuirk\Support\Collection;
-use QuantaQuirk\Support\Testing\Fakes\NotificationFake;
+use QuantaForge\Contracts\Translation\HasLocalePreference;
+use QuantaForge\Foundation\Auth\User;
+use QuantaForge\Notifications\AnonymousNotifiable;
+use QuantaForge\Notifications\Notification;
+use QuantaForge\Support\Collection;
+use QuantaForge\Support\Testing\Fakes\NotificationFake;
 use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;
 
 class SupportTestingNotificationFakeTest extends TestCase
 {
     /**
-     * @var \QuantaQuirk\Support\Testing\Fakes\NotificationFake
+     * @var \QuantaForge\Support\Testing\Fakes\NotificationFake
      */
     private $fake;
 
     /**
-     * @var \QuantaQuirk\Tests\Support\NotificationStub
+     * @var \QuantaForge\Tests\Support\NotificationStub
      */
     private $notification;
 
     /**
-     * @var \QuantaQuirk\Tests\Support\UserStub
+     * @var \QuantaForge\Tests\Support\UserStub
      */
     private $user;
 
@@ -44,7 +44,7 @@ class SupportTestingNotificationFakeTest extends TestCase
             $this->fake->assertSentTo($this->user, NotificationStub::class);
             $this->fail();
         } catch (ExpectationFailedException $e) {
-            $this->assertStringContainsString('The expected [QuantaQuirk\Tests\Support\NotificationStub] notification was not sent.', $e->getMessage());
+            $this->assertStringContainsString('The expected [QuantaForge\Tests\Support\NotificationStub] notification was not sent.', $e->getMessage());
         }
 
         $this->fake->send($this->user, new NotificationStub);
@@ -87,7 +87,7 @@ class SupportTestingNotificationFakeTest extends TestCase
             $this->fake->assertNotSentTo($this->user, NotificationStub::class);
             $this->fail();
         } catch (ExpectationFailedException $e) {
-            $this->assertStringContainsString('The unexpected [QuantaQuirk\Tests\Support\NotificationStub] notification was sent.', $e->getMessage());
+            $this->assertStringContainsString('The unexpected [QuantaForge\Tests\Support\NotificationStub] notification was sent.', $e->getMessage());
         }
     }
 
@@ -101,7 +101,7 @@ class SupportTestingNotificationFakeTest extends TestCase
             });
             $this->fail();
         } catch (ExpectationFailedException $e) {
-            $this->assertStringContainsString('The unexpected [QuantaQuirk\Tests\Support\NotificationStub] notification was sent.', $e->getMessage());
+            $this->assertStringContainsString('The unexpected [QuantaForge\Tests\Support\NotificationStub] notification was sent.', $e->getMessage());
         }
     }
 

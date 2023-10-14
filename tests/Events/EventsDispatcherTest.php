@@ -1,11 +1,11 @@
 <?php
 
-namespace QuantaQuirk\Tests\Events;
+namespace QuantaForge\Tests\Events;
 
 use Error;
 use Exception;
-use QuantaQuirk\Container\Container;
-use QuantaQuirk\Events\Dispatcher;
+use QuantaForge\Container\Container;
+use QuantaForge\Events\Dispatcher;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 

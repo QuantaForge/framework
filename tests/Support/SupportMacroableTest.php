@@ -1,9 +1,9 @@
 <?php
 
-namespace QuantaQuirk\Tests\Support;
+namespace QuantaForge\Tests\Support;
 
 use BadMethodCallException;
-use QuantaQuirk\Support\Traits\Macroable;
+use QuantaForge\Support\Traits\Macroable;
 use PHPUnit\Framework\TestCase;
 
 class SupportMacroableTest extends TestCase

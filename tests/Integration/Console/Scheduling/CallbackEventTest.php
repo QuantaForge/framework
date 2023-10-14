@@ -1,10 +1,10 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Console\Scheduling;
+namespace QuantaForge\Tests\Integration\Console\Scheduling;
 
 use Exception;
-use QuantaQuirk\Console\Scheduling\CallbackEvent;
-use QuantaQuirk\Console\Scheduling\EventMutex;
+use QuantaForge\Console\Scheduling\CallbackEvent;
+use QuantaForge\Console\Scheduling\EventMutex;
 use Mockery as m;
 use Orchestra\Testbench\TestCase;
 

@@ -1,14 +1,14 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Http;
+namespace QuantaForge\Tests\Integration\Http;
 
 use Carbon\CarbonInterval;
-use QuantaQuirk\Contracts\Http\Kernel;
-use QuantaQuirk\Http\Request;
-use QuantaQuirk\Http\Response;
-use QuantaQuirk\Support\Carbon;
-use QuantaQuirk\Support\Facades\Config;
-use QuantaQuirk\Support\Facades\Route;
+use QuantaForge\Contracts\Http\Kernel;
+use QuantaForge\Http\Request;
+use QuantaForge\Http\Response;
+use QuantaForge\Support\Carbon;
+use QuantaForge\Support\Facades\Config;
+use QuantaForge\Support\Facades\Route;
 use Orchestra\Testbench\TestCase;
 
 class RequestDurationThresholdTest extends TestCase

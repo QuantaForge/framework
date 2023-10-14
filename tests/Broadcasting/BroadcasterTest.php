@@ -1,13 +1,13 @@
 <?php
 
-namespace QuantaQuirk\Tests\Broadcasting;
+namespace QuantaForge\Tests\Broadcasting;
 
 use Exception;
-use QuantaQuirk\Broadcasting\Broadcasters\Broadcaster;
-use QuantaQuirk\Container\Container;
-use QuantaQuirk\Contracts\Routing\BindingRegistrar;
-use QuantaQuirk\Database\Eloquent\Model;
-use QuantaQuirk\Http\Request;
+use QuantaForge\Broadcasting\Broadcasters\Broadcaster;
+use QuantaForge\Container\Container;
+use QuantaForge\Contracts\Routing\BindingRegistrar;
+use QuantaForge\Database\Eloquent\Model;
+use QuantaForge\Http\Request;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpKernel\Exception\HttpException;
@@ -15,7 +15,7 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 class BroadcasterTest extends TestCase
 {
     /**
-     * @var \QuantaQuirk\Tests\Broadcasting\FakeBroadcaster
+     * @var \QuantaForge\Tests\Broadcasting\FakeBroadcaster
      */
     public $broadcaster;
 

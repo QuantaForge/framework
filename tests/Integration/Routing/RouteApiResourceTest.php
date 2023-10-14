@@ -1,10 +1,10 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Routing;
+namespace QuantaForge\Tests\Integration\Routing;
 
-use QuantaQuirk\Support\Facades\Route;
-use QuantaQuirk\Tests\Integration\Routing\Fixtures\ApiResourceTaskController;
-use QuantaQuirk\Tests\Integration\Routing\Fixtures\ApiResourceTestController;
+use QuantaForge\Support\Facades\Route;
+use QuantaForge\Tests\Integration\Routing\Fixtures\ApiResourceTaskController;
+use QuantaForge\Tests\Integration\Routing\Fixtures\ApiResourceTestController;
 use Orchestra\Testbench\TestCase;
 
 class RouteApiResourceTest extends TestCase

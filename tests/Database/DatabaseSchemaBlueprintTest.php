@@ -1,14 +1,14 @@
 <?php
 
-namespace QuantaQuirk\Tests\Database;
+namespace QuantaForge\Tests\Database;
 
-use QuantaQuirk\Database\Connection;
-use QuantaQuirk\Database\Schema\Blueprint;
-use QuantaQuirk\Database\Schema\Builder;
-use QuantaQuirk\Database\Schema\Grammars\MySqlGrammar;
-use QuantaQuirk\Database\Schema\Grammars\PostgresGrammar;
-use QuantaQuirk\Database\Schema\Grammars\SQLiteGrammar;
-use QuantaQuirk\Database\Schema\Grammars\SqlServerGrammar;
+use QuantaForge\Database\Connection;
+use QuantaForge\Database\Schema\Blueprint;
+use QuantaForge\Database\Schema\Builder;
+use QuantaForge\Database\Schema\Grammars\MySqlGrammar;
+use QuantaForge\Database\Schema\Grammars\PostgresGrammar;
+use QuantaForge\Database\Schema\Grammars\SQLiteGrammar;
+use QuantaForge\Database\Schema\Grammars\SqlServerGrammar;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 
@@ -343,7 +343,7 @@ class DatabaseSchemaBlueprintTest extends TestCase
     public function testGenerateRelationshipColumnWithIncrementalModel()
     {
         $base = new Blueprint('posts', function ($table) {
-            $table->foreignIdFor('QuantaQuirk\Foundation\Auth\User');
+            $table->foreignIdFor('QuantaForge\Foundation\Auth\User');
         });
 
         $connection = m::mock(Connection::class);
@@ -398,7 +398,7 @@ class DatabaseSchemaBlueprintTest extends TestCase
     public function testDropRelationshipColumnWithIncrementalModel()
     {
         $base = new Blueprint('posts', function ($table) {
-            $table->dropForeignIdFor('QuantaQuirk\Foundation\Auth\User');
+            $table->dropForeignIdFor('QuantaForge\Foundation\Auth\User');
         });
 
         $connection = m::mock(Connection::class);
@@ -430,7 +430,7 @@ class DatabaseSchemaBlueprintTest extends TestCase
     public function testDropConstrainedRelationshipColumnWithIncrementalModel()
     {
         $base = new Blueprint('posts', function ($table) {
-            $table->dropConstrainedForeignIdFor('QuantaQuirk\Foundation\Auth\User');
+            $table->dropConstrainedForeignIdFor('QuantaForge\Foundation\Auth\User');
         });
 
         $connection = m::mock(Connection::class);

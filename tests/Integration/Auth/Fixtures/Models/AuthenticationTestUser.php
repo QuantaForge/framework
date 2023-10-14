@@ -1,8 +1,8 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Auth\Fixtures\Models;
+namespace QuantaForge\Tests\Integration\Auth\Fixtures\Models;
 
-use QuantaQuirk\Foundation\Auth\User as Authenticatable;
+use QuantaForge\Foundation\Auth\User as Authenticatable;
 
 class AuthenticationTestUser extends Authenticatable
 {

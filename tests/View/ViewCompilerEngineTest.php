@@ -1,14 +1,14 @@
 <?php
 
-namespace QuantaQuirk\Tests\View;
+namespace QuantaForge\Tests\View;
 
 use ErrorException;
 use Exception;
-use QuantaQuirk\Contracts\Filesystem\FileNotFoundException;
-use QuantaQuirk\Filesystem\Filesystem;
-use QuantaQuirk\View\Compilers\CompilerInterface;
-use QuantaQuirk\View\Engines\CompilerEngine;
-use QuantaQuirk\View\ViewException;
+use QuantaForge\Contracts\Filesystem\FileNotFoundException;
+use QuantaForge\Filesystem\Filesystem;
+use QuantaForge\View\Compilers\CompilerInterface;
+use QuantaForge\View\Engines\CompilerEngine;
+use QuantaForge\View\ViewException;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpKernel\Exception\HttpException;

@@ -1,13 +1,13 @@
 <?php
 
-namespace QuantaQuirk\Tests\Auth;
+namespace QuantaForge\Tests\Auth;
 
 use Closure;
-use QuantaQuirk\Events\Dispatcher;
-use QuantaQuirk\Foundation\Auth\Access\AuthorizesRequests;
-use QuantaQuirk\Http\Request;
-use QuantaQuirk\Routing\Controller;
-use QuantaQuirk\Routing\Router;
+use QuantaForge\Events\Dispatcher;
+use QuantaForge\Foundation\Auth\Access\AuthorizesRequests;
+use QuantaForge\Http\Request;
+use QuantaForge\Routing\Controller;
+use QuantaForge\Routing\Router;
 use PHPUnit\Framework\TestCase;
 
 class AuthorizesResourcesTest extends TestCase
@@ -81,7 +81,7 @@ class AuthorizesResourcesTest extends TestCase
     /**
      * Assert that the given middleware has been registered on the given controller for the given method.
      *
-     * @param  \QuantaQuirk\Routing\Controller  $controller
+     * @param  \QuantaForge\Routing\Controller  $controller
      * @param  string  $method
      * @param  string  $middleware
      * @return void

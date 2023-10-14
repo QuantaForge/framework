@@ -1,12 +1,12 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Database\EloquentBelongsToTest;
+namespace QuantaForge\Tests\Integration\Database\EloquentBelongsToTest;
 
-use QuantaQuirk\Database\Eloquent\Model;
-use QuantaQuirk\Database\Schema\Blueprint;
-use QuantaQuirk\Support\Facades\Schema;
-use QuantaQuirk\Support\Str;
-use QuantaQuirk\Tests\Integration\Database\DatabaseTestCase;
+use QuantaForge\Database\Eloquent\Model;
+use QuantaForge\Database\Schema\Blueprint;
+use QuantaForge\Support\Facades\Schema;
+use QuantaForge\Support\Str;
+use QuantaForge\Tests\Integration\Database\DatabaseTestCase;
 
 class EloquentBelongsToTest extends DatabaseTestCase
 {

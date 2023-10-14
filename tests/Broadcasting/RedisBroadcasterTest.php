@@ -1,11 +1,11 @@
 <?php
 
-namespace QuantaQuirk\Tests\Broadcasting;
+namespace QuantaForge\Tests\Broadcasting;
 
-use QuantaQuirk\Broadcasting\Broadcasters\RedisBroadcaster;
-use QuantaQuirk\Config\Repository as Config;
-use QuantaQuirk\Container\Container;
-use QuantaQuirk\Http\Request;
+use QuantaForge\Broadcasting\Broadcasters\RedisBroadcaster;
+use QuantaForge\Config\Repository as Config;
+use QuantaForge\Container\Container;
+use QuantaForge\Http\Request;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
@@ -13,7 +13,7 @@ use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 class RedisBroadcasterTest extends TestCase
 {
     /**
-     * @var \QuantaQuirk\Broadcasting\Broadcasters\RedisBroadcaster
+     * @var \QuantaForge\Broadcasting\Broadcasters\RedisBroadcaster
      */
     public $broadcaster;
 
@@ -149,20 +149,20 @@ class RedisBroadcasterTest extends TestCase
     /**
      * Create a new config repository instance.
      *
-     * @return \QuantaQuirk\Config\Repository
+     * @return \QuantaForge\Config\Repository
      */
     protected function createConfig()
     {
         return new Config([
             'redis' => [
-                'options' => ['prefix' => 'quantaquirk_database_'],
+                'options' => ['prefix' => 'quantaforge_database_'],
             ],
         ]);
     }
 
     /**
      * @param  string  $channel
-     * @return \QuantaQuirk\Http\Request
+     * @return \QuantaForge\Http\Request
      */
     protected function getMockRequestWithUserForChannel($channel)
     {
@@ -184,7 +184,7 @@ class RedisBroadcasterTest extends TestCase
 
     /**
      * @param  string  $channel
-     * @return \QuantaQuirk\Http\Request
+     * @return \QuantaForge\Http\Request
      */
     protected function getMockRequestWithoutUserForChannel($channel)
     {

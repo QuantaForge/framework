@@ -1,18 +1,18 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Database;
+namespace QuantaForge\Tests\Integration\Database;
 
 use Exception;
-use QuantaQuirk\Contracts\Database\Eloquent\Castable;
-use QuantaQuirk\Contracts\Database\Eloquent\CastsAttributes;
-use QuantaQuirk\Contracts\Database\Eloquent\CastsInboundAttributes;
-use QuantaQuirk\Contracts\Database\Eloquent\DeviatesCastableAttributes;
-use QuantaQuirk\Contracts\Database\Eloquent\SerializesCastableAttributes;
-use QuantaQuirk\Database\Eloquent\InvalidCastException;
-use QuantaQuirk\Database\Eloquent\Model;
-use QuantaQuirk\Database\Schema\Blueprint;
-use QuantaQuirk\Support\Carbon;
-use QuantaQuirk\Support\Facades\Schema;
+use QuantaForge\Contracts\Database\Eloquent\Castable;
+use QuantaForge\Contracts\Database\Eloquent\CastsAttributes;
+use QuantaForge\Contracts\Database\Eloquent\CastsInboundAttributes;
+use QuantaForge\Contracts\Database\Eloquent\DeviatesCastableAttributes;
+use QuantaForge\Contracts\Database\Eloquent\SerializesCastableAttributes;
+use QuantaForge\Database\Eloquent\InvalidCastException;
+use QuantaForge\Database\Eloquent\Model;
+use QuantaForge\Database\Schema\Blueprint;
+use QuantaForge\Support\Carbon;
+use QuantaForge\Support\Facades\Schema;
 
 class DatabaseEloquentModelCustomCastingTest extends DatabaseTestCase
 {

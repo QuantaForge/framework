@@ -1,9 +1,9 @@
 <?php
 
-namespace QuantaQuirk\Tests\Database;
+namespace QuantaForge\Tests\Database;
 
-use QuantaQuirk\Database\Capsule\Manager as DB;
-use QuantaQuirk\Database\Eloquent\Model as Eloquent;
+use QuantaForge\Database\Capsule\Manager as DB;
+use QuantaForge\Database\Eloquent\Model as Eloquent;
 use PHPUnit\Framework\TestCase;
 
 class DatabaseEloquentBelongsToManySyncReturnValueTypeTest extends TestCase
@@ -115,7 +115,7 @@ class DatabaseEloquentBelongsToManySyncReturnValueTypeTest extends TestCase
     /**
      * Get a database connection instance.
      *
-     * @return \QuantaQuirk\Database\ConnectionInterface
+     * @return \QuantaForge\Database\ConnectionInterface
      */
     protected function connection()
     {
@@ -125,7 +125,7 @@ class DatabaseEloquentBelongsToManySyncReturnValueTypeTest extends TestCase
     /**
      * Get a schema builder instance.
      *
-     * @return \QuantaQuirk\Database\Schema\Builder
+     * @return \QuantaForge\Database\Schema\Builder
      */
     protected function schema()
     {

@@ -1,10 +1,10 @@
 <?php
 
-namespace QuantaQuirk\Tests\Queue;
+namespace QuantaForge\Tests\Queue;
 
 use Exception;
-use QuantaQuirk\Contracts\Queue\Job;
-use QuantaQuirk\Queue\InteractsWithQueue;
+use QuantaForge\Contracts\Queue\Job;
+use QuantaForge\Queue\InteractsWithQueue;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 

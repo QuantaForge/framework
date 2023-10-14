@@ -1,11 +1,11 @@
 <?php
 
-namespace QuantaQuirk\Tests\Database;
+namespace QuantaForge\Tests\Database;
 
 use Carbon\CarbonInterval;
-use QuantaQuirk\Database\Connection;
-use QuantaQuirk\Events\Dispatcher;
-use QuantaQuirk\Support\Arr;
+use QuantaForge\Database\Connection;
+use QuantaForge\Events\Dispatcher;
+use QuantaForge\Support\Arr;
 use PDO;
 use PHPUnit\Framework\TestCase;
 

@@ -1,14 +1,14 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Session;
+namespace QuantaForge\Tests\Integration\Session;
 
-use QuantaQuirk\Contracts\Debug\ExceptionHandler;
-use QuantaQuirk\Http\Response;
-use QuantaQuirk\Session\NullSessionHandler;
-use QuantaQuirk\Session\TokenMismatchException;
-use QuantaQuirk\Support\Facades\Route;
-use QuantaQuirk\Support\Facades\Session;
-use QuantaQuirk\Support\Str;
+use QuantaForge\Contracts\Debug\ExceptionHandler;
+use QuantaForge\Http\Response;
+use QuantaForge\Session\NullSessionHandler;
+use QuantaForge\Session\TokenMismatchException;
+use QuantaForge\Support\Facades\Route;
+use QuantaForge\Support\Facades\Session;
+use QuantaForge\Support\Str;
 use Mockery as m;
 use Orchestra\Testbench\TestCase;
 

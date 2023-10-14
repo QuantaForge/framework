@@ -1,14 +1,14 @@
 <?php
 
-namespace QuantaQuirk\Tests\Cache;
+namespace QuantaForge\Tests\Cache;
 
-use QuantaQuirk\Cache\ArrayStore;
-use QuantaQuirk\Cache\CacheManager;
-use QuantaQuirk\Cache\NullStore;
-use QuantaQuirk\Config\Repository;
-use QuantaQuirk\Container\Container;
-use QuantaQuirk\Contracts\Events\Dispatcher;
-use QuantaQuirk\Events\Dispatcher as Event;
+use QuantaForge\Cache\ArrayStore;
+use QuantaForge\Cache\CacheManager;
+use QuantaForge\Cache\NullStore;
+use QuantaForge\Config\Repository;
+use QuantaForge\Container\Container;
+use QuantaForge\Contracts\Events\Dispatcher;
+use QuantaForge\Events\Dispatcher as Event;
 use InvalidArgumentException;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;

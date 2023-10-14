@@ -1,11 +1,11 @@
 <?php
 
-namespace QuantaQuirk\Tests\Support;
+namespace QuantaForge\Tests\Support;
 
 use Carbon\CarbonInterval;
 use Exception;
-use QuantaQuirk\Support\Carbon;
-use QuantaQuirk\Support\Sleep;
+use QuantaForge\Support\Carbon;
+use QuantaForge\Support\Sleep;
 use PHPUnit\Framework\AssertionFailedError;
 use PHPUnit\Framework\TestCase;
 use RuntimeException;

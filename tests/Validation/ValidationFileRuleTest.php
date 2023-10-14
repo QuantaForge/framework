@@ -1,16 +1,16 @@
 <?php
 
-namespace QuantaQuirk\Tests\Validation;
+namespace QuantaForge\Tests\Validation;
 
-use QuantaQuirk\Container\Container;
-use QuantaQuirk\Http\UploadedFile;
-use QuantaQuirk\Support\Arr;
-use QuantaQuirk\Support\Facades\Facade;
-use QuantaQuirk\Translation\ArrayLoader;
-use QuantaQuirk\Translation\Translator;
-use QuantaQuirk\Validation\Rules\File;
-use QuantaQuirk\Validation\ValidationServiceProvider;
-use QuantaQuirk\Validation\Validator;
+use QuantaForge\Container\Container;
+use QuantaForge\Http\UploadedFile;
+use QuantaForge\Support\Arr;
+use QuantaForge\Support\Facades\Facade;
+use QuantaForge\Translation\ArrayLoader;
+use QuantaForge\Translation\Translator;
+use QuantaForge\Validation\Rules\File;
+use QuantaForge\Validation\ValidationServiceProvider;
+use QuantaForge\Validation\Validator;
 use PHPUnit\Framework\TestCase;
 
 class ValidationFileRuleTest extends TestCase

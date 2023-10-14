@@ -1,11 +1,11 @@
 <?php
 
-namespace QuantaQuirk\Tests\Database;
+namespace QuantaForge\Tests\Database;
 
-use QuantaQuirk\Database\Connection;
-use QuantaQuirk\Database\Schema\Blueprint;
-use QuantaQuirk\Database\Schema\ForeignIdColumnDefinition;
-use QuantaQuirk\Database\Schema\Grammars\SqlServerGrammar;
+use QuantaForge\Database\Connection;
+use QuantaForge\Database\Schema\Blueprint;
+use QuantaForge\Database\Schema\ForeignIdColumnDefinition;
+use QuantaForge\Database\Schema\Grammars\SqlServerGrammar;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 
@@ -350,7 +350,7 @@ class DatabaseSqlServerSchemaGrammarTest extends TestCase
         $blueprint = new Blueprint('users');
         $foreignId = $blueprint->foreignId('foo');
         $blueprint->foreignId('company_id')->constrained();
-        $blueprint->foreignId('quantaquirk_idea_id')->constrained();
+        $blueprint->foreignId('quantaforge_idea_id')->constrained();
         $blueprint->foreignId('team_id')->references('id')->on('teams');
         $blueprint->foreignId('team_column_id')->constrained('teams');
 
@@ -358,9 +358,9 @@ class DatabaseSqlServerSchemaGrammarTest extends TestCase
 
         $this->assertInstanceOf(ForeignIdColumnDefinition::class, $foreignId);
         $this->assertSame([
-            'alter table "users" add "foo" bigint not null, "company_id" bigint not null, "quantaquirk_idea_id" bigint not null, "team_id" bigint not null, "team_column_id" bigint not null',
+            'alter table "users" add "foo" bigint not null, "company_id" bigint not null, "quantaforge_idea_id" bigint not null, "team_id" bigint not null, "team_column_id" bigint not null',
             'alter table "users" add constraint "users_company_id_foreign" foreign key ("company_id") references "companies" ("id")',
-            'alter table "users" add constraint "users_quantaquirk_idea_id_foreign" foreign key ("quantaquirk_idea_id") references "quantaquirk_ideas" ("id")',
+            'alter table "users" add constraint "users_quantaforge_idea_id_foreign" foreign key ("quantaforge_idea_id") references "quantaforge_ideas" ("id")',
             'alter table "users" add constraint "users_team_id_foreign" foreign key ("team_id") references "teams" ("id")',
             'alter table "users" add constraint "users_team_column_id_foreign" foreign key ("team_column_id") references "teams" ("id")',
         ], $statements);
@@ -766,7 +766,7 @@ class DatabaseSqlServerSchemaGrammarTest extends TestCase
         $blueprint = new Blueprint('users');
         $foreignId = $blueprint->foreignUuid('foo');
         $blueprint->foreignUuid('company_id')->constrained();
-        $blueprint->foreignUuid('quantaquirk_idea_id')->constrained();
+        $blueprint->foreignUuid('quantaforge_idea_id')->constrained();
         $blueprint->foreignUuid('team_id')->references('id')->on('teams');
         $blueprint->foreignUuid('team_column_id')->constrained('teams');
 
@@ -774,9 +774,9 @@ class DatabaseSqlServerSchemaGrammarTest extends TestCase
 
         $this->assertInstanceOf(ForeignIdColumnDefinition::class, $foreignId);
         $this->assertSame([
-            'alter table "users" add "foo" uniqueidentifier not null, "company_id" uniqueidentifier not null, "quantaquirk_idea_id" uniqueidentifier not null, "team_id" uniqueidentifier not null, "team_column_id" uniqueidentifier not null',
+            'alter table "users" add "foo" uniqueidentifier not null, "company_id" uniqueidentifier not null, "quantaforge_idea_id" uniqueidentifier not null, "team_id" uniqueidentifier not null, "team_column_id" uniqueidentifier not null',
             'alter table "users" add constraint "users_company_id_foreign" foreign key ("company_id") references "companies" ("id")',
-            'alter table "users" add constraint "users_quantaquirk_idea_id_foreign" foreign key ("quantaquirk_idea_id") references "quantaquirk_ideas" ("id")',
+            'alter table "users" add constraint "users_quantaforge_idea_id_foreign" foreign key ("quantaforge_idea_id") references "quantaforge_ideas" ("id")',
             'alter table "users" add constraint "users_team_id_foreign" foreign key ("team_id") references "teams" ("id")',
             'alter table "users" add constraint "users_team_column_id_foreign" foreign key ("team_column_id") references "teams" ("id")',
         ], $statements);

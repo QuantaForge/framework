@@ -1,11 +1,11 @@
 <?php
 
-namespace QuantaQuirk\Tests\Conditionable;
+namespace QuantaForge\Tests\Conditionable;
 
-use QuantaQuirk\Database\Capsule\Manager as DB;
-use QuantaQuirk\Database\Eloquent\Builder;
-use QuantaQuirk\Database\Eloquent\Model;
-use QuantaQuirk\Support\HigherOrderWhenProxy;
+use QuantaForge\Database\Capsule\Manager as DB;
+use QuantaForge\Database\Eloquent\Builder;
+use QuantaForge\Database\Eloquent\Model;
+use QuantaForge\Support\HigherOrderWhenProxy;
 use PHPUnit\Framework\TestCase;
 
 class ConditionableTest extends TestCase

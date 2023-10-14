@@ -1,11 +1,11 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Cache;
+namespace QuantaForge\Tests\Integration\Cache;
 
-use QuantaQuirk\Foundation\Testing\Concerns\InteractsWithRedis;
-use QuantaQuirk\Support\Facades\Cache;
-use QuantaQuirk\Support\Facades\Redis;
-use QuantaQuirk\Support\Sleep;
+use QuantaForge\Foundation\Testing\Concerns\InteractsWithRedis;
+use QuantaForge\Support\Facades\Cache;
+use QuantaForge\Support\Facades\Redis;
+use QuantaForge\Support\Sleep;
 use Orchestra\Testbench\TestCase;
 
 class RedisStoreTest extends TestCase

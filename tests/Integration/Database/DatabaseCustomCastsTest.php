@@ -1,15 +1,15 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Database;
+namespace QuantaForge\Tests\Integration\Database;
 
-use QuantaQuirk\Database\Eloquent\Casts\AsArrayObject;
-use QuantaQuirk\Database\Eloquent\Casts\AsCollection;
-use QuantaQuirk\Database\Eloquent\Casts\AsStringable;
-use QuantaQuirk\Database\Eloquent\Model;
-use QuantaQuirk\Database\Schema\Blueprint;
-use QuantaQuirk\Support\Facades\Hash;
-use QuantaQuirk\Support\Facades\Schema;
-use QuantaQuirk\Support\Str;
+use QuantaForge\Database\Eloquent\Casts\AsArrayObject;
+use QuantaForge\Database\Eloquent\Casts\AsCollection;
+use QuantaForge\Database\Eloquent\Casts\AsStringable;
+use QuantaForge\Database\Eloquent\Model;
+use QuantaForge\Database\Schema\Blueprint;
+use QuantaForge\Support\Facades\Hash;
+use QuantaForge\Support\Facades\Schema;
+use QuantaForge\Support\Str;
 
 class DatabaseCustomCastsTest extends DatabaseTestCase
 {

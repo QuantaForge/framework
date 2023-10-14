@@ -1,10 +1,10 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Database\EloquentHasOneOfManyTest;
+namespace QuantaForge\Tests\Integration\Database\EloquentHasOneOfManyTest;
 
-use QuantaQuirk\Database\Eloquent\Model;
-use QuantaQuirk\Support\Facades\Schema;
-use QuantaQuirk\Tests\Integration\Database\DatabaseTestCase;
+use QuantaForge\Database\Eloquent\Model;
+use QuantaForge\Support\Facades\Schema;
+use QuantaForge\Tests\Integration\Database\DatabaseTestCase;
 
 class EloquentHasOneOfManyTest extends DatabaseTestCase
 {

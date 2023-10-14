@@ -1,9 +1,9 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Session;
+namespace QuantaForge\Tests\Integration\Session;
 
-use QuantaQuirk\Support\Facades\Route;
-use QuantaQuirk\Support\Str;
+use QuantaForge\Support\Facades\Route;
+use QuantaForge\Support\Str;
 use Orchestra\Testbench\TestCase;
 
 class CookieSessionHandlerTest extends TestCase
@@ -13,7 +13,7 @@ class CookieSessionHandlerTest extends TestCase
         Route::get('/', fn () => '')->middleware('web');
 
         $response = $this->get('/');
-        $sessionIdCookie = $response->getCookie('quantaquirk_session');
+        $sessionIdCookie = $response->getCookie('quantaforge_session');
         $sessionValueCookie = $response->getCookie($sessionIdCookie->getValue());
 
         $this->assertEquals(0, $sessionIdCookie->getExpiresTime());

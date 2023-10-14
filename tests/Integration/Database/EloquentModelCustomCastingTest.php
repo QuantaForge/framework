@@ -1,16 +1,16 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Database;
+namespace QuantaForge\Tests\Integration\Database;
 
 use Brick\Math\BigNumber;
 use GMP;
-use QuantaQuirk\Contracts\Database\Eloquent\Castable;
-use QuantaQuirk\Contracts\Database\Eloquent\CastsAttributes;
-use QuantaQuirk\Contracts\Database\Eloquent\SerializesCastableAttributes;
-use QuantaQuirk\Database\Capsule\Manager as DB;
-use QuantaQuirk\Database\Eloquent\Model;
-use QuantaQuirk\Database\Eloquent\Model as Eloquent;
-use QuantaQuirk\Database\Schema\Blueprint;
+use QuantaForge\Contracts\Database\Eloquent\Castable;
+use QuantaForge\Contracts\Database\Eloquent\CastsAttributes;
+use QuantaForge\Contracts\Database\Eloquent\SerializesCastableAttributes;
+use QuantaForge\Database\Capsule\Manager as DB;
+use QuantaForge\Database\Eloquent\Model;
+use QuantaForge\Database\Eloquent\Model as Eloquent;
+use QuantaForge\Database\Schema\Blueprint;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
@@ -72,7 +72,7 @@ class EloquentModelCustomCastingTest extends TestCase
      */
     public function testSavingCastedAttributesToDatabase()
     {
-        /** @var \QuantaQuirk\Tests\Integration\Database\CustomCasts $model */
+        /** @var \QuantaForge\Tests\Integration\Database\CustomCasts $model */
         $model = CustomCasts::create([
             'address' => new AddressModel('address_line_one_value', 'address_line_two_value'),
             'amount' => gmp_init('1000', 10),
@@ -91,7 +91,7 @@ class EloquentModelCustomCastingTest extends TestCase
         $this->assertNull($model->getAttribute('string_field'));
         $this->assertSame('', $model->getRawOriginal('string_field'));
 
-        /** @var \QuantaQuirk\Tests\Integration\Database\CustomCasts $another_model */
+        /** @var \QuantaForge\Tests\Integration\Database\CustomCasts $another_model */
         $another_model = CustomCasts::create([
             'address_line_one' => 'address_line_one_value',
             'address_line_two' => 'address_line_two_value',
@@ -111,7 +111,7 @@ class EloquentModelCustomCastingTest extends TestCase
      */
     public function testInvalidArgumentExceptionOnInvalidValue()
     {
-        /** @var \QuantaQuirk\Tests\Integration\Database\CustomCasts $model */
+        /** @var \QuantaForge\Tests\Integration\Database\CustomCasts $model */
         $model = CustomCasts::create([
             'address' => new AddressModel('address_line_one_value', 'address_line_two_value'),
             'amount' => gmp_init('1000', 10),
@@ -132,7 +132,7 @@ class EloquentModelCustomCastingTest extends TestCase
      */
     public function testInvalidArgumentExceptionOnNull()
     {
-        /** @var \QuantaQuirk\Tests\Integration\Database\CustomCasts $model */
+        /** @var \QuantaForge\Tests\Integration\Database\CustomCasts $model */
         $model = CustomCasts::create([
             'address' => new AddressModel('address_line_one_value', 'address_line_two_value'),
             'amount' => gmp_init('1000', 10),
@@ -153,7 +153,7 @@ class EloquentModelCustomCastingTest extends TestCase
      */
     public function testModelsWithCustomCastsCanBeConvertedToArrays()
     {
-        /** @var \QuantaQuirk\Tests\Integration\Database\CustomCasts $model */
+        /** @var \QuantaForge\Tests\Integration\Database\CustomCasts $model */
         $model = CustomCasts::create([
             'address' => new AddressModel('address_line_one_value', 'address_line_two_value'),
             'amount' => gmp_init('1000', 10),
@@ -188,7 +188,7 @@ class EloquentModelCustomCastingTest extends TestCase
     /**
      * Get a database connection instance.
      *
-     * @return \QuantaQuirk\Database\Connection
+     * @return \QuantaForge\Database\Connection
      */
     protected function connection()
     {
@@ -198,7 +198,7 @@ class EloquentModelCustomCastingTest extends TestCase
     /**
      * Get a schema builder instance.
      *
-     * @return \QuantaQuirk\Database\Schema\Builder
+     * @return \QuantaForge\Database\Schema\Builder
      */
     protected function schema()
     {
@@ -214,11 +214,11 @@ class AddressCast implements CastsAttributes
     /**
      * Cast the given value.
      *
-     * @param  \QuantaQuirk\Database\Eloquent\Model  $model
+     * @param  \QuantaForge\Database\Eloquent\Model  $model
      * @param  string  $key
      * @param  mixed  $value
      * @param  array  $attributes
-     * @return \QuantaQuirk\Tests\Integration\Database\AddressModel
+     * @return \QuantaForge\Tests\Integration\Database\AddressModel
      */
     public function get($model, $key, $value, $attributes)
     {
@@ -231,7 +231,7 @@ class AddressCast implements CastsAttributes
     /**
      * Prepare the given value for storage.
      *
-     * @param  \QuantaQuirk\Database\Eloquent\Model  $model
+     * @param  \QuantaForge\Database\Eloquent\Model  $model
      * @param  string  $key
      * @param  AddressModel  $value
      * @param  array  $attributes
@@ -255,7 +255,7 @@ class GMPCast implements CastsAttributes, SerializesCastableAttributes
     /**
      * Cast the given value.
      *
-     * @param  \QuantaQuirk\Database\Eloquent\Model  $model
+     * @param  \QuantaForge\Database\Eloquent\Model  $model
      * @param  string  $key
      * @param  string  $value
      * @param  array  $attributes
@@ -269,7 +269,7 @@ class GMPCast implements CastsAttributes, SerializesCastableAttributes
     /**
      * Prepare the given value for storage.
      *
-     * @param  \QuantaQuirk\Database\Eloquent\Model  $model
+     * @param  \QuantaForge\Database\Eloquent\Model  $model
      * @param  string  $key
      * @param  string|null  $value
      * @param  array  $attributes
@@ -283,7 +283,7 @@ class GMPCast implements CastsAttributes, SerializesCastableAttributes
     /**
      * Serialize the attribute when converting the model to an array.
      *
-     * @param  \QuantaQuirk\Database\Eloquent\Model  $model
+     * @param  \QuantaForge\Database\Eloquent\Model  $model
      * @param  string  $key
      * @param  mixed  $value
      * @param  array  $attributes
@@ -300,7 +300,7 @@ class NonNullableString implements CastsAttributes
     /**
      * Cast the given value.
      *
-     * @param  \QuantaQuirk\Database\Eloquent\Model  $model
+     * @param  \QuantaForge\Database\Eloquent\Model  $model
      * @param  string  $key
      * @param  string  $value
      * @param  array  $attributes
@@ -314,7 +314,7 @@ class NonNullableString implements CastsAttributes
     /**
      * Prepare the given value for storage.
      *
-     * @param  \QuantaQuirk\Database\Eloquent\Model  $model
+     * @param  \QuantaForge\Database\Eloquent\Model  $model
      * @param  string  $key
      * @param  string|null  $value
      * @param  array  $attributes

@@ -1,16 +1,16 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Foundation;
+namespace QuantaForge\Tests\Integration\Foundation;
 
-use QuantaQuirk\Foundation\Console\DownCommand;
-use QuantaQuirk\Foundation\Console\UpCommand;
-use QuantaQuirk\Foundation\Events\MaintenanceModeDisabled;
-use QuantaQuirk\Foundation\Events\MaintenanceModeEnabled;
-use QuantaQuirk\Foundation\Http\MaintenanceModeBypassCookie;
-use QuantaQuirk\Foundation\Http\Middleware\PreventRequestsDuringMaintenance;
-use QuantaQuirk\Support\Carbon;
-use QuantaQuirk\Support\Facades\Event;
-use QuantaQuirk\Support\Facades\Route;
+use QuantaForge\Foundation\Console\DownCommand;
+use QuantaForge\Foundation\Console\UpCommand;
+use QuantaForge\Foundation\Events\MaintenanceModeDisabled;
+use QuantaForge\Foundation\Events\MaintenanceModeEnabled;
+use QuantaForge\Foundation\Http\MaintenanceModeBypassCookie;
+use QuantaForge\Foundation\Http\Middleware\PreventRequestsDuringMaintenance;
+use QuantaForge\Support\Carbon;
+use QuantaForge\Support\Facades\Event;
+use QuantaForge\Support\Facades\Route;
 use Orchestra\Testbench\Http\Middleware\PreventRequestsDuringMaintenance as TestbenchPreventRequestsDuringMaintenance;
 use Orchestra\Testbench\TestCase;
 use Symfony\Component\HttpFoundation\Cookie;
@@ -97,7 +97,7 @@ class MaintenanceModeTest extends TestCase
         $response = $this->get('/foo');
 
         $response->assertStatus(302);
-        $response->assertCookie('quantaquirk_maintenance');
+        $response->assertCookie('quantaforge_maintenance');
     }
 
     public function testMaintenanceModeCanBeBypassedWithValidCookie()
@@ -114,7 +114,7 @@ class MaintenanceModeTest extends TestCase
         })->middleware(PreventRequestsDuringMaintenance::class);
 
         $response = $this->withUnencryptedCookies([
-            'quantaquirk_maintenance' => $cookie->getValue(),
+            'quantaforge_maintenance' => $cookie->getValue(),
         ])->get('/test');
 
         $response->assertStatus(200);
@@ -154,7 +154,7 @@ class MaintenanceModeTest extends TestCase
         })->middleware(PreventRequestsDuringMaintenance::class);
 
         $response = $this->withUnencryptedCookies([
-            'quantaquirk_maintenance' => $cookie->getValue(),
+            'quantaforge_maintenance' => $cookie->getValue(),
         ])->get('/test');
 
         $response->assertStatus(503);
@@ -165,7 +165,7 @@ class MaintenanceModeTest extends TestCase
         $cookie = MaintenanceModeBypassCookie::create('test-key');
 
         $this->assertInstanceOf(Cookie::class, $cookie);
-        $this->assertSame('quantaquirk_maintenance', $cookie->getName());
+        $this->assertSame('quantaforge_maintenance', $cookie->getName());
 
         $this->assertTrue(MaintenanceModeBypassCookie::isValid($cookie->getValue(), 'test-key'));
         $this->assertFalse(MaintenanceModeBypassCookie::isValid($cookie->getValue(), 'wrong-key'));

@@ -1,13 +1,13 @@
 <?php
 
-namespace QuantaQuirk\Tests\Queue;
+namespace QuantaForge\Tests\Queue;
 
 use Exception;
-use QuantaQuirk\Database\Capsule\Manager as DB;
-use QuantaQuirk\Database\Schema\Blueprint;
-use QuantaQuirk\Queue\Failed\DatabaseFailedJobProvider;
-use QuantaQuirk\Support\Facades\Date;
-use QuantaQuirk\Support\Str;
+use QuantaForge\Database\Capsule\Manager as DB;
+use QuantaForge\Database\Schema\Blueprint;
+use QuantaForge\Queue\Failed\DatabaseFailedJobProvider;
+use QuantaForge\Support\Facades\Date;
+use QuantaForge\Support\Str;
 use PHPUnit\Framework\TestCase;
 use RuntimeException;
 

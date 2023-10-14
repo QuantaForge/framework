@@ -1,9 +1,9 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Queue;
+namespace QuantaForge\Tests\Integration\Queue;
 
-use QuantaQuirk\Database\Eloquent\Collection;
-use QuantaQuirk\Queue\SerializesModels;
+use QuantaForge\Database\Eloquent\Collection;
+use QuantaForge\Queue\SerializesModels;
 
 class TypedPropertyTestClass
 {

@@ -1,9 +1,9 @@
 <?php
 
-namespace QuantaQuirk\Tests\Broadcasting;
+namespace QuantaForge\Tests\Broadcasting;
 
-use QuantaQuirk\Broadcasting\Broadcasters\PusherBroadcaster;
-use QuantaQuirk\Http\Request;
+use QuantaForge\Broadcasting\Broadcasters\PusherBroadcaster;
+use QuantaForge\Http\Request;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
@@ -11,7 +11,7 @@ use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 class PusherBroadcasterTest extends TestCase
 {
     /**
-     * @var \QuantaQuirk\Broadcasting\Broadcasters\PusherBroadcaster
+     * @var \QuantaForge\Broadcasting\Broadcasters\PusherBroadcaster
      */
     public $broadcaster;
 
@@ -173,7 +173,7 @@ class PusherBroadcasterTest extends TestCase
 
     /**
      * @param  string  $channel
-     * @return \QuantaQuirk\Http\Request
+     * @return \QuantaForge\Http\Request
      */
     protected function getMockRequestWithUserForChannel($channel)
     {
@@ -198,7 +198,7 @@ class PusherBroadcasterTest extends TestCase
 
     /**
      * @param  string  $channel
-     * @return \QuantaQuirk\Http\Request
+     * @return \QuantaForge\Http\Request
      */
     protected function getMockRequestWithoutUserForChannel($channel)
     {

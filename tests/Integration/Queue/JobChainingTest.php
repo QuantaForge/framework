@@ -1,14 +1,14 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Queue;
+namespace QuantaForge\Tests\Integration\Queue;
 
-use QuantaQuirk\Bus\Queueable;
-use QuantaQuirk\Contracts\Queue\ShouldQueue;
-use QuantaQuirk\Foundation\Bus\Dispatchable;
-use QuantaQuirk\Queue\InteractsWithQueue;
-use QuantaQuirk\Support\Carbon;
-use QuantaQuirk\Support\Facades\Bus;
-use QuantaQuirk\Support\Facades\Queue;
+use QuantaForge\Bus\Queueable;
+use QuantaForge\Contracts\Queue\ShouldQueue;
+use QuantaForge\Foundation\Bus\Dispatchable;
+use QuantaForge\Queue\InteractsWithQueue;
+use QuantaForge\Support\Carbon;
+use QuantaForge\Support\Facades\Bus;
+use QuantaForge\Support\Facades\Queue;
 use Orchestra\Testbench\TestCase;
 
 class JobChainingTest extends TestCase

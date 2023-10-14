@@ -1,9 +1,9 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Http\Middleware;
+namespace QuantaForge\Tests\Integration\Http\Middleware;
 
-use QuantaQuirk\Encryption\Encrypter;
-use QuantaQuirk\Http\Request;
+use QuantaForge\Encryption\Encrypter;
+use QuantaForge\Http\Request;
 use Orchestra\Testbench\TestCase;
 
 class VerifyCsrfTokenExceptTest extends TestCase

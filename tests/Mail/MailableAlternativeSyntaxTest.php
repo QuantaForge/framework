@@ -1,11 +1,11 @@
 <?php
 
-namespace QuantaQuirk\Tests\Mail;
+namespace QuantaForge\Tests\Mail;
 
-use QuantaQuirk\Mail\Mailable;
-use QuantaQuirk\Mail\Mailables\Address;
-use QuantaQuirk\Mail\Mailables\Content;
-use QuantaQuirk\Mail\Mailables\Envelope;
+use QuantaForge\Mail\Mailable;
+use QuantaForge\Mail\Mailables\Address;
+use QuantaForge\Mail\Mailables\Content;
+use QuantaForge\Mail\Mailables\Envelope;
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;
 
@@ -15,14 +15,14 @@ class MailableAlternativeSyntaxTest extends TestCase
     {
         $mailable = new MailableWithAlternativeSyntax;
 
-        $this->assertTrue($mailable->hasTo('taylor@quantaquirk.com'));
-        $this->assertTrue($mailable->hasCc('adam@quantaquirk.com'));
-        $this->assertTrue($mailable->hasBcc('tyler@quantaquirk.com'));
-        $this->assertTrue($mailable->hasTo('taylor@quantaquirk.com', 'Taylor Otwell'));
-        $this->assertFalse($mailable->hasTo('taylor@quantaquirk.com', 'Wrong Name'));
+        $this->assertTrue($mailable->hasTo('taylor@quantaforge.com'));
+        $this->assertTrue($mailable->hasCc('adam@quantaforge.com'));
+        $this->assertTrue($mailable->hasBcc('tyler@quantaforge.com'));
+        $this->assertTrue($mailable->hasTo('taylor@quantaforge.com', 'Taylor Otwell'));
+        $this->assertFalse($mailable->hasTo('taylor@quantaforge.com', 'Wrong Name'));
 
-        $mailable->to(new Address('abigail@quantaquirk.com', 'Abigail Otwell'));
-        $this->assertTrue($mailable->hasTo('taylor@quantaquirk.com', 'Taylor Otwell'));
+        $mailable->to(new Address('abigail@quantaforge.com', 'Abigail Otwell'));
+        $this->assertTrue($mailable->hasTo('taylor@quantaforge.com', 'Taylor Otwell'));
 
         $this->assertTrue($mailable->hasSubject('Test Subject'));
         $this->assertFalse($mailable->hasSubject('Wrong Subject'));
@@ -72,9 +72,9 @@ class MailableWithAlternativeSyntax extends Mailable
     public function envelope()
     {
         return new Envelope(
-            to: [new Address('taylor@quantaquirk.com', 'Taylor Otwell')],
-            cc: [new Address('adam@quantaquirk.com', 'Adam Wathan')],
-            bcc: [new Address('tyler@quantaquirk.com', 'Tyler Blair')],
+            to: [new Address('taylor@quantaforge.com', 'Taylor Otwell')],
+            cc: [new Address('adam@quantaforge.com', 'Adam Wathan')],
+            bcc: [new Address('tyler@quantaforge.com', 'Tyler Blair')],
             subject: 'Test Subject',
             tags: ['tag-1', 'tag-2'],
             metadata: ['test-meta' => 'test-meta-value'],

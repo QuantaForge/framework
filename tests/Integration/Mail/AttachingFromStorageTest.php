@@ -1,11 +1,11 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Mail;
+namespace QuantaForge\Tests\Integration\Mail;
 
-use QuantaQuirk\Mail\Attachment;
-use QuantaQuirk\Mail\Mailable;
-use QuantaQuirk\Notifications\Messages\MailMessage;
-use QuantaQuirk\Support\Facades\Storage;
+use QuantaForge\Mail\Attachment;
+use QuantaForge\Mail\Mailable;
+use QuantaForge\Notifications\Messages\MailMessage;
+use QuantaForge\Support\Facades\Storage;
 use Orchestra\Testbench\TestCase;
 
 class AttachingFromStorageTest extends TestCase

@@ -1,8 +1,8 @@
 <?php
 
-namespace QuantaQuirk\Tests\Notifications;
+namespace QuantaForge\Tests\Notifications;
 
-use QuantaQuirk\Notifications\Messages\SimpleMessage as Message;
+use QuantaForge\Notifications\Messages\SimpleMessage as Message;
 use PHPUnit\Framework\TestCase;
 
 class NotificationMessageTest extends TestCase

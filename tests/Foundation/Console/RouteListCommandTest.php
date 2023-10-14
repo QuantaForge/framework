@@ -1,12 +1,12 @@
 <?php
 
-namespace QuantaQuirk\Tests\Foundation\Console;
+namespace QuantaForge\Tests\Foundation\Console;
 
-use QuantaQuirk\Console\Application;
-use QuantaQuirk\Contracts\Events\Dispatcher;
-use QuantaQuirk\Foundation\Console\RouteListCommand;
-use QuantaQuirk\Foundation\Http\Kernel;
-use QuantaQuirk\Routing\Router;
+use QuantaForge\Console\Application;
+use QuantaForge\Contracts\Events\Dispatcher;
+use QuantaForge\Foundation\Console\RouteListCommand;
+use QuantaForge\Foundation\Http\Kernel;
+use QuantaForge\Routing\Router;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 
@@ -24,14 +24,14 @@ class RouteListCommandTest extends TestCase
         parent::setUp();
 
         $this->app = new Application(
-            $quantaquirk = new \QuantaQuirk\Foundation\Application(__DIR__),
+            $quantaforge = new \QuantaForge\Foundation\Application(__DIR__),
             m::mock(Dispatcher::class, ['dispatch' => null, 'fire' => null]),
             'testing',
         );
 
-        $router = new Router(m::mock('QuantaQuirk\Events\Dispatcher'));
+        $router = new Router(m::mock('QuantaForge\Events\Dispatcher'));
 
-        $kernel = new class($quantaquirk, $router) extends Kernel
+        $kernel = new class($quantaforge, $router) extends Kernel
         {
             protected $middlewareGroups = [
                 'web' => ['Middleware 1', 'Middleware 2', 'Middleware 5'],
@@ -48,7 +48,7 @@ class RouteListCommandTest extends TestCase
 
         $kernel->prependToMiddlewarePriority('Middleware 5');
 
-        $quantaquirk->singleton(Kernel::class, function () use ($kernel) {
+        $quantaforge->singleton(Kernel::class, function () use ($kernel) {
             return $kernel;
         });
 
@@ -61,7 +61,7 @@ class RouteListCommandTest extends TestCase
         })->middleware(['web', 'auth']);
 
         $command = new RouteListCommand($router);
-        $command->setQuantaQuirk($quantaquirk);
+        $command->setQuantaForge($quantaforge);
 
         $this->app->addCommands([$command]);
     }

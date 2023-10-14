@@ -1,10 +1,10 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Http;
+namespace QuantaForge\Tests\Integration\Http;
 
-use QuantaQuirk\Contracts\Support\Jsonable;
-use QuantaQuirk\Http\JsonResponse;
-use QuantaQuirk\Support\Facades\Route;
+use QuantaForge\Contracts\Support\Jsonable;
+use QuantaForge\Http\JsonResponse;
+use QuantaForge\Support\Facades\Route;
 use JsonSerializable;
 use Orchestra\Testbench\TestCase;
 

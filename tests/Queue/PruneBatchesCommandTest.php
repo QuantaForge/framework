@@ -1,11 +1,11 @@
 <?php
 
-namespace QuantaQuirk\Tests\Queue;
+namespace QuantaForge\Tests\Queue;
 
-use QuantaQuirk\Bus\BatchRepository;
-use QuantaQuirk\Bus\DatabaseBatchRepository;
-use QuantaQuirk\Foundation\Application;
-use QuantaQuirk\Queue\Console\PruneBatchesCommand;
+use QuantaForge\Bus\BatchRepository;
+use QuantaForge\Bus\DatabaseBatchRepository;
+use QuantaForge\Foundation\Application;
+use QuantaForge\Queue\Console\PruneBatchesCommand;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Input\ArrayInput;
@@ -24,7 +24,7 @@ class PruneBatchesCommandTest extends TestCase
         $container->instance(BatchRepository::class, $repo = m::spy(DatabaseBatchRepository::class));
 
         $command = new PruneBatchesCommand;
-        $command->setQuantaQuirk($container);
+        $command->setQuantaForge($container);
 
         $command->run(new ArrayInput(['--unfinished' => 0]), new NullOutput());
 
@@ -37,7 +37,7 @@ class PruneBatchesCommandTest extends TestCase
         $container->instance(BatchRepository::class, $repo = m::spy(DatabaseBatchRepository::class));
 
         $command = new PruneBatchesCommand;
-        $command->setQuantaQuirk($container);
+        $command->setQuantaForge($container);
 
         $command->run(new ArrayInput(['--cancelled' => 0]), new NullOutput());
 

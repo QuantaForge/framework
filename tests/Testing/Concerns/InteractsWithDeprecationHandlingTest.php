@@ -1,9 +1,9 @@
 <?php
 
-namespace QuantaQuirk\Tests\Testing\Concerns;
+namespace QuantaForge\Tests\Testing\Concerns;
 
 use ErrorException;
-use QuantaQuirk\Foundation\Testing\Concerns\InteractsWithDeprecationHandling;
+use QuantaForge\Foundation\Testing\Concerns\InteractsWithDeprecationHandling;
 use PHPUnit\Framework\TestCase;
 
 class InteractsWithDeprecationHandlingTest extends TestCase

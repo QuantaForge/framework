@@ -1,14 +1,14 @@
 <?php
 
-namespace QuantaQuirk\Tests\Queue;
+namespace QuantaForge\Tests\Queue;
 
-use QuantaQuirk\Container\Container;
-use QuantaQuirk\Contracts\Redis\Factory;
-use QuantaQuirk\Queue\LuaScripts;
-use QuantaQuirk\Queue\Queue;
-use QuantaQuirk\Queue\RedisQueue;
-use QuantaQuirk\Support\Carbon;
-use QuantaQuirk\Support\Str;
+use QuantaForge\Container\Container;
+use QuantaForge\Contracts\Redis\Factory;
+use QuantaForge\Queue\LuaScripts;
+use QuantaForge\Queue\Queue;
+use QuantaForge\Queue\RedisQueue;
+use QuantaForge\Support\Carbon;
+use QuantaForge\Support\Str;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 

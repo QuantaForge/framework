@@ -1,0 +1,17 @@
+<?php
+
+namespace {{ namespace }};
+
+use QuantaForge\Database\Console\Seeds\WithoutModelEvents;
+use QuantaForge\Database\Seeder;
+
+class {{ class }} extends Seeder
+{
+    /**
+     * Run the database seeds.
+     */
+    public function run(): void
+    {
+        //
+    }
+}

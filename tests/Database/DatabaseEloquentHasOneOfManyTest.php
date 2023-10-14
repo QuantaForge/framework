@@ -1,10 +1,10 @@
 <?php
 
-namespace QuantaQuirk\Tests\Database;
+namespace QuantaForge\Tests\Database;
 
-use QuantaQuirk\Database\Capsule\Manager as DB;
-use QuantaQuirk\Database\Eloquent\Model as Eloquent;
-use QuantaQuirk\Database\Eloquent\SoftDeletes;
+use QuantaForge\Database\Capsule\Manager as DB;
+use QuantaForge\Database\Eloquent\Model as Eloquent;
+use QuantaForge\Database\Eloquent\SoftDeletes;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
@@ -510,7 +510,7 @@ class DatabaseEloquentHasOneOfManyTest extends TestCase
     /**
      * Get a database connection instance.
      *
-     * @return \QuantaQuirk\Database\Connection
+     * @return \QuantaForge\Database\Connection
      */
     protected function connection()
     {
@@ -520,7 +520,7 @@ class DatabaseEloquentHasOneOfManyTest extends TestCase
     /**
      * Get a schema builder instance.
      *
-     * @return \QuantaQuirk\Database\Schema\Builder
+     * @return \QuantaForge\Database\Schema\Builder
      */
     protected function schema()
     {

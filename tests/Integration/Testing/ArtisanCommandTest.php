@@ -1,8 +1,8 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Testing;
+namespace QuantaForge\Tests\Integration\Testing;
 
-use QuantaQuirk\Support\Facades\Artisan;
+use QuantaForge\Support\Facades\Artisan;
 use Mockery as m;
 use Mockery\Exception\InvalidCountException;
 use Mockery\Exception\InvalidOrderException;

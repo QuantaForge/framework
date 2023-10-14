@@ -1,24 +1,24 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Auth;
+namespace QuantaForge\Tests\Integration\Auth;
 
-use QuantaQuirk\Auth\EloquentUserProvider;
-use QuantaQuirk\Auth\Events\Attempting;
-use QuantaQuirk\Auth\Events\Authenticated;
-use QuantaQuirk\Auth\Events\Failed;
-use QuantaQuirk\Auth\Events\Login;
-use QuantaQuirk\Auth\Events\Logout;
-use QuantaQuirk\Auth\Events\OtherDeviceLogout;
-use QuantaQuirk\Auth\Events\Validated;
-use QuantaQuirk\Auth\SessionGuard;
-use QuantaQuirk\Database\Schema\Blueprint;
-use QuantaQuirk\Events\Dispatcher;
-use QuantaQuirk\Support\Facades\Auth;
-use QuantaQuirk\Support\Facades\Event;
-use QuantaQuirk\Support\Facades\Schema;
-use QuantaQuirk\Support\Str;
-use QuantaQuirk\Support\Testing\Fakes\EventFake;
-use QuantaQuirk\Tests\Integration\Auth\Fixtures\AuthenticationTestUser;
+use QuantaForge\Auth\EloquentUserProvider;
+use QuantaForge\Auth\Events\Attempting;
+use QuantaForge\Auth\Events\Authenticated;
+use QuantaForge\Auth\Events\Failed;
+use QuantaForge\Auth\Events\Login;
+use QuantaForge\Auth\Events\Logout;
+use QuantaForge\Auth\Events\OtherDeviceLogout;
+use QuantaForge\Auth\Events\Validated;
+use QuantaForge\Auth\SessionGuard;
+use QuantaForge\Database\Schema\Blueprint;
+use QuantaForge\Events\Dispatcher;
+use QuantaForge\Support\Facades\Auth;
+use QuantaForge\Support\Facades\Event;
+use QuantaForge\Support\Facades\Schema;
+use QuantaForge\Support\Str;
+use QuantaForge\Support\Testing\Fakes\EventFake;
+use QuantaForge\Tests\Integration\Auth\Fixtures\AuthenticationTestUser;
 use InvalidArgumentException;
 use Orchestra\Testbench\TestCase;
 

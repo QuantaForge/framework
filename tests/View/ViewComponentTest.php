@@ -1,9 +1,9 @@
 <?php
 
-namespace QuantaQuirk\Tests\View;
+namespace QuantaForge\Tests\View;
 
-use QuantaQuirk\View\Component;
-use QuantaQuirk\View\ComponentAttributeBag;
+use QuantaForge\View\Component;
+use QuantaForge\View\ComponentAttributeBag;
 use PHPUnit\Framework\TestCase;
 use ReflectionMethod;
 

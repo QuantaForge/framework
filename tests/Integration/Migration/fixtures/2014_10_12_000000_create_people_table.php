@@ -1,8 +1,8 @@
 <?php
 
-use QuantaQuirk\Database\Migrations\Migration;
-use QuantaQuirk\Database\Schema\Blueprint;
-use QuantaQuirk\Support\Facades\Schema;
+use QuantaForge\Database\Migrations\Migration;
+use QuantaForge\Database\Schema\Blueprint;
+use QuantaForge\Support\Facades\Schema;
 
 class CreatePeopleTable extends Migration
 {

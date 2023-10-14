@@ -1,9 +1,9 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Http;
+namespace QuantaForge\Tests\Integration\Http;
 
-use QuantaQuirk\Support\Facades\Facade;
-use QuantaQuirk\Support\Facades\Http;
+use QuantaForge\Support\Facades\Facade;
+use QuantaForge\Support\Facades\Http;
 use Orchestra\Testbench\TestCase;
 
 class HttpClientTest extends TestCase

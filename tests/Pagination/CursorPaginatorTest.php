@@ -1,10 +1,10 @@
 <?php
 
-namespace QuantaQuirk\Tests\Pagination;
+namespace QuantaForge\Tests\Pagination;
 
-use QuantaQuirk\Pagination\Cursor;
-use QuantaQuirk\Pagination\CursorPaginator;
-use QuantaQuirk\Support\Collection;
+use QuantaForge\Pagination\Cursor;
+use QuantaForge\Pagination\CursorPaginator;
+use QuantaForge\Support\Collection;
 use PHPUnit\Framework\TestCase;
 
 class CursorPaginatorTest extends TestCase

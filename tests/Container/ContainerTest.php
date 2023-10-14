@@ -1,10 +1,10 @@
 <?php
 
-namespace QuantaQuirk\Tests\Container;
+namespace QuantaForge\Tests\Container;
 
-use QuantaQuirk\Container\Container;
-use QuantaQuirk\Container\EntryNotFoundException;
-use QuantaQuirk\Contracts\Container\BindingResolutionException;
+use QuantaForge\Container\Container;
+use QuantaForge\Container\EntryNotFoundException;
+use QuantaForge\Contracts\Container\BindingResolutionException;
 use PHPUnit\Framework\TestCase;
 use Psr\Container\ContainerExceptionInterface;
 use stdClass;
@@ -377,7 +377,7 @@ class ContainerTest extends TestCase
     public function testInternalClassWithDefaultParameters()
     {
         $this->expectException(BindingResolutionException::class);
-        $this->expectExceptionMessage('Unresolvable dependency resolving [Parameter #0 [ <required> $first ]] in class QuantaQuirk\Tests\Container\ContainerMixedPrimitiveStub');
+        $this->expectExceptionMessage('Unresolvable dependency resolving [Parameter #0 [ <required> $first ]] in class QuantaForge\Tests\Container\ContainerMixedPrimitiveStub');
 
         $container = new Container;
         $container->make(ContainerMixedPrimitiveStub::class, []);
@@ -386,7 +386,7 @@ class ContainerTest extends TestCase
     public function testBindingResolutionExceptionMessage()
     {
         $this->expectException(BindingResolutionException::class);
-        $this->expectExceptionMessage('Target [QuantaQuirk\Tests\Container\IContainerContractStub] is not instantiable.');
+        $this->expectExceptionMessage('Target [QuantaForge\Tests\Container\IContainerContractStub] is not instantiable.');
 
         $container = new Container;
         $container->make(IContainerContractStub::class, []);
@@ -395,7 +395,7 @@ class ContainerTest extends TestCase
     public function testBindingResolutionExceptionMessageIncludesBuildStack()
     {
         $this->expectException(BindingResolutionException::class);
-        $this->expectExceptionMessage('Target [QuantaQuirk\Tests\Container\IContainerContractStub] is not instantiable while building [QuantaQuirk\Tests\Container\ContainerDependentStub].');
+        $this->expectExceptionMessage('Target [QuantaForge\Tests\Container\IContainerContractStub] is not instantiable while building [QuantaForge\Tests\Container\ContainerDependentStub].');
 
         $container = new Container;
         $container->make(ContainerDependentStub::class, []);
@@ -682,7 +682,7 @@ class ContainerTest extends TestCase
 
     // public function testContainerCanCatchCircularDependency()
     // {
-    //     $this->expectException(\QuantaQuirk\Contracts\Container\CircularDependencyException::class);
+    //     $this->expectException(\QuantaForge\Contracts\Container\CircularDependencyException::class);
 
     //     $container = new Container;
     //     $container->get(CircularAStub::class);

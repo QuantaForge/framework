@@ -1,12 +1,12 @@
 <?php
 
-namespace QuantaQuirk\Tests\Cache;
+namespace QuantaForge\Tests\Cache;
 
-use QuantaQuirk\Cache\CacheManager;
-use QuantaQuirk\Cache\Console\ClearCommand;
-use QuantaQuirk\Contracts\Cache\Repository;
-use QuantaQuirk\Filesystem\Filesystem;
-use QuantaQuirk\Foundation\Application;
+use QuantaForge\Cache\CacheManager;
+use QuantaForge\Cache\Console\ClearCommand;
+use QuantaForge\Contracts\Cache\Repository;
+use QuantaForge\Filesystem\Filesystem;
+use QuantaForge\Foundation\Application;
 use InvalidArgumentException;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
@@ -16,22 +16,22 @@ use Symfony\Component\Console\Output\NullOutput;
 class ClearCommandTest extends TestCase
 {
     /**
-     * @var \QuantaQuirk\Tests\Cache\ClearCommandTestStub
+     * @var \QuantaForge\Tests\Cache\ClearCommandTestStub
      */
     private $command;
 
     /**
-     * @var \QuantaQuirk\Cache\CacheManager|\Mockery\MockInterface
+     * @var \QuantaForge\Cache\CacheManager|\Mockery\MockInterface
      */
     private $cacheManager;
 
     /**
-     * @var \QuantaQuirk\Filesystem\Filesystem|\Mockery\MockInterface
+     * @var \QuantaForge\Filesystem\Filesystem|\Mockery\MockInterface
      */
     private $files;
 
     /**
-     * @var \QuantaQuirk\Contracts\Cache\Repository|\Mockery\MockInterface
+     * @var \QuantaForge\Contracts\Cache\Repository|\Mockery\MockInterface
      */
     private $cacheRepository;
 
@@ -49,7 +49,7 @@ class ClearCommandTest extends TestCase
 
         $app = new Application;
         $app['path.storage'] = __DIR__;
-        $this->command->setQuantaQuirk($app);
+        $this->command->setQuantaForge($app);
     }
 
     protected function tearDown(): void

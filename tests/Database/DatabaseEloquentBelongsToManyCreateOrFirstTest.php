@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace QuantaQuirk\Tests\Database;
+namespace QuantaForge\Tests\Database;
 
 use Exception;
-use QuantaQuirk\Database\ConnectionInterface;
-use QuantaQuirk\Database\ConnectionResolverInterface;
-use QuantaQuirk\Database\Eloquent\Builder;
-use QuantaQuirk\Database\Eloquent\Model;
-use QuantaQuirk\Database\Eloquent\Relations\BelongsToMany;
-use QuantaQuirk\Database\Query\Builder as BaseBuilder;
-use QuantaQuirk\Database\UniqueConstraintViolationException;
-use QuantaQuirk\Support\Carbon;
+use QuantaForge\Database\ConnectionInterface;
+use QuantaForge\Database\ConnectionResolverInterface;
+use QuantaForge\Database\Eloquent\Builder;
+use QuantaForge\Database\Eloquent\Model;
+use QuantaForge\Database\Eloquent\Relations\BelongsToMany;
+use QuantaForge\Database\Query\Builder as BaseBuilder;
+use QuantaForge\Database\UniqueConstraintViolationException;
+use QuantaForge\Support\Carbon;
 use Mockery;
 use PDO;
 use PHPUnit\Framework\TestCase;
@@ -444,8 +444,8 @@ class DatabaseEloquentBelongsToManyCreateOrFirstTest extends TestCase
 
     protected function mockConnectionForModels(array $models, string $database, array $lastInsertIds = []): void
     {
-        $grammarClass = 'QuantaQuirk\Database\Query\Grammars\\'.$database.'Grammar';
-        $processorClass = 'QuantaQuirk\Database\Query\Processors\\'.$database.'Processor';
+        $grammarClass = 'QuantaForge\Database\Query\Grammars\\'.$database.'Grammar';
+        $processorClass = 'QuantaForge\Database\Query\Processors\\'.$database.'Processor';
         $grammar = new $grammarClass;
         $processor = new $processorClass;
         $connection = Mockery::mock(ConnectionInterface::class, ['getQueryGrammar' => $grammar, 'getPostProcessor' => $processor]);

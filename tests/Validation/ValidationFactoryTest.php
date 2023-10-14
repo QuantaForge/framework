@@ -1,12 +1,12 @@
 <?php
 
-namespace QuantaQuirk\Tests\Validation;
+namespace QuantaForge\Tests\Validation;
 
-use QuantaQuirk\Container\Container;
-use QuantaQuirk\Contracts\Translation\Translator as TranslatorInterface;
-use QuantaQuirk\Validation\Factory;
-use QuantaQuirk\Validation\PresenceVerifierInterface;
-use QuantaQuirk\Validation\Validator;
+use QuantaForge\Container\Container;
+use QuantaForge\Contracts\Translation\Translator as TranslatorInterface;
+use QuantaForge\Validation\Factory;
+use QuantaForge\Validation\PresenceVerifierInterface;
+use QuantaForge\Validation\Validator;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 

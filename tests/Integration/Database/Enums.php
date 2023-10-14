@@ -1,8 +1,8 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Database;
+namespace QuantaForge\Tests\Integration\Database;
 
-use QuantaQuirk\Contracts\Support\Arrayable;
+use QuantaForge\Contracts\Support\Arrayable;
 
 enum StringStatus: string
 {

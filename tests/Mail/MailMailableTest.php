@@ -1,16 +1,16 @@
 <?php
 
-namespace QuantaQuirk\Tests\Mail;
+namespace QuantaForge\Tests\Mail;
 
-use QuantaQuirk\Container\Container;
-use QuantaQuirk\Contracts\Mail\Attachable;
-use QuantaQuirk\Contracts\View\Factory;
-use QuantaQuirk\Mail\Attachment;
-use QuantaQuirk\Mail\Mailable;
-use QuantaQuirk\Mail\Mailables\Envelope;
-use QuantaQuirk\Mail\Mailables\Headers;
-use QuantaQuirk\Mail\Mailer;
-use QuantaQuirk\Mail\Transport\ArrayTransport;
+use QuantaForge\Container\Container;
+use QuantaForge\Contracts\Mail\Attachable;
+use QuantaForge\Contracts\View\Factory;
+use QuantaForge\Mail\Attachment;
+use QuantaForge\Mail\Mailable;
+use QuantaForge\Mail\Mailables\Envelope;
+use QuantaForge\Mail\Mailables\Headers;
+use QuantaForge\Mail\Mailer;
+use QuantaForge\Mail\Transport\ArrayTransport;
 use Mockery as m;
 use PHPUnit\Framework\AssertionFailedError;
 use PHPUnit\Framework\TestCase;
@@ -33,67 +33,67 @@ class MailMailableTest extends TestCase
         });
 
         $mailable = new WelcomeMailableStub;
-        $mailable->to('taylor@quantaquirk.com');
-        $this->assertEquals([['name' => null, 'address' => 'taylor@quantaquirk.com']], $mailable->to);
-        $this->assertTrue($mailable->hasTo('taylor@quantaquirk.com'));
-        $mailable->assertHasTo('taylor@quantaquirk.com');
-        $mailable->to('taylor@quantaquirk.com', 'Taylor Otwell');
+        $mailable->to('taylor@quantaforge.com');
+        $this->assertEquals([['name' => null, 'address' => 'taylor@quantaforge.com']], $mailable->to);
+        $this->assertTrue($mailable->hasTo('taylor@quantaforge.com'));
+        $mailable->assertHasTo('taylor@quantaforge.com');
+        $mailable->to('taylor@quantaforge.com', 'Taylor Otwell');
 
         // Add the same recipient again, but with a different name. This should set the name correctly.
-        $this->assertTrue($mailable->hasTo('taylor@quantaquirk.com', 'Taylor Otwell'));
-        $mailable->assertHasTo('taylor@quantaquirk.com', 'Taylor Otwell');
+        $this->assertTrue($mailable->hasTo('taylor@quantaforge.com', 'Taylor Otwell'));
+        $mailable->assertHasTo('taylor@quantaforge.com', 'Taylor Otwell');
 
         $mailable = new WelcomeMailableStub;
-        $mailable->to('taylor@quantaquirk.com', 'Taylor Otwell');
-        $this->assertEquals([['name' => 'Taylor Otwell', 'address' => 'taylor@quantaquirk.com']], $mailable->to);
-        $this->assertTrue($mailable->hasTo('taylor@quantaquirk.com', 'Taylor Otwell'));
-        $this->assertTrue($mailable->hasTo('taylor@quantaquirk.com'));
-        $mailable->assertHasTo('taylor@quantaquirk.com', 'Taylor Otwell');
-        $mailable->assertHasTo('taylor@quantaquirk.com');
+        $mailable->to('taylor@quantaforge.com', 'Taylor Otwell');
+        $this->assertEquals([['name' => 'Taylor Otwell', 'address' => 'taylor@quantaforge.com']], $mailable->to);
+        $this->assertTrue($mailable->hasTo('taylor@quantaforge.com', 'Taylor Otwell'));
+        $this->assertTrue($mailable->hasTo('taylor@quantaforge.com'));
+        $mailable->assertHasTo('taylor@quantaforge.com', 'Taylor Otwell');
+        $mailable->assertHasTo('taylor@quantaforge.com');
 
         $mailable = new WelcomeMailableStub;
-        $mailable->to(['taylor@quantaquirk.com']);
-        $this->assertEquals([['name' => null, 'address' => 'taylor@quantaquirk.com']], $mailable->to);
-        $this->assertTrue($mailable->hasTo('taylor@quantaquirk.com'));
-        $this->assertFalse($mailable->hasTo('taylor@quantaquirk.com', 'Taylor Otwell'));
-        $mailable->assertHasTo('taylor@quantaquirk.com');
+        $mailable->to(['taylor@quantaforge.com']);
+        $this->assertEquals([['name' => null, 'address' => 'taylor@quantaforge.com']], $mailable->to);
+        $this->assertTrue($mailable->hasTo('taylor@quantaforge.com'));
+        $this->assertFalse($mailable->hasTo('taylor@quantaforge.com', 'Taylor Otwell'));
+        $mailable->assertHasTo('taylor@quantaforge.com');
         try {
-            $mailable->assertHasTo('taylor@quantaquirk.com', 'Taylor Otwell');
+            $mailable->assertHasTo('taylor@quantaforge.com', 'Taylor Otwell');
             $this->fail();
         } catch (AssertionFailedError $e) {
-            $this->assertSame("Did not see expected recipient [taylor@quantaquirk.com (Taylor Otwell)] in email recipients.\nFailed asserting that false is true.", $e->getMessage());
+            $this->assertSame("Did not see expected recipient [taylor@quantaforge.com (Taylor Otwell)] in email recipients.\nFailed asserting that false is true.", $e->getMessage());
         }
 
         $mailable = new WelcomeMailableStub;
-        $mailable->to([['name' => 'Taylor Otwell', 'email' => 'taylor@quantaquirk.com']]);
-        $this->assertEquals([['name' => 'Taylor Otwell', 'address' => 'taylor@quantaquirk.com']], $mailable->to);
-        $this->assertTrue($mailable->hasTo('taylor@quantaquirk.com', 'Taylor Otwell'));
-        $this->assertTrue($mailable->hasTo('taylor@quantaquirk.com'));
-        $mailable->assertHasTo('taylor@quantaquirk.com');
+        $mailable->to([['name' => 'Taylor Otwell', 'email' => 'taylor@quantaforge.com']]);
+        $this->assertEquals([['name' => 'Taylor Otwell', 'address' => 'taylor@quantaforge.com']], $mailable->to);
+        $this->assertTrue($mailable->hasTo('taylor@quantaforge.com', 'Taylor Otwell'));
+        $this->assertTrue($mailable->hasTo('taylor@quantaforge.com'));
+        $mailable->assertHasTo('taylor@quantaforge.com');
 
         $mailable = new WelcomeMailableStub;
         $mailable->to(new MailableTestUserStub);
-        $this->assertEquals([['name' => 'Taylor Otwell', 'address' => 'taylor@quantaquirk.com']], $mailable->to);
+        $this->assertEquals([['name' => 'Taylor Otwell', 'address' => 'taylor@quantaforge.com']], $mailable->to);
         $this->assertTrue($mailable->hasTo(new MailableTestUserStub));
-        $this->assertTrue($mailable->hasTo('taylor@quantaquirk.com'));
-        $mailable->assertHasTo('taylor@quantaquirk.com');
+        $this->assertTrue($mailable->hasTo('taylor@quantaforge.com'));
+        $mailable->assertHasTo('taylor@quantaforge.com');
 
         $mailable = new WelcomeMailableStub;
         $mailable->to(collect([new MailableTestUserStub]));
-        $this->assertEquals([['name' => 'Taylor Otwell', 'address' => 'taylor@quantaquirk.com']], $mailable->to);
+        $this->assertEquals([['name' => 'Taylor Otwell', 'address' => 'taylor@quantaforge.com']], $mailable->to);
         $this->assertTrue($mailable->hasTo(new MailableTestUserStub));
-        $this->assertTrue($mailable->hasTo('taylor@quantaquirk.com'));
-        $mailable->assertHasTo('taylor@quantaquirk.com');
+        $this->assertTrue($mailable->hasTo('taylor@quantaforge.com'));
+        $mailable->assertHasTo('taylor@quantaforge.com');
 
         $mailable = new WelcomeMailableStub;
         $mailable->to(collect([new MailableTestUserStub, new MailableTestUserStub, new MailableTestUserStub2]));
         $this->assertEquals([
-            ['name' => 'Taylor Otwell', 'address' => 'taylor@quantaquirk.com'],
-            ['name' => 'QuantaQuirk Framework', 'address' => 'contact@quantaquirk.com'],
+            ['name' => 'Taylor Otwell', 'address' => 'taylor@quantaforge.com'],
+            ['name' => 'QuantaForge Framework', 'address' => 'contact@quantaforge.com'],
         ], $mailable->to);
         $this->assertTrue($mailable->hasTo(new MailableTestUserStub));
-        $this->assertTrue($mailable->hasTo('taylor@quantaquirk.com'));
-        $mailable->assertHasTo('taylor@quantaquirk.com');
+        $this->assertTrue($mailable->hasTo('taylor@quantaforge.com'));
+        $mailable->assertHasTo('taylor@quantaforge.com');
 
         foreach (['', null, [], false] as $address) {
             $mailable = new WelcomeMailableStub;
@@ -123,74 +123,74 @@ class MailMailableTest extends TestCase
         });
 
         $mailable = new WelcomeMailableStub;
-        $mailable->cc('taylor@quantaquirk.com');
-        $this->assertEquals([['name' => null, 'address' => 'taylor@quantaquirk.com']], $mailable->cc);
-        $this->assertTrue($mailable->hasCc('taylor@quantaquirk.com'));
-        $mailable->assertHasCc('taylor@quantaquirk.com');
+        $mailable->cc('taylor@quantaforge.com');
+        $this->assertEquals([['name' => null, 'address' => 'taylor@quantaforge.com']], $mailable->cc);
+        $this->assertTrue($mailable->hasCc('taylor@quantaforge.com'));
+        $mailable->assertHasCc('taylor@quantaforge.com');
 
         $mailable = new WelcomeMailableStub;
-        $mailable->cc('taylor@quantaquirk.com', 'Taylor Otwell');
-        $this->assertEquals([['name' => 'Taylor Otwell', 'address' => 'taylor@quantaquirk.com']], $mailable->cc);
-        $this->assertTrue($mailable->hasCc('taylor@quantaquirk.com', 'Taylor Otwell'));
-        $this->assertTrue($mailable->hasCc('taylor@quantaquirk.com'));
-        $mailable->assertHasCc('taylor@quantaquirk.com', 'Taylor Otwell');
-        $mailable->assertHasCc('taylor@quantaquirk.com');
+        $mailable->cc('taylor@quantaforge.com', 'Taylor Otwell');
+        $this->assertEquals([['name' => 'Taylor Otwell', 'address' => 'taylor@quantaforge.com']], $mailable->cc);
+        $this->assertTrue($mailable->hasCc('taylor@quantaforge.com', 'Taylor Otwell'));
+        $this->assertTrue($mailable->hasCc('taylor@quantaforge.com'));
+        $mailable->assertHasCc('taylor@quantaforge.com', 'Taylor Otwell');
+        $mailable->assertHasCc('taylor@quantaforge.com');
 
         $mailable = new WelcomeMailableStub;
-        $mailable->cc(['taylor@quantaquirk.com']);
-        $this->assertEquals([['name' => null, 'address' => 'taylor@quantaquirk.com']], $mailable->cc);
-        $this->assertTrue($mailable->hasCc('taylor@quantaquirk.com'));
-        $this->assertFalse($mailable->hasCc('taylor@quantaquirk.com', 'Taylor Otwell'));
-        $mailable->assertHasCc('taylor@quantaquirk.com');
+        $mailable->cc(['taylor@quantaforge.com']);
+        $this->assertEquals([['name' => null, 'address' => 'taylor@quantaforge.com']], $mailable->cc);
+        $this->assertTrue($mailable->hasCc('taylor@quantaforge.com'));
+        $this->assertFalse($mailable->hasCc('taylor@quantaforge.com', 'Taylor Otwell'));
+        $mailable->assertHasCc('taylor@quantaforge.com');
         try {
-            $mailable->assertHasCc('taylor@quantaquirk.com', 'Taylor Otwell');
+            $mailable->assertHasCc('taylor@quantaforge.com', 'Taylor Otwell');
             $this->fail();
         } catch (AssertionFailedError $e) {
-            $this->assertSame("Did not see expected recipient [taylor@quantaquirk.com (Taylor Otwell)] in email recipients.\nFailed asserting that false is true.", $e->getMessage());
+            $this->assertSame("Did not see expected recipient [taylor@quantaforge.com (Taylor Otwell)] in email recipients.\nFailed asserting that false is true.", $e->getMessage());
         }
 
         $mailable = new WelcomeMailableStub;
-        $mailable->cc([['name' => 'Taylor Otwell', 'email' => 'taylor@quantaquirk.com']]);
-        $this->assertEquals([['name' => 'Taylor Otwell', 'address' => 'taylor@quantaquirk.com']], $mailable->cc);
-        $this->assertTrue($mailable->hasCc('taylor@quantaquirk.com', 'Taylor Otwell'));
-        $this->assertTrue($mailable->hasCc('taylor@quantaquirk.com'));
-        $mailable->assertHasCc('taylor@quantaquirk.com', 'Taylor Otwell');
-        $mailable->assertHasCc('taylor@quantaquirk.com');
+        $mailable->cc([['name' => 'Taylor Otwell', 'email' => 'taylor@quantaforge.com']]);
+        $this->assertEquals([['name' => 'Taylor Otwell', 'address' => 'taylor@quantaforge.com']], $mailable->cc);
+        $this->assertTrue($mailable->hasCc('taylor@quantaforge.com', 'Taylor Otwell'));
+        $this->assertTrue($mailable->hasCc('taylor@quantaforge.com'));
+        $mailable->assertHasCc('taylor@quantaforge.com', 'Taylor Otwell');
+        $mailable->assertHasCc('taylor@quantaforge.com');
 
         $mailable = new WelcomeMailableStub;
         $mailable->cc(new MailableTestUserStub);
-        $this->assertEquals([['name' => 'Taylor Otwell', 'address' => 'taylor@quantaquirk.com']], $mailable->cc);
+        $this->assertEquals([['name' => 'Taylor Otwell', 'address' => 'taylor@quantaforge.com']], $mailable->cc);
         $this->assertTrue($mailable->hasCc(new MailableTestUserStub));
-        $this->assertTrue($mailable->hasCc('taylor@quantaquirk.com'));
-        $mailable->assertHasCc('taylor@quantaquirk.com');
+        $this->assertTrue($mailable->hasCc('taylor@quantaforge.com'));
+        $mailable->assertHasCc('taylor@quantaforge.com');
 
         $mailable = new WelcomeMailableStub;
         $mailable->cc(collect([new MailableTestUserStub]));
-        $this->assertEquals([['name' => 'Taylor Otwell', 'address' => 'taylor@quantaquirk.com']], $mailable->cc);
+        $this->assertEquals([['name' => 'Taylor Otwell', 'address' => 'taylor@quantaforge.com']], $mailable->cc);
         $this->assertTrue($mailable->hasCc(new MailableTestUserStub));
-        $this->assertTrue($mailable->hasCc('taylor@quantaquirk.com'));
-        $mailable->assertHasCc('taylor@quantaquirk.com');
+        $this->assertTrue($mailable->hasCc('taylor@quantaforge.com'));
+        $mailable->assertHasCc('taylor@quantaforge.com');
 
         $mailable = new WelcomeMailableStub;
         $mailable->cc(collect([new MailableTestUserStub, new MailableTestUserStub, new MailableTestUserStub2]));
         $this->assertEquals([
-            ['name' => 'Taylor Otwell', 'address' => 'taylor@quantaquirk.com'],
-            ['name' => 'QuantaQuirk Framework', 'address' => 'contact@quantaquirk.com'],
+            ['name' => 'Taylor Otwell', 'address' => 'taylor@quantaforge.com'],
+            ['name' => 'QuantaForge Framework', 'address' => 'contact@quantaforge.com'],
         ], $mailable->cc);
         $this->assertTrue($mailable->hasCc(new MailableTestUserStub));
-        $this->assertTrue($mailable->hasCc('taylor@quantaquirk.com'));
-        $mailable->assertHasCc('taylor@quantaquirk.com');
+        $this->assertTrue($mailable->hasCc('taylor@quantaforge.com'));
+        $mailable->assertHasCc('taylor@quantaforge.com');
 
         $mailable = new WelcomeMailableStub;
-        $mailable->cc(['taylor@quantaquirk.com', 'not-taylor@quantaquirk.com']);
+        $mailable->cc(['taylor@quantaforge.com', 'not-taylor@quantaforge.com']);
         $this->assertEquals([
-            ['name' => null, 'address' => 'taylor@quantaquirk.com'],
-            ['name' => null, 'address' => 'not-taylor@quantaquirk.com'],
+            ['name' => null, 'address' => 'taylor@quantaforge.com'],
+            ['name' => null, 'address' => 'not-taylor@quantaforge.com'],
         ], $mailable->cc);
-        $this->assertTrue($mailable->hasCc('taylor@quantaquirk.com'));
-        $this->assertTrue($mailable->hasCc('not-taylor@quantaquirk.com'));
-        $mailable->assertHasCc('taylor@quantaquirk.com');
-        $mailable->assertHasCc('not-taylor@quantaquirk.com');
+        $this->assertTrue($mailable->hasCc('taylor@quantaforge.com'));
+        $this->assertTrue($mailable->hasCc('not-taylor@quantaforge.com'));
+        $mailable->assertHasCc('taylor@quantaforge.com');
+        $mailable->assertHasCc('not-taylor@quantaforge.com');
 
         foreach (['', null, [], false] as $address) {
             $mailable = new WelcomeMailableStub;
@@ -220,74 +220,74 @@ class MailMailableTest extends TestCase
         });
 
         $mailable = new WelcomeMailableStub;
-        $mailable->bcc('taylor@quantaquirk.com');
-        $this->assertEquals([['name' => null, 'address' => 'taylor@quantaquirk.com']], $mailable->bcc);
-        $this->assertTrue($mailable->hasBcc('taylor@quantaquirk.com'));
-        $mailable->assertHasBcc('taylor@quantaquirk.com');
+        $mailable->bcc('taylor@quantaforge.com');
+        $this->assertEquals([['name' => null, 'address' => 'taylor@quantaforge.com']], $mailable->bcc);
+        $this->assertTrue($mailable->hasBcc('taylor@quantaforge.com'));
+        $mailable->assertHasBcc('taylor@quantaforge.com');
 
         $mailable = new WelcomeMailableStub;
-        $mailable->bcc('taylor@quantaquirk.com', 'Taylor Otwell');
-        $this->assertEquals([['name' => 'Taylor Otwell', 'address' => 'taylor@quantaquirk.com']], $mailable->bcc);
-        $this->assertTrue($mailable->hasBcc('taylor@quantaquirk.com', 'Taylor Otwell'));
-        $this->assertTrue($mailable->hasBcc('taylor@quantaquirk.com'));
-        $mailable->assertHasBcc('taylor@quantaquirk.com', 'Taylor Otwell');
-        $mailable->assertHasBcc('taylor@quantaquirk.com');
+        $mailable->bcc('taylor@quantaforge.com', 'Taylor Otwell');
+        $this->assertEquals([['name' => 'Taylor Otwell', 'address' => 'taylor@quantaforge.com']], $mailable->bcc);
+        $this->assertTrue($mailable->hasBcc('taylor@quantaforge.com', 'Taylor Otwell'));
+        $this->assertTrue($mailable->hasBcc('taylor@quantaforge.com'));
+        $mailable->assertHasBcc('taylor@quantaforge.com', 'Taylor Otwell');
+        $mailable->assertHasBcc('taylor@quantaforge.com');
 
         $mailable = new WelcomeMailableStub;
-        $mailable->bcc(['taylor@quantaquirk.com']);
-        $this->assertEquals([['name' => null, 'address' => 'taylor@quantaquirk.com']], $mailable->bcc);
-        $this->assertTrue($mailable->hasBcc('taylor@quantaquirk.com'));
-        $this->assertFalse($mailable->hasBcc('taylor@quantaquirk.com', 'Taylor Otwell'));
-        $mailable->assertHasBcc('taylor@quantaquirk.com');
+        $mailable->bcc(['taylor@quantaforge.com']);
+        $this->assertEquals([['name' => null, 'address' => 'taylor@quantaforge.com']], $mailable->bcc);
+        $this->assertTrue($mailable->hasBcc('taylor@quantaforge.com'));
+        $this->assertFalse($mailable->hasBcc('taylor@quantaforge.com', 'Taylor Otwell'));
+        $mailable->assertHasBcc('taylor@quantaforge.com');
         try {
-            $mailable->assertHasBcc('taylor@quantaquirk.com', 'Taylor Otwell');
+            $mailable->assertHasBcc('taylor@quantaforge.com', 'Taylor Otwell');
             $this->fail();
         } catch (AssertionFailedError $e) {
-            $this->assertSame("Did not see expected recipient [taylor@quantaquirk.com (Taylor Otwell)] in email recipients.\nFailed asserting that false is true.", $e->getMessage());
+            $this->assertSame("Did not see expected recipient [taylor@quantaforge.com (Taylor Otwell)] in email recipients.\nFailed asserting that false is true.", $e->getMessage());
         }
 
         $mailable = new WelcomeMailableStub;
-        $mailable->bcc([['name' => 'Taylor Otwell', 'email' => 'taylor@quantaquirk.com']]);
-        $this->assertEquals([['name' => 'Taylor Otwell', 'address' => 'taylor@quantaquirk.com']], $mailable->bcc);
-        $this->assertTrue($mailable->hasBcc('taylor@quantaquirk.com', 'Taylor Otwell'));
-        $this->assertTrue($mailable->hasBcc('taylor@quantaquirk.com'));
-        $mailable->assertHasBcc('taylor@quantaquirk.com', 'Taylor Otwell');
-        $mailable->assertHasBcc('taylor@quantaquirk.com');
+        $mailable->bcc([['name' => 'Taylor Otwell', 'email' => 'taylor@quantaforge.com']]);
+        $this->assertEquals([['name' => 'Taylor Otwell', 'address' => 'taylor@quantaforge.com']], $mailable->bcc);
+        $this->assertTrue($mailable->hasBcc('taylor@quantaforge.com', 'Taylor Otwell'));
+        $this->assertTrue($mailable->hasBcc('taylor@quantaforge.com'));
+        $mailable->assertHasBcc('taylor@quantaforge.com', 'Taylor Otwell');
+        $mailable->assertHasBcc('taylor@quantaforge.com');
 
         $mailable = new WelcomeMailableStub;
         $mailable->bcc(new MailableTestUserStub);
-        $this->assertEquals([['name' => 'Taylor Otwell', 'address' => 'taylor@quantaquirk.com']], $mailable->bcc);
+        $this->assertEquals([['name' => 'Taylor Otwell', 'address' => 'taylor@quantaforge.com']], $mailable->bcc);
         $this->assertTrue($mailable->hasBcc(new MailableTestUserStub));
-        $this->assertTrue($mailable->hasBcc('taylor@quantaquirk.com'));
-        $mailable->assertHasBcc('taylor@quantaquirk.com');
+        $this->assertTrue($mailable->hasBcc('taylor@quantaforge.com'));
+        $mailable->assertHasBcc('taylor@quantaforge.com');
 
         $mailable = new WelcomeMailableStub;
         $mailable->bcc(collect([new MailableTestUserStub]));
-        $this->assertEquals([['name' => 'Taylor Otwell', 'address' => 'taylor@quantaquirk.com']], $mailable->bcc);
+        $this->assertEquals([['name' => 'Taylor Otwell', 'address' => 'taylor@quantaforge.com']], $mailable->bcc);
         $this->assertTrue($mailable->hasBcc(new MailableTestUserStub));
-        $this->assertTrue($mailable->hasBcc('taylor@quantaquirk.com'));
-        $mailable->assertHasBcc('taylor@quantaquirk.com');
+        $this->assertTrue($mailable->hasBcc('taylor@quantaforge.com'));
+        $mailable->assertHasBcc('taylor@quantaforge.com');
 
         $mailable = new WelcomeMailableStub;
         $mailable->bcc(collect([new MailableTestUserStub, new MailableTestUserStub, new MailableTestUserStub2]));
         $this->assertEquals([
-            ['name' => 'Taylor Otwell', 'address' => 'taylor@quantaquirk.com'],
-            ['name' => 'QuantaQuirk Framework', 'address' => 'contact@quantaquirk.com'],
+            ['name' => 'Taylor Otwell', 'address' => 'taylor@quantaforge.com'],
+            ['name' => 'QuantaForge Framework', 'address' => 'contact@quantaforge.com'],
         ], $mailable->bcc);
         $this->assertTrue($mailable->hasBcc(new MailableTestUserStub));
-        $this->assertTrue($mailable->hasBcc('taylor@quantaquirk.com'));
-        $mailable->assertHasBcc('taylor@quantaquirk.com');
+        $this->assertTrue($mailable->hasBcc('taylor@quantaforge.com'));
+        $mailable->assertHasBcc('taylor@quantaforge.com');
 
         $mailable = new WelcomeMailableStub;
-        $mailable->bcc(['taylor@quantaquirk.com', 'not-taylor@quantaquirk.com']);
+        $mailable->bcc(['taylor@quantaforge.com', 'not-taylor@quantaforge.com']);
         $this->assertEquals([
-            ['name' => null, 'address' => 'taylor@quantaquirk.com'],
-            ['name' => null, 'address' => 'not-taylor@quantaquirk.com'],
+            ['name' => null, 'address' => 'taylor@quantaforge.com'],
+            ['name' => null, 'address' => 'not-taylor@quantaforge.com'],
         ], $mailable->bcc);
-        $this->assertTrue($mailable->hasBcc('taylor@quantaquirk.com'));
-        $this->assertTrue($mailable->hasBcc('not-taylor@quantaquirk.com'));
-        $mailable->assertHasBcc('taylor@quantaquirk.com');
-        $mailable->assertHasBcc('not-taylor@quantaquirk.com');
+        $this->assertTrue($mailable->hasBcc('taylor@quantaforge.com'));
+        $this->assertTrue($mailable->hasBcc('not-taylor@quantaforge.com'));
+        $mailable->assertHasBcc('taylor@quantaforge.com');
+        $mailable->assertHasBcc('not-taylor@quantaforge.com');
 
         foreach (['', null, [], false] as $address) {
             $mailable = new WelcomeMailableStub;
@@ -317,63 +317,63 @@ class MailMailableTest extends TestCase
         });
 
         $mailable = new WelcomeMailableStub;
-        $mailable->replyTo('taylor@quantaquirk.com');
-        $this->assertEquals([['name' => null, 'address' => 'taylor@quantaquirk.com']], $mailable->replyTo);
-        $this->assertTrue($mailable->hasReplyTo('taylor@quantaquirk.com'));
-        $mailable->assertHasReplyTo('taylor@quantaquirk.com');
+        $mailable->replyTo('taylor@quantaforge.com');
+        $this->assertEquals([['name' => null, 'address' => 'taylor@quantaforge.com']], $mailable->replyTo);
+        $this->assertTrue($mailable->hasReplyTo('taylor@quantaforge.com'));
+        $mailable->assertHasReplyTo('taylor@quantaforge.com');
 
         $mailable = new WelcomeMailableStub;
-        $mailable->replyTo('taylor@quantaquirk.com', 'Taylor Otwell');
-        $this->assertEquals([['name' => 'Taylor Otwell', 'address' => 'taylor@quantaquirk.com']], $mailable->replyTo);
-        $this->assertTrue($mailable->hasReplyTo('taylor@quantaquirk.com', 'Taylor Otwell'));
-        $this->assertTrue($mailable->hasReplyTo('taylor@quantaquirk.com'));
-        $mailable->assertHasReplyTo('taylor@quantaquirk.com', 'Taylor Otwell');
-        $mailable->assertHasReplyTo('taylor@quantaquirk.com');
+        $mailable->replyTo('taylor@quantaforge.com', 'Taylor Otwell');
+        $this->assertEquals([['name' => 'Taylor Otwell', 'address' => 'taylor@quantaforge.com']], $mailable->replyTo);
+        $this->assertTrue($mailable->hasReplyTo('taylor@quantaforge.com', 'Taylor Otwell'));
+        $this->assertTrue($mailable->hasReplyTo('taylor@quantaforge.com'));
+        $mailable->assertHasReplyTo('taylor@quantaforge.com', 'Taylor Otwell');
+        $mailable->assertHasReplyTo('taylor@quantaforge.com');
 
         $mailable = new WelcomeMailableStub;
-        $mailable->replyTo(['taylor@quantaquirk.com']);
-        $this->assertEquals([['name' => null, 'address' => 'taylor@quantaquirk.com']], $mailable->replyTo);
-        $this->assertTrue($mailable->hasReplyTo('taylor@quantaquirk.com'));
-        $this->assertFalse($mailable->hasReplyTo('taylor@quantaquirk.com', 'Taylor Otwell'));
-        $mailable->assertHasReplyTo('taylor@quantaquirk.com');
+        $mailable->replyTo(['taylor@quantaforge.com']);
+        $this->assertEquals([['name' => null, 'address' => 'taylor@quantaforge.com']], $mailable->replyTo);
+        $this->assertTrue($mailable->hasReplyTo('taylor@quantaforge.com'));
+        $this->assertFalse($mailable->hasReplyTo('taylor@quantaforge.com', 'Taylor Otwell'));
+        $mailable->assertHasReplyTo('taylor@quantaforge.com');
         try {
-            $mailable->assertHasReplyTo('taylor@quantaquirk.com', 'Taylor Otwell');
+            $mailable->assertHasReplyTo('taylor@quantaforge.com', 'Taylor Otwell');
             $this->fail();
         } catch (AssertionFailedError $e) {
-            $this->assertSame("Did not see expected address [taylor@quantaquirk.com (Taylor Otwell)] as email 'reply to' recipient.\nFailed asserting that false is true.", $e->getMessage());
+            $this->assertSame("Did not see expected address [taylor@quantaforge.com (Taylor Otwell)] as email 'reply to' recipient.\nFailed asserting that false is true.", $e->getMessage());
         }
 
         $mailable = new WelcomeMailableStub;
-        $mailable->replyTo([['name' => 'Taylor Otwell', 'email' => 'taylor@quantaquirk.com']]);
-        $this->assertEquals([['name' => 'Taylor Otwell', 'address' => 'taylor@quantaquirk.com']], $mailable->replyTo);
-        $this->assertTrue($mailable->hasReplyTo('taylor@quantaquirk.com', 'Taylor Otwell'));
-        $this->assertTrue($mailable->hasReplyTo('taylor@quantaquirk.com'));
-        $mailable->assertHasReplyTo('taylor@quantaquirk.com');
-        $mailable->assertHasReplyTo('taylor@quantaquirk.com', 'Taylor Otwell');
+        $mailable->replyTo([['name' => 'Taylor Otwell', 'email' => 'taylor@quantaforge.com']]);
+        $this->assertEquals([['name' => 'Taylor Otwell', 'address' => 'taylor@quantaforge.com']], $mailable->replyTo);
+        $this->assertTrue($mailable->hasReplyTo('taylor@quantaforge.com', 'Taylor Otwell'));
+        $this->assertTrue($mailable->hasReplyTo('taylor@quantaforge.com'));
+        $mailable->assertHasReplyTo('taylor@quantaforge.com');
+        $mailable->assertHasReplyTo('taylor@quantaforge.com', 'Taylor Otwell');
 
         $mailable = new WelcomeMailableStub;
         $mailable->replyTo(new MailableTestUserStub);
-        $this->assertEquals([['name' => 'Taylor Otwell', 'address' => 'taylor@quantaquirk.com']], $mailable->replyTo);
+        $this->assertEquals([['name' => 'Taylor Otwell', 'address' => 'taylor@quantaforge.com']], $mailable->replyTo);
         $this->assertTrue($mailable->hasReplyTo(new MailableTestUserStub));
-        $this->assertTrue($mailable->hasReplyTo('taylor@quantaquirk.com'));
-        $mailable->assertHasReplyTo('taylor@quantaquirk.com');
+        $this->assertTrue($mailable->hasReplyTo('taylor@quantaforge.com'));
+        $mailable->assertHasReplyTo('taylor@quantaforge.com');
 
         $mailable = new WelcomeMailableStub;
         $mailable->replyTo(collect([new MailableTestUserStub]));
-        $this->assertEquals([['name' => 'Taylor Otwell', 'address' => 'taylor@quantaquirk.com']], $mailable->replyTo);
+        $this->assertEquals([['name' => 'Taylor Otwell', 'address' => 'taylor@quantaforge.com']], $mailable->replyTo);
         $this->assertTrue($mailable->hasReplyTo(new MailableTestUserStub));
-        $this->assertTrue($mailable->hasReplyTo('taylor@quantaquirk.com'));
-        $mailable->assertHasReplyTo('taylor@quantaquirk.com');
+        $this->assertTrue($mailable->hasReplyTo('taylor@quantaforge.com'));
+        $mailable->assertHasReplyTo('taylor@quantaforge.com');
 
         $mailable = new WelcomeMailableStub;
         $mailable->replyTo(collect([new MailableTestUserStub, new MailableTestUserStub, new MailableTestUserStub2]));
         $this->assertEquals([
-            ['name' => 'Taylor Otwell', 'address' => 'taylor@quantaquirk.com'],
-            ['name' => 'QuantaQuirk Framework', 'address' => 'contact@quantaquirk.com'],
+            ['name' => 'Taylor Otwell', 'address' => 'taylor@quantaforge.com'],
+            ['name' => 'QuantaForge Framework', 'address' => 'contact@quantaforge.com'],
         ], $mailable->replyTo);
         $this->assertTrue($mailable->hasReplyTo(new MailableTestUserStub));
-        $this->assertTrue($mailable->hasReplyTo('taylor@quantaquirk.com'));
-        $mailable->assertHasReplyTo('taylor@quantaquirk.com');
+        $this->assertTrue($mailable->hasReplyTo('taylor@quantaforge.com'));
+        $mailable->assertHasReplyTo('taylor@quantaforge.com');
 
         foreach (['', null, [], false] as $address) {
             $mailable = new WelcomeMailableStub;
@@ -403,63 +403,63 @@ class MailMailableTest extends TestCase
         });
 
         $mailable = new WelcomeMailableStub;
-        $mailable->from('taylor@quantaquirk.com');
-        $this->assertEquals([['name' => null, 'address' => 'taylor@quantaquirk.com']], $mailable->from);
-        $this->assertTrue($mailable->hasFrom('taylor@quantaquirk.com'));
-        $mailable->assertFrom('taylor@quantaquirk.com');
+        $mailable->from('taylor@quantaforge.com');
+        $this->assertEquals([['name' => null, 'address' => 'taylor@quantaforge.com']], $mailable->from);
+        $this->assertTrue($mailable->hasFrom('taylor@quantaforge.com'));
+        $mailable->assertFrom('taylor@quantaforge.com');
 
         $mailable = new WelcomeMailableStub;
-        $mailable->from('taylor@quantaquirk.com', 'Taylor Otwell');
-        $this->assertEquals([['name' => 'Taylor Otwell', 'address' => 'taylor@quantaquirk.com']], $mailable->from);
-        $this->assertTrue($mailable->hasFrom('taylor@quantaquirk.com', 'Taylor Otwell'));
-        $this->assertTrue($mailable->hasFrom('taylor@quantaquirk.com'));
-        $mailable->assertFrom('taylor@quantaquirk.com', 'Taylor Otwell');
-        $mailable->assertFrom('taylor@quantaquirk.com');
+        $mailable->from('taylor@quantaforge.com', 'Taylor Otwell');
+        $this->assertEquals([['name' => 'Taylor Otwell', 'address' => 'taylor@quantaforge.com']], $mailable->from);
+        $this->assertTrue($mailable->hasFrom('taylor@quantaforge.com', 'Taylor Otwell'));
+        $this->assertTrue($mailable->hasFrom('taylor@quantaforge.com'));
+        $mailable->assertFrom('taylor@quantaforge.com', 'Taylor Otwell');
+        $mailable->assertFrom('taylor@quantaforge.com');
 
         $mailable = new WelcomeMailableStub;
-        $mailable->from(['taylor@quantaquirk.com']);
-        $this->assertEquals([['name' => null, 'address' => 'taylor@quantaquirk.com']], $mailable->from);
-        $this->assertTrue($mailable->hasFrom('taylor@quantaquirk.com'));
-        $this->assertFalse($mailable->hasFrom('taylor@quantaquirk.com', 'Taylor Otwell'));
-        $mailable->assertFrom('taylor@quantaquirk.com');
+        $mailable->from(['taylor@quantaforge.com']);
+        $this->assertEquals([['name' => null, 'address' => 'taylor@quantaforge.com']], $mailable->from);
+        $this->assertTrue($mailable->hasFrom('taylor@quantaforge.com'));
+        $this->assertFalse($mailable->hasFrom('taylor@quantaforge.com', 'Taylor Otwell'));
+        $mailable->assertFrom('taylor@quantaforge.com');
         try {
-            $mailable->assertFrom('taylor@quantaquirk.com', 'Taylor Otwell');
+            $mailable->assertFrom('taylor@quantaforge.com', 'Taylor Otwell');
             $this->fail();
         } catch (AssertionFailedError $e) {
-            $this->assertSame("Email was not from expected address [taylor@quantaquirk.com (Taylor Otwell)].\nFailed asserting that false is true.", $e->getMessage());
+            $this->assertSame("Email was not from expected address [taylor@quantaforge.com (Taylor Otwell)].\nFailed asserting that false is true.", $e->getMessage());
         }
 
         $mailable = new WelcomeMailableStub;
-        $mailable->from([['name' => 'Taylor Otwell', 'email' => 'taylor@quantaquirk.com']]);
-        $this->assertEquals([['name' => 'Taylor Otwell', 'address' => 'taylor@quantaquirk.com']], $mailable->from);
-        $this->assertTrue($mailable->hasFrom('taylor@quantaquirk.com', 'Taylor Otwell'));
-        $this->assertTrue($mailable->hasFrom('taylor@quantaquirk.com'));
-        $mailable->assertFrom('taylor@quantaquirk.com', 'Taylor Otwell');
-        $mailable->assertFrom('taylor@quantaquirk.com');
+        $mailable->from([['name' => 'Taylor Otwell', 'email' => 'taylor@quantaforge.com']]);
+        $this->assertEquals([['name' => 'Taylor Otwell', 'address' => 'taylor@quantaforge.com']], $mailable->from);
+        $this->assertTrue($mailable->hasFrom('taylor@quantaforge.com', 'Taylor Otwell'));
+        $this->assertTrue($mailable->hasFrom('taylor@quantaforge.com'));
+        $mailable->assertFrom('taylor@quantaforge.com', 'Taylor Otwell');
+        $mailable->assertFrom('taylor@quantaforge.com');
 
         $mailable = new WelcomeMailableStub;
         $mailable->from(new MailableTestUserStub);
-        $this->assertEquals([['name' => 'Taylor Otwell', 'address' => 'taylor@quantaquirk.com']], $mailable->from);
+        $this->assertEquals([['name' => 'Taylor Otwell', 'address' => 'taylor@quantaforge.com']], $mailable->from);
         $this->assertTrue($mailable->hasFrom(new MailableTestUserStub));
-        $this->assertTrue($mailable->hasFrom('taylor@quantaquirk.com'));
-        $mailable->assertFrom('taylor@quantaquirk.com');
+        $this->assertTrue($mailable->hasFrom('taylor@quantaforge.com'));
+        $mailable->assertFrom('taylor@quantaforge.com');
 
         $mailable = new WelcomeMailableStub;
         $mailable->from(collect([new MailableTestUserStub]));
-        $this->assertEquals([['name' => 'Taylor Otwell', 'address' => 'taylor@quantaquirk.com']], $mailable->from);
+        $this->assertEquals([['name' => 'Taylor Otwell', 'address' => 'taylor@quantaforge.com']], $mailable->from);
         $this->assertTrue($mailable->hasFrom(new MailableTestUserStub));
-        $this->assertTrue($mailable->hasFrom('taylor@quantaquirk.com'));
-        $mailable->assertFrom('taylor@quantaquirk.com');
+        $this->assertTrue($mailable->hasFrom('taylor@quantaforge.com'));
+        $mailable->assertFrom('taylor@quantaforge.com');
 
         $mailable = new WelcomeMailableStub;
         $mailable->from(collect([new MailableTestUserStub, new MailableTestUserStub, new MailableTestUserStub2]));
         $this->assertEquals([
-            ['name' => 'Taylor Otwell', 'address' => 'taylor@quantaquirk.com'],
-            ['name' => 'QuantaQuirk Framework', 'address' => 'contact@quantaquirk.com'],
+            ['name' => 'Taylor Otwell', 'address' => 'taylor@quantaforge.com'],
+            ['name' => 'QuantaForge Framework', 'address' => 'contact@quantaforge.com'],
         ], $mailable->from);
         $this->assertTrue($mailable->hasFrom(new MailableTestUserStub));
-        $this->assertTrue($mailable->hasFrom('taylor@quantaquirk.com'));
-        $mailable->assertFrom('taylor@quantaquirk.com');
+        $this->assertTrue($mailable->hasFrom('taylor@quantaforge.com'));
+        $mailable->assertFrom('taylor@quantaforge.com');
 
         foreach (['', null, [], false] as $address) {
             $mailable = new WelcomeMailableStub;
@@ -591,7 +591,7 @@ class MailMailableTest extends TestCase
         $expected = [
             'first_name' => 'Taylor',
             'lastName' => 'Otwell',
-            'framework' => 'QuantaQuirk',
+            'framework' => 'QuantaForge',
         ];
 
         $this->assertSame($expected, $mailable->buildViewData());
@@ -615,15 +615,15 @@ class MailMailableTest extends TestCase
         $mailer = new Mailer('array', $view, new ArrayTransport);
 
         $mailable = new WelcomeMailableStub;
-        $mailable->to('hello@quantaquirk.com');
-        $mailable->from('taylor@quantaquirk.com');
+        $mailable->to('hello@quantaforge.com');
+        $mailable->from('taylor@quantaforge.com');
         $mailable->html('test content');
 
         $mailable->priority(1);
 
         $sentMessage = $mailer->send($mailable);
 
-        $this->assertSame('hello@quantaquirk.com', $sentMessage->getEnvelope()->getRecipients()[0]->getAddress());
+        $this->assertSame('hello@quantaforge.com', $sentMessage->getEnvelope()->getRecipients()[0]->getAddress());
         $this->assertStringContainsString('X-Priority: 1 (Highest)', $sentMessage->toString());
     }
 
@@ -642,8 +642,8 @@ class MailMailableTest extends TestCase
         $mailer = new Mailer('array', $view, new ArrayTransport);
 
         $mailable = new WelcomeMailableStub;
-        $mailable->to('hello@quantaquirk.com');
-        $mailable->from('taylor@quantaquirk.com');
+        $mailable->to('hello@quantaforge.com');
+        $mailable->from('taylor@quantaforge.com');
         $mailable->html('test content');
 
         $mailable->metadata('origin', 'test-suite');
@@ -651,7 +651,7 @@ class MailMailableTest extends TestCase
 
         $sentMessage = $mailer->send($mailable);
 
-        $this->assertSame('hello@quantaquirk.com', $sentMessage->getEnvelope()->getRecipients()[0]->getAddress());
+        $this->assertSame('hello@quantaforge.com', $sentMessage->getEnvelope()->getRecipients()[0]->getAddress());
         $this->assertStringContainsString('X-Metadata-origin: test-suite', $sentMessage->toString());
         $this->assertStringContainsString('X-Metadata-user_id: 1', $sentMessage->toString());
 
@@ -683,8 +683,8 @@ class MailMailableTest extends TestCase
         $mailer = new Mailer('array', $view, new ArrayTransport);
 
         $mailable = new WelcomeMailableStub;
-        $mailable->to('hello@quantaquirk.com');
-        $mailable->from('taylor@quantaquirk.com');
+        $mailable->to('hello@quantaforge.com');
+        $mailable->from('taylor@quantaforge.com');
         $mailable->html('test content');
 
         $mailable->tag('test');
@@ -692,7 +692,7 @@ class MailMailableTest extends TestCase
 
         $sentMessage = $mailer->send($mailable);
 
-        $this->assertSame('hello@quantaquirk.com', $sentMessage->getEnvelope()->getRecipients()[0]->getAddress());
+        $this->assertSame('hello@quantaforge.com', $sentMessage->getEnvelope()->getRecipients()[0]->getAddress());
         $this->assertStringContainsString('X-Tag: test', $sentMessage->toString());
         $this->assertStringContainsString('X-Tag: foo', $sentMessage->toString());
 
@@ -1142,8 +1142,8 @@ class MailMailableTest extends TestCase
         $mailer = new Mailer('array', $view, new ArrayTransport);
 
         $mailable = new MailableHeadersStub;
-        $mailable->to('hello@quantaquirk.com');
-        $mailable->from('taylor@quantaquirk.com');
+        $mailable->to('hello@quantaforge.com');
+        $mailable->from('taylor@quantaforge.com');
         $mailable->html('test content');
 
         $sentMessage = $mailer->send($mailable);
@@ -1174,10 +1174,10 @@ class MailMailableTest extends TestCase
             public function build()
             {
                 $this
-                    ->to('hello@quantaquirk.com')
-                    ->replyTo('taylor@quantaquirk.com')
-                    ->cc('cc@quantaquirk.com', 'Taylor Otwell')
-                    ->bcc('bcc@quantaquirk.com', 'Taylor Otwell')
+                    ->to('hello@quantaforge.com')
+                    ->replyTo('taylor@quantaforge.com')
+                    ->cc('cc@quantaforge.com', 'Taylor Otwell')
+                    ->bcc('bcc@quantaforge.com', 'Taylor Otwell')
                     ->tag('test-tag')
                     ->metadata('origin', 'test-suite')
                     ->metadata('user_id', 1)
@@ -1185,10 +1185,10 @@ class MailMailableTest extends TestCase
             }
         };
 
-        $mailable->assertTo('hello@quantaquirk.com');
-        $mailable->assertHasReplyTo('taylor@quantaquirk.com');
-        $mailable->assertHasCc('cc@quantaquirk.com', 'Taylor Otwell');
-        $mailable->assertHasBcc('bcc@quantaquirk.com', 'Taylor Otwell');
+        $mailable->assertTo('hello@quantaforge.com');
+        $mailable->assertHasReplyTo('taylor@quantaforge.com');
+        $mailable->assertHasCc('cc@quantaforge.com', 'Taylor Otwell');
+        $mailable->assertHasBcc('bcc@quantaforge.com', 'Taylor Otwell');
         $mailable->assertHasTag('test-tag');
         $mailable->assertHasMetadata('origin', 'test-suite');
         $mailable->assertHasMetadata('user_id', 1);
@@ -1210,7 +1210,7 @@ class MailableHeadersStub extends Mailable
 
 class WelcomeMailableStub extends Mailable
 {
-    public $framework = 'QuantaQuirk';
+    public $framework = 'QuantaForge';
 
     protected $version = '5.3';
 
@@ -1229,13 +1229,13 @@ class WelcomeMailableStub extends Mailable
 class MailableTestUserStub
 {
     public $name = 'Taylor Otwell';
-    public $email = 'taylor@quantaquirk.com';
+    public $email = 'taylor@quantaforge.com';
 }
 
 class MailableTestUserStub2
 {
-    public $name = 'QuantaQuirk Framework';
-    public $email = 'contact@quantaquirk.com';
+    public $name = 'QuantaForge Framework';
+    public $email = 'contact@quantaforge.com';
 }
 
 class MailTestAttachable implements Attachable

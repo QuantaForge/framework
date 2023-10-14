@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace QuantaQuirk\Tests\Database;
+namespace QuantaForge\Tests\Database;
 
 use Exception;
-use QuantaQuirk\Database\ConnectionInterface;
-use QuantaQuirk\Database\ConnectionResolverInterface;
-use QuantaQuirk\Database\Eloquent\Model;
-use QuantaQuirk\Database\Eloquent\Relations\HasManyThrough;
-use QuantaQuirk\Database\Query\Builder;
-use QuantaQuirk\Database\UniqueConstraintViolationException;
-use QuantaQuirk\Support\Carbon;
+use QuantaForge\Database\ConnectionInterface;
+use QuantaForge\Database\ConnectionResolverInterface;
+use QuantaForge\Database\Eloquent\Model;
+use QuantaForge\Database\Eloquent\Relations\HasManyThrough;
+use QuantaForge\Database\Query\Builder;
+use QuantaForge\Database\UniqueConstraintViolationException;
+use QuantaForge\Support\Carbon;
 use Mockery;
 use PDO;
 use PHPUnit\Framework\TestCase;
@@ -71,14 +71,14 @@ class DatabaseEloquentHasManyThroughCreateOrFirstTest extends TestCase
         $parent->getConnection()
             ->expects('select')
             ->with(
-                'select "child".*, "pivot"."parent_id" as "quantaquirk_through_key" from "child" inner join "pivot" on "pivot"."id" = "child"."pivot_id" where "pivot"."parent_id" = ? and ("attr" = ?) limit 1',
+                'select "child".*, "pivot"."parent_id" as "quantaforge_through_key" from "child" inner join "pivot" on "pivot"."id" = "child"."pivot_id" where "pivot"."parent_id" = ? and ("attr" = ?) limit 1',
                 [123, 'foo'],
                 true,
             )
             ->andReturn([[
                 'id' => 789,
                 'pivot_id' => 456,
-                'quantaquirk_through_key' => 123,
+                'quantaforge_through_key' => 123,
                 'attr' => 'foo',
                 'val' => 'bar',
                 'created_at' => '2023-01-01 00:00:00',
@@ -90,7 +90,7 @@ class DatabaseEloquentHasManyThroughCreateOrFirstTest extends TestCase
         $this->assertEquals([
             'id' => 789,
             'pivot_id' => 456,
-            'quantaquirk_through_key' => 123,
+            'quantaforge_through_key' => 123,
             'attr' => 'foo',
             'val' => 'bar',
             'created_at' => '2023-01-01T00:00:00.000000Z',
@@ -109,7 +109,7 @@ class DatabaseEloquentHasManyThroughCreateOrFirstTest extends TestCase
         $parent->getConnection()
             ->expects('select')
             ->with(
-                'select "child".*, "pivot"."parent_id" as "quantaquirk_through_key" from "child" inner join "pivot" on "pivot"."id" = "child"."pivot_id" where "pivot"."parent_id" = ? and ("attr" = ?) limit 1',
+                'select "child".*, "pivot"."parent_id" as "quantaforge_through_key" from "child" inner join "pivot" on "pivot"."id" = "child"."pivot_id" where "pivot"."parent_id" = ? and ("attr" = ?) limit 1',
                 [123, 'foo'],
                 true,
             )
@@ -142,14 +142,14 @@ class DatabaseEloquentHasManyThroughCreateOrFirstTest extends TestCase
         $parent->getConnection()
             ->expects('select')
             ->with(
-                'select "child".*, "pivot"."parent_id" as "quantaquirk_through_key" from "child" inner join "pivot" on "pivot"."id" = "child"."pivot_id" where "pivot"."parent_id" = ? and ("attr" = ?) limit 1',
+                'select "child".*, "pivot"."parent_id" as "quantaforge_through_key" from "child" inner join "pivot" on "pivot"."id" = "child"."pivot_id" where "pivot"."parent_id" = ? and ("attr" = ?) limit 1',
                 [123, 'foo'],
                 true,
             )
             ->andReturn([[
                 'id' => 789,
                 'pivot_id' => 456,
-                'quantaquirk_through_key' => 123,
+                'quantaforge_through_key' => 123,
                 'attr' => 'foo',
                 'val' => 'bar',
                 'created_at' => '2023-01-01 00:00:00',
@@ -161,7 +161,7 @@ class DatabaseEloquentHasManyThroughCreateOrFirstTest extends TestCase
         $this->assertEquals([
             'id' => 789,
             'pivot_id' => 456,
-            'quantaquirk_through_key' => 123,
+            'quantaforge_through_key' => 123,
             'attr' => 'foo',
             'val' => 'bar',
             'created_at' => '2023-01-01T00:00:00.000000Z',
@@ -180,7 +180,7 @@ class DatabaseEloquentHasManyThroughCreateOrFirstTest extends TestCase
         $parent->getConnection()
             ->expects('select')
             ->with(
-                'select "child".*, "pivot"."parent_id" as "quantaquirk_through_key" from "child" inner join "pivot" on "pivot"."id" = "child"."pivot_id" where "pivot"."parent_id" = ? and ("attr" = ?) limit 1',
+                'select "child".*, "pivot"."parent_id" as "quantaforge_through_key" from "child" inner join "pivot" on "pivot"."id" = "child"."pivot_id" where "pivot"."parent_id" = ? and ("attr" = ?) limit 1',
                 [123, 'foo'],
                 true,
             )
@@ -198,14 +198,14 @@ class DatabaseEloquentHasManyThroughCreateOrFirstTest extends TestCase
             ->expects('select')
             // FIXME: duplicate conditions
             ->with(
-                'select "child".*, "pivot"."parent_id" as "quantaquirk_through_key" from "child" inner join "pivot" on "pivot"."id" = "child"."pivot_id" where "pivot"."parent_id" = ? and ("attr" = ?) and ("attr" = ? and "val" = ?) limit 1',
+                'select "child".*, "pivot"."parent_id" as "quantaforge_through_key" from "child" inner join "pivot" on "pivot"."id" = "child"."pivot_id" where "pivot"."parent_id" = ? and ("attr" = ?) and ("attr" = ? and "val" = ?) limit 1',
                 [123, 'foo', 'foo', 'bar'],
                 true,
             )
             ->andReturn([[
                 'id' => 789,
                 'pivot_id' => 456,
-                'quantaquirk_through_key' => 123,
+                'quantaforge_through_key' => 123,
                 'attr' => 'foo',
                 'val' => 'bar',
                 'created_at' => '2023-01-01T00:00:00.000000Z',
@@ -217,7 +217,7 @@ class DatabaseEloquentHasManyThroughCreateOrFirstTest extends TestCase
         $this->assertEquals([
             'id' => 789,
             'pivot_id' => 456,
-            'quantaquirk_through_key' => 123,
+            'quantaforge_through_key' => 123,
             'attr' => 'foo',
             'val' => 'bar',
             'created_at' => '2023-01-01T00:00:00.000000Z',
@@ -236,7 +236,7 @@ class DatabaseEloquentHasManyThroughCreateOrFirstTest extends TestCase
         $parent->getConnection()
             ->expects('select')
             ->with(
-                'select "child".*, "pivot"."parent_id" as "quantaquirk_through_key" from "child" inner join "pivot" on "pivot"."id" = "child"."pivot_id" where "pivot"."parent_id" = ? and ("attr" = ?) limit 1',
+                'select "child".*, "pivot"."parent_id" as "quantaforge_through_key" from "child" inner join "pivot" on "pivot"."id" = "child"."pivot_id" where "pivot"."parent_id" = ? and ("attr" = ?) limit 1',
                 [123, 'foo'],
                 true,
             )
@@ -272,14 +272,14 @@ class DatabaseEloquentHasManyThroughCreateOrFirstTest extends TestCase
         $parent->getConnection()
             ->expects('select')
             ->with(
-                'select "child".*, "pivot"."parent_id" as "quantaquirk_through_key" from "child" inner join "pivot" on "pivot"."id" = "child"."pivot_id" where "pivot"."parent_id" = ? and ("attr" = ?) limit 1',
+                'select "child".*, "pivot"."parent_id" as "quantaforge_through_key" from "child" inner join "pivot" on "pivot"."id" = "child"."pivot_id" where "pivot"."parent_id" = ? and ("attr" = ?) limit 1',
                 [123, 'foo'],
                 true,
             )
             ->andReturn([[
                 'id' => 789,
                 'pivot_id' => 456,
-                'quantaquirk_through_key' => 123,
+                'quantaforge_through_key' => 123,
                 'attr' => 'foo',
                 'val' => 'bar',
                 'created_at' => '2023-01-01T00:00:00.000000Z',
@@ -299,7 +299,7 @@ class DatabaseEloquentHasManyThroughCreateOrFirstTest extends TestCase
         $this->assertEquals([
             'id' => 789,
             'pivot_id' => 456,
-            'quantaquirk_through_key' => 123,
+            'quantaforge_through_key' => 123,
             'attr' => 'foo',
             'val' => 'baz',
             'created_at' => '2023-01-01T00:00:00.000000Z',
@@ -318,7 +318,7 @@ class DatabaseEloquentHasManyThroughCreateOrFirstTest extends TestCase
         $parent->getConnection()
             ->expects('select')
             ->with(
-                'select "child".*, "pivot"."parent_id" as "quantaquirk_through_key" from "child" inner join "pivot" on "pivot"."id" = "child"."pivot_id" where "pivot"."parent_id" = ? and ("attr" = ?) limit 1',
+                'select "child".*, "pivot"."parent_id" as "quantaforge_through_key" from "child" inner join "pivot" on "pivot"."id" = "child"."pivot_id" where "pivot"."parent_id" = ? and ("attr" = ?) limit 1',
                 [123, 'foo'],
                 true,
             )
@@ -336,14 +336,14 @@ class DatabaseEloquentHasManyThroughCreateOrFirstTest extends TestCase
             ->expects('select')
             // FIXME: duplicate conditions
             ->with(
-                'select "child".*, "pivot"."parent_id" as "quantaquirk_through_key" from "child" inner join "pivot" on "pivot"."id" = "child"."pivot_id" where "pivot"."parent_id" = ? and ("attr" = ?) and ("attr" = ? and "val" = ?) limit 1',
+                'select "child".*, "pivot"."parent_id" as "quantaforge_through_key" from "child" inner join "pivot" on "pivot"."id" = "child"."pivot_id" where "pivot"."parent_id" = ? and ("attr" = ?) and ("attr" = ? and "val" = ?) limit 1',
                 [123, 'foo', 'foo', 'bar'],
                 true,
             )
             ->andReturn([[
                 'id' => 789,
                 'pivot_id' => 456,
-                'quantaquirk_through_key' => 123,
+                'quantaforge_through_key' => 123,
                 'attr' => 'foo',
                 'val' => 'bar',
                 'created_at' => '2023-01-01T00:00:00.000000Z',
@@ -355,7 +355,7 @@ class DatabaseEloquentHasManyThroughCreateOrFirstTest extends TestCase
         $this->assertEquals([
             'id' => 789,
             'pivot_id' => 456,
-            'quantaquirk_through_key' => 123,
+            'quantaforge_through_key' => 123,
             'attr' => 'foo',
             'val' => 'bar',
             'created_at' => '2023-01-01T00:00:00.000000Z',
@@ -365,8 +365,8 @@ class DatabaseEloquentHasManyThroughCreateOrFirstTest extends TestCase
 
     protected function mockConnectionForModel(Model $model, string $database, array $lastInsertIds = []): void
     {
-        $grammarClass = 'QuantaQuirk\Database\Query\Grammars\\'.$database.'Grammar';
-        $processorClass = 'QuantaQuirk\Database\Query\Processors\\'.$database.'Processor';
+        $grammarClass = 'QuantaForge\Database\Query\Grammars\\'.$database.'Grammar';
+        $processorClass = 'QuantaForge\Database\Query\Processors\\'.$database.'Processor';
         $grammar = new $grammarClass;
         $processor = new $processorClass;
         $connection = Mockery::mock(ConnectionInterface::class, ['getQueryGrammar' => $grammar, 'getPostProcessor' => $processor]);

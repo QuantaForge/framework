@@ -1,14 +1,14 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Database;
+namespace QuantaForge\Tests\Integration\Database;
 
-use QuantaQuirk\Database\Events\MigrationEnded;
-use QuantaQuirk\Database\Events\MigrationsEnded;
-use QuantaQuirk\Database\Events\MigrationsStarted;
-use QuantaQuirk\Database\Events\MigrationStarted;
-use QuantaQuirk\Database\Events\NoPendingMigrations;
-use QuantaQuirk\Database\Migrations\Migration;
-use QuantaQuirk\Support\Facades\Event;
+use QuantaForge\Database\Events\MigrationEnded;
+use QuantaForge\Database\Events\MigrationsEnded;
+use QuantaForge\Database\Events\MigrationsStarted;
+use QuantaForge\Database\Events\MigrationStarted;
+use QuantaForge\Database\Events\NoPendingMigrations;
+use QuantaForge\Database\Migrations\Migration;
+use QuantaForge\Support\Facades\Event;
 use Orchestra\Testbench\TestCase;
 
 class MigratorEventsTest extends TestCase

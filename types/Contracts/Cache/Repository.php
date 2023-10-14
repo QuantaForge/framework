@@ -1,6 +1,6 @@
 <?php
 
-use QuantaQuirk\Contracts\Cache\Repository;
+use QuantaForge\Contracts\Cache\Repository;
 
 use function PHPStan\Testing\assertType;
 

@@ -1,9 +1,9 @@
 <?php
 
-namespace QuantaQuirk\Tests\Database;
+namespace QuantaForge\Tests\Database;
 
-use QuantaQuirk\Database\Connection;
-use QuantaQuirk\Database\Query\Grammars\SQLiteGrammar;
+use QuantaForge\Database\Connection;
+use QuantaForge\Database\Query\Grammars\SQLiteGrammar;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 

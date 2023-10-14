@@ -1,6 +1,6 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Generators;
+namespace QuantaForge\Tests\Integration\Generators;
 
 class ModelMakeCommandTest extends TestCase
 {
@@ -21,7 +21,7 @@ class ModelMakeCommandTest extends TestCase
 
         $this->assertFileContains([
             'namespace App\Models;',
-            'use QuantaQuirk\Database\Eloquent\Model;',
+            'use QuantaForge\Database\Eloquent\Model;',
             'class Foo extends Model',
         ], 'app/Models/Foo.php');
 
@@ -38,7 +38,7 @@ class ModelMakeCommandTest extends TestCase
 
         $this->assertFileContains([
             'namespace App\Models;',
-            'use QuantaQuirk\Database\Eloquent\Relations\Pivot;',
+            'use QuantaForge\Database\Eloquent\Relations\Pivot;',
             'class Foo extends Pivot',
         ], 'app/Models/Foo.php');
     }
@@ -50,7 +50,7 @@ class ModelMakeCommandTest extends TestCase
 
         $this->assertFileContains([
             'namespace App\Models;',
-            'use QuantaQuirk\Database\Eloquent\Relations\MorphPivot;',
+            'use QuantaForge\Database\Eloquent\Relations\MorphPivot;',
             'class Foo extends MorphPivot',
         ], 'app/Models/Foo.php');
     }
@@ -62,13 +62,13 @@ class ModelMakeCommandTest extends TestCase
 
         $this->assertFileContains([
             'namespace App\Models;',
-            'use QuantaQuirk\Database\Eloquent\Model;',
+            'use QuantaForge\Database\Eloquent\Model;',
             'class Foo extends Model',
         ], 'app/Models/Foo.php');
 
         $this->assertFileContains([
             'namespace App\Http\Controllers;',
-            'use QuantaQuirk\Http\Request;',
+            'use QuantaForge\Http\Request;',
             'class FooController extends Controller',
         ], 'app/Http/Controllers/FooController.php');
 
@@ -94,7 +94,7 @@ class ModelMakeCommandTest extends TestCase
 
         $this->assertFileContains([
             'namespace App\Models;',
-            'use QuantaQuirk\Database\Eloquent\Model;',
+            'use QuantaForge\Database\Eloquent\Model;',
             'class Foo extends Model',
         ], 'app/Models/Foo.php');
 
@@ -110,12 +110,12 @@ class ModelMakeCommandTest extends TestCase
 
         $this->assertFileContains([
             'namespace App\Models;',
-            'use QuantaQuirk\Database\Eloquent\Model;',
+            'use QuantaForge\Database\Eloquent\Model;',
             'class Foo extends Model',
         ], 'app/Models/Foo.php');
 
         $this->assertMigrationFileContains([
-            'use QuantaQuirk\Database\Migrations\Migration;',
+            'use QuantaForge\Database\Migrations\Migration;',
             'return new class extends Migration',
             'Schema::create(\'foos\', function (Blueprint $table) {',
             'Schema::dropIfExists(\'foos\');',
@@ -133,7 +133,7 @@ class ModelMakeCommandTest extends TestCase
 
         $this->assertFileContains([
             'namespace App\Models;',
-            'use QuantaQuirk\Database\Eloquent\Model;',
+            'use QuantaForge\Database\Eloquent\Model;',
             'class Foo extends Model',
         ], 'app/Models/Foo.php');
 
@@ -149,13 +149,13 @@ class ModelMakeCommandTest extends TestCase
 
         $this->assertFileContains([
             'namespace App\Models\Foo;',
-            'use QuantaQuirk\Database\Eloquent\Model;',
+            'use QuantaForge\Database\Eloquent\Model;',
             'class Bar extends Model',
         ], 'app/Models/Foo/Bar.php');
 
         $this->assertFileContains([
             'namespace App\Http\Controllers;',
-            'use QuantaQuirk\Http\Request;',
+            'use QuantaForge\Http\Request;',
             'class BarController extends Controller',
         ], 'app/Http/Controllers/BarController.php');
 
@@ -170,7 +170,7 @@ class ModelMakeCommandTest extends TestCase
 
         $this->assertFileContains([
             'namespace App\Models;',
-            'use QuantaQuirk\Database\Eloquent\Model;',
+            'use QuantaForge\Database\Eloquent\Model;',
             'class Foo extends Model',
         ], 'app/Models/Foo.php');
 

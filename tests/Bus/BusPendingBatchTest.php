@@ -1,14 +1,14 @@
 <?php
 
-namespace QuantaQuirk\Tests\Bus;
+namespace QuantaForge\Tests\Bus;
 
-use QuantaQuirk\Bus\Batch;
-use QuantaQuirk\Bus\Batchable;
-use QuantaQuirk\Bus\BatchRepository;
-use QuantaQuirk\Bus\PendingBatch;
-use QuantaQuirk\Container\Container;
-use QuantaQuirk\Contracts\Events\Dispatcher;
-use QuantaQuirk\Support\Collection;
+use QuantaForge\Bus\Batch;
+use QuantaForge\Bus\Batchable;
+use QuantaForge\Bus\BatchRepository;
+use QuantaForge\Bus\PendingBatch;
+use QuantaForge\Container\Container;
+use QuantaForge\Contracts\Events\Dispatcher;
+use QuantaForge\Support\Collection;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 use RuntimeException;

@@ -1,8 +1,8 @@
 <?php
 
-namespace QuantaQuirk\Tests\Foundation\Testing\Traits;
+namespace QuantaForge\Tests\Foundation\Testing\Traits;
 
-use QuantaQuirk\Foundation\Testing\Traits\CanConfigureMigrationCommands;
+use QuantaForge\Foundation\Testing\Traits\CanConfigureMigrationCommands;
 use PHPUnit\Framework\TestCase;
 use ReflectionMethod;
 

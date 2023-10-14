@@ -3,12 +3,12 @@
 namespace Tests\Foundation\Testing;
 
 use Exception;
-use QuantaQuirk\Foundation\Testing\TestCase;
-use QuantaQuirk\Http\RedirectResponse;
-use QuantaQuirk\Http\Response;
-use QuantaQuirk\Session\NullSessionHandler;
-use QuantaQuirk\Session\Store;
-use QuantaQuirk\Testing\TestResponse;
+use QuantaForge\Foundation\Testing\TestCase;
+use QuantaForge\Http\RedirectResponse;
+use QuantaForge\Http\Response;
+use QuantaForge\Session\NullSessionHandler;
+use QuantaForge\Session\Store;
+use QuantaForge\Testing\TestResponse;
 use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase as BaseTestCase;
 

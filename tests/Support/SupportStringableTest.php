@@ -1,18 +1,18 @@
 <?php
 
-namespace QuantaQuirk\Tests\Support;
+namespace QuantaForge\Tests\Support;
 
-use QuantaQuirk\Support\Carbon;
-use QuantaQuirk\Support\Collection;
-use QuantaQuirk\Support\HtmlString;
-use QuantaQuirk\Support\Stringable;
+use QuantaForge\Support\Carbon;
+use QuantaForge\Support\Collection;
+use QuantaForge\Support\HtmlString;
+use QuantaForge\Support\Stringable;
 use PHPUnit\Framework\TestCase;
 
 class SupportStringableTest extends TestCase
 {
     /**
      * @param  string  $string
-     * @return \QuantaQuirk\Support\Stringable
+     * @return \QuantaForge\Support\Stringable
      */
     protected function stringable($string = '')
     {
@@ -35,7 +35,7 @@ class SupportStringableTest extends TestCase
 
     public function testIsUrl()
     {
-        $this->assertTrue($this->stringable('https://quantaquirk.com')->isUrl());
+        $this->assertTrue($this->stringable('https://quantaforge.com')->isUrl());
         $this->assertFalse($this->stringable('invalid url')->isUrl());
     }
 
@@ -70,20 +70,20 @@ class SupportStringableTest extends TestCase
 
     public function testIsMatch()
     {
-        $this->assertTrue($this->stringable('Hello, QuantaQuirk!')->isMatch('/.*,.*!/'));
-        $this->assertTrue($this->stringable('Hello, QuantaQuirk!')->isMatch('/^.*$(.*)/'));
-        $this->assertTrue($this->stringable('Hello, QuantaQuirk!')->isMatch('/quantaquirk/i'));
-        $this->assertTrue($this->stringable('Hello, QuantaQuirk!')->isMatch('/^(.*(.*(.*)))/'));
+        $this->assertTrue($this->stringable('Hello, QuantaForge!')->isMatch('/.*,.*!/'));
+        $this->assertTrue($this->stringable('Hello, QuantaForge!')->isMatch('/^.*$(.*)/'));
+        $this->assertTrue($this->stringable('Hello, QuantaForge!')->isMatch('/quantaforge/i'));
+        $this->assertTrue($this->stringable('Hello, QuantaForge!')->isMatch('/^(.*(.*(.*)))/'));
 
-        $this->assertFalse($this->stringable('Hello, QuantaQuirk!')->isMatch('/H.o/'));
-        $this->assertFalse($this->stringable('Hello, QuantaQuirk!')->isMatch('/^quantaquirk!/i'));
-        $this->assertFalse($this->stringable('Hello, QuantaQuirk!')->isMatch('/quantaquirk!(.*)/'));
-        $this->assertFalse($this->stringable('Hello, QuantaQuirk!')->isMatch('/^[a-zA-Z,!]+$/'));
+        $this->assertFalse($this->stringable('Hello, QuantaForge!')->isMatch('/H.o/'));
+        $this->assertFalse($this->stringable('Hello, QuantaForge!')->isMatch('/^quantaforge!/i'));
+        $this->assertFalse($this->stringable('Hello, QuantaForge!')->isMatch('/quantaforge!(.*)/'));
+        $this->assertFalse($this->stringable('Hello, QuantaForge!')->isMatch('/^[a-zA-Z,!]+$/'));
 
-        $this->assertTrue($this->stringable('Hello, QuantaQuirk!')->isMatch(['/.*,.*!/', '/H.o/']));
-        $this->assertTrue($this->stringable('Hello, QuantaQuirk!')->isMatch(['/^quantaquirk!/i', '/^.*$(.*)/']));
-        $this->assertTrue($this->stringable('Hello, QuantaQuirk!')->isMatch(['/quantaquirk/i', '/quantaquirk!(.*)/']));
-        $this->assertTrue($this->stringable('Hello, QuantaQuirk!')->isMatch(['/^[a-zA-Z,!]+$/', '/^(.*(.*(.*)))/']));
+        $this->assertTrue($this->stringable('Hello, QuantaForge!')->isMatch(['/.*,.*!/', '/H.o/']));
+        $this->assertTrue($this->stringable('Hello, QuantaForge!')->isMatch(['/^quantaforge!/i', '/^.*$(.*)/']));
+        $this->assertTrue($this->stringable('Hello, QuantaForge!')->isMatch(['/quantaforge/i', '/quantaforge!(.*)/']));
+        $this->assertTrue($this->stringable('Hello, QuantaForge!')->isMatch(['/^[a-zA-Z,!]+$/', '/^(.*(.*(.*)))/']));
     }
 
     public function testIsEmpty()
@@ -225,7 +225,7 @@ class SupportStringableTest extends TestCase
     public function testUcsplitOnStringable()
     {
         $this->assertSame(['Taylor', 'Otwell'], $this->stringable('TaylorOtwell')->ucsplit()->toArray());
-        $this->assertSame(['Hello', 'From', 'QuantaQuirk'], $this->stringable('HelloFromQuantaQuirk')->ucsplit()->toArray());
+        $this->assertSame(['Hello', 'From', 'QuantaForge'], $this->stringable('HelloFromQuantaForge')->ucsplit()->toArray());
         $this->assertSame(['He_llo_', 'World'], $this->stringable('He_llo_World')->ucsplit()->toArray());
     }
 
@@ -529,7 +529,7 @@ class SupportStringableTest extends TestCase
 
     public function testNewLine()
     {
-        $this->assertSame('QuantaQuirk'.PHP_EOL, (string) $this->stringable('QuantaQuirk')->newLine());
+        $this->assertSame('QuantaForge'.PHP_EOL, (string) $this->stringable('QuantaForge')->newLine());
         $this->assertSame('foo'.PHP_EOL.PHP_EOL.'bar', (string) $this->stringable('foo')->newLine(2)->append('bar'));
     }
 
@@ -734,7 +734,7 @@ class SupportStringableTest extends TestCase
             with
             spaces
         ')->squish());
-        $this->assertSame('quantaquirk php framework', (string) $this->stringable('   quantaquirk   php   framework   ')->squish());
+        $this->assertSame('quantaforge php framework', (string) $this->stringable('   quantaforge   php   framework   ')->squish());
         $this->assertSame('123', (string) $this->stringable('   123    ')->squish());
         $this->assertSame('だ', (string) $this->stringable('だ')->squish());
         $this->assertSame('ム', (string) $this->stringable('ム')->squish());
@@ -796,7 +796,7 @@ class SupportStringableTest extends TestCase
 
     public function testKebab()
     {
-        $this->assertSame('quantaquirk-php-framework', (string) $this->stringable('QuantaQuirkPhpFramework')->kebab());
+        $this->assertSame('quantaforge-php-framework', (string) $this->stringable('QuantaForgePhpFramework')->kebab());
     }
 
     public function testLower()
@@ -813,8 +813,8 @@ class SupportStringableTest extends TestCase
 
     public function testLimit()
     {
-        $this->assertSame('QuantaQuirk is...',
-            (string) $this->stringable('QuantaQuirk is a free, open source PHP web application framework.')->limit(10)
+        $this->assertSame('QuantaForge is...',
+            (string) $this->stringable('QuantaForge is a free, open source PHP web application framework.')->limit(10)
         );
         $this->assertSame('这是一...', (string) $this->stringable('这是一段中文')->limit(6));
 
@@ -932,16 +932,16 @@ class SupportStringableTest extends TestCase
 
     public function testSnake()
     {
-        $this->assertSame('quantaquirk_p_h_p_framework', (string) $this->stringable('QuantaQuirkPHPFramework')->snake());
-        $this->assertSame('quantaquirk_php_framework', (string) $this->stringable('QuantaQuirkPhpFramework')->snake());
-        $this->assertSame('quantaquirk php framework', (string) $this->stringable('QuantaQuirkPhpFramework')->snake(' '));
-        $this->assertSame('quantaquirk_php_framework', (string) $this->stringable('QuantaQuirk Php Framework')->snake());
-        $this->assertSame('quantaquirk_php_framework', (string) $this->stringable('QuantaQuirk    Php      Framework   ')->snake());
+        $this->assertSame('quantaforge_p_h_p_framework', (string) $this->stringable('QuantaForgePHPFramework')->snake());
+        $this->assertSame('quantaforge_php_framework', (string) $this->stringable('QuantaForgePhpFramework')->snake());
+        $this->assertSame('quantaforge php framework', (string) $this->stringable('QuantaForgePhpFramework')->snake(' '));
+        $this->assertSame('quantaforge_php_framework', (string) $this->stringable('QuantaForge Php Framework')->snake());
+        $this->assertSame('quantaforge_php_framework', (string) $this->stringable('QuantaForge    Php      Framework   ')->snake());
         // ensure cache keys don't overlap
-        $this->assertSame('quantaquirk__php__framework', (string) $this->stringable('QuantaQuirkPhpFramework')->snake('__'));
-        $this->assertSame('quantaquirk_php_framework_', (string) $this->stringable('QuantaQuirkPhpFramework_')->snake('_'));
-        $this->assertSame('quantaquirk_php_framework', (string) $this->stringable('quantaquirk php Framework')->snake());
-        $this->assertSame('quantaquirk_php_frame_work', (string) $this->stringable('quantaquirk php FrameWork')->snake());
+        $this->assertSame('quantaforge__php__framework', (string) $this->stringable('QuantaForgePhpFramework')->snake('__'));
+        $this->assertSame('quantaforge_php_framework_', (string) $this->stringable('QuantaForgePhpFramework_')->snake('_'));
+        $this->assertSame('quantaforge_php_framework', (string) $this->stringable('quantaforge php Framework')->snake());
+        $this->assertSame('quantaforge_php_frame_work', (string) $this->stringable('quantaforge php FrameWork')->snake());
         // prevent breaking changes
         $this->assertSame('foo-bar', (string) $this->stringable('foo-bar')->snake());
         $this->assertSame('foo-_bar', (string) $this->stringable('Foo-Bar')->snake());
@@ -951,10 +951,10 @@ class SupportStringableTest extends TestCase
 
     public function testStudly()
     {
-        $this->assertSame('QuantaQuirkPHPFramework', (string) $this->stringable('quantaquirk_p_h_p_framework')->studly());
-        $this->assertSame('QuantaQuirkPhpFramework', (string) $this->stringable('quantaquirk_php_framework')->studly());
-        $this->assertSame('QuantaQuirkPhPFramework', (string) $this->stringable('quantaquirk-phP-framework')->studly());
-        $this->assertSame('QuantaQuirkPhpFramework', (string) $this->stringable('quantaquirk  -_-  php   -_-   framework   ')->studly());
+        $this->assertSame('QuantaForgePHPFramework', (string) $this->stringable('quantaforge_p_h_p_framework')->studly());
+        $this->assertSame('QuantaForgePhpFramework', (string) $this->stringable('quantaforge_php_framework')->studly());
+        $this->assertSame('QuantaForgePhPFramework', (string) $this->stringable('quantaforge-phP-framework')->studly());
+        $this->assertSame('QuantaForgePhpFramework', (string) $this->stringable('quantaforge  -_-  php   -_-   framework   ')->studly());
 
         $this->assertSame('FooBar', (string) $this->stringable('fooBar')->studly());
         $this->assertSame('FooBar', (string) $this->stringable('foo_bar')->studly());
@@ -965,10 +965,10 @@ class SupportStringableTest extends TestCase
 
     public function testCamel()
     {
-        $this->assertSame('quantaquirkPHPFramework', (string) $this->stringable('QuantaQuirk_p_h_p_framework')->camel());
-        $this->assertSame('quantaquirkPhpFramework', (string) $this->stringable('QuantaQuirk_php_framework')->camel());
-        $this->assertSame('quantaquirkPhPFramework', (string) $this->stringable('QuantaQuirk-phP-framework')->camel());
-        $this->assertSame('quantaquirkPhpFramework', (string) $this->stringable('QuantaQuirk  -_-  php   -_-   framework   ')->camel());
+        $this->assertSame('quantaforgePHPFramework', (string) $this->stringable('QuantaForge_p_h_p_framework')->camel());
+        $this->assertSame('quantaforgePhpFramework', (string) $this->stringable('QuantaForge_php_framework')->camel());
+        $this->assertSame('quantaforgePhPFramework', (string) $this->stringable('QuantaForge-phP-framework')->camel());
+        $this->assertSame('quantaforgePhpFramework', (string) $this->stringable('QuantaForge  -_-  php   -_-   framework   ')->camel());
 
         $this->assertSame('fooBar', (string) $this->stringable('FooBar')->camel());
         $this->assertSame('fooBar', (string) $this->stringable('foo_bar')->camel());
@@ -1012,16 +1012,16 @@ class SupportStringableTest extends TestCase
 
     public function testSubstrCount()
     {
-        $this->assertSame(3, $this->stringable('quantaquirkPHPFramework')->substrCount('a'));
-        $this->assertSame(0, $this->stringable('quantaquirkPHPFramework')->substrCount('z'));
-        $this->assertSame(1, $this->stringable('quantaquirkPHPFramework')->substrCount('l', 2));
-        $this->assertSame(0, $this->stringable('quantaquirkPHPFramework')->substrCount('z', 2));
-        $this->assertSame(1, $this->stringable('quantaquirkPHPFramework')->substrCount('k', -1));
-        $this->assertSame(1, $this->stringable('quantaquirkPHPFramework')->substrCount('k', -1));
-        $this->assertSame(1, $this->stringable('quantaquirkPHPFramework')->substrCount('a', 1, 2));
-        $this->assertSame(1, $this->stringable('quantaquirkPHPFramework')->substrCount('a', 1, 2));
-        $this->assertSame(3, $this->stringable('quantaquirkPHPFramework')->substrCount('a', 1, -2));
-        $this->assertSame(1, $this->stringable('quantaquirkPHPFramework')->substrCount('a', -10, -3));
+        $this->assertSame(3, $this->stringable('quantaforgePHPFramework')->substrCount('a'));
+        $this->assertSame(0, $this->stringable('quantaforgePHPFramework')->substrCount('z'));
+        $this->assertSame(1, $this->stringable('quantaforgePHPFramework')->substrCount('l', 2));
+        $this->assertSame(0, $this->stringable('quantaforgePHPFramework')->substrCount('z', 2));
+        $this->assertSame(1, $this->stringable('quantaforgePHPFramework')->substrCount('k', -1));
+        $this->assertSame(1, $this->stringable('quantaforgePHPFramework')->substrCount('k', -1));
+        $this->assertSame(1, $this->stringable('quantaforgePHPFramework')->substrCount('a', 1, 2));
+        $this->assertSame(1, $this->stringable('quantaforgePHPFramework')->substrCount('a', 1, 2));
+        $this->assertSame(3, $this->stringable('quantaforgePHPFramework')->substrCount('a', 1, -2));
+        $this->assertSame(1, $this->stringable('quantaforgePHPFramework')->substrCount('a', -10, -3));
     }
 
     public function testPosition()
@@ -1044,8 +1044,8 @@ class SupportStringableTest extends TestCase
     public function testSubstrReplace()
     {
         $this->assertSame('12:00', (string) $this->stringable('1200')->substrReplace(':', 2, 0));
-        $this->assertSame('The QuantaQuirk Framework', (string) $this->stringable('The Framework')->substrReplace('QuantaQuirk ', 4, 0));
-        $this->assertSame('QuantaQuirk – The PHP Framework for Web Artisans', (string) $this->stringable('QuantaQuirk Framework')->substrReplace('– The PHP Framework for Web Artisans', 8));
+        $this->assertSame('The QuantaForge Framework', (string) $this->stringable('The Framework')->substrReplace('QuantaForge ', 4, 0));
+        $this->assertSame('QuantaForge – The PHP Framework for Web Artisans', (string) $this->stringable('QuantaForge Framework')->substrReplace('– The PHP Framework for Web Artisans', 8));
     }
 
     public function testPadBoth()
@@ -1091,9 +1091,9 @@ class SupportStringableTest extends TestCase
     public function testJsonSerialize()
     {
         $this->assertSame('"foo"', json_encode($this->stringable('foo')));
-        $this->assertSame('"quantaquirk-php-framework"', json_encode($this->stringable('QuantaQuirkPhpFramework')->kebab()));
-        $this->assertSame('["quantaquirk-php-framework"]', json_encode([$this->stringable('QuantaQuirkPhpFramework')->kebab()]));
-        $this->assertSame('{"title":"quantaquirk-php-framework"}', json_encode(['title' => $this->stringable('QuantaQuirkPhpFramework')->kebab()]));
+        $this->assertSame('"quantaforge-php-framework"', json_encode($this->stringable('QuantaForgePhpFramework')->kebab()));
+        $this->assertSame('["quantaforge-php-framework"]', json_encode([$this->stringable('QuantaForgePhpFramework')->kebab()]));
+        $this->assertSame('{"title":"quantaforge-php-framework"}', json_encode(['title' => $this->stringable('QuantaForgePhpFramework')->kebab()]));
     }
 
     public function testTap()
@@ -1129,7 +1129,7 @@ class SupportStringableTest extends TestCase
     public function testInlineMarkdown()
     {
         $this->assertEquals("<em>hello world</em>\n", $this->stringable('*hello world*')->inlineMarkdown());
-        $this->assertEquals("<a href=\"https://quantaquirk.com\"><strong>QuantaQuirk</strong></a>\n", $this->stringable('[**QuantaQuirk**](https://quantaquirk.com)')->inlineMarkdown());
+        $this->assertEquals("<a href=\"https://quantaforge.com\"><strong>QuantaForge</strong></a>\n", $this->stringable('[**QuantaForge**](https://quantaforge.com)')->inlineMarkdown());
     }
 
     public function testMask()
@@ -1162,7 +1162,7 @@ class SupportStringableTest extends TestCase
     public function testWordCount()
     {
         $this->assertEquals(2, $this->stringable('Hello, world!')->wordCount());
-        $this->assertEquals(10, $this->stringable('Hi, this is my first contribution to the QuantaQuirk framework.')->wordCount());
+        $this->assertEquals(10, $this->stringable('Hi, this is my first contribution to the QuantaForge framework.')->wordCount());
     }
 
     public function testWrap()

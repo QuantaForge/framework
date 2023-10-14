@@ -1,9 +1,9 @@
 <?php
 
-namespace QuantaQuirk\Tests\Support;
+namespace QuantaForge\Tests\Support;
 
-use QuantaQuirk\Support\MessageBag;
-use QuantaQuirk\Support\ViewErrorBag;
+use QuantaForge\Support\MessageBag;
+use QuantaForge\Support\ViewErrorBag;
 use PHPUnit\Framework\TestCase;
 
 class SupportViewErrorBagTest extends TestCase

@@ -1,6 +1,6 @@
 <?php
 
-use QuantaQuirk\Support\Facades\Route;
+use QuantaForge\Support\Facades\Route;
 
 Route::redirect('/foo/1', '/foo/1/bar');
 

@@ -1,24 +1,24 @@
 <?php
 
-namespace QuantaQuirk\Tests\Database;
+namespace QuantaForge\Tests\Database;
 
 use DateTime;
 use ErrorException;
 use Exception;
-use QuantaQuirk\Contracts\Events\Dispatcher;
-use QuantaQuirk\Database\Connection;
-use QuantaQuirk\Database\DatabaseTransactionsManager;
-use QuantaQuirk\Database\Events\QueryExecuted;
-use QuantaQuirk\Database\Events\TransactionBeginning;
-use QuantaQuirk\Database\Events\TransactionCommitted;
-use QuantaQuirk\Database\Events\TransactionCommitting;
-use QuantaQuirk\Database\Events\TransactionRolledBack;
-use QuantaQuirk\Database\MultipleColumnsSelectedException;
-use QuantaQuirk\Database\Query\Builder as BaseBuilder;
-use QuantaQuirk\Database\Query\Grammars\Grammar;
-use QuantaQuirk\Database\Query\Processors\Processor;
-use QuantaQuirk\Database\QueryException;
-use QuantaQuirk\Database\Schema\Builder;
+use QuantaForge\Contracts\Events\Dispatcher;
+use QuantaForge\Database\Connection;
+use QuantaForge\Database\DatabaseTransactionsManager;
+use QuantaForge\Database\Events\QueryExecuted;
+use QuantaForge\Database\Events\TransactionBeginning;
+use QuantaForge\Database\Events\TransactionCommitted;
+use QuantaForge\Database\Events\TransactionCommitting;
+use QuantaForge\Database\Events\TransactionRolledBack;
+use QuantaForge\Database\MultipleColumnsSelectedException;
+use QuantaForge\Database\Query\Builder as BaseBuilder;
+use QuantaForge\Database\Query\Grammars\Grammar;
+use QuantaForge\Database\Query\Processors\Processor;
+use QuantaForge\Database\QueryException;
+use QuantaForge\Database\Schema\Builder;
 use Mockery as m;
 use PDO;
 use PDOException;

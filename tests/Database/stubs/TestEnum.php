@@ -1,6 +1,6 @@
 <?php
 
-namespace QuantaQuirk\Tests\Database\stubs;
+namespace QuantaForge\Tests\Database\stubs;
 
 enum TestEnum: string
 {

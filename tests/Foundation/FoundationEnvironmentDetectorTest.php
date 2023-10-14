@@ -1,8 +1,8 @@
 <?php
 
-namespace QuantaQuirk\Tests\Foundation;
+namespace QuantaForge\Tests\Foundation;
 
-use QuantaQuirk\Foundation\EnvironmentDetector;
+use QuantaForge\Foundation\EnvironmentDetector;
 use PHPUnit\Framework\TestCase;
 
 class FoundationEnvironmentDetectorTest extends TestCase

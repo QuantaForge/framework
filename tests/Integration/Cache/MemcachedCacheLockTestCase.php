@@ -1,9 +1,9 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Cache;
+namespace QuantaForge\Tests\Integration\Cache;
 
-use QuantaQuirk\Contracts\Cache\LockTimeoutException;
-use QuantaQuirk\Support\Facades\Cache;
+use QuantaForge\Contracts\Cache\LockTimeoutException;
+use QuantaForge\Support\Facades\Cache;
 
 /**
  * @requires extension memcached

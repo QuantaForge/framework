@@ -1,8 +1,8 @@
 <?php
 
-namespace QuantaQuirk\Tests\Support;
+namespace QuantaForge\Tests\Support;
 
-use QuantaQuirk\Support\Lottery;
+use QuantaForge\Support\Lottery;
 use PHPUnit\Framework\TestCase;
 use RuntimeException;
 

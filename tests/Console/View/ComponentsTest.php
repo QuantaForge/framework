@@ -1,9 +1,9 @@
 <?php
 
-namespace QuantaQuirk\Tests\Console\View;
+namespace QuantaForge\Tests\Console\View;
 
-use QuantaQuirk\Console\OutputStyle;
-use QuantaQuirk\Console\View\Components;
+use QuantaForge\Console\OutputStyle;
+use QuantaForge\Console\View\Components;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Output\BufferedOutput;

@@ -1,12 +1,12 @@
 <?php
 
-namespace QuantaQuirk\Tests\Console;
+namespace QuantaForge\Tests\Console;
 
-use QuantaQuirk\Console\CacheCommandMutex;
-use QuantaQuirk\Console\Command;
-use QuantaQuirk\Contracts\Cache\Factory;
-use QuantaQuirk\Contracts\Cache\LockProvider;
-use QuantaQuirk\Contracts\Cache\Repository;
+use QuantaForge\Console\CacheCommandMutex;
+use QuantaForge\Console\Command;
+use QuantaForge\Contracts\Cache\Factory;
+use QuantaForge\Contracts\Cache\LockProvider;
+use QuantaForge\Contracts\Cache\Repository;
 use Mockery as m;
 use Mockery\MockInterface;
 use PHPUnit\Framework\TestCase;
@@ -14,22 +14,22 @@ use PHPUnit\Framework\TestCase;
 class CacheCommandMutexTest extends TestCase
 {
     /**
-     * @var \QuantaQuirk\Console\CacheCommandMutex
+     * @var \QuantaForge\Console\CacheCommandMutex
      */
     protected $mutex;
 
     /**
-     * @var \QuantaQuirk\Console\Command
+     * @var \QuantaForge\Console\Command
      */
     protected $command;
 
     /**
-     * @var \QuantaQuirk\Contracts\Cache\Factory
+     * @var \QuantaForge\Contracts\Cache\Factory
      */
     protected $cacheFactory;
 
     /**
-     * @var \QuantaQuirk\Contracts\Cache\Repository
+     * @var \QuantaForge\Contracts\Cache\Repository
      */
     protected $cacheRepository;
 

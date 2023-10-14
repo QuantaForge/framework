@@ -1,6 +1,6 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Generators;
+namespace QuantaForge\Tests\Integration\Generators;
 
 class TestMakeCommandTest extends TestCase
 {
@@ -16,8 +16,8 @@ class TestMakeCommandTest extends TestCase
 
         $this->assertFileContains([
             'namespace Tests\Feature;',
-            'use QuantaQuirk\Foundation\Testing\RefreshDatabase;',
-            'use QuantaQuirk\Foundation\Testing\WithFaker;',
+            'use QuantaForge\Foundation\Testing\RefreshDatabase;',
+            'use QuantaForge\Foundation\Testing\WithFaker;',
             'use Tests\TestCase;',
             'class FooTest extends TestCase',
         ], 'tests/Feature/FooTest.php');

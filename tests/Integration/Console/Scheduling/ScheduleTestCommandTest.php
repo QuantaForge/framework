@@ -1,12 +1,12 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Console\Scheduling;
+namespace QuantaForge\Tests\Integration\Console\Scheduling;
 
-use QuantaQuirk\Console\Application;
-use QuantaQuirk\Console\Command;
-use QuantaQuirk\Console\Scheduling\Schedule;
-use QuantaQuirk\Console\Scheduling\ScheduleTestCommand;
-use QuantaQuirk\Support\Carbon;
+use QuantaForge\Console\Application;
+use QuantaForge\Console\Command;
+use QuantaForge\Console\Scheduling\Schedule;
+use QuantaForge\Console\Scheduling\ScheduleTestCommand;
+use QuantaForge\Support\Carbon;
 use Orchestra\Testbench\TestCase;
 
 class ScheduleTestCommandTest extends TestCase

@@ -1,14 +1,14 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Database;
+namespace QuantaForge\Tests\Integration\Database;
 
-use QuantaQuirk\Database\Eloquent\Collection as DatabaseCollection;
-use QuantaQuirk\Database\Eloquent\Model;
-use QuantaQuirk\Database\Eloquent\Relations\MorphPivot;
-use QuantaQuirk\Database\Eloquent\Relations\Pivot;
-use QuantaQuirk\Database\Schema\Blueprint;
-use QuantaQuirk\Queue\SerializesModels;
-use QuantaQuirk\Support\Facades\Schema;
+use QuantaForge\Database\Eloquent\Collection as DatabaseCollection;
+use QuantaForge\Database\Eloquent\Model;
+use QuantaForge\Database\Eloquent\Relations\MorphPivot;
+use QuantaForge\Database\Eloquent\Relations\Pivot;
+use QuantaForge\Database\Schema\Blueprint;
+use QuantaForge\Queue\SerializesModels;
+use QuantaForge\Support\Facades\Schema;
 
 class EloquentPivotSerializationTest extends DatabaseTestCase
 {
@@ -46,7 +46,7 @@ class EloquentPivotSerializationTest extends DatabaseTestCase
 
     public function testPivotCanBeSerializedAndRestored()
     {
-        $user = PivotSerializationTestUser::forceCreate(['email' => 'taylor@quantaquirk.com']);
+        $user = PivotSerializationTestUser::forceCreate(['email' => 'taylor@quantaforge.com']);
         $project = PivotSerializationTestProject::forceCreate(['name' => 'Test Project']);
         $project->collaborators()->attach($user);
 
@@ -81,8 +81,8 @@ class EloquentPivotSerializationTest extends DatabaseTestCase
 
     public function testCollectionOfPivotsCanBeSerializedAndRestored()
     {
-        $user = PivotSerializationTestUser::forceCreate(['email' => 'taylor@quantaquirk.com']);
-        $user2 = PivotSerializationTestUser::forceCreate(['email' => 'mohamed@quantaquirk.com']);
+        $user = PivotSerializationTestUser::forceCreate(['email' => 'taylor@quantaforge.com']);
+        $user2 = PivotSerializationTestUser::forceCreate(['email' => 'mohamed@quantaforge.com']);
         $project = PivotSerializationTestProject::forceCreate(['name' => 'Test Project']);
 
         $project->collaborators()->attach($user);

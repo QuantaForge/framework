@@ -1,12 +1,12 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Queue;
+namespace QuantaForge\Tests\Integration\Queue;
 
-use QuantaQuirk\Bus\Queueable;
-use QuantaQuirk\Contracts\Queue\ShouldQueue;
-use QuantaQuirk\Database\DatabaseTransactionsManager;
-use QuantaQuirk\Foundation\Bus\Dispatchable;
-use QuantaQuirk\Support\Facades\Bus;
+use QuantaForge\Bus\Queueable;
+use QuantaForge\Contracts\Queue\ShouldQueue;
+use QuantaForge\Database\DatabaseTransactionsManager;
+use QuantaForge\Foundation\Bus\Dispatchable;
+use QuantaForge\Support\Facades\Bus;
 use Mockery as m;
 use Orchestra\Testbench\TestCase;
 use Throwable;

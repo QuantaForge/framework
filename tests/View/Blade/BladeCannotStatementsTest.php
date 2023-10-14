@@ -1,6 +1,6 @@
 <?php
 
-namespace QuantaQuirk\Tests\View\Blade;
+namespace QuantaForge\Tests\View\Blade;
 
 class BladeCannotStatementsTest extends AbstractBladeTestCase
 {
@@ -11,9 +11,9 @@ breeze
 @elsecannot(\'delete\', [$post])
 sneeze
 @endcannot';
-        $expected = '<?php if (app(\\QuantaQuirk\\Contracts\\Auth\\Access\\Gate::class)->denies(\'update\', [$post])): ?>
+        $expected = '<?php if (app(\\QuantaForge\\Contracts\\Auth\\Access\\Gate::class)->denies(\'update\', [$post])): ?>
 breeze
-<?php elseif (app(\\QuantaQuirk\\Contracts\\Auth\\Access\\Gate::class)->denies(\'delete\', [$post])): ?>
+<?php elseif (app(\\QuantaForge\\Contracts\\Auth\\Access\\Gate::class)->denies(\'delete\', [$post])): ?>
 sneeze
 <?php endif; ?>';
         $this->assertEquals($expected, $this->compiler->compileString($string));

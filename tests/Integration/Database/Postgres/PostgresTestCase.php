@@ -1,8 +1,8 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Database\Postgres;
+namespace QuantaForge\Tests\Integration\Database\Postgres;
 
-use QuantaQuirk\Tests\Integration\Database\DatabaseTestCase;
+use QuantaForge\Tests\Integration\Database\DatabaseTestCase;
 
 abstract class PostgresTestCase extends DatabaseTestCase
 {

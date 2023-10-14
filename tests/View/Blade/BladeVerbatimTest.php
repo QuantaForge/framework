@@ -1,6 +1,6 @@
 <?php
 
-namespace QuantaQuirk\Tests\View\Blade;
+namespace QuantaForge\Tests\View\Blade;
 
 class BladeVerbatimTest extends AbstractBladeTestCase
 {
@@ -70,7 +70,7 @@ class BladeVerbatimTest extends AbstractBladeTestCase
     <?php echo e($third); ?>
 
 <?php endif; ?>
-<?php echo $__env->make("users", \QuantaQuirk\Support\Arr::except(get_defined_vars(), [\'__data\', \'__path\']))->render(); ?>
+<?php echo $__env->make("users", \QuantaForge\Support\Arr::except(get_defined_vars(), [\'__data\', \'__path\']))->render(); ?>
 
     {{ $fourth }} @include("test")
 

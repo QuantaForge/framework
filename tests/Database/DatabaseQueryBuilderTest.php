@@ -1,28 +1,28 @@
 <?php
 
-namespace QuantaQuirk\Tests\Database;
+namespace QuantaForge\Tests\Database;
 
 use BadMethodCallException;
 use Closure;
 use DateTime;
-use QuantaQuirk\Contracts\Database\Query\ConditionExpression;
-use QuantaQuirk\Database\ConnectionInterface;
-use QuantaQuirk\Database\Eloquent\Builder as EloquentBuilder;
-use QuantaQuirk\Database\Query\Builder;
-use QuantaQuirk\Database\Query\Expression as Raw;
-use QuantaQuirk\Database\Query\Grammars\Grammar;
-use QuantaQuirk\Database\Query\Grammars\MySqlGrammar;
-use QuantaQuirk\Database\Query\Grammars\PostgresGrammar;
-use QuantaQuirk\Database\Query\Grammars\SQLiteGrammar;
-use QuantaQuirk\Database\Query\Grammars\SqlServerGrammar;
-use QuantaQuirk\Database\Query\JoinClause;
-use QuantaQuirk\Database\Query\Processors\MySqlProcessor;
-use QuantaQuirk\Database\Query\Processors\PostgresProcessor;
-use QuantaQuirk\Database\Query\Processors\Processor;
-use QuantaQuirk\Pagination\AbstractPaginator as Paginator;
-use QuantaQuirk\Pagination\Cursor;
-use QuantaQuirk\Pagination\CursorPaginator;
-use QuantaQuirk\Pagination\LengthAwarePaginator;
+use QuantaForge\Contracts\Database\Query\ConditionExpression;
+use QuantaForge\Database\ConnectionInterface;
+use QuantaForge\Database\Eloquent\Builder as EloquentBuilder;
+use QuantaForge\Database\Query\Builder;
+use QuantaForge\Database\Query\Expression as Raw;
+use QuantaForge\Database\Query\Grammars\Grammar;
+use QuantaForge\Database\Query\Grammars\MySqlGrammar;
+use QuantaForge\Database\Query\Grammars\PostgresGrammar;
+use QuantaForge\Database\Query\Grammars\SQLiteGrammar;
+use QuantaForge\Database\Query\Grammars\SqlServerGrammar;
+use QuantaForge\Database\Query\JoinClause;
+use QuantaForge\Database\Query\Processors\MySqlProcessor;
+use QuantaForge\Database\Query\Processors\PostgresProcessor;
+use QuantaForge\Database\Query\Processors\Processor;
+use QuantaForge\Pagination\AbstractPaginator as Paginator;
+use QuantaForge\Pagination\Cursor;
+use QuantaForge\Pagination\CursorPaginator;
+use QuantaForge\Pagination\LengthAwarePaginator;
 use InvalidArgumentException;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
@@ -1840,7 +1840,7 @@ class DatabaseQueryBuilderTest extends TestCase
         $builder->select('*')->from('users')->having(
             new class() implements ConditionExpression
             {
-                public function getValue(\QuantaQuirk\Database\Grammar $grammar)
+                public function getValue(\QuantaForge\Database\Grammar $grammar)
                 {
                     return '1 = 1';
                 }
@@ -2969,7 +2969,7 @@ class DatabaseQueryBuilderTest extends TestCase
         $builder = $this->getMySqlBuilder();
         $builder->getConnection()
             ->shouldReceive('getConfig')->with('use_upsert_alias')->andReturn(true)
-            ->shouldReceive('affectingStatement')->once()->with('insert into `users` (`email`, `name`) values (?, ?), (?, ?) as quantaquirk_upsert_alias on duplicate key update `email` = `quantaquirk_upsert_alias`.`email`, `name` = `quantaquirk_upsert_alias`.`name`', ['foo', 'bar', 'foo2', 'bar2'])->andReturn(2);
+            ->shouldReceive('affectingStatement')->once()->with('insert into `users` (`email`, `name`) values (?, ?), (?, ?) as quantaforge_upsert_alias on duplicate key update `email` = `quantaforge_upsert_alias`.`email`, `name` = `quantaforge_upsert_alias`.`name`', ['foo', 'bar', 'foo2', 'bar2'])->andReturn(2);
         $result = $builder->from('users')->upsert([['email' => 'foo', 'name' => 'bar'], ['name' => 'bar2', 'email' => 'foo2']], 'email');
         $this->assertEquals(2, $result);
 
@@ -2984,7 +2984,7 @@ class DatabaseQueryBuilderTest extends TestCase
         $this->assertEquals(2, $result);
 
         $builder = $this->getSqlServerBuilder();
-        $builder->getConnection()->shouldReceive('affectingStatement')->once()->with('merge [users] using (values (?, ?), (?, ?)) [quantaquirk_source] ([email], [name]) on [quantaquirk_source].[email] = [users].[email] when matched then update set [email] = [quantaquirk_source].[email], [name] = [quantaquirk_source].[name] when not matched then insert ([email], [name]) values ([email], [name]);', ['foo', 'bar', 'foo2', 'bar2'])->andReturn(2);
+        $builder->getConnection()->shouldReceive('affectingStatement')->once()->with('merge [users] using (values (?, ?), (?, ?)) [quantaforge_source] ([email], [name]) on [quantaforge_source].[email] = [users].[email] when matched then update set [email] = [quantaforge_source].[email], [name] = [quantaforge_source].[name] when not matched then insert ([email], [name]) values ([email], [name]);', ['foo', 'bar', 'foo2', 'bar2'])->andReturn(2);
         $result = $builder->from('users')->upsert([['email' => 'foo', 'name' => 'bar'], ['name' => 'bar2', 'email' => 'foo2']], 'email');
         $this->assertEquals(2, $result);
     }
@@ -3001,7 +3001,7 @@ class DatabaseQueryBuilderTest extends TestCase
         $builder = $this->getMySqlBuilder();
         $builder->getConnection()
             ->shouldReceive('getConfig')->with('use_upsert_alias')->andReturn(true)
-            ->shouldReceive('affectingStatement')->once()->with('insert into `users` (`email`, `name`) values (?, ?), (?, ?) as quantaquirk_upsert_alias on duplicate key update `name` = `quantaquirk_upsert_alias`.`name`', ['foo', 'bar', 'foo2', 'bar2'])->andReturn(2);
+            ->shouldReceive('affectingStatement')->once()->with('insert into `users` (`email`, `name`) values (?, ?), (?, ?) as quantaforge_upsert_alias on duplicate key update `name` = `quantaforge_upsert_alias`.`name`', ['foo', 'bar', 'foo2', 'bar2'])->andReturn(2);
         $result = $builder->from('users')->upsert([['email' => 'foo', 'name' => 'bar'], ['name' => 'bar2', 'email' => 'foo2']], 'email', ['name']);
         $this->assertEquals(2, $result);
 
@@ -3016,7 +3016,7 @@ class DatabaseQueryBuilderTest extends TestCase
         $this->assertEquals(2, $result);
 
         $builder = $this->getSqlServerBuilder();
-        $builder->getConnection()->shouldReceive('affectingStatement')->once()->with('merge [users] using (values (?, ?), (?, ?)) [quantaquirk_source] ([email], [name]) on [quantaquirk_source].[email] = [users].[email] when matched then update set [name] = [quantaquirk_source].[name] when not matched then insert ([email], [name]) values ([email], [name]);', ['foo', 'bar', 'foo2', 'bar2'])->andReturn(2);
+        $builder->getConnection()->shouldReceive('affectingStatement')->once()->with('merge [users] using (values (?, ?), (?, ?)) [quantaforge_source] ([email], [name]) on [quantaforge_source].[email] = [users].[email] when matched then update set [name] = [quantaforge_source].[name] when not matched then insert ([email], [name]) values ([email], [name]);', ['foo', 'bar', 'foo2', 'bar2'])->andReturn(2);
         $result = $builder->from('users')->upsert([['email' => 'foo', 'name' => 'bar'], ['name' => 'bar2', 'email' => 'foo2']], 'email', ['name']);
         $this->assertEquals(2, $result);
     }
@@ -3424,7 +3424,7 @@ class DatabaseQueryBuilderTest extends TestCase
         $builder = $this->getMySqlBuilder();
         $builder->getConnection()
             ->shouldReceive('getConfig')->with('use_upsert_alias')->andReturn(true)
-            ->shouldReceive('affectingStatement')->once()->with('insert into `users` (`email`) values (?) as quantaquirk_upsert_alias on duplicate key update `email` = `quantaquirk_upsert_alias`.`email`', ['foo']);
+            ->shouldReceive('affectingStatement')->once()->with('insert into `users` (`email`) values (?) as quantaforge_upsert_alias on duplicate key update `email` = `quantaforge_upsert_alias`.`email`', ['foo']);
         $builder->beforeQuery(function ($builder) {
             $builder->from('users');
         });
@@ -3533,7 +3533,7 @@ class DatabaseQueryBuilderTest extends TestCase
                     ->with(
                         'update `users` set `options` = ?, `meta` = json_set(`meta`, \'$."tags"\', cast(? as json)), `group_id` = 45, `created_at` = ? where `active` = ?',
                         [
-                            json_encode(['2fa' => false, 'presets' => ['quantaquirk', 'vue']]),
+                            json_encode(['2fa' => false, 'presets' => ['quantaforge', 'vue']]),
                             json_encode(['white', 'large']),
                             new DateTime('2019-08-06'),
                             1,
@@ -3542,7 +3542,7 @@ class DatabaseQueryBuilderTest extends TestCase
 
         $builder = new Builder($connection, $grammar, $processor);
         $builder->from('users')->where('active', 1)->update([
-            'options' => ['2fa' => false, 'presets' => ['quantaquirk', 'vue']],
+            'options' => ['2fa' => false, 'presets' => ['quantaforge', 'vue']],
             'meta->tags' => ['white', 'large'],
             'group_id' => new Raw('45'),
             'created_at' => new DateTime('2019-08-06'),
@@ -3623,13 +3623,13 @@ class DatabaseQueryBuilderTest extends TestCase
         $builder = $this->getPostgresBuilder();
         $builder->getConnection()->shouldReceive('update')
             ->with('update "users" set "options" = ?, "meta" = jsonb_set("meta"::jsonb, \'{"tags"}\', ?), "group_id" = 45, "created_at" = ?', [
-                json_encode(['2fa' => false, 'presets' => ['quantaquirk', 'vue']]),
+                json_encode(['2fa' => false, 'presets' => ['quantaforge', 'vue']]),
                 json_encode(['white', 'large']),
                 new DateTime('2019-08-06'),
             ]);
 
         $builder->from('users')->update([
-            'options' => ['2fa' => false, 'presets' => ['quantaquirk', 'vue']],
+            'options' => ['2fa' => false, 'presets' => ['quantaforge', 'vue']],
             'meta->tags' => ['white', 'large'],
             'group_id' => new Raw('45'),
             'created_at' => new DateTime('2019-08-06'),
@@ -3657,12 +3657,12 @@ class DatabaseQueryBuilderTest extends TestCase
 
         $builder->getConnection()->shouldReceive('update')
             ->with('update "users" set "options" = ?, "group_id" = 45, "created_at" = ?', [
-                json_encode(['2fa' => false, 'presets' => ['quantaquirk', 'vue']]),
+                json_encode(['2fa' => false, 'presets' => ['quantaforge', 'vue']]),
                 new DateTime('2019-08-06'),
             ]);
 
         $builder->from('users')->update([
-            'options' => ['2fa' => false, 'presets' => ['quantaquirk', 'vue']],
+            'options' => ['2fa' => false, 'presets' => ['quantaforge', 'vue']],
             'group_id' => new Raw('45'),
             'created_at' => new DateTime('2019-08-06'),
         ]);
@@ -3674,13 +3674,13 @@ class DatabaseQueryBuilderTest extends TestCase
         $builder->getConnection()->shouldReceive('update')
             ->with('update "users" set "group_id" = 45, "created_at" = ?, "options" = json_patch(ifnull("options", json(\'{}\')), json(?))', [
                 new DateTime('2019-08-06'),
-                json_encode(['name' => 'Taylor', 'security' => ['2fa' => false, 'presets' => ['quantaquirk', 'vue']], 'sharing' => ['twitter' => 'username']]),
+                json_encode(['name' => 'Taylor', 'security' => ['2fa' => false, 'presets' => ['quantaforge', 'vue']], 'sharing' => ['twitter' => 'username']]),
             ]);
 
         $builder->from('users')->update([
             'options->name' => 'Taylor',
             'group_id' => new Raw('45'),
-            'options->security' => ['2fa' => false, 'presets' => ['quantaquirk', 'vue']],
+            'options->security' => ['2fa' => false, 'presets' => ['quantaforge', 'vue']],
             'options->sharing->twitter' => 'username',
             'created_at' => new DateTime('2019-08-06'),
         ]);
@@ -5119,7 +5119,7 @@ SQL;
         $builder->select('*')->from('orders')->where(
             new class() implements ConditionExpression
             {
-                public function getValue(\QuantaQuirk\Database\Grammar $grammar)
+                public function getValue(\QuantaForge\Database\Grammar $grammar)
                 {
                     return '1 = 1';
                 }
@@ -5764,7 +5764,7 @@ SQL;
     }
 
     /**
-     * @return \Mockery\MockInterface|\QuantaQuirk\Database\Query\Builder
+     * @return \Mockery\MockInterface|\QuantaForge\Database\Query\Builder
      */
     protected function getMockQueryBuilder()
     {

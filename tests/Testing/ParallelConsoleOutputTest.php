@@ -1,8 +1,8 @@
 <?php
 
-namespace QuantaQuirk\Tests\Testing;
+namespace QuantaForge\Tests\Testing;
 
-use QuantaQuirk\Testing\ParallelConsoleOutput;
+use QuantaForge\Testing\ParallelConsoleOutput;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Output\BufferedOutput;
 
@@ -13,7 +13,7 @@ class ParallelConsoleOutputTest extends TestCase
         $original = new BufferedOutput;
         $output = new ParallelConsoleOutput($original);
 
-        $output->write('Running phpunit in 12 processes with quantaquirk/quantaquirk.');
+        $output->write('Running phpunit in 12 processes with quantaforge/quantaforge.');
         $this->assertEmpty($original->fetch());
 
         $output->write('Configuration read from phpunit.xml.dist');

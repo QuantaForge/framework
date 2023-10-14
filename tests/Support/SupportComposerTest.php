@@ -1,9 +1,9 @@
 <?php
 
-namespace QuantaQuirk\Tests\Support;
+namespace QuantaForge\Tests\Support;
 
-use QuantaQuirk\Filesystem\Filesystem;
-use QuantaQuirk\Support\Composer;
+use QuantaForge\Filesystem\Filesystem;
+use QuantaForge\Support\Composer;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Process\Process;
@@ -50,9 +50,9 @@ class SupportComposerTest extends TestCase
 
     public function testRequirePackagesRunsTheCorrectCommand()
     {
-        $composer = $this->mockComposer(['composer', 'require', 'pestphp/pest:^2.0', 'pestphp/pest-plugin-quantaquirk:^2.0', '--dev']);
+        $composer = $this->mockComposer(['composer', 'require', 'pestphp/pest:^2.0', 'pestphp/pest-plugin-quantaforge:^2.0', '--dev']);
 
-        $composer->requirePackages(['pestphp/pest:^2.0', 'pestphp/pest-plugin-quantaquirk:^2.0'], true);
+        $composer->requirePackages(['pestphp/pest:^2.0', 'pestphp/pest-plugin-quantaforge:^2.0'], true);
     }
 
     public function testRemovePackagesRunsTheCorrectCommand()

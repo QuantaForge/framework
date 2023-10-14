@@ -1,6 +1,6 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Http\Fixtures;
+namespace QuantaForge\Tests\Integration\Http\Fixtures;
 
 use JsonSerializable;
 

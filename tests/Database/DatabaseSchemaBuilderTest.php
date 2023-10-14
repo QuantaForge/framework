@@ -1,9 +1,9 @@
 <?php
 
-namespace QuantaQuirk\Tests\Database;
+namespace QuantaForge\Tests\Database;
 
-use QuantaQuirk\Database\Connection;
-use QuantaQuirk\Database\Schema\Builder;
+use QuantaForge\Database\Connection;
+use QuantaForge\Database\Schema\Builder;
 use LogicException;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;

@@ -1,9 +1,9 @@
 <?php
 
-namespace QuantaQuirk\Tests\Foundation\Http\Middleware;
+namespace QuantaForge\Tests\Foundation\Http\Middleware;
 
-use QuantaQuirk\Foundation\Http\Middleware\TrimStrings;
-use QuantaQuirk\Http\Request;
+use QuantaForge\Foundation\Http\Middleware\TrimStrings;
+use QuantaForge\Http\Request;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request as SymfonyRequest;
 

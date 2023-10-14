@@ -1,13 +1,13 @@
 <?php
 
-namespace QuantaQuirk\Tests\Validation;
+namespace QuantaForge\Tests\Validation;
 
-use QuantaQuirk\Container\Container;
-use QuantaQuirk\Contracts\Debug\ExceptionHandler;
-use QuantaQuirk\Http\Client\ConnectionException;
-use QuantaQuirk\Http\Client\Factory as HttpFactory;
-use QuantaQuirk\Http\Client\Response;
-use QuantaQuirk\Validation\NotPwnedVerifier;
+use QuantaForge\Container\Container;
+use QuantaForge\Contracts\Debug\ExceptionHandler;
+use QuantaForge\Http\Client\ConnectionException;
+use QuantaForge\Http\Client\Factory as HttpFactory;
+use QuantaForge\Http\Client\Response;
+use QuantaForge\Validation\NotPwnedVerifier;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 

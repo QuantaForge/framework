@@ -1,12 +1,12 @@
 <?php
 
-namespace QuantaQuirk\Tests\Routing;
+namespace QuantaForge\Tests\Routing;
 
-use QuantaQuirk\Http\RedirectResponse;
-use QuantaQuirk\Http\Request;
-use QuantaQuirk\Routing\Redirector;
-use QuantaQuirk\Routing\UrlGenerator;
-use QuantaQuirk\Session\Store;
+use QuantaForge\Http\RedirectResponse;
+use QuantaForge\Http\Request;
+use QuantaForge\Routing\Redirector;
+use QuantaForge\Routing\UrlGenerator;
+use QuantaForge\Session\Store;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\HeaderBag;

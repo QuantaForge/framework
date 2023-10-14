@@ -1,10 +1,10 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Support;
+namespace QuantaForge\Tests\Integration\Support;
 
-use QuantaQuirk\Support\Collection;
-use QuantaQuirk\Support\Facades\Auth;
-use QuantaQuirk\Support\Facades\Facade;
+use QuantaForge\Support\Collection;
+use QuantaForge\Support\Facades\Auth;
+use QuantaForge\Support\Facades\Facade;
 use Orchestra\Testbench\TestCase;
 use ReflectionClass;
 
@@ -14,33 +14,33 @@ class FacadesTest extends TestCase
     {
         parent::tearDown();
 
-        unset($_SERVER['__quantaquirk.authResolved']);
+        unset($_SERVER['__quantaforge.authResolved']);
     }
 
     public function testFacadeResolvedCanResolveCallback()
     {
         Auth::resolved(function () {
-            $_SERVER['__quantaquirk.authResolved'] = true;
+            $_SERVER['__quantaforge.authResolved'] = true;
         });
 
-        $this->assertFalse(isset($_SERVER['__quantaquirk.authResolved']));
+        $this->assertFalse(isset($_SERVER['__quantaforge.authResolved']));
 
         $this->app->make('auth');
 
-        $this->assertTrue(isset($_SERVER['__quantaquirk.authResolved']));
+        $this->assertTrue(isset($_SERVER['__quantaforge.authResolved']));
     }
 
     public function testFacadeResolvedCanResolveCallbackAfterAccessRootHasBeenResolved()
     {
         $this->app->make('auth');
 
-        $this->assertFalse(isset($_SERVER['__quantaquirk.authResolved']));
+        $this->assertFalse(isset($_SERVER['__quantaforge.authResolved']));
 
         Auth::resolved(function () {
-            $_SERVER['__quantaquirk.authResolved'] = true;
+            $_SERVER['__quantaforge.authResolved'] = true;
         });
 
-        $this->assertTrue(isset($_SERVER['__quantaquirk.authResolved']));
+        $this->assertTrue(isset($_SERVER['__quantaforge.authResolved']));
     }
 
     public function testDefaultAliases()

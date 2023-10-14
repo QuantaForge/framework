@@ -1,11 +1,11 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Database\Postgres;
+namespace QuantaForge\Tests\Integration\Database\Postgres;
 
-use QuantaQuirk\Database\Eloquent\Model;
-use QuantaQuirk\Database\Schema\Blueprint;
-use QuantaQuirk\Support\Facades\DB;
-use QuantaQuirk\Support\Facades\Schema;
+use QuantaForge\Database\Eloquent\Model;
+use QuantaForge\Database\Schema\Blueprint;
+use QuantaForge\Support\Facades\DB;
+use QuantaForge\Support\Facades\Schema;
 
 class DatabaseEloquentPostgresIntegrationTest extends PostgresTestCase
 {
@@ -53,7 +53,7 @@ class DatabaseEloquentPostgresIntegrationTest extends PostgresTestCase
 
         $user4 = DatabaseEloquentPostgresIntegrationUser::createOrFirst(
             ['name' => 'Dries Vints'],
-            ['name' => 'Nuno Maduro', 'email' => 'nuno@quantaquirk.com']
+            ['name' => 'Nuno Maduro', 'email' => 'nuno@quantaforge.com']
         );
 
         $this->assertSame('Nuno Maduro', $user4->name);
@@ -61,16 +61,16 @@ class DatabaseEloquentPostgresIntegrationTest extends PostgresTestCase
 
     public function testCreateOrFirstWithinTransaction()
     {
-        $user1 = DatabaseEloquentPostgresIntegrationUser::create(['email' => 'taylor@quantaquirk.com']);
+        $user1 = DatabaseEloquentPostgresIntegrationUser::create(['email' => 'taylor@quantaforge.com']);
 
         DB::transaction(function () use ($user1) {
             $user2 = DatabaseEloquentPostgresIntegrationUser::createOrFirst(
-                ['email' => 'taylor@quantaquirk.com'],
+                ['email' => 'taylor@quantaforge.com'],
                 ['name' => 'Taylor Otwell']
             );
 
             $this->assertEquals($user1->id, $user2->id);
-            $this->assertSame('taylor@quantaquirk.com', $user2->email);
+            $this->assertSame('taylor@quantaforge.com', $user2->email);
             $this->assertNull($user2->name);
         });
     }

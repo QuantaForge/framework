@@ -1,15 +1,15 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Foundation;
+namespace QuantaForge\Tests\Integration\Foundation;
 
-use QuantaQuirk\Foundation\Events\DiscoverEvents;
-use QuantaQuirk\Support\Str;
-use QuantaQuirk\Tests\Integration\Foundation\Fixtures\EventDiscovery\Events\EventOne;
-use QuantaQuirk\Tests\Integration\Foundation\Fixtures\EventDiscovery\Events\EventTwo;
-use QuantaQuirk\Tests\Integration\Foundation\Fixtures\EventDiscovery\Listeners\AbstractListener;
-use QuantaQuirk\Tests\Integration\Foundation\Fixtures\EventDiscovery\Listeners\Listener;
-use QuantaQuirk\Tests\Integration\Foundation\Fixtures\EventDiscovery\Listeners\ListenerInterface;
-use QuantaQuirk\Tests\Integration\Foundation\Fixtures\EventDiscovery\UnionListeners\UnionListener;
+use QuantaForge\Foundation\Events\DiscoverEvents;
+use QuantaForge\Support\Str;
+use QuantaForge\Tests\Integration\Foundation\Fixtures\EventDiscovery\Events\EventOne;
+use QuantaForge\Tests\Integration\Foundation\Fixtures\EventDiscovery\Events\EventTwo;
+use QuantaForge\Tests\Integration\Foundation\Fixtures\EventDiscovery\Listeners\AbstractListener;
+use QuantaForge\Tests\Integration\Foundation\Fixtures\EventDiscovery\Listeners\Listener;
+use QuantaForge\Tests\Integration\Foundation\Fixtures\EventDiscovery\Listeners\ListenerInterface;
+use QuantaForge\Tests\Integration\Foundation\Fixtures\EventDiscovery\UnionListeners\UnionListener;
 use Orchestra\Testbench\TestCase;
 use SplFileInfo;
 
@@ -65,7 +65,7 @@ class DiscoverEventsTest extends TestCase
                 ->before('.php')
                 ->replace(DIRECTORY_SEPARATOR, '\\')
                 ->ucfirst()
-                ->prepend('QuantaQuirk\\')
+                ->prepend('QuantaForge\\')
                 ->toString();
         });
 

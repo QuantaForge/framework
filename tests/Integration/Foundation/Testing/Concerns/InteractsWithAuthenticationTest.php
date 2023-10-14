@@ -1,13 +1,13 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Foundation\Testing\Concerns;
+namespace QuantaForge\Tests\Integration\Foundation\Testing\Concerns;
 
-use QuantaQuirk\Database\Schema\Blueprint;
-use QuantaQuirk\Foundation\Auth\User as Authenticatable;
-use QuantaQuirk\Http\Request;
-use QuantaQuirk\Support\Facades\Auth;
-use QuantaQuirk\Support\Facades\Route;
-use QuantaQuirk\Support\Facades\Schema;
+use QuantaForge\Database\Schema\Blueprint;
+use QuantaForge\Foundation\Auth\User as Authenticatable;
+use QuantaForge\Http\Request;
+use QuantaForge\Support\Facades\Auth;
+use QuantaForge\Support\Facades\Route;
+use QuantaForge\Support\Facades\Schema;
 use Orchestra\Testbench\TestCase;
 
 class InteractsWithAuthenticationTest extends TestCase
@@ -38,7 +38,7 @@ class InteractsWithAuthenticationTest extends TestCase
 
         AuthenticationTestUser::create([
             'username' => 'taylorotwell',
-            'email' => 'taylorotwell@quantaquirk.com',
+            'email' => 'taylorotwell@quantaforge.com',
             'password' => bcrypt('password'),
             'is_active' => true,
         ]);

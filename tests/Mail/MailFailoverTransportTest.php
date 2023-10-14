@@ -1,6 +1,6 @@
 <?php
 
-namespace QuantaQuirk\Tests\Mail;
+namespace QuantaForge\Tests\Mail;
 
 use Orchestra\Testbench\TestCase;
 use Symfony\Component\Mailer\Transport\FailoverTransport;
@@ -34,7 +34,7 @@ class MailFailoverTransportTest extends TestCase
         $this->assertInstanceOf(FailoverTransport::class, $transport);
     }
 
-    public function testGetFailoverTransportWithQuantaQuirk6StyleMailConfiguration()
+    public function testGetFailoverTransportWithQuantaForge6StyleMailConfiguration()
     {
         $this->app['config']->set('mail.driver', 'failover');
 

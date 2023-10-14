@@ -1,23 +1,23 @@
 <?php
 
-namespace QuantaQuirk\Tests\Cache;
+namespace QuantaForge\Tests\Cache;
 
 use ArrayIterator;
 use BadMethodCallException;
 use DateInterval;
 use DateTime;
 use DateTimeImmutable;
-use QuantaQuirk\Cache\ArrayStore;
-use QuantaQuirk\Cache\FileStore;
-use QuantaQuirk\Cache\RedisStore;
-use QuantaQuirk\Cache\Repository;
-use QuantaQuirk\Cache\TaggableStore;
-use QuantaQuirk\Cache\TaggedCache;
-use QuantaQuirk\Container\Container;
-use QuantaQuirk\Contracts\Cache\Store;
-use QuantaQuirk\Events\Dispatcher;
-use QuantaQuirk\Filesystem\Filesystem;
-use QuantaQuirk\Support\Carbon;
+use QuantaForge\Cache\ArrayStore;
+use QuantaForge\Cache\FileStore;
+use QuantaForge\Cache\RedisStore;
+use QuantaForge\Cache\Repository;
+use QuantaForge\Cache\TaggableStore;
+use QuantaForge\Cache\TaggedCache;
+use QuantaForge\Container\Container;
+use QuantaForge\Contracts\Cache\Store;
+use QuantaForge\Events\Dispatcher;
+use QuantaForge\Filesystem\Filesystem;
+use QuantaForge\Support\Carbon;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 

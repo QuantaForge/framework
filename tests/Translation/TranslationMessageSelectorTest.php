@@ -1,8 +1,8 @@
 <?php
 
-namespace QuantaQuirk\Tests\Translation;
+namespace QuantaForge\Tests\Translation;
 
-use QuantaQuirk\Translation\MessageSelector;
+use QuantaForge\Translation\MessageSelector;
 use PHPUnit\Framework\TestCase;
 
 class TranslationMessageSelectorTest extends TestCase

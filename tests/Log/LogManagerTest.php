@@ -1,9 +1,9 @@
 <?php
 
-namespace QuantaQuirk\Tests\Log;
+namespace QuantaForge\Tests\Log;
 
-use QuantaQuirk\Log\Logger;
-use QuantaQuirk\Log\LogManager;
+use QuantaForge\Log\Logger;
+use QuantaForge\Log\LogManager;
 use Monolog\Formatter\HtmlFormatter;
 use Monolog\Formatter\LineFormatter;
 use Monolog\Formatter\NormalizerFormatter;
@@ -285,7 +285,7 @@ class LogManagerTest extends TestCase
         $config->set('logging.channels.defaultsingle', [
             'driver' => 'single',
             'name' => 'ds',
-            'path' => storage_path('logs/quantaquirk.log'),
+            'path' => storage_path('logs/quantaforge.log'),
             'replace_placeholders' => true,
         ]);
 
@@ -303,7 +303,7 @@ class LogManagerTest extends TestCase
         $config->set('logging.channels.formattedsingle', [
             'driver' => 'single',
             'name' => 'fs',
-            'path' => storage_path('logs/quantaquirk.log'),
+            'path' => storage_path('logs/quantaforge.log'),
             'formatter' => HtmlFormatter::class,
             'formatter_with' => [
                 'dateFormat' => 'Y/m/d--test',
@@ -330,7 +330,7 @@ class LogManagerTest extends TestCase
         $config->set('logging.channels.defaultdaily', [
             'driver' => 'daily',
             'name' => 'dd',
-            'path' => storage_path('logs/quantaquirk.log'),
+            'path' => storage_path('logs/quantaforge.log'),
             'replace_placeholders' => true,
         ]);
 
@@ -348,7 +348,7 @@ class LogManagerTest extends TestCase
         $config->set('logging.channels.formatteddaily', [
             'driver' => 'daily',
             'name' => 'fd',
-            'path' => storage_path('logs/quantaquirk.log'),
+            'path' => storage_path('logs/quantaforge.log'),
             'formatter' => HtmlFormatter::class,
             'formatter_with' => [
                 'dateFormat' => 'Y/m/d--test',

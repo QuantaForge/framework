@@ -1,11 +1,11 @@
 <?php
 
-namespace QuantaQuirk\Tests\Process;
+namespace QuantaForge\Tests\Process;
 
-use QuantaQuirk\Contracts\Process\ProcessResult;
-use QuantaQuirk\Process\Exceptions\ProcessFailedException;
-use QuantaQuirk\Process\Exceptions\ProcessTimedOutException;
-use QuantaQuirk\Process\Factory;
+use QuantaForge\Contracts\Process\ProcessResult;
+use QuantaForge\Process\Exceptions\ProcessFailedException;
+use QuantaForge\Process\Exceptions\ProcessTimedOutException;
+use QuantaForge\Process\Factory;
 use OutOfBoundsException;
 use PHPUnit\Framework\TestCase;
 use RuntimeException;

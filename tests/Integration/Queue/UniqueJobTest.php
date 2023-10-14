@@ -1,17 +1,17 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Queue;
+namespace QuantaForge\Tests\Integration\Queue;
 
 use Exception;
-use QuantaQuirk\Bus\Queueable;
-use QuantaQuirk\Contracts\Cache\Repository as Cache;
-use QuantaQuirk\Contracts\Queue\ShouldBeUnique;
-use QuantaQuirk\Contracts\Queue\ShouldBeUniqueUntilProcessing;
-use QuantaQuirk\Contracts\Queue\ShouldQueue;
-use QuantaQuirk\Database\Schema\Blueprint;
-use QuantaQuirk\Foundation\Bus\Dispatchable;
-use QuantaQuirk\Queue\InteractsWithQueue;
-use QuantaQuirk\Support\Facades\Bus;
+use QuantaForge\Bus\Queueable;
+use QuantaForge\Contracts\Cache\Repository as Cache;
+use QuantaForge\Contracts\Queue\ShouldBeUnique;
+use QuantaForge\Contracts\Queue\ShouldBeUniqueUntilProcessing;
+use QuantaForge\Contracts\Queue\ShouldQueue;
+use QuantaForge\Database\Schema\Blueprint;
+use QuantaForge\Foundation\Bus\Dispatchable;
+use QuantaForge\Queue\InteractsWithQueue;
+use QuantaForge\Support\Facades\Bus;
 use Orchestra\Testbench\TestCase;
 
 class UniqueJobTest extends TestCase
@@ -150,7 +150,7 @@ class UniqueJobTest extends TestCase
 
     protected function getLockKey($job)
     {
-        return 'quantaquirk_unique_job:'.(is_string($job) ? $job : get_class($job));
+        return 'quantaforge_unique_job:'.(is_string($job) ? $job : get_class($job));
     }
 }
 

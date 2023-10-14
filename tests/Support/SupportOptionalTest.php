@@ -1,8 +1,8 @@
 <?php
 
-namespace QuantaQuirk\Tests\Support;
+namespace QuantaForge\Tests\Support;
 
-use QuantaQuirk\Support\Optional;
+use QuantaForge\Support\Optional;
 use PHPUnit\Framework\TestCase;
 use stdClass;
 

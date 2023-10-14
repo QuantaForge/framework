@@ -1,8 +1,8 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Routing;
+namespace QuantaForge\Tests\Integration\Routing;
 
-use QuantaQuirk\Support\Facades\Route;
+use QuantaForge\Support\Facades\Route;
 use Orchestra\Testbench\TestCase;
 
 class FallbackRouteTest extends TestCase

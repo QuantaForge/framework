@@ -1,9 +1,9 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Mail;
+namespace QuantaForge\Tests\Integration\Mail;
 
-use QuantaQuirk\Mail\Mailable;
-use QuantaQuirk\Support\Facades\View;
+use QuantaForge\Mail\Mailable;
+use QuantaForge\Support\Facades\View;
 use Orchestra\Testbench\TestCase;
 
 class RenderingMailWithLocaleTest extends TestCase

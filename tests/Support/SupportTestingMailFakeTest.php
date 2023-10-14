@@ -1,12 +1,12 @@
 <?php
 
-namespace QuantaQuirk\Tests\Support;
+namespace QuantaForge\Tests\Support;
 
-use QuantaQuirk\Contracts\Queue\ShouldQueue;
-use QuantaQuirk\Contracts\Translation\HasLocalePreference;
-use QuantaQuirk\Mail\Mailable;
-use QuantaQuirk\Mail\MailManager;
-use QuantaQuirk\Support\Testing\Fakes\MailFake;
+use QuantaForge\Contracts\Queue\ShouldQueue;
+use QuantaForge\Contracts\Translation\HasLocalePreference;
+use QuantaForge\Mail\Mailable;
+use QuantaForge\Mail\MailManager;
+use QuantaForge\Support\Testing\Fakes\MailFake;
 use Mockery as m;
 use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;
@@ -19,12 +19,12 @@ class SupportTestingMailFakeTest extends TestCase
     private $mailManager;
 
     /**
-     * @var \QuantaQuirk\Support\Testing\Fakes\MailFake
+     * @var \QuantaForge\Support\Testing\Fakes\MailFake
      */
     private $fake;
 
     /**
-     * @var \QuantaQuirk\Tests\Support\MailableStub
+     * @var \QuantaForge\Tests\Support\MailableStub
      */
     private $mailable;
 
@@ -42,10 +42,10 @@ class SupportTestingMailFakeTest extends TestCase
             $this->fake->assertSent(MailableStub::class);
             $this->fail();
         } catch (ExpectationFailedException $e) {
-            $this->assertStringContainsString('The expected [QuantaQuirk\Tests\Support\MailableStub] mailable was not sent.', $e->getMessage());
+            $this->assertStringContainsString('The expected [QuantaForge\Tests\Support\MailableStub] mailable was not sent.', $e->getMessage());
         }
 
-        $this->fake->to('taylor@quantaquirk.com')->send($this->mailable);
+        $this->fake->to('taylor@quantaforge.com')->send($this->mailable);
 
         $this->fake->assertSent(MailableStub::class);
     }
@@ -63,28 +63,28 @@ class SupportTestingMailFakeTest extends TestCase
 
     public function testAssertTo()
     {
-        $this->fake->to('taylor@quantaquirk.com')->send($this->mailable);
+        $this->fake->to('taylor@quantaforge.com')->send($this->mailable);
 
         $this->fake->assertSent(MailableStub::class, function ($mail) {
-            return $mail->hasTo('taylor@quantaquirk.com');
+            return $mail->hasTo('taylor@quantaforge.com');
         });
     }
 
     public function testAssertCc()
     {
-        $this->fake->cc('taylor@quantaquirk.com')->send($this->mailable);
+        $this->fake->cc('taylor@quantaforge.com')->send($this->mailable);
 
         $this->fake->assertSent(MailableStub::class, function ($mail) {
-            return $mail->hasCc('taylor@quantaquirk.com');
+            return $mail->hasCc('taylor@quantaforge.com');
         });
     }
 
     public function testAssertBcc()
     {
-        $this->fake->bcc('taylor@quantaquirk.com')->send($this->mailable);
+        $this->fake->bcc('taylor@quantaforge.com')->send($this->mailable);
 
         $this->fake->assertSent(MailableStub::class, function ($mail) {
-            return $mail->hasBcc('taylor@quantaquirk.com');
+            return $mail->hasBcc('taylor@quantaforge.com');
         });
     }
 
@@ -92,25 +92,25 @@ class SupportTestingMailFakeTest extends TestCase
     {
         $this->fake->assertNotSent(MailableStub::class);
 
-        $this->fake->to('taylor@quantaquirk.com')->send($this->mailable);
+        $this->fake->to('taylor@quantaforge.com')->send($this->mailable);
 
         try {
             $this->fake->assertNotSent(MailableStub::class);
             $this->fail();
         } catch (ExpectationFailedException $e) {
-            $this->assertStringContainsString('The unexpected [QuantaQuirk\Tests\Support\MailableStub] mailable was sent.', $e->getMessage());
+            $this->assertStringContainsString('The unexpected [QuantaForge\Tests\Support\MailableStub] mailable was sent.', $e->getMessage());
         }
     }
 
     public function testAssertNotSentWithClosure()
     {
         $callback = function (MailableStub $mail) {
-            return $mail->hasTo('taylor@quantaquirk.com');
+            return $mail->hasTo('taylor@quantaforge.com');
         };
 
         $this->fake->assertNotSent($callback);
 
-        $this->fake->to('taylor@quantaquirk.com')->send($this->mailable);
+        $this->fake->to('taylor@quantaforge.com')->send($this->mailable);
 
         $this->expectException(ExpectationFailedException::class);
         $this->expectExceptionMessageMatches('/The unexpected \['.preg_quote(MailableStub::class, '/').'\] mailable was sent./m');
@@ -120,14 +120,14 @@ class SupportTestingMailFakeTest extends TestCase
 
     public function testAssertSentTimes()
     {
-        $this->fake->to('taylor@quantaquirk.com')->send($this->mailable);
-        $this->fake->to('taylor@quantaquirk.com')->send($this->mailable);
+        $this->fake->to('taylor@quantaforge.com')->send($this->mailable);
+        $this->fake->to('taylor@quantaforge.com')->send($this->mailable);
 
         try {
             $this->fake->assertSent(MailableStub::class, 1);
             $this->fail();
         } catch (ExpectationFailedException $e) {
-            $this->assertStringContainsString('The expected [QuantaQuirk\Tests\Support\MailableStub] mailable was sent 2 times instead of 1 times.', $e->getMessage());
+            $this->assertStringContainsString('The expected [QuantaForge\Tests\Support\MailableStub] mailable was sent 2 times instead of 1 times.', $e->getMessage());
         }
 
         $this->fake->assertSent(MailableStub::class, 2);
@@ -135,8 +135,8 @@ class SupportTestingMailFakeTest extends TestCase
 
     public function testAssertSentCount()
     {
-        $this->fake->to('taylor@quantaquirk.com')->send($this->mailable);
-        $this->fake->to('taylor@quantaquirk.com')->send($this->mailable);
+        $this->fake->to('taylor@quantaforge.com')->send($this->mailable);
+        $this->fake->to('taylor@quantaforge.com')->send($this->mailable);
 
         try {
             $this->fake->assertSentCount(1);
@@ -154,24 +154,24 @@ class SupportTestingMailFakeTest extends TestCase
             $this->fake->assertQueued(MailableStub::class);
             $this->fail();
         } catch (ExpectationFailedException $e) {
-            $this->assertStringContainsString('The expected [QuantaQuirk\Tests\Support\MailableStub] mailable was not queued.', $e->getMessage());
+            $this->assertStringContainsString('The expected [QuantaForge\Tests\Support\MailableStub] mailable was not queued.', $e->getMessage());
         }
 
-        $this->fake->to('taylor@quantaquirk.com')->queue($this->mailable);
+        $this->fake->to('taylor@quantaforge.com')->queue($this->mailable);
 
         $this->fake->assertQueued(MailableStub::class);
     }
 
     public function testAssertQueuedTimes()
     {
-        $this->fake->to('taylor@quantaquirk.com')->queue($this->mailable);
-        $this->fake->to('taylor@quantaquirk.com')->queue($this->mailable);
+        $this->fake->to('taylor@quantaforge.com')->queue($this->mailable);
+        $this->fake->to('taylor@quantaforge.com')->queue($this->mailable);
 
         try {
             $this->fake->assertQueued(MailableStub::class, 1);
             $this->fail();
         } catch (ExpectationFailedException $e) {
-            $this->assertStringContainsString('The expected [QuantaQuirk\Tests\Support\MailableStub] mailable was queued 2 times instead of 1 times.', $e->getMessage());
+            $this->assertStringContainsString('The expected [QuantaForge\Tests\Support\MailableStub] mailable was queued 2 times instead of 1 times.', $e->getMessage());
         }
 
         $this->fake->assertQueued(MailableStub::class, 2);
@@ -179,8 +179,8 @@ class SupportTestingMailFakeTest extends TestCase
 
     public function testAssertQueuedCount()
     {
-        $this->fake->to('taylor@quantaquirk.com')->queue($this->mailable);
-        $this->fake->to('taylor@quantaquirk.com')->queue($this->mailable);
+        $this->fake->to('taylor@quantaforge.com')->queue($this->mailable);
+        $this->fake->to('taylor@quantaforge.com')->queue($this->mailable);
 
         try {
             $this->fake->assertQueuedCount(1);
@@ -194,7 +194,7 @@ class SupportTestingMailFakeTest extends TestCase
 
     public function testSendQueuesAMailableThatShouldBeQueued()
     {
-        $this->fake->to('taylor@quantaquirk.com')->send(new QueueableMailableStub);
+        $this->fake->to('taylor@quantaforge.com')->send(new QueueableMailableStub);
 
         $this->fake->assertQueued(QueueableMailableStub::class);
 
@@ -202,7 +202,7 @@ class SupportTestingMailFakeTest extends TestCase
             $this->fake->assertSent(QueueableMailableStub::class);
             $this->fail();
         } catch (ExpectationFailedException $e) {
-            $this->assertStringContainsString('The expected [QuantaQuirk\Tests\Support\QueueableMailableStub] mailable was not sent.', $e->getMessage());
+            $this->assertStringContainsString('The expected [QuantaForge\Tests\Support\QueueableMailableStub] mailable was not sent.', $e->getMessage());
         }
     }
 
@@ -210,13 +210,13 @@ class SupportTestingMailFakeTest extends TestCase
     {
         $this->fake->assertNothingSent();
 
-        $this->fake->to('taylor@quantaquirk.com')->send($this->mailable);
+        $this->fake->to('taylor@quantaforge.com')->send($this->mailable);
 
         try {
             $this->fake->assertNothingSent();
             $this->fail();
         } catch (ExpectationFailedException $e) {
-            $this->assertStringContainsString('The following mailables were sent unexpectedly: QuantaQuirk\Tests\Support\MailableStub', $e->getMessage());
+            $this->assertStringContainsString('The following mailables were sent unexpectedly: QuantaForge\Tests\Support\MailableStub', $e->getMessage());
         }
     }
 
@@ -224,13 +224,13 @@ class SupportTestingMailFakeTest extends TestCase
     {
         $this->fake->assertNothingQueued();
 
-        $this->fake->to('taylor@quantaquirk.com')->queue($this->mailable);
+        $this->fake->to('taylor@quantaforge.com')->queue($this->mailable);
 
         try {
             $this->fake->assertNothingQueued();
             $this->fail();
         } catch (ExpectationFailedException $e) {
-            $this->assertStringContainsString('The following mailables were queued unexpectedly: QuantaQuirk\Tests\Support\MailableStub', $e->getMessage());
+            $this->assertStringContainsString('The following mailables were queued unexpectedly: QuantaForge\Tests\Support\MailableStub', $e->getMessage());
         }
     }
 
@@ -238,7 +238,7 @@ class SupportTestingMailFakeTest extends TestCase
     {
         $this->fake->assertNothingOutgoing();
 
-        $this->fake->to('taylor@quantaquirk.com')->queue($this->mailable);
+        $this->fake->to('taylor@quantaforge.com')->queue($this->mailable);
 
         try {
             $this->fake->assertOutgoingCount(2);
@@ -247,7 +247,7 @@ class SupportTestingMailFakeTest extends TestCase
             $this->assertStringContainsString('The total number of outgoing mailables was 1 instead of 2.', $e->getMessage());
         }
 
-        $this->fake->to('taylor@quantaquirk.com')->send($this->mailable);
+        $this->fake->to('taylor@quantaforge.com')->send($this->mailable);
 
         $this->fake->assertOutgoingCount(2);
     }
@@ -280,7 +280,7 @@ class SupportTestingMailFakeTest extends TestCase
 
 class MailableStub extends Mailable
 {
-    public $framework = 'QuantaQuirk';
+    public $framework = 'QuantaForge';
 
     protected $version = '6.0';
 
@@ -298,7 +298,7 @@ class MailableStub extends Mailable
 
 class QueueableMailableStub extends Mailable implements ShouldQueue
 {
-    public $framework = 'QuantaQuirk';
+    public $framework = 'QuantaForge';
 
     protected $version = '6.0';
 
@@ -316,7 +316,7 @@ class QueueableMailableStub extends Mailable implements ShouldQueue
 
 class LocalizedRecipientStub implements HasLocalePreference
 {
-    public $email = 'taylor@quantaquirk.com';
+    public $email = 'taylor@quantaforge.com';
 
     public function preferredLocale()
     {

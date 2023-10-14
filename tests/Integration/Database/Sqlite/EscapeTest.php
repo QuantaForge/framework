@@ -1,8 +1,8 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Database\Sqlite;
+namespace QuantaForge\Tests\Integration\Database\Sqlite;
 
-use QuantaQuirk\Tests\Integration\Database\DatabaseTestCase;
+use QuantaForge\Tests\Integration\Database\DatabaseTestCase;
 use RuntimeException;
 
 class EscapeTest extends DatabaseTestCase

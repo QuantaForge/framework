@@ -1,6 +1,6 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Generators;
+namespace QuantaForge\Tests\Integration\Generators;
 
 class ProviderMakeCommandTest extends TestCase
 {
@@ -15,7 +15,7 @@ class ProviderMakeCommandTest extends TestCase
 
         $this->assertFileContains([
             'namespace App\Providers;',
-            'use QuantaQuirk\Support\ServiceProvider;',
+            'use QuantaForge\Support\ServiceProvider;',
             'class FooServiceProvider extends ServiceProvider',
             'public function register()',
             'public function boot()',

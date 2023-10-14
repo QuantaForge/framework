@@ -1,8 +1,8 @@
 <?php
 
-namespace QuantaQuirk\Tests\Foundation\Console;
+namespace QuantaForge\Tests\Foundation\Console;
 
-use QuantaQuirk\Foundation\Console\CliDumper;
+use QuantaForge\Foundation\Console\CliDumper;
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;
 use stdClass;

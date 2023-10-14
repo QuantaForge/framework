@@ -1,8 +1,8 @@
 <?php
 
-namespace QuantaQuirk\Tests\Container;
+namespace QuantaForge\Tests\Container;
 
-use QuantaQuirk\Container\RewindableGenerator;
+use QuantaForge\Container\RewindableGenerator;
 use PHPUnit\Framework\TestCase;
 
 class RewindableGeneratorTest extends TestCase

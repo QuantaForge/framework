@@ -1,9 +1,9 @@
 <?php
 
-namespace QuantaQuirk\Tests\Broadcasting;
+namespace QuantaForge\Tests\Broadcasting;
 
-use QuantaQuirk\Broadcasting\Broadcasters\Broadcaster;
-use QuantaQuirk\Broadcasting\Broadcasters\UsePusherChannelConventions;
+use QuantaForge\Broadcasting\Broadcasters\Broadcaster;
+use QuantaForge\Broadcasting\Broadcasters\UsePusherChannelConventions;
 use PHPUnit\Framework\TestCase;
 
 class UsePusherChannelsNamesTest extends TestCase

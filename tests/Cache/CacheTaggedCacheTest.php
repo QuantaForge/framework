@@ -1,10 +1,10 @@
 <?php
 
-namespace QuantaQuirk\Tests\Cache;
+namespace QuantaForge\Tests\Cache;
 
 use DateInterval;
 use DateTime;
-use QuantaQuirk\Cache\ArrayStore;
+use QuantaForge\Cache\ArrayStore;
 use PHPUnit\Framework\TestCase;
 
 class CacheTaggedCacheTest extends TestCase

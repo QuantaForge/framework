@@ -1,9 +1,9 @@
 <?php
 
-namespace QuantaQuirk\Tests\Encryption;
+namespace QuantaForge\Tests\Encryption;
 
-use QuantaQuirk\Contracts\Encryption\DecryptException;
-use QuantaQuirk\Encryption\Encrypter;
+use QuantaForge\Contracts\Encryption\DecryptException;
+use QuantaForge\Encryption\Encrypter;
 use PHPUnit\Framework\TestCase;
 use RuntimeException;
 

@@ -1,8 +1,8 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Database;
+namespace QuantaForge\Tests\Integration\Database;
 
-use QuantaQuirk\Foundation\Testing\DatabaseTransactions;
+use QuantaForge\Foundation\Testing\DatabaseTransactions;
 use Orchestra\Testbench\TestCase;
 
 class EloquentTransactionWithAfterCommitUsingDatabaseTransactionsTest extends TestCase

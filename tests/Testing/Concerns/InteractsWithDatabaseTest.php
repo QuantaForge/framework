@@ -1,16 +1,16 @@
 <?php
 
-namespace QuantaQuirk\Tests\Testing\Concerns;
+namespace QuantaForge\Tests\Testing\Concerns;
 
-use QuantaQuirk\Database\ConnectionInterface;
-use QuantaQuirk\Database\Query\Expression;
-use QuantaQuirk\Database\Query\Grammars\MySqlGrammar;
-use QuantaQuirk\Database\Query\Grammars\PostgresGrammar;
-use QuantaQuirk\Database\Query\Grammars\SQLiteGrammar;
-use QuantaQuirk\Database\Query\Grammars\SqlServerGrammar;
-use QuantaQuirk\Foundation\Testing\Concerns\InteractsWithDatabase;
-use QuantaQuirk\Support\Facades\DB;
-use QuantaQuirk\Support\Facades\Facade;
+use QuantaForge\Database\ConnectionInterface;
+use QuantaForge\Database\Query\Expression;
+use QuantaForge\Database\Query\Grammars\MySqlGrammar;
+use QuantaForge\Database\Query\Grammars\PostgresGrammar;
+use QuantaForge\Database\Query\Grammars\SQLiteGrammar;
+use QuantaForge\Database\Query\Grammars\SqlServerGrammar;
+use QuantaForge\Foundation\Testing\Concerns\InteractsWithDatabase;
+use QuantaForge\Support\Facades\DB;
+use QuantaForge\Support\Facades\Facade;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 

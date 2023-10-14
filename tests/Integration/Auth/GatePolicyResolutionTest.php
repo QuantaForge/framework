@@ -1,12 +1,12 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Auth;
+namespace QuantaForge\Tests\Integration\Auth;
 
-use QuantaQuirk\Auth\Access\Events\GateEvaluated;
-use QuantaQuirk\Support\Facades\Event;
-use QuantaQuirk\Support\Facades\Gate;
-use QuantaQuirk\Tests\Integration\Auth\Fixtures\AuthenticationTestUser;
-use QuantaQuirk\Tests\Integration\Auth\Fixtures\Policies\AuthenticationTestUserPolicy;
+use QuantaForge\Auth\Access\Events\GateEvaluated;
+use QuantaForge\Support\Facades\Event;
+use QuantaForge\Support\Facades\Gate;
+use QuantaForge\Tests\Integration\Auth\Fixtures\AuthenticationTestUser;
+use QuantaForge\Tests\Integration\Auth\Fixtures\Policies\AuthenticationTestUserPolicy;
 use Orchestra\Testbench\TestCase;
 
 class GatePolicyResolutionTest extends TestCase

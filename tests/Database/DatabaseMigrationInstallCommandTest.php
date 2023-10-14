@@ -1,10 +1,10 @@
 <?php
 
-namespace QuantaQuirk\Tests\Database;
+namespace QuantaForge\Tests\Database;
 
-use QuantaQuirk\Database\Console\Migrations\InstallCommand;
-use QuantaQuirk\Database\Migrations\MigrationRepositoryInterface;
-use QuantaQuirk\Foundation\Application;
+use QuantaForge\Database\Console\Migrations\InstallCommand;
+use QuantaForge\Database\Migrations\MigrationRepositoryInterface;
+use QuantaForge\Foundation\Application;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Input\ArrayInput;
@@ -20,7 +20,7 @@ class DatabaseMigrationInstallCommandTest extends TestCase
     public function testFireCallsRepositoryToInstall()
     {
         $command = new InstallCommand($repo = m::mock(MigrationRepositoryInterface::class));
-        $command->setQuantaQuirk(new Application);
+        $command->setQuantaForge(new Application);
         $repo->shouldReceive('setSource')->once()->with('foo');
         $repo->shouldReceive('createRepository')->once();
 

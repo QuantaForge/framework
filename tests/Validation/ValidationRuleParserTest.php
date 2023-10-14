@@ -1,10 +1,10 @@
 <?php
 
-namespace QuantaQuirk\Tests\Validation;
+namespace QuantaForge\Tests\Validation;
 
-use QuantaQuirk\Support\Fluent;
-use QuantaQuirk\Validation\Rule;
-use QuantaQuirk\Validation\ValidationRuleParser;
+use QuantaForge\Support\Fluent;
+use QuantaForge\Validation\Rule;
+use QuantaForge\Validation\ValidationRuleParser;
 use PHPUnit\Framework\TestCase;
 
 class ValidationRuleParserTest extends TestCase

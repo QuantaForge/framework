@@ -1,14 +1,14 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Database\EloquentMorphManyTest;
+namespace QuantaForge\Tests\Integration\Database\EloquentMorphManyTest;
 
-use QuantaQuirk\Database\Eloquent\Model;
-use QuantaQuirk\Database\Eloquent\Relations\MorphOne;
-use QuantaQuirk\Database\Schema\Blueprint;
-use QuantaQuirk\Support\Carbon;
-use QuantaQuirk\Support\Facades\Schema;
-use QuantaQuirk\Support\Str;
-use QuantaQuirk\Tests\Integration\Database\DatabaseTestCase;
+use QuantaForge\Database\Eloquent\Model;
+use QuantaForge\Database\Eloquent\Relations\MorphOne;
+use QuantaForge\Database\Schema\Blueprint;
+use QuantaForge\Support\Carbon;
+use QuantaForge\Support\Facades\Schema;
+use QuantaForge\Support\Str;
+use QuantaForge\Tests\Integration\Database\DatabaseTestCase;
 
 class EloquentMorphManyTest extends DatabaseTestCase
 {

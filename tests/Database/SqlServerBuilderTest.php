@@ -1,10 +1,10 @@
 <?php
 
-namespace QuantaQuirk\Tests\Database;
+namespace QuantaForge\Tests\Database;
 
-use QuantaQuirk\Database\Connection;
-use QuantaQuirk\Database\Schema\Grammars\SqlServerGrammar;
-use QuantaQuirk\Database\Schema\SqlServerBuilder;
+use QuantaForge\Database\Connection;
+use QuantaForge\Database\Schema\Grammars\SqlServerGrammar;
+use QuantaForge\Database\Schema\SqlServerBuilder;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 

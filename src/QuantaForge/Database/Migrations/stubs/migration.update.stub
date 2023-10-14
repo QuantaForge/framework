@@ -1,0 +1,28 @@
+<?php
+
+use QuantaForge\Database\Migrations\Migration;
+use QuantaForge\Database\Schema\Blueprint;
+use QuantaForge\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::table('{{ table }}', function (Blueprint $table) {
+            //
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::table('{{ table }}', function (Blueprint $table) {
+            //
+        });
+    }
+};

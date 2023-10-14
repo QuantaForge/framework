@@ -1,11 +1,11 @@
 <?php
 
-namespace QuantaQuirk\Tests\Log;
+namespace QuantaForge\Tests\Log;
 
-use QuantaQuirk\Contracts\Events\Dispatcher as DispatcherContract;
-use QuantaQuirk\Events\Dispatcher;
-use QuantaQuirk\Log\Events\MessageLogged;
-use QuantaQuirk\Log\Logger;
+use QuantaForge\Contracts\Events\Dispatcher as DispatcherContract;
+use QuantaForge\Events\Dispatcher;
+use QuantaForge\Log\Events\MessageLogged;
+use QuantaForge\Log\Logger;
 use Mockery as m;
 use Monolog\Logger as Monolog;
 use PHPUnit\Framework\TestCase;

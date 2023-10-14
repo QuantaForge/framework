@@ -1,30 +1,30 @@
 <?php
 
-namespace QuantaQuirk\Tests\Http;
+namespace QuantaForge\Tests\Http;
 
 use Exception;
 use GuzzleHttp\Middleware;
 use GuzzleHttp\Promise\PromiseInterface;
 use GuzzleHttp\Psr7\Response as Psr7Response;
 use GuzzleHttp\TransferStats;
-use QuantaQuirk\Contracts\Events\Dispatcher;
-use QuantaQuirk\Contracts\Support\Arrayable;
-use QuantaQuirk\Http\Client\Events\RequestSending;
-use QuantaQuirk\Http\Client\Events\ResponseReceived;
-use QuantaQuirk\Http\Client\Factory;
-use QuantaQuirk\Http\Client\PendingRequest;
-use QuantaQuirk\Http\Client\Pool;
-use QuantaQuirk\Http\Client\Request;
-use QuantaQuirk\Http\Client\RequestException;
-use QuantaQuirk\Http\Client\Response;
-use QuantaQuirk\Http\Client\ResponseSequence;
-use QuantaQuirk\Http\Response as HttpResponse;
-use QuantaQuirk\Support\Arr;
-use QuantaQuirk\Support\Carbon;
-use QuantaQuirk\Support\Collection;
-use QuantaQuirk\Support\Fluent;
-use QuantaQuirk\Support\Sleep;
-use QuantaQuirk\Support\Str;
+use QuantaForge\Contracts\Events\Dispatcher;
+use QuantaForge\Contracts\Support\Arrayable;
+use QuantaForge\Http\Client\Events\RequestSending;
+use QuantaForge\Http\Client\Events\ResponseReceived;
+use QuantaForge\Http\Client\Factory;
+use QuantaForge\Http\Client\PendingRequest;
+use QuantaForge\Http\Client\Pool;
+use QuantaForge\Http\Client\Request;
+use QuantaForge\Http\Client\RequestException;
+use QuantaForge\Http\Client\Response;
+use QuantaForge\Http\Client\ResponseSequence;
+use QuantaForge\Http\Response as HttpResponse;
+use QuantaForge\Support\Arr;
+use QuantaForge\Support\Carbon;
+use QuantaForge\Support\Collection;
+use QuantaForge\Support\Fluent;
+use QuantaForge\Support\Sleep;
+use QuantaForge\Support\Str;
 use JsonSerializable;
 use Mockery as m;
 use OutOfBoundsException;
@@ -38,7 +38,7 @@ use Symfony\Component\VarDumper\VarDumper;
 class HttpClientTest extends TestCase
 {
     /**
-     * @var \QuantaQuirk\Http\Client\Factory
+     * @var \QuantaForge\Http\Client\Factory
      */
     protected $factory;
 
@@ -60,7 +60,7 @@ class HttpClientTest extends TestCase
     {
         $this->factory->fake();
 
-        $response = $this->factory->post('http://quantaquirk.com/test-missing-page');
+        $response = $this->factory->post('http://quantaforge.com/test-missing-page');
 
         $this->assertTrue($response->ok());
     }
@@ -68,178 +68,178 @@ class HttpClientTest extends TestCase
     public function testCreatedRequest()
     {
         $this->factory->fake([
-            'vapor.quantaquirk.com' => $this->factory::response('', HttpResponse::HTTP_CREATED),
-            'forge.quantaquirk.com' => $this->factory::response('', HttpResponse::HTTP_OK),
+            'vapor.quantaforge.com' => $this->factory::response('', HttpResponse::HTTP_CREATED),
+            'forge.quantaforge.com' => $this->factory::response('', HttpResponse::HTTP_OK),
         ]);
 
-        $response = $this->factory->post('http://vapor.quantaquirk.com');
+        $response = $this->factory->post('http://vapor.quantaforge.com');
         $this->assertTrue($response->created());
 
-        $response = $this->factory->post('http://forge.quantaquirk.com');
+        $response = $this->factory->post('http://forge.quantaforge.com');
         $this->assertFalse($response->created());
     }
 
     public function testAcceptedRequest()
     {
         $this->factory->fake([
-            'vapor.quantaquirk.com' => $this->factory::response('', HttpResponse::HTTP_ACCEPTED),
-            'forge.quantaquirk.com' => $this->factory::response('', HttpResponse::HTTP_OK),
+            'vapor.quantaforge.com' => $this->factory::response('', HttpResponse::HTTP_ACCEPTED),
+            'forge.quantaforge.com' => $this->factory::response('', HttpResponse::HTTP_OK),
         ]);
 
-        $response = $this->factory->post('http://vapor.quantaquirk.com');
+        $response = $this->factory->post('http://vapor.quantaforge.com');
         $this->assertTrue($response->accepted());
 
-        $response = $this->factory->post('http://forge.quantaquirk.com');
+        $response = $this->factory->post('http://forge.quantaforge.com');
         $this->assertFalse($response->accepted());
     }
 
     public function testMovedPermanentlyRequest()
     {
         $this->factory->fake([
-            'vapor.quantaquirk.com' => $this->factory::response('', HttpResponse::HTTP_MOVED_PERMANENTLY),
-            'forge.quantaquirk.com' => $this->factory::response('', HttpResponse::HTTP_OK),
+            'vapor.quantaforge.com' => $this->factory::response('', HttpResponse::HTTP_MOVED_PERMANENTLY),
+            'forge.quantaforge.com' => $this->factory::response('', HttpResponse::HTTP_OK),
         ]);
 
-        $response = $this->factory->post('http://vapor.quantaquirk.com');
+        $response = $this->factory->post('http://vapor.quantaforge.com');
         $this->assertTrue($response->movedPermanently());
 
-        $response = $this->factory->post('http://forge.quantaquirk.com');
+        $response = $this->factory->post('http://forge.quantaforge.com');
         $this->assertFalse($response->movedPermanently());
     }
 
     public function testNoContentRequest()
     {
         $this->factory->fake([
-            'vapor.quantaquirk.com' => $this->factory::response('', HttpResponse::HTTP_NO_CONTENT),
-            'forge.quantaquirk.com' => $this->factory::response('', HttpResponse::HTTP_OK),
+            'vapor.quantaforge.com' => $this->factory::response('', HttpResponse::HTTP_NO_CONTENT),
+            'forge.quantaforge.com' => $this->factory::response('', HttpResponse::HTTP_OK),
         ]);
 
-        $response = $this->factory->post('http://vapor.quantaquirk.com');
+        $response = $this->factory->post('http://vapor.quantaforge.com');
         $this->assertTrue($response->noContent());
 
-        $response = $this->factory->post('http://forge.quantaquirk.com');
+        $response = $this->factory->post('http://forge.quantaforge.com');
         $this->assertFalse($response->noContent());
     }
 
     public function testFoundRequest()
     {
         $this->factory->fake([
-            'vapor.quantaquirk.com' => $this->factory::response('', HttpResponse::HTTP_FOUND),
-            'forge.quantaquirk.com' => $this->factory::response('', HttpResponse::HTTP_OK),
+            'vapor.quantaforge.com' => $this->factory::response('', HttpResponse::HTTP_FOUND),
+            'forge.quantaforge.com' => $this->factory::response('', HttpResponse::HTTP_OK),
         ]);
 
-        $response = $this->factory->post('http://vapor.quantaquirk.com');
+        $response = $this->factory->post('http://vapor.quantaforge.com');
         $this->assertTrue($response->found());
 
-        $response = $this->factory->post('http://forge.quantaquirk.com');
+        $response = $this->factory->post('http://forge.quantaforge.com');
         $this->assertFalse($response->found());
     }
 
     public function testNotModifiedRequest(): void
     {
         $this->factory->fake([
-            'vapor.quantaquirk.com' => $this->factory::response('', HttpResponse::HTTP_NOT_MODIFIED),
-            'forge.quantaquirk.com' => $this->factory::response('', HttpResponse::HTTP_OK),
+            'vapor.quantaforge.com' => $this->factory::response('', HttpResponse::HTTP_NOT_MODIFIED),
+            'forge.quantaforge.com' => $this->factory::response('', HttpResponse::HTTP_OK),
         ]);
 
-        $response = $this->factory->post('https://vapor.quantaquirk.com');
+        $response = $this->factory->post('https://vapor.quantaforge.com');
         $this->assertTrue($response->notModified());
 
-        $response = $this->factory->post('https://forge.quantaquirk.com');
+        $response = $this->factory->post('https://forge.quantaforge.com');
         $this->assertFalse($response->notModified());
     }
 
     public function testBadRequestRequest()
     {
         $this->factory->fake([
-            'vapor.quantaquirk.com' => $this->factory::response('', HttpResponse::HTTP_BAD_REQUEST),
-            'forge.quantaquirk.com' => $this->factory::response('', HttpResponse::HTTP_OK),
+            'vapor.quantaforge.com' => $this->factory::response('', HttpResponse::HTTP_BAD_REQUEST),
+            'forge.quantaforge.com' => $this->factory::response('', HttpResponse::HTTP_OK),
         ]);
 
-        $response = $this->factory->post('http://vapor.quantaquirk.com');
+        $response = $this->factory->post('http://vapor.quantaforge.com');
         $this->assertTrue($response->badRequest());
 
-        $response = $this->factory->post('http://forge.quantaquirk.com');
+        $response = $this->factory->post('http://forge.quantaforge.com');
         $this->assertFalse($response->badRequest());
     }
 
     public function testPaymentRequiredRequest()
     {
         $this->factory->fake([
-            'vapor.quantaquirk.com' => $this->factory::response('', HttpResponse::HTTP_PAYMENT_REQUIRED),
-            'forge.quantaquirk.com' => $this->factory::response('', HttpResponse::HTTP_OK),
+            'vapor.quantaforge.com' => $this->factory::response('', HttpResponse::HTTP_PAYMENT_REQUIRED),
+            'forge.quantaforge.com' => $this->factory::response('', HttpResponse::HTTP_OK),
         ]);
 
-        $response = $this->factory->post('http://vapor.quantaquirk.com');
+        $response = $this->factory->post('http://vapor.quantaforge.com');
         $this->assertTrue($response->paymentRequired());
 
-        $response = $this->factory->post('http://forge.quantaquirk.com');
+        $response = $this->factory->post('http://forge.quantaforge.com');
         $this->assertFalse($response->paymentRequired());
     }
 
     public function testRequestTimeoutRequest()
     {
         $this->factory->fake([
-            'vapor.quantaquirk.com' => $this->factory::response('', HttpResponse::HTTP_REQUEST_TIMEOUT),
-            'forge.quantaquirk.com' => $this->factory::response('', HttpResponse::HTTP_OK),
+            'vapor.quantaforge.com' => $this->factory::response('', HttpResponse::HTTP_REQUEST_TIMEOUT),
+            'forge.quantaforge.com' => $this->factory::response('', HttpResponse::HTTP_OK),
         ]);
 
-        $response = $this->factory->post('http://vapor.quantaquirk.com');
+        $response = $this->factory->post('http://vapor.quantaforge.com');
         $this->assertTrue($response->requestTimeout());
 
-        $response = $this->factory->post('http://forge.quantaquirk.com');
+        $response = $this->factory->post('http://forge.quantaforge.com');
         $this->assertFalse($response->requestTimeout());
     }
 
     public function testConflictResponseRequest()
     {
         $this->factory->fake([
-            'vapor.quantaquirk.com' => $this->factory::response('', HttpResponse::HTTP_CONFLICT),
-            'forge.quantaquirk.com' => $this->factory::response('', HttpResponse::HTTP_OK),
+            'vapor.quantaforge.com' => $this->factory::response('', HttpResponse::HTTP_CONFLICT),
+            'forge.quantaforge.com' => $this->factory::response('', HttpResponse::HTTP_OK),
         ]);
 
-        $response = $this->factory->post('http://vapor.quantaquirk.com');
+        $response = $this->factory->post('http://vapor.quantaforge.com');
         $this->assertTrue($response->conflict());
 
-        $response = $this->factory->post('http://forge.quantaquirk.com');
+        $response = $this->factory->post('http://forge.quantaforge.com');
         $this->assertFalse($response->conflict());
     }
 
     public function testUnprocessableEntityRequest()
     {
         $this->factory->fake([
-            'vapor.quantaquirk.com' => $this->factory::response('', HttpResponse::HTTP_UNPROCESSABLE_ENTITY),
-            'forge.quantaquirk.com' => $this->factory::response('', HttpResponse::HTTP_OK),
+            'vapor.quantaforge.com' => $this->factory::response('', HttpResponse::HTTP_UNPROCESSABLE_ENTITY),
+            'forge.quantaforge.com' => $this->factory::response('', HttpResponse::HTTP_OK),
         ]);
 
-        $response = $this->factory->post('http://vapor.quantaquirk.com');
+        $response = $this->factory->post('http://vapor.quantaforge.com');
         $this->assertTrue($response->unprocessableEntity());
 
-        $response = $this->factory->post('http://forge.quantaquirk.com');
+        $response = $this->factory->post('http://forge.quantaforge.com');
         $this->assertFalse($response->unprocessableEntity());
     }
 
     public function testTooManyRequestsRequest()
     {
         $this->factory->fake([
-            'vapor.quantaquirk.com' => $this->factory::response('', HttpResponse::HTTP_TOO_MANY_REQUESTS),
-            'forge.quantaquirk.com' => $this->factory::response('', HttpResponse::HTTP_OK),
+            'vapor.quantaforge.com' => $this->factory::response('', HttpResponse::HTTP_TOO_MANY_REQUESTS),
+            'forge.quantaforge.com' => $this->factory::response('', HttpResponse::HTTP_OK),
         ]);
 
-        $response = $this->factory->post('http://vapor.quantaquirk.com');
+        $response = $this->factory->post('http://vapor.quantaforge.com');
         $this->assertTrue($response->tooManyRequests());
 
-        $response = $this->factory->post('http://forge.quantaquirk.com');
+        $response = $this->factory->post('http://forge.quantaforge.com');
         $this->assertFalse($response->tooManyRequests());
     }
 
     public function testUnauthorizedRequest()
     {
         $this->factory->fake([
-            'quantaquirk.com' => $this->factory::response('', 401),
+            'quantaforge.com' => $this->factory::response('', 401),
         ]);
 
-        $response = $this->factory->post('http://quantaquirk.com');
+        $response = $this->factory->post('http://quantaforge.com');
 
         $this->assertTrue($response->unauthorized());
     }
@@ -247,10 +247,10 @@ class HttpClientTest extends TestCase
     public function testForbiddenRequest()
     {
         $this->factory->fake([
-            'quantaquirk.com' => $this->factory::response('', 403),
+            'quantaforge.com' => $this->factory::response('', 403),
         ]);
 
-        $response = $this->factory->post('http://quantaquirk.com');
+        $response = $this->factory->post('http://quantaforge.com');
 
         $this->assertTrue($response->forbidden());
     }
@@ -258,10 +258,10 @@ class HttpClientTest extends TestCase
     public function testNotFoundResponse()
     {
         $this->factory->fake([
-            'quantaquirk.com' => $this->factory::response('', 404),
+            'quantaforge.com' => $this->factory::response('', 404),
         ]);
 
-        $response = $this->factory->post('http://quantaquirk.com');
+        $response = $this->factory->post('http://quantaforge.com');
 
         $this->assertTrue($response->notFound());
     }
@@ -405,7 +405,7 @@ class HttpClientTest extends TestCase
 
         $this->factory->asForm()->post('http://foo.com/form', [
             'name' => 'Taylor',
-            'title' => 'QuantaQuirk Developer',
+            'title' => 'QuantaForge Developer',
         ]);
 
         $this->factory->assertSent(function (Request $request) {
@@ -421,7 +421,7 @@ class HttpClientTest extends TestCase
 
         $this->factory->asForm()->post('http://foo.com/form', new Fluent([
             'name' => 'Taylor',
-            'title' => 'QuantaQuirk Developer',
+            'title' => 'QuantaForge Developer',
         ]));
 
         $this->factory->assertSent(function (Request $request) {
@@ -441,7 +441,7 @@ class HttpClientTest extends TestCase
             {
                 return [
                     'name' => 'Taylor',
-                    'title' => 'QuantaQuirk Developer',
+                    'title' => 'QuantaForge Developer',
                 ];
             }
         });
@@ -627,11 +627,11 @@ class HttpClientTest extends TestCase
     {
         $this->factory->fake();
 
-        $this->factory->withUserAgent('QuantaQuirk')->post('http://foo.com/json');
+        $this->factory->withUserAgent('QuantaForge')->post('http://foo.com/json');
 
         $this->factory->assertSent(function (Request $request) {
             return $request->url() === 'http://foo.com/json' &&
-                $request->hasHeader('User-Agent', 'QuantaQuirk');
+                $request->hasHeader('User-Agent', 'QuantaForge');
         });
     }
 
@@ -639,7 +639,7 @@ class HttpClientTest extends TestCase
     {
         $this->factory->fake();
 
-        $this->factory->withUserAgent('QuantaQuirk')
+        $this->factory->withUserAgent('QuantaForge')
             ->withUserAgent('FooBar')
             ->post('http://foo.com/json');
 
@@ -693,11 +693,11 @@ class HttpClientTest extends TestCase
                 ->push('Ok'),
         ]);
 
-        $response = $this->factory->get('https://quantaquirk.com');
+        $response = $this->factory->get('https://quantaforge.com');
         $this->assertSame('Ok', $response->body());
 
         // The sequence is empty, but it should not fail.
-        $this->factory->get('https://quantaquirk.com');
+        $this->factory->get('https://quantaforge.com');
     }
 
     public function testAssertSequencesAreEmpty()
@@ -729,8 +729,8 @@ class HttpClientTest extends TestCase
         $this->factory->fakeSequence()->pushStatus(200);
 
         $response = $this->factory->withCookies(
-            ['foo' => 'bar'], 'https://quantaquirk.com'
-        )->get('https://quantaquirk.com');
+            ['foo' => 'bar'], 'https://quantaforge.com'
+        )->get('https://quantaforge.com');
 
         $this->assertCount(1, $response->cookies()->toArray());
 
@@ -739,7 +739,7 @@ class HttpClientTest extends TestCase
 
         $this->assertSame('foo', $responseCookie['Name']);
         $this->assertSame('bar', $responseCookie['Value']);
-        $this->assertSame('https://quantaquirk.com', $responseCookie['Domain']);
+        $this->assertSame('https://quantaforge.com', $responseCookie['Domain']);
     }
 
     public function testWithQueryParameters()
@@ -748,10 +748,10 @@ class HttpClientTest extends TestCase
 
         $this->factory->withQueryParameters(
             ['foo' => 'bar']
-        )->get('https://quantaquirk.com');
+        )->get('https://quantaforge.com');
 
         $this->factory->assertSent(function (Request $request) {
-            return $request->url() === 'https://quantaquirk.com?foo=bar';
+            return $request->url() === 'https://quantaforge.com?foo=bar';
         });
     }
 
@@ -761,10 +761,10 @@ class HttpClientTest extends TestCase
 
         $this->factory->withQueryParameters(
             ['foo' => ['bar', 'baz']],
-        )->get('https://quantaquirk.com');
+        )->get('https://quantaforge.com');
 
         $this->factory->assertSent(function (Request $request) {
-            return $request->url() === 'https://quantaquirk.com?foo%5B0%5D=bar&foo%5B1%5D=baz';
+            return $request->url() === 'https://quantaforge.com?foo%5B0%5D=bar&foo%5B1%5D=baz';
         });
     }
 
@@ -774,12 +774,12 @@ class HttpClientTest extends TestCase
 
         $this->factory->withQueryParameters(
             ['foo' => 'bar']
-        )->get('https://quantaquirk.com', [
+        )->get('https://quantaforge.com', [
             'baz' => 'qux',
         ]);
 
         $this->factory->assertSent(function (Request $request) {
-            return $request->url() === 'https://quantaquirk.com?foo=bar&baz=qux';
+            return $request->url() === 'https://quantaforge.com?foo=bar&baz=qux';
         });
     }
 
@@ -790,13 +790,13 @@ class HttpClientTest extends TestCase
         $this->factory->withQueryParameters([
             'foo' => 'bar',
             'baz' => 'baz',
-        ])->get('https://quantaquirk.com', [
+        ])->get('https://quantaforge.com', [
             // Override the previously set value
             'baz' => 'qux',
         ]);
 
         $this->factory->assertSent(function (Request $request) {
-            return $request->url() === 'https://quantaquirk.com?foo=bar&baz=qux';
+            return $request->url() === 'https://quantaforge.com?foo=bar&baz=qux';
         });
     }
 
@@ -879,11 +879,11 @@ class HttpClientTest extends TestCase
     {
         $this->factory->fake();
 
-        $this->factory->get('http://foo.com/get', ['foo;bar; space test' => 'quantaquirk']);
+        $this->factory->get('http://foo.com/get', ['foo;bar; space test' => 'quantaforge']);
 
         $this->factory->assertSent(function (Request $request) {
-            return $request->url() === 'http://foo.com/get?foo%3Bbar%3B%20space%20test=quantaquirk'
-                && $request['foo;bar; space test'] === 'quantaquirk';
+            return $request->url() === 'http://foo.com/get?foo%3Bbar%3B%20space%20test=quantaforge'
+                && $request['foo;bar; space test'] === 'quantaforge';
         });
     }
 
@@ -1082,10 +1082,10 @@ class HttpClientTest extends TestCase
     {
         $status = 0;
         $client = $this->factory->fake([
-            'quantaquirk.com' => $this->factory::response('', 101),
+            'quantaforge.com' => $this->factory::response('', 101),
         ]);
 
-        $response = $client->get('quantaquirk.com')
+        $response = $client->get('quantaforge.com')
             ->onError(function ($response) use (&$status) {
                 $status = $response->status();
             });
@@ -1098,10 +1098,10 @@ class HttpClientTest extends TestCase
     {
         $status = 0;
         $client = $this->factory->fake([
-            'quantaquirk.com' => $this->factory::response('', 201),
+            'quantaforge.com' => $this->factory::response('', 201),
         ]);
 
-        $response = $client->get('quantaquirk.com')
+        $response = $client->get('quantaforge.com')
             ->onError(function ($response) use (&$status) {
                 $status = $response->status();
             });
@@ -1114,10 +1114,10 @@ class HttpClientTest extends TestCase
     {
         $status = 0;
         $client = $this->factory->fake([
-            'quantaquirk.com' => $this->factory::response('', 301),
+            'quantaforge.com' => $this->factory::response('', 301),
         ]);
 
-        $response = $client->get('quantaquirk.com')
+        $response = $client->get('quantaforge.com')
             ->onError(function ($response) use (&$status) {
                 $status = $response->status();
             });
@@ -1130,10 +1130,10 @@ class HttpClientTest extends TestCase
     {
         $status = 0;
         $client = $this->factory->fake([
-            'quantaquirk.com' => $this->factory::response('', 401),
+            'quantaforge.com' => $this->factory::response('', 401),
         ]);
 
-        $response = $client->get('quantaquirk.com')
+        $response = $client->get('quantaforge.com')
             ->onError(function ($response) use (&$status) {
                 $status = $response->status();
             });
@@ -1146,10 +1146,10 @@ class HttpClientTest extends TestCase
     {
         $status = 0;
         $client = $this->factory->fake([
-            'quantaquirk.com' => $this->factory::response('', 501),
+            'quantaforge.com' => $this->factory::response('', 501),
         ]);
 
-        $response = $client->get('quantaquirk.com')
+        $response = $client->get('quantaforge.com')
             ->onError(function ($response) use (&$status) {
                 $status = $response->status();
             });
@@ -1474,7 +1474,7 @@ class HttpClientTest extends TestCase
         $middleware = Middleware::history($history);
 
         $responses = $this->factory->pool(fn (Pool $pool) => [
-            $pool->withMiddleware($middleware)->post('https://example.com', ['hyped-for' => 'quantaquirk-movie']),
+            $pool->withMiddleware($middleware)->post('https://example.com', ['hyped-for' => 'quantaforge-movie']),
         ]);
 
         $response = $responses[0];
@@ -1485,7 +1485,7 @@ class HttpClientTest extends TestCase
 
         $this->assertSame('Fake', tap($history[0]['response']->getBody())->rewind()->getContents());
 
-        $this->assertSame(['hyped-for' => 'quantaquirk-movie'], json_decode(tap($history[0]['request']->getBody())->rewind()->getContents(), true));
+        $this->assertSame(['hyped-for' => 'quantaforge-movie'], json_decode(tap($history[0]['request']->getBody())->rewind()->getContents(), true));
     }
 
     public function testTheRequestSendingAndResponseReceivedEventsAreFiredWhenARequestIsSent()
@@ -1772,7 +1772,7 @@ class HttpClientTest extends TestCase
             Middleware::history($history)
         );
 
-        $response = $pendingRequest->post('https://example.com', ['hyped-for' => 'quantaquirk-movie']);
+        $response = $pendingRequest->post('https://example.com', ['hyped-for' => 'quantaforge-movie']);
 
         $this->assertSame('Fake', $response->body());
 
@@ -1780,7 +1780,7 @@ class HttpClientTest extends TestCase
 
         $this->assertSame('Fake', tap($history[0]['response']->getBody())->rewind()->getContents());
 
-        $this->assertSame(['hyped-for' => 'quantaquirk-movie'], json_decode(tap($history[0]['request']->getBody())->rewind()->getContents(), true));
+        $this->assertSame(['hyped-for' => 'quantaforge-movie'], json_decode(tap($history[0]['request']->getBody())->rewind()->getContents(), true));
     }
 
     public function testMiddlewareRunsAndCanChangeRequestOnAssertSent()
@@ -1793,11 +1793,11 @@ class HttpClientTest extends TestCase
             Middleware::mapRequest(fn (RequestInterface $request) => $request->withHeader('X-Test-Header', 'Test'))
         );
 
-        $pendingRequest->post('https://quantaquirk.example', ['quantaquirk' => 'framework']);
+        $pendingRequest->post('https://quantaforge.example', ['quantaforge' => 'framework']);
 
         $this->factory->assertSent(function (Request $request) {
             return
-                $request->url() === 'https://quantaquirk.example' &&
+                $request->url() === 'https://quantaforge.example' &&
                 $request->hasHeader('X-Test-Header', 'Test');
         });
     }
@@ -2303,18 +2303,18 @@ class HttpClientTest extends TestCase
     public function testItCanEnforceFaking()
     {
         $this->factory->preventStrayRequests();
-        $this->factory->fake(['https://vapor.quantaquirk.com' => Factory::response('ok', 200)]);
-        $this->factory->fake(['https://forge.quantaquirk.com' => Factory::response('ok', 200)]);
+        $this->factory->fake(['https://vapor.quantaforge.com' => Factory::response('ok', 200)]);
+        $this->factory->fake(['https://forge.quantaforge.com' => Factory::response('ok', 200)]);
 
         $responses = [];
-        $responses[] = $this->factory->get('https://vapor.quantaquirk.com')->body();
-        $responses[] = $this->factory->get('https://forge.quantaquirk.com')->body();
+        $responses[] = $this->factory->get('https://vapor.quantaforge.com')->body();
+        $responses[] = $this->factory->get('https://forge.quantaforge.com')->body();
         $this->assertSame(['ok', 'ok'], $responses);
 
         $this->expectException(RuntimeException::class);
-        $this->expectExceptionMessage('Attempted request to [https://quantaquirk.com] without a matching fake.');
+        $this->expectExceptionMessage('Attempted request to [https://quantaforge.com] without a matching fake.');
 
-        $this->factory->get('https://quantaquirk.com');
+        $this->factory->get('https://quantaforge.com');
     }
 
     public function testItCanAddAuthorizationHeaderIntoRequestUsingBeforeSendingCallback()
@@ -2373,14 +2373,14 @@ class HttpClientTest extends TestCase
         $this->factory->fake();
 
         $this->factory->withUrlParameters([
-            'endpoint' => 'https://quantaquirk.com',
+            'endpoint' => 'https://quantaforge.com',
             'page' => 'docs',
             'version' => '9.x',
             'thing' => 'validation',
         ])->get('{+endpoint}/{page}/{version}/{thing}');
 
         $this->factory->assertSent(function (Request $request) {
-            return $request->url() === 'https://quantaquirk.com/docs/9.x/validation';
+            return $request->url() === 'https://quantaforge.com/docs/9.x/validation';
         });
     }
 
@@ -2434,7 +2434,7 @@ class HttpClientTest extends TestCase
 
         $this->factory->globalMiddleware(Middleware::mapRequest(function ($request) {
             // Test manipulating headers on outgoing request...
-            return $request->withHeader('User-Agent', 'QuantaQuirk Framework/1.0')
+            return $request->withHeader('User-Agent', 'QuantaForge Framework/1.0')
                 ->withAddedHeader('shared', 'global')
                 ->withHeader('list', ['item-1', 'item-2'])
                 ->withAddedHeader('list', ['item-3']);
@@ -2451,19 +2451,19 @@ class HttpClientTest extends TestCase
                 });
             };
         });
-        $responses[] = $this->factory->post('http://forge.quantaquirk.com');
-        $responses[] = $this->factory->withHeader('shared', 'local')->post('http://vapor.quantaquirk.com');
+        $responses[] = $this->factory->post('http://forge.quantaforge.com');
+        $responses[] = $this->factory->withHeader('shared', 'local')->post('http://vapor.quantaforge.com');
 
         $this->assertCount(2, $requests);
         $this->assertCount(2, $responses);
 
-        $this->assertSame(['QuantaQuirk Framework/1.0'], $requests[0]->header('User-Agent'));
+        $this->assertSame(['QuantaForge Framework/1.0'], $requests[0]->header('User-Agent'));
         $this->assertSame(['item-1', 'item-2', 'item-3'], $requests[0]->header('list'));
         $this->assertSame(['global'], $requests[0]->header('shared'));
         $this->assertSame('1', $responses[0]->header('X-Count'));
         $this->assertSame('6 seconds', $responses[0]->header('X-Duration'));
 
-        $this->assertSame(['QuantaQuirk Framework/1.0'], $requests[1]->header('User-Agent'));
+        $this->assertSame(['QuantaForge Framework/1.0'], $requests[1]->header('User-Agent'));
         $this->assertSame(['item-1', 'item-2', 'item-3'], $requests[1]->header('list'));
         $this->assertSame(['local', 'global'], $requests[1]->header('shared'));
         $this->assertSame('2', $responses[1]->header('X-Count'));
@@ -2480,13 +2480,13 @@ class HttpClientTest extends TestCase
         });
 
         $this->factory->globalRequestMiddleware(function ($request) {
-            return $request->withHeader('User-Agent', 'QuantaQuirk Framework/1.0');
+            return $request->withHeader('User-Agent', 'QuantaForge Framework/1.0');
         });
-        $this->factory->post('http://forge.quantaquirk.com');
-        $this->factory->post('http://quantaquirk.com');
+        $this->factory->post('http://forge.quantaforge.com');
+        $this->factory->post('http://quantaforge.com');
 
-        $this->assertSame(['QuantaQuirk Framework/1.0'], $requests[0]->header('User-Agent'));
-        $this->assertSame(['QuantaQuirk Framework/1.0'], $requests[1]->header('User-Agent'));
+        $this->assertSame(['QuantaForge Framework/1.0'], $requests[0]->header('User-Agent'));
+        $this->assertSame(['QuantaForge Framework/1.0'], $requests[1]->header('User-Agent'));
     }
 
     public function testItCanAddGlobalResponseMiddleware()
@@ -2499,8 +2499,8 @@ class HttpClientTest extends TestCase
         $this->factory->globalResponseMiddleware(function ($response) {
             return $response->withHeader('X-Foo', 'Bar');
         });
-        $responses[] = $this->factory->post('http://forge.quantaquirk.com');
-        $responses[] = $this->factory->post('http://quantaquirk.com');
+        $responses[] = $this->factory->post('http://forge.quantaforge.com');
+        $responses[] = $this->factory->post('http://quantaforge.com');
 
         $this->assertSame('Bar', $responses[0]->header('X-Foo'));
         $this->assertSame('Bar', $responses[1]->header('X-Foo'));
@@ -2516,11 +2516,11 @@ class HttpClientTest extends TestCase
         });
 
         $this->factory->withRequestMiddleware(function ($request) {
-            return $request->withHeader('User-Agent', 'QuantaQuirk Framework/1.0');
-        })->post('http://forge.quantaquirk.com');
-        $this->factory->post('http://quantaquirk.com');
+            return $request->withHeader('User-Agent', 'QuantaForge Framework/1.0');
+        })->post('http://forge.quantaforge.com');
+        $this->factory->post('http://quantaforge.com');
 
-        $this->assertSame(['QuantaQuirk Framework/1.0'], $requests[0]->header('User-Agent'));
+        $this->assertSame(['QuantaForge Framework/1.0'], $requests[0]->header('User-Agent'));
         $this->assertSame(['GuzzleHttp/7'], $requests[1]->header('User-Agent'));
     }
 
@@ -2533,8 +2533,8 @@ class HttpClientTest extends TestCase
 
         $responses[] = $this->factory->withResponseMiddleware(function ($response) {
             return $response->withHeader('X-Foo', 'Bar');
-        })->post('http://forge.quantaquirk.com');
-        $responses[] = $this->factory->post('http://quantaquirk.com');
+        })->post('http://forge.quantaforge.com');
+        $responses[] = $this->factory->post('http://quantaforge.com');
 
         $this->assertSame('Bar', $responses[0]->header('X-Foo'));
         $this->assertSame('', $responses[1]->header('X-Foo'));
@@ -2546,7 +2546,7 @@ class HttpClientTest extends TestCase
             '*' => $this->factory::response('expected content'),
         ]);
 
-        $response = $this->factory->get('http://quantaquirk.com');
+        $response = $this->factory->get('http://quantaforge.com');
 
         $this->assertInstanceOf(Response::class, $response);
         $this->assertSame('expected content', $response->body());
@@ -2560,7 +2560,7 @@ class HttpClientTest extends TestCase
             '*' => $factory::response('expected content'),
         ]);
 
-        $response = $factory->get('http://quantaquirk.fake');
+        $response = $factory->get('http://quantaforge.fake');
 
         $this->assertInstanceOf(TestResponse::class, $response);
         $this->assertSame('expected content', $response->body());

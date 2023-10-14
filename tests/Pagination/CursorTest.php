@@ -1,9 +1,9 @@
 <?php
 
-namespace QuantaQuirk\Tests\Pagination;
+namespace QuantaForge\Tests\Pagination;
 
-use QuantaQuirk\Pagination\Cursor;
-use QuantaQuirk\Support\Carbon;
+use QuantaForge\Pagination\Cursor;
+use QuantaForge\Support\Carbon;
 use PHPUnit\Framework\TestCase;
 
 class CursorTest extends TestCase

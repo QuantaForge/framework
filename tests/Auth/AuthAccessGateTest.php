@@ -1,12 +1,12 @@
 <?php
 
-namespace QuantaQuirk\Tests\Auth;
+namespace QuantaForge\Tests\Auth;
 
-use QuantaQuirk\Auth\Access\AuthorizationException;
-use QuantaQuirk\Auth\Access\Gate;
-use QuantaQuirk\Auth\Access\HandlesAuthorization;
-use QuantaQuirk\Auth\Access\Response;
-use QuantaQuirk\Container\Container;
+use QuantaForge\Auth\Access\AuthorizationException;
+use QuantaForge\Auth\Access\Gate;
+use QuantaForge\Auth\Access\HandlesAuthorization;
+use QuantaForge\Auth\Access\Response;
+use QuantaForge\Container\Container;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use stdClass;
@@ -107,7 +107,7 @@ class AuthAccessGateTest extends TestCase
 
     public function testPoliciesCanAllowGuests()
     {
-        unset($_SERVER['__quantaquirk.testBefore']);
+        unset($_SERVER['__quantaforge.testBefore']);
 
         $gate = new Gate(new Container, function () {
             //
@@ -117,7 +117,7 @@ class AuthAccessGateTest extends TestCase
 
         $this->assertTrue($gate->check('edit', new AccessGateTestDummy));
         $this->assertFalse($gate->check('update', new AccessGateTestDummy));
-        $this->assertTrue($_SERVER['__quantaquirk.testBefore']);
+        $this->assertTrue($_SERVER['__quantaforge.testBefore']);
 
         $gate = $this->getBasicGate();
 
@@ -126,12 +126,12 @@ class AuthAccessGateTest extends TestCase
         $this->assertTrue($gate->check('edit', new AccessGateTestDummy));
         $this->assertTrue($gate->check('update', new AccessGateTestDummy));
 
-        unset($_SERVER['__quantaquirk.testBefore']);
+        unset($_SERVER['__quantaforge.testBefore']);
     }
 
     public function testPolicyBeforeNotCalledWithGuestsIfItDoesntAllowThem()
     {
-        $_SERVER['__quantaquirk.testBefore'] = false;
+        $_SERVER['__quantaforge.testBefore'] = false;
 
         $gate = new Gate(new Container, function () {
             //
@@ -141,36 +141,36 @@ class AuthAccessGateTest extends TestCase
 
         $this->assertTrue($gate->check('edit', new AccessGateTestDummy));
         $this->assertFalse($gate->check('update', new AccessGateTestDummy));
-        $this->assertFalse($_SERVER['__quantaquirk.testBefore']);
+        $this->assertFalse($_SERVER['__quantaforge.testBefore']);
 
-        unset($_SERVER['__quantaquirk.testBefore']);
+        unset($_SERVER['__quantaforge.testBefore']);
     }
 
     public function testBeforeAndAfterCallbacksCanAllowGuests()
     {
-        $_SERVER['__quantaquirk.gateBefore'] = false;
-        $_SERVER['__quantaquirk.gateBefore2'] = false;
-        $_SERVER['__quantaquirk.gateAfter'] = false;
-        $_SERVER['__quantaquirk.gateAfter2'] = false;
+        $_SERVER['__quantaforge.gateBefore'] = false;
+        $_SERVER['__quantaforge.gateBefore2'] = false;
+        $_SERVER['__quantaforge.gateAfter'] = false;
+        $_SERVER['__quantaforge.gateAfter2'] = false;
 
         $gate = new Gate(new Container, function () {
             //
         });
 
         $gate->before(function (?stdClass $user) {
-            $_SERVER['__quantaquirk.gateBefore'] = true;
+            $_SERVER['__quantaforge.gateBefore'] = true;
         });
 
         $gate->after(function (?stdClass $user) {
-            $_SERVER['__quantaquirk.gateAfter'] = true;
+            $_SERVER['__quantaforge.gateAfter'] = true;
         });
 
         $gate->before(function (stdClass $user) {
-            $_SERVER['__quantaquirk.gateBefore2'] = true;
+            $_SERVER['__quantaforge.gateBefore2'] = true;
         });
 
         $gate->after(function (stdClass $user) {
-            $_SERVER['__quantaquirk.gateAfter2'] = true;
+            $_SERVER['__quantaforge.gateAfter2'] = true;
         });
 
         $gate->define('foo', function ($user = null) {
@@ -179,16 +179,16 @@ class AuthAccessGateTest extends TestCase
 
         $this->assertTrue($gate->check('foo'));
 
-        $this->assertTrue($_SERVER['__quantaquirk.gateBefore']);
-        $this->assertFalse($_SERVER['__quantaquirk.gateBefore2']);
-        $this->assertTrue($_SERVER['__quantaquirk.gateAfter']);
-        $this->assertFalse($_SERVER['__quantaquirk.gateAfter2']);
+        $this->assertTrue($_SERVER['__quantaforge.gateBefore']);
+        $this->assertFalse($_SERVER['__quantaforge.gateBefore2']);
+        $this->assertTrue($_SERVER['__quantaforge.gateAfter']);
+        $this->assertFalse($_SERVER['__quantaforge.gateAfter2']);
 
         unset(
-            $_SERVER['__quantaquirk.gateBefore'],
-            $_SERVER['__quantaquirk.gateBefore2'],
-            $_SERVER['__quantaquirk.gateAfter'],
-            $_SERVER['__quantaquirk.gateAfter2']
+            $_SERVER['__quantaforge.gateBefore'],
+            $_SERVER['__quantaforge.gateBefore2'],
+            $_SERVER['__quantaforge.gateAfter'],
+            $_SERVER['__quantaforge.gateAfter2']
         );
     }
 
@@ -1362,7 +1362,7 @@ class AccessGateTestPolicyThatAllowsGuests
 {
     public function before(?stdClass $user)
     {
-        $_SERVER['__quantaquirk.testBefore'] = true;
+        $_SERVER['__quantaforge.testBefore'] = true;
     }
 
     public function edit(?stdClass $user, AccessGateTestDummy $dummy)
@@ -1380,7 +1380,7 @@ class AccessGateTestPolicyWithNonGuestBefore
 {
     public function before(stdClass $user)
     {
-        $_SERVER['__quantaquirk.testBefore'] = true;
+        $_SERVER['__quantaforge.testBefore'] = true;
     }
 
     public function edit(?stdClass $user, AccessGateTestDummy $dummy)

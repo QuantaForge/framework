@@ -1,0 +1,35 @@
+{
+    "name": "quantaforge/bus",
+    "description": "The QuantaForge Bus package.",
+        "license": "proprietary",
+    "authors": [
+        {
+            "name": "Tomáš Selič (Smisch-DEV)",
+            "email": "contact@smisch.sk"
+        }
+    ],
+    "require": {
+        "php": "^8.1",
+        "quantaforge/collections": "^1.0.0",
+        "quantaforge/contracts": "^1.0.0",
+        "quantaforge/pipeline": "^1.0.0",
+        "quantaforge/support": "^1.0.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "QuantaForge\\Bus\\": ""
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "10.x-dev"
+        }
+    },
+    "suggest": {
+        "quantaforge/queue": "Required to use closures when chaining jobs (^7.0)."
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "dev"
+}

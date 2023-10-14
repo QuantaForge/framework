@@ -1,11 +1,11 @@
 <?php
 
-use QuantaQuirk\Database\Eloquent\Factories\Factory;
+use QuantaForge\Database\Eloquent\Factories\Factory;
 
 use function PHPStan\Testing\assertType;
 
 /**
- * @extends QuantaQuirk\Database\Eloquent\Factories\Factory<User>
+ * @extends QuantaForge\Database\Eloquent\Factories\Factory<User>
  */
 class UserFactory extends Factory
 {
@@ -53,9 +53,9 @@ assertType('array<int|string, mixed>', $factory->raw(function ($attributes) {
 
 // assertType('User', $factory->createOne());
 // assertType('User', $factory->createOne(['string' => 'string']));
-assertType('QuantaQuirk\Database\Eloquent\Model', $factory->createOne());
-assertType('QuantaQuirk\Database\Eloquent\Model', $factory->createOne(['string' => 'string']));
-assertType('QuantaQuirk\Database\Eloquent\Model', $factory->createOne(function ($attributes) {
+assertType('QuantaForge\Database\Eloquent\Model', $factory->createOne());
+assertType('QuantaForge\Database\Eloquent\Model', $factory->createOne(['string' => 'string']));
+assertType('QuantaForge\Database\Eloquent\Model', $factory->createOne(function ($attributes) {
     assertType('array<string, mixed>', $attributes);
 
     return ['string' => 'string'];
@@ -63,62 +63,62 @@ assertType('QuantaQuirk\Database\Eloquent\Model', $factory->createOne(function (
 
 // assertType('User', $factory->createOneQuietly());
 // assertType('User', $factory->createOneQuietly(['string' => 'string']));
-assertType('QuantaQuirk\Database\Eloquent\Model', $factory->createOneQuietly());
-assertType('QuantaQuirk\Database\Eloquent\Model', $factory->createOneQuietly(['string' => 'string']));
-assertType('QuantaQuirk\Database\Eloquent\Model', $factory->createOneQuietly(function ($attributes) {
+assertType('QuantaForge\Database\Eloquent\Model', $factory->createOneQuietly());
+assertType('QuantaForge\Database\Eloquent\Model', $factory->createOneQuietly(['string' => 'string']));
+assertType('QuantaForge\Database\Eloquent\Model', $factory->createOneQuietly(function ($attributes) {
     assertType('array<string, mixed>', $attributes);
 
     return ['string' => 'string'];
 }));
 
-// assertType('QuantaQuirk\Database\Eloquent\Collection<int, User>', $factory->createMany([['string' => 'string']]));
-assertType('QuantaQuirk\Database\Eloquent\Collection<int, QuantaQuirk\Database\Eloquent\Model>', $factory->createMany(
+// assertType('QuantaForge\Database\Eloquent\Collection<int, User>', $factory->createMany([['string' => 'string']]));
+assertType('QuantaForge\Database\Eloquent\Collection<int, QuantaForge\Database\Eloquent\Model>', $factory->createMany(
     [['string' => 'string']]
 ));
-assertType('QuantaQuirk\Database\Eloquent\Collection<int, QuantaQuirk\Database\Eloquent\Model>', $factory->createMany(3));
-assertType('QuantaQuirk\Database\Eloquent\Collection<int, QuantaQuirk\Database\Eloquent\Model>', $factory->createMany());
+assertType('QuantaForge\Database\Eloquent\Collection<int, QuantaForge\Database\Eloquent\Model>', $factory->createMany(3));
+assertType('QuantaForge\Database\Eloquent\Collection<int, QuantaForge\Database\Eloquent\Model>', $factory->createMany());
 
-// assertType('QuantaQuirk\Database\Eloquent\Collection<int, User>', $factory->createManyQuietly([['string' => 'string']]));
-assertType('QuantaQuirk\Database\Eloquent\Collection<int, QuantaQuirk\Database\Eloquent\Model>', $factory->createManyQuietly(
+// assertType('QuantaForge\Database\Eloquent\Collection<int, User>', $factory->createManyQuietly([['string' => 'string']]));
+assertType('QuantaForge\Database\Eloquent\Collection<int, QuantaForge\Database\Eloquent\Model>', $factory->createManyQuietly(
     [['string' => 'string']]
 ));
-assertType('QuantaQuirk\Database\Eloquent\Collection<int, QuantaQuirk\Database\Eloquent\Model>', $factory->createManyQuietly(3));
-assertType('QuantaQuirk\Database\Eloquent\Collection<int, QuantaQuirk\Database\Eloquent\Model>', $factory->createManyQuietly());
+assertType('QuantaForge\Database\Eloquent\Collection<int, QuantaForge\Database\Eloquent\Model>', $factory->createManyQuietly(3));
+assertType('QuantaForge\Database\Eloquent\Collection<int, QuantaForge\Database\Eloquent\Model>', $factory->createManyQuietly());
 
-// assertType('QuantaQuirk\Database\Eloquent\Collection<int, User>|User', $factory->create());
-// assertType('QuantaQuirk\Database\Eloquent\Collection<int, User>|User', $factory->create([
+// assertType('QuantaForge\Database\Eloquent\Collection<int, User>|User', $factory->create());
+// assertType('QuantaForge\Database\Eloquent\Collection<int, User>|User', $factory->create([
 //    'string' => 'string',
 // ]));
-assertType('QuantaQuirk\Database\Eloquent\Collection<int, QuantaQuirk\Database\Eloquent\Model>|QuantaQuirk\Database\Eloquent\Model', $factory->create());
-assertType('QuantaQuirk\Database\Eloquent\Collection<int, QuantaQuirk\Database\Eloquent\Model>|QuantaQuirk\Database\Eloquent\Model', $factory->create([
+assertType('QuantaForge\Database\Eloquent\Collection<int, QuantaForge\Database\Eloquent\Model>|QuantaForge\Database\Eloquent\Model', $factory->create());
+assertType('QuantaForge\Database\Eloquent\Collection<int, QuantaForge\Database\Eloquent\Model>|QuantaForge\Database\Eloquent\Model', $factory->create([
     'string' => 'string',
 ]));
-assertType('QuantaQuirk\Database\Eloquent\Collection<int, QuantaQuirk\Database\Eloquent\Model>|QuantaQuirk\Database\Eloquent\Model', $factory->create(function ($attributes) {
+assertType('QuantaForge\Database\Eloquent\Collection<int, QuantaForge\Database\Eloquent\Model>|QuantaForge\Database\Eloquent\Model', $factory->create(function ($attributes) {
     assertType('array<string, mixed>', $attributes);
 
     return ['string' => 'string'];
 }));
 
-// assertType('QuantaQuirk\Database\Eloquent\Collection<int, User>|User', $factory->createQuietly());
-// assertType('QuantaQuirk\Database\Eloquent\Collection<int, User>|User', $factory->createQuietly([
+// assertType('QuantaForge\Database\Eloquent\Collection<int, User>|User', $factory->createQuietly());
+// assertType('QuantaForge\Database\Eloquent\Collection<int, User>|User', $factory->createQuietly([
 //     'string' => 'string',
 // ]));
-assertType('QuantaQuirk\Database\Eloquent\Collection<int, QuantaQuirk\Database\Eloquent\Model>|QuantaQuirk\Database\Eloquent\Model', $factory->createQuietly());
-assertType('QuantaQuirk\Database\Eloquent\Collection<int, QuantaQuirk\Database\Eloquent\Model>|QuantaQuirk\Database\Eloquent\Model', $factory->createQuietly([
+assertType('QuantaForge\Database\Eloquent\Collection<int, QuantaForge\Database\Eloquent\Model>|QuantaForge\Database\Eloquent\Model', $factory->createQuietly());
+assertType('QuantaForge\Database\Eloquent\Collection<int, QuantaForge\Database\Eloquent\Model>|QuantaForge\Database\Eloquent\Model', $factory->createQuietly([
     'string' => 'string',
 ]));
-assertType('QuantaQuirk\Database\Eloquent\Collection<int, QuantaQuirk\Database\Eloquent\Model>|QuantaQuirk\Database\Eloquent\Model', $factory->createQuietly(function ($attributes) {
+assertType('QuantaForge\Database\Eloquent\Collection<int, QuantaForge\Database\Eloquent\Model>|QuantaForge\Database\Eloquent\Model', $factory->createQuietly(function ($attributes) {
     assertType('array<string, mixed>', $attributes);
 
     return ['string' => 'string'];
 }));
 
-// assertType('Closure(): QuantaQuirk\Database\Eloquent\Collection<int, User>|User', $factory->lazy());
-// assertType('Closure(): QuantaQuirk\Database\Eloquent\Collection<int, User>|User', $factory->lazy([
+// assertType('Closure(): QuantaForge\Database\Eloquent\Collection<int, User>|User', $factory->lazy());
+// assertType('Closure(): QuantaForge\Database\Eloquent\Collection<int, User>|User', $factory->lazy([
 //     'string' => 'string',
 // ]));
-assertType('Closure(): (QuantaQuirk\Database\Eloquent\Collection<int, QuantaQuirk\Database\Eloquent\Model>|QuantaQuirk\Database\Eloquent\Model)', $factory->lazy());
-assertType('Closure(): (QuantaQuirk\Database\Eloquent\Collection<int, QuantaQuirk\Database\Eloquent\Model>|QuantaQuirk\Database\Eloquent\Model)', $factory->lazy([
+assertType('Closure(): (QuantaForge\Database\Eloquent\Collection<int, QuantaForge\Database\Eloquent\Model>|QuantaForge\Database\Eloquent\Model)', $factory->lazy());
+assertType('Closure(): (QuantaForge\Database\Eloquent\Collection<int, QuantaForge\Database\Eloquent\Model>|QuantaForge\Database\Eloquent\Model)', $factory->lazy([
     'string' => 'string',
 ]));
 
@@ -126,25 +126,25 @@ assertType('Closure(): (QuantaQuirk\Database\Eloquent\Collection<int, QuantaQuir
 // assertType('User', $factory->makeOne([
 //     'string' => 'string',
 // ]));
-assertType('QuantaQuirk\Database\Eloquent\Model', $factory->makeOne());
-assertType('QuantaQuirk\Database\Eloquent\Model', $factory->makeOne([
+assertType('QuantaForge\Database\Eloquent\Model', $factory->makeOne());
+assertType('QuantaForge\Database\Eloquent\Model', $factory->makeOne([
     'string' => 'string',
 ]));
-assertType('QuantaQuirk\Database\Eloquent\Model', $factory->makeOne(function ($attributes) {
+assertType('QuantaForge\Database\Eloquent\Model', $factory->makeOne(function ($attributes) {
     assertType('array<string, mixed>', $attributes);
 
     return ['string' => 'string'];
 }));
 
-// assertType('QuantaQuirk\Database\Eloquent\Collection<int, User>|User', $factory->make());
-// assertType('QuantaQuirk\Database\Eloquent\Collection<int, User>|User', $factory->make([
+// assertType('QuantaForge\Database\Eloquent\Collection<int, User>|User', $factory->make());
+// assertType('QuantaForge\Database\Eloquent\Collection<int, User>|User', $factory->make([
 //    'string' => 'string',
 // ]));
-assertType('QuantaQuirk\Database\Eloquent\Collection<int, QuantaQuirk\Database\Eloquent\Model>|QuantaQuirk\Database\Eloquent\Model', $factory->make());
-assertType('QuantaQuirk\Database\Eloquent\Collection<int, QuantaQuirk\Database\Eloquent\Model>|QuantaQuirk\Database\Eloquent\Model', $factory->make([
+assertType('QuantaForge\Database\Eloquent\Collection<int, QuantaForge\Database\Eloquent\Model>|QuantaForge\Database\Eloquent\Model', $factory->make());
+assertType('QuantaForge\Database\Eloquent\Collection<int, QuantaForge\Database\Eloquent\Model>|QuantaForge\Database\Eloquent\Model', $factory->make([
     'string' => 'string',
 ]));
-assertType('QuantaQuirk\Database\Eloquent\Collection<int, QuantaQuirk\Database\Eloquent\Model>|QuantaQuirk\Database\Eloquent\Model', $factory->make(function ($attributes) {
+assertType('QuantaForge\Database\Eloquent\Collection<int, QuantaForge\Database\Eloquent\Model>|QuantaForge\Database\Eloquent\Model', $factory->make(function ($attributes) {
     assertType('array<string, mixed>', $attributes);
 
     return ['string' => 'string'];
@@ -158,7 +158,7 @@ assertType('UserFactory', $factory->state(function ($attributes) {
 }));
 assertType('UserFactory', $factory->state(function ($attributes, $model) {
     assertType('array<string, mixed>', $attributes);
-    assertType('QuantaQuirk\Database\Eloquent\Model|null', $model);
+    assertType('QuantaForge\Database\Eloquent\Model|null', $model);
 
     return ['string' => 'string'];
 }));
@@ -180,7 +180,7 @@ assertType('UserFactory', $factory->for($factory->createOne()));
 //     assertType('User', $user);
 // }));
 assertType('UserFactory', $factory->afterMaking(function ($user) {
-    assertType('QuantaQuirk\Database\Eloquent\Model', $user);
+    assertType('QuantaForge\Database\Eloquent\Model', $user);
 }));
 assertType('UserFactory', $factory->afterMaking(function ($user) {
     return 'string';
@@ -190,7 +190,7 @@ assertType('UserFactory', $factory->afterMaking(function ($user) {
 //     assertType('User', $user);
 // }));
 assertType('UserFactory', $factory->afterCreating(function ($user) {
-    assertType('QuantaQuirk\Database\Eloquent\Model', $user);
+    assertType('QuantaForge\Database\Eloquent\Model', $user);
 }));
 assertType('UserFactory', $factory->afterCreating(function ($user) {
     return 'string';
@@ -202,11 +202,11 @@ assertType('UserFactory', $factory->connection('string'));
 
 // assertType('User', $factory->newModel());
 // assertType('User', $factory->newModel(['string' => 'string']));
-assertType('QuantaQuirk\Database\Eloquent\Model', $factory->newModel());
-assertType('QuantaQuirk\Database\Eloquent\Model', $factory->newModel(['string' => 'string']));
+assertType('QuantaForge\Database\Eloquent\Model', $factory->newModel());
+assertType('QuantaForge\Database\Eloquent\Model', $factory->newModel(['string' => 'string']));
 
 // assertType('class-string<User>', $factory->modelName());
-assertType('class-string<QuantaQuirk\Database\Eloquent\Model>', $factory->modelName());
+assertType('class-string<QuantaForge\Database\Eloquent\Model>', $factory->modelName());
 
 Factory::guessModelNamesUsing(function (Factory $factory) {
     return match (true) {
@@ -219,7 +219,7 @@ $factory->useNamespace('string');
 
 assertType(Factory::class, $factory::factoryForModel(User::class));
 
-assertType('class-string<QuantaQuirk\Database\Eloquent\Factories\Factory>', $factory->resolveFactoryName(User::class));
+assertType('class-string<QuantaForge\Database\Eloquent\Factories\Factory>', $factory->resolveFactoryName(User::class));
 
 Factory::guessFactoryNamesUsing(function (string $modelName) {
     return match ($modelName) {

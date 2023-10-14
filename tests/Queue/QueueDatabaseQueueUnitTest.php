@@ -1,12 +1,12 @@
 <?php
 
-namespace QuantaQuirk\Tests\Queue;
+namespace QuantaForge\Tests\Queue;
 
-use QuantaQuirk\Container\Container;
-use QuantaQuirk\Database\Connection;
-use QuantaQuirk\Queue\DatabaseQueue;
-use QuantaQuirk\Queue\Queue;
-use QuantaQuirk\Support\Str;
+use QuantaForge\Container\Container;
+use QuantaForge\Database\Connection;
+use QuantaForge\Queue\DatabaseQueue;
+use QuantaForge\Queue\Queue;
+use QuantaForge\Support\Str;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;

@@ -1,8 +1,8 @@
 <?php
 
-namespace QuantaQuirk\Tests\View\Blade;
+namespace QuantaForge\Tests\View\Blade;
 
-use QuantaQuirk\Contracts\View\ViewCompilationException;
+use QuantaForge\Contracts\View\ViewCompilationException;
 
 class BladeForeachStatementsTest extends AbstractBladeTestCase
 {

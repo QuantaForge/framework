@@ -1,10 +1,10 @@
 <?php
 
-namespace QuantaQuirk\Tests\Filesystem;
+namespace QuantaForge\Tests\Filesystem;
 
-use QuantaQuirk\Contracts\Filesystem\Filesystem;
-use QuantaQuirk\Filesystem\FilesystemManager;
-use QuantaQuirk\Foundation\Application;
+use QuantaForge\Contracts\Filesystem\Filesystem;
+use QuantaForge\Filesystem\FilesystemManager;
+use QuantaForge\Foundation\Application;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 

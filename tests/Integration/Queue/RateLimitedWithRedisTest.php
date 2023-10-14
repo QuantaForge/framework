@@ -1,18 +1,18 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Queue;
+namespace QuantaForge\Tests\Integration\Queue;
 
-use QuantaQuirk\Bus\Dispatcher;
-use QuantaQuirk\Bus\Queueable;
-use QuantaQuirk\Cache\RateLimiter;
-use QuantaQuirk\Cache\RateLimiting\Limit;
-use QuantaQuirk\Contracts\Queue\Job;
-use QuantaQuirk\Contracts\Redis\Factory as Redis;
-use QuantaQuirk\Foundation\Testing\Concerns\InteractsWithRedis;
-use QuantaQuirk\Queue\CallQueuedHandler;
-use QuantaQuirk\Queue\InteractsWithQueue;
-use QuantaQuirk\Queue\Middleware\RateLimitedWithRedis;
-use QuantaQuirk\Support\Str;
+use QuantaForge\Bus\Dispatcher;
+use QuantaForge\Bus\Queueable;
+use QuantaForge\Cache\RateLimiter;
+use QuantaForge\Cache\RateLimiting\Limit;
+use QuantaForge\Contracts\Queue\Job;
+use QuantaForge\Contracts\Redis\Factory as Redis;
+use QuantaForge\Foundation\Testing\Concerns\InteractsWithRedis;
+use QuantaForge\Queue\CallQueuedHandler;
+use QuantaForge\Queue\InteractsWithQueue;
+use QuantaForge\Queue\Middleware\RateLimitedWithRedis;
+use QuantaForge\Support\Str;
 use Mockery as m;
 use Orchestra\Testbench\TestCase;
 

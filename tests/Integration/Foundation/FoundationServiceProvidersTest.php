@@ -1,8 +1,8 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Foundation;
+namespace QuantaForge\Tests\Integration\Foundation;
 
-use QuantaQuirk\Support\ServiceProvider;
+use QuantaForge\Support\ServiceProvider;
 use Orchestra\Testbench\TestCase;
 
 class FoundationServiceProvidersTest extends TestCase

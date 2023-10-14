@@ -1,13 +1,13 @@
 <?php
 
-namespace QuantaQuirk\Tests\Foundation;
+namespace QuantaForge\Tests\Foundation;
 
-use QuantaQuirk\Auth\Access\AuthorizationException;
-use QuantaQuirk\Auth\Access\Gate;
-use QuantaQuirk\Auth\Access\Response;
-use QuantaQuirk\Container\Container;
-use QuantaQuirk\Contracts\Auth\Access\Gate as GateContract;
-use QuantaQuirk\Foundation\Auth\Access\AuthorizesRequests;
+use QuantaForge\Auth\Access\AuthorizationException;
+use QuantaForge\Auth\Access\Gate;
+use QuantaForge\Auth\Access\Response;
+use QuantaForge\Container\Container;
+use QuantaForge\Contracts\Auth\Access\Gate as GateContract;
+use QuantaForge\Foundation\Auth\Access\AuthorizesRequests;
 use PHPUnit\Framework\TestCase;
 
 class FoundationAuthorizesRequestsTraitTest extends TestCase

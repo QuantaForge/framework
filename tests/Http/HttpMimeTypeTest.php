@@ -1,8 +1,8 @@
 <?php
 
-namespace QuantaQuirk\Tests\Http;
+namespace QuantaForge\Tests\Http;
 
-use QuantaQuirk\Http\Testing\MimeType;
+use QuantaForge\Http\Testing\MimeType;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Mime\MimeTypesInterface;
 

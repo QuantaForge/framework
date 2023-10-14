@@ -1,21 +1,21 @@
 <?php
 
-namespace QuantaQuirk\Tests\Validation;
+namespace QuantaForge\Tests\Validation;
 
-use QuantaQuirk\Contracts\Validation\DataAwareRule;
-use QuantaQuirk\Contracts\Validation\ValidationRule;
-use QuantaQuirk\Contracts\Validation\ValidatorAwareRule;
-use QuantaQuirk\Translation\ArrayLoader;
-use QuantaQuirk\Translation\Translator;
-use QuantaQuirk\Validation\InvokableValidationRule;
-use QuantaQuirk\Validation\Validator;
+use QuantaForge\Contracts\Validation\DataAwareRule;
+use QuantaForge\Contracts\Validation\ValidationRule;
+use QuantaForge\Contracts\Validation\ValidatorAwareRule;
+use QuantaForge\Translation\ArrayLoader;
+use QuantaForge\Translation\Translator;
+use QuantaForge\Validation\InvokableValidationRule;
+use QuantaForge\Validation\Validator;
 use PHPUnit\Framework\TestCase;
 
 class ValidationInvokableRuleTest extends TestCase
 {
     public function testItCanPass()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $rule = new class() implements ValidationRule
         {
             public function validate($attribute, $value, $fail): void
@@ -32,7 +32,7 @@ class ValidationInvokableRuleTest extends TestCase
 
     public function testItCanFail()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $rule = new class() implements ValidationRule
         {
             public function validate($attribute, $value, $fail): void
@@ -53,7 +53,7 @@ class ValidationInvokableRuleTest extends TestCase
 
     public function testItCanReturnMultipleErrorMessages()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $rule = new class() implements ValidationRule
         {
             public function validate($attribute, $value, $fail): void
@@ -76,7 +76,7 @@ class ValidationInvokableRuleTest extends TestCase
 
     public function testItCanTranslateMessages()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $trans->addLines(['validation.translated-error' => 'Translated error message.'], 'en');
         $rule = new class() implements ValidationRule
         {
@@ -98,7 +98,7 @@ class ValidationInvokableRuleTest extends TestCase
 
     public function testItPerformsReplacementsWhenTranslating()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $trans->addLines(['validation.translated-error' => 'attribute: :attribute input: :input position: :position index: :index baz: :baz'], 'en');
         $rule = new class() implements ValidationRule
         {
@@ -124,7 +124,7 @@ class ValidationInvokableRuleTest extends TestCase
 
     public function testItLooksForLanguageFileCustomisations()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $trans->addLines(['validation.translated-error' => 'attribute: :attribute'], 'en');
         $trans->addLines(['validation.attributes.foo' => 'email address'], 'en');
         $rule = new class() implements ValidationRule
@@ -149,7 +149,7 @@ class ValidationInvokableRuleTest extends TestCase
 
     public function testItCanSpecifyLocaleWhenTranslating()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $trans->addLines(['validation.translated-error' => 'English'], 'en');
         $trans->addLines(['validation.translated-error' => 'French'], 'fr');
         $rule = new class() implements ValidationRule
@@ -174,7 +174,7 @@ class ValidationInvokableRuleTest extends TestCase
 
     public function testItCanAccessDataDuringValidation()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $rule = new class() implements ValidationRule, DataAwareRule
         {
             public $data = [];
@@ -203,7 +203,7 @@ class ValidationInvokableRuleTest extends TestCase
 
     public function testItCanAccessValidatorDuringValidation()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
 
         $rule = new class() implements ValidationRule, ValidatorAwareRule
         {
@@ -230,7 +230,7 @@ class ValidationInvokableRuleTest extends TestCase
 
     public function testItCanBeExplicit()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $rule = new class() implements ValidationRule
         {
             public $implicit = false;
@@ -249,7 +249,7 @@ class ValidationInvokableRuleTest extends TestCase
 
     public function testItCanBeImplicit()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $rule = new class() implements ValidationRule
         {
             public $implicit = true;
@@ -272,7 +272,7 @@ class ValidationInvokableRuleTest extends TestCase
 
     public function testItIsExplicitByDefault()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $rule = new class() implements ValidationRule
         {
             public function validate($attribute, $value, $fail): void
@@ -289,7 +289,7 @@ class ValidationInvokableRuleTest extends TestCase
 
     public function testItCanSpecifyTheValidationErrorKeyForTheErrorMessage()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $rule = new class() implements ValidationRule
         {
             public function validate($attribute, $value, $fail): void
@@ -314,7 +314,7 @@ class ValidationInvokableRuleTest extends TestCase
 
     public function testItCanTranslateWithChoices()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $trans->addLines(['validation.translated-error' => 'There is one error.|There are many errors.'], 'en');
         $rule = new class() implements ValidationRule
         {
@@ -336,7 +336,7 @@ class ValidationInvokableRuleTest extends TestCase
 
     public function testExplicitRuleCanUseInlineValidationMessages()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $rule = new class() implements ValidationRule
         {
             public $implicit = false;
@@ -368,7 +368,7 @@ class ValidationInvokableRuleTest extends TestCase
 
     public function testImplicitRuleCanUseInlineValidationMessages()
     {
-        $trans = $this->getQuantaQuirkArrayTranslator();
+        $trans = $this->getQuantaForgeArrayTranslator();
         $rule = new class() implements ValidationRule
         {
             public $implicit = true;
@@ -413,7 +413,7 @@ class ValidationInvokableRuleTest extends TestCase
         $this->assertSame($rule, $invokableValidationRule->invokable());
     }
 
-    private function getQuantaQuirkArrayTranslator()
+    private function getQuantaForgeArrayTranslator()
     {
         return new Translator(
             new ArrayLoader(),

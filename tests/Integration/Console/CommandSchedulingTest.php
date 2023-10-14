@@ -1,10 +1,10 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Console;
+namespace QuantaForge\Tests\Integration\Console;
 
-use QuantaQuirk\Console\Scheduling\Schedule;
-use QuantaQuirk\Filesystem\Filesystem;
-use QuantaQuirk\Support\Str;
+use QuantaForge\Console\Scheduling\Schedule;
+use QuantaForge\Filesystem\Filesystem;
+use QuantaForge\Support\Str;
 use Orchestra\Testbench\TestCase;
 
 class CommandSchedulingTest extends TestCase
@@ -34,7 +34,7 @@ class CommandSchedulingTest extends TestCase
     /**
      * The Filesystem instance for writing stubs and logs.
      *
-     * @var \QuantaQuirk\Filesystem\Filesystem
+     * @var \QuantaForge\Filesystem\Filesystem
      */
     protected $fs;
 
@@ -156,35 +156,35 @@ class CommandSchedulingTest extends TestCase
 // If you are seeing this file, an unexpected error must have occurred. Please
 // manually remove it.
 
-define('QUANTAQUIRK_START', microtime(true));
+define('QUANTAFORGE_START', microtime(true));
 
 require __DIR__.'/../../../autoload.php';
 
 \$app = require_once __DIR__.'/bootstrap/app.php';
-\$kernel = \$app->make(QuantaQuirk\Contracts\Console\Kernel::class);
+\$kernel = \$app->make(QuantaForge\Contracts\Console\Kernel::class);
 
 // Here is our custom command for the test
-class CommandSchedulingTestCommand_{$this->id} extends QuantaQuirk\Console\Command
+class CommandSchedulingTestCommand_{$this->id} extends QuantaForge\Console\Command
 {
     protected \$signature = 'test:{$this->id}';
 
     public function handle()
     {
         \$logfile = {$logfile};
-        (new QuantaQuirk\Filesystem\Filesystem)->append(\$logfile, "handled\\n");
+        (new QuantaForge\Filesystem\Filesystem)->append(\$logfile, "handled\\n");
     }
 }
 
 // Register command with Kernel
-QuantaQuirk\Console\Application::starting(function (\$artisan) {
+QuantaForge\Console\Application::starting(function (\$artisan) {
     \$artisan->add(new CommandSchedulingTestCommand_{$this->id});
 });
 
 // Add command to scheduler so that the after() callback is trigger in our spawned process
-QuantaQuirk\Foundation\Application::getInstance()
+QuantaForge\Foundation\Application::getInstance()
     ->booted(function (\$app) {
-        \$app->resolving(QuantaQuirk\Console\Scheduling\Schedule::class, function(\$schedule) {
-            \$fs = new QuantaQuirk\Filesystem\Filesystem;
+        \$app->resolving(QuantaForge\Console\Scheduling\Schedule::class, function(\$schedule) {
+            \$fs = new QuantaForge\Filesystem\Filesystem;
             \$schedule->command("test:{$this->id}")
                 ->after(function() use (\$fs) {
                     \$logfile = {$logfile};

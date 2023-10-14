@@ -1,11 +1,11 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Console\Scheduling;
+namespace QuantaForge\Tests\Integration\Console\Scheduling;
 
-use QuantaQuirk\Console\Scheduling\Schedule;
-use QuantaQuirk\Support\Carbon;
-use QuantaQuirk\Support\Facades\Config;
-use QuantaQuirk\Support\Sleep;
+use QuantaForge\Console\Scheduling\Schedule;
+use QuantaForge\Support\Carbon;
+use QuantaForge\Support\Facades\Config;
+use QuantaForge\Support\Sleep;
 use Orchestra\Testbench\TestCase;
 
 class SubMinuteSchedulingTest extends TestCase

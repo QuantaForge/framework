@@ -1,12 +1,12 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Database;
+namespace QuantaForge\Tests\Integration\Database;
 
-use QuantaQuirk\Database\Eloquent\Model;
-use QuantaQuirk\Database\Eloquent\Relations\MorphPivot;
-use QuantaQuirk\Database\Eloquent\Relations\Pivot;
-use QuantaQuirk\Database\Schema\Blueprint;
-use QuantaQuirk\Support\Facades\Schema;
+use QuantaForge\Database\Eloquent\Model;
+use QuantaForge\Database\Eloquent\Relations\MorphPivot;
+use QuantaForge\Database\Eloquent\Relations\Pivot;
+use QuantaForge\Database\Schema\Blueprint;
+use QuantaForge\Support\Facades\Schema;
 
 class EloquentPivotEventsTest extends DatabaseTestCase
 {
@@ -54,7 +54,7 @@ class EloquentPivotEventsTest extends DatabaseTestCase
 
     public function testPivotWillTriggerEventsToBeFired()
     {
-        $user = PivotEventsTestUser::forceCreate(['email' => 'taylor@quantaquirk.com']);
+        $user = PivotEventsTestUser::forceCreate(['email' => 'taylor@quantaforge.com']);
         $user2 = PivotEventsTestUser::forceCreate(['email' => 'ralph@ralphschindler.com']);
         $project = PivotEventsTestProject::forceCreate(['name' => 'Test Project']);
 
@@ -76,7 +76,7 @@ class EloquentPivotEventsTest extends DatabaseTestCase
 
     public function testPivotWithPivotCriteriaTriggerEventsToBeFiredOnCreateUpdateNoneOnDetach()
     {
-        $user = PivotEventsTestUser::forceCreate(['email' => 'taylor@quantaquirk.com']);
+        $user = PivotEventsTestUser::forceCreate(['email' => 'taylor@quantaforge.com']);
         $user2 = PivotEventsTestUser::forceCreate(['email' => 'ralph@ralphschindler.com']);
         $project = PivotEventsTestProject::forceCreate(['name' => 'Test Project']);
 
@@ -93,7 +93,7 @@ class EloquentPivotEventsTest extends DatabaseTestCase
         $_SERVER['pivot_attributes'] = false;
 
         $user = PivotEventsTestUser::forceCreate([
-            'email' => 'taylor@quantaquirk.com',
+            'email' => 'taylor@quantaforge.com',
         ]);
 
         $project = PivotEventsTestProject::forceCreate([
@@ -120,7 +120,7 @@ class EloquentPivotEventsTest extends DatabaseTestCase
         $_SERVER['pivot_dirty_attributes'] = false;
 
         $user = PivotEventsTestUser::forceCreate([
-            'email' => 'taylor@quantaquirk.com',
+            'email' => 'taylor@quantaforge.com',
         ]);
 
         $project = PivotEventsTestProject::forceCreate([

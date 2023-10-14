@@ -1,10 +1,10 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Redis;
+namespace QuantaForge\Tests\Integration\Redis;
 
-use QuantaQuirk\Redis\Connections\PredisConnection;
-use QuantaQuirk\Redis\Events\CommandExecuted;
-use QuantaQuirk\Support\Facades\Event;
+use QuantaForge\Redis\Connections\PredisConnection;
+use QuantaForge\Redis\Events\CommandExecuted;
+use QuantaForge\Support\Facades\Event;
 use Mockery as m;
 use Orchestra\Testbench\TestCase;
 use Predis\Client;

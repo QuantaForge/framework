@@ -1,9 +1,9 @@
 <?php
 
-namespace QuantaQuirk\Tests\Testing;
+namespace QuantaForge\Tests\Testing;
 
-use QuantaQuirk\Testing\Assert;
-use QuantaQuirk\Testing\Exceptions\InvalidArgumentException;
+use QuantaForge\Testing\Assert;
+use QuantaForge\Testing\Exceptions\InvalidArgumentException;
 use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;
 use stdClass;
@@ -67,7 +67,7 @@ class AssertTest extends TestCase
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage(
-            'Argument #1 of QuantaQuirk\Testing\Assert::assertArraySubset() must be an array or ArrayAccess'
+            'Argument #1 of QuantaForge\Testing\Assert::assertArraySubset() must be an array or ArrayAccess'
         );
 
         Assert::assertArraySubset('string', [
@@ -81,7 +81,7 @@ class AssertTest extends TestCase
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage(
-            'Argument #2 of QuantaQuirk\Testing\Assert::assertArraySubset() must be an array or ArrayAccess'
+            'Argument #2 of QuantaForge\Testing\Assert::assertArraySubset() must be an array or ArrayAccess'
         );
 
         Assert::assertArraySubset([

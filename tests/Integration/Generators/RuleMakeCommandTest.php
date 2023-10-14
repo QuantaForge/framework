@@ -1,6 +1,6 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Generators;
+namespace QuantaForge\Tests\Integration\Generators;
 
 class RuleMakeCommandTest extends TestCase
 {
@@ -15,7 +15,7 @@ class RuleMakeCommandTest extends TestCase
 
         $this->assertFileContains([
             'namespace App\Rules;',
-            'use QuantaQuirk\Contracts\Validation\ValidationRule;',
+            'use QuantaForge\Contracts\Validation\ValidationRule;',
             'class Foo implements ValidationRule',
         ], 'app/Rules/Foo.php');
     }
@@ -27,7 +27,7 @@ class RuleMakeCommandTest extends TestCase
 
         $this->assertFileContains([
             'namespace App\Rules;',
-            'use QuantaQuirk\Contracts\Validation\ValidationRule;',
+            'use QuantaForge\Contracts\Validation\ValidationRule;',
             'class Foo implements ValidationRule',
             'public function validate(string $attribute, mixed $value, Closure $fail): void',
         ], 'app/Rules/Foo.php');
@@ -40,7 +40,7 @@ class RuleMakeCommandTest extends TestCase
 
         $this->assertFileContains([
             'namespace App\Rules;',
-            'use QuantaQuirk\Contracts\Validation\ValidationRule;',
+            'use QuantaForge\Contracts\Validation\ValidationRule;',
             'class Foo implements ValidationRule',
             'public $implicit = true;',
             'public function validate(string $attribute, mixed $value, Closure $fail): void',

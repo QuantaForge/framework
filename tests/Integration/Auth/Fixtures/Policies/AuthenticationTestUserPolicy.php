@@ -1,6 +1,6 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Auth\Fixtures\Policies;
+namespace QuantaForge\Tests\Integration\Auth\Fixtures\Policies;
 
 class AuthenticationTestUserPolicy
 {

@@ -1,11 +1,11 @@
 <?php
 
-namespace QuantaQuirk\Tests\Testing\Concerns;
+namespace QuantaForge\Tests\Testing\Concerns;
 
-use QuantaQuirk\Config\Repository as Config;
-use QuantaQuirk\Container\Container;
-use QuantaQuirk\Support\Facades\DB;
-use QuantaQuirk\Testing\Concerns\TestDatabases;
+use QuantaForge\Config\Repository as Config;
+use QuantaForge\Container\Container;
+use QuantaForge\Support\Facades\DB;
+use QuantaForge\Testing\Concerns\TestDatabases;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 use ReflectionMethod;
@@ -27,7 +27,7 @@ class TestDatabasesTest extends TestCase
                 ->getMock();
         });
 
-        $_SERVER['QUANTAQUIRK_PARALLEL_TESTING'] = 1;
+        $_SERVER['QUANTAFORGE_PARALLEL_TESTING'] = 1;
     }
 
     public function testSwitchToDatabaseWithoutUrl()
@@ -105,7 +105,7 @@ class TestDatabasesTest extends TestCase
         DB::clearResolvedInstances();
         DB::setFacadeApplication(null);
 
-        unset($_SERVER['QUANTAQUIRK_PARALLEL_TESTING']);
+        unset($_SERVER['QUANTAFORGE_PARALLEL_TESTING']);
 
         m::close();
     }

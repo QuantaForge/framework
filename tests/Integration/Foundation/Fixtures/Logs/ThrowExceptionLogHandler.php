@@ -1,6 +1,6 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Foundation\Fixtures\Logs;
+namespace QuantaForge\Tests\Integration\Foundation\Fixtures\Logs;
 
 use Exception;
 use Monolog\Handler\AbstractProcessingHandler;

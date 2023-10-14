@@ -1,9 +1,9 @@
 <?php
 
-namespace QuantaQuirk\Tests\View;
+namespace QuantaForge\Tests\View;
 
-use QuantaQuirk\Filesystem\Filesystem;
-use QuantaQuirk\View\Engines\PhpEngine;
+use QuantaForge\Filesystem\Filesystem;
+use QuantaForge\View\Engines\PhpEngine;
 use PHPUnit\Framework\TestCase;
 
 class ViewPhpEngineTest extends TestCase

@@ -1,9 +1,9 @@
 <?php
 
-namespace QuantaQuirk\Tests\Session;
+namespace QuantaForge\Tests\Session;
 
-use QuantaQuirk\Contracts\Encryption\Encrypter;
-use QuantaQuirk\Session\EncryptedStore;
+use QuantaForge\Contracts\Encryption\Encrypter;
+use QuantaForge\Session\EncryptedStore;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;

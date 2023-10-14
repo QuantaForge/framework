@@ -1,9 +1,9 @@
 <?php
 
-namespace QuantaQuirk\Tests\Cache;
+namespace QuantaForge\Tests\Cache;
 
-use QuantaQuirk\Cache\ApcStore;
-use QuantaQuirk\Cache\ApcWrapper;
+use QuantaForge\Cache\ApcStore;
+use QuantaForge\Cache\ApcWrapper;
 use Mockery;
 use PHPUnit\Framework\TestCase;
 

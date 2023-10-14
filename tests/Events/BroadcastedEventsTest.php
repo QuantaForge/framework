@@ -1,11 +1,11 @@
 <?php
 
-namespace QuantaQuirk\Tests\Events;
+namespace QuantaForge\Tests\Events;
 
-use QuantaQuirk\Container\Container;
-use QuantaQuirk\Contracts\Broadcasting\Factory as BroadcastFactory;
-use QuantaQuirk\Contracts\Broadcasting\ShouldBroadcast;
-use QuantaQuirk\Events\Dispatcher;
+use QuantaForge\Container\Container;
+use QuantaForge\Contracts\Broadcasting\Factory as BroadcastFactory;
+use QuantaForge\Contracts\Broadcasting\ShouldBroadcast;
+use QuantaForge\Events\Dispatcher;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 

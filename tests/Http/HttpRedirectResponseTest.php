@@ -1,14 +1,14 @@
 <?php
 
-namespace QuantaQuirk\Tests\Http;
+namespace QuantaForge\Tests\Http;
 
 use BadMethodCallException;
-use QuantaQuirk\Contracts\Support\MessageProvider;
-use QuantaQuirk\Http\RedirectResponse;
-use QuantaQuirk\Http\Request;
-use QuantaQuirk\Session\Store;
-use QuantaQuirk\Support\MessageBag;
-use QuantaQuirk\Support\ViewErrorBag;
+use QuantaForge\Contracts\Support\MessageProvider;
+use QuantaForge\Http\RedirectResponse;
+use QuantaForge\Http\Request;
+use QuantaForge\Session\Store;
+use QuantaForge\Support\MessageBag;
+use QuantaForge\Support\ViewErrorBag;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Cookie;
@@ -154,7 +154,7 @@ class HttpRedirectResponseTest extends TestCase
     public function testMagicCallException()
     {
         $this->expectException(BadMethodCallException::class);
-        $this->expectExceptionMessage('Call to undefined method QuantaQuirk\Http\RedirectResponse::doesNotExist()');
+        $this->expectExceptionMessage('Call to undefined method QuantaForge\Http\RedirectResponse::doesNotExist()');
 
         $response = new RedirectResponse('foo.bar');
         $response->doesNotExist('bar');

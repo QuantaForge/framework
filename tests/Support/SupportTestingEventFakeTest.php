@@ -1,9 +1,9 @@
 <?php
 
-namespace QuantaQuirk\Tests\Support;
+namespace QuantaForge\Tests\Support;
 
-use QuantaQuirk\Contracts\Events\Dispatcher;
-use QuantaQuirk\Support\Testing\Fakes\EventFake;
+use QuantaForge\Contracts\Events\Dispatcher;
+use QuantaForge\Support\Testing\Fakes\EventFake;
 use Mockery as m;
 use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;
@@ -30,7 +30,7 @@ class SupportTestingEventFakeTest extends TestCase
             $this->fake->assertDispatched(EventStub::class);
             $this->fail();
         } catch (ExpectationFailedException $e) {
-            $this->assertStringContainsString('The expected [QuantaQuirk\Tests\Support\EventStub] event was not dispatched.', $e->getMessage());
+            $this->assertStringContainsString('The expected [QuantaForge\Tests\Support\EventStub] event was not dispatched.', $e->getMessage());
         }
 
         $this->fake->dispatch(EventStub::class);
@@ -70,7 +70,7 @@ class SupportTestingEventFakeTest extends TestCase
             $this->fake->assertDispatched(EventStub::class, 1);
             $this->fail();
         } catch (ExpectationFailedException $e) {
-            $this->assertStringContainsString('The expected [QuantaQuirk\Tests\Support\EventStub] event was dispatched 2 times instead of 1 times.', $e->getMessage());
+            $this->assertStringContainsString('The expected [QuantaForge\Tests\Support\EventStub] event was dispatched 2 times instead of 1 times.', $e->getMessage());
         }
 
         $this->fake->assertDispatched(EventStub::class, 2);
@@ -85,7 +85,7 @@ class SupportTestingEventFakeTest extends TestCase
             $this->fake->assertDispatchedTimes(EventStub::class, 1);
             $this->fail();
         } catch (ExpectationFailedException $e) {
-            $this->assertStringContainsString('The expected [QuantaQuirk\Tests\Support\EventStub] event was dispatched 2 times instead of 1 times.', $e->getMessage());
+            $this->assertStringContainsString('The expected [QuantaForge\Tests\Support\EventStub] event was dispatched 2 times instead of 1 times.', $e->getMessage());
         }
 
         $this->fake->assertDispatchedTimes(EventStub::class, 2);
@@ -101,7 +101,7 @@ class SupportTestingEventFakeTest extends TestCase
             $this->fake->assertNotDispatched(EventStub::class);
             $this->fail();
         } catch (ExpectationFailedException $e) {
-            $this->assertStringContainsString('The unexpected [QuantaQuirk\Tests\Support\EventStub] event was dispatched.', $e->getMessage());
+            $this->assertStringContainsString('The unexpected [QuantaForge\Tests\Support\EventStub] event was dispatched.', $e->getMessage());
         }
     }
 
@@ -115,7 +115,7 @@ class SupportTestingEventFakeTest extends TestCase
             });
             $this->fail();
         } catch (ExpectationFailedException $e) {
-            $this->assertStringContainsString('The unexpected [QuantaQuirk\Tests\Support\EventStub] event was dispatched.', $e->getMessage());
+            $this->assertStringContainsString('The unexpected [QuantaForge\Tests\Support\EventStub] event was dispatched.', $e->getMessage());
         }
     }
 

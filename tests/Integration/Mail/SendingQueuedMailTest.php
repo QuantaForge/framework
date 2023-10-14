@@ -1,13 +1,13 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Mail;
+namespace QuantaForge\Tests\Integration\Mail;
 
-use QuantaQuirk\Mail\Mailable;
-use QuantaQuirk\Mail\SendQueuedMailable;
-use QuantaQuirk\Queue\Middleware\RateLimited;
-use QuantaQuirk\Support\Facades\Mail;
-use QuantaQuirk\Support\Facades\Queue;
-use QuantaQuirk\Support\Facades\View;
+use QuantaForge\Mail\Mailable;
+use QuantaForge\Mail\SendQueuedMailable;
+use QuantaForge\Queue\Middleware\RateLimited;
+use QuantaForge\Support\Facades\Mail;
+use QuantaForge\Support\Facades\Queue;
+use QuantaForge\Support\Facades\View;
 use Orchestra\Testbench\TestCase;
 
 class SendingQueuedMailTest extends TestCase

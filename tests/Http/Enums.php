@@ -1,6 +1,6 @@
 <?php
 
-namespace QuantaQuirk\Tests\Http;
+namespace QuantaForge\Tests\Http;
 
 enum TestEnum: string
 {

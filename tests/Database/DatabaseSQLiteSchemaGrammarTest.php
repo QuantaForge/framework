@@ -1,12 +1,12 @@
 <?php
 
-namespace QuantaQuirk\Tests\Database;
+namespace QuantaForge\Tests\Database;
 
-use QuantaQuirk\Database\Capsule\Manager;
-use QuantaQuirk\Database\Connection;
-use QuantaQuirk\Database\Schema\Blueprint;
-use QuantaQuirk\Database\Schema\ForeignIdColumnDefinition;
-use QuantaQuirk\Database\Schema\Grammars\SQLiteGrammar;
+use QuantaForge\Database\Capsule\Manager;
+use QuantaForge\Database\Connection;
+use QuantaForge\Database\Schema\Blueprint;
+use QuantaForge\Database\Schema\ForeignIdColumnDefinition;
+use QuantaForge\Database\Schema\Grammars\SQLiteGrammar;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 use RuntimeException;
@@ -305,7 +305,7 @@ class DatabaseSQLiteSchemaGrammarTest extends TestCase
         $blueprint = new Blueprint('users');
         $foreignId = $blueprint->foreignId('foo');
         $blueprint->foreignId('company_id')->constrained();
-        $blueprint->foreignId('quantaquirk_idea_id')->constrained();
+        $blueprint->foreignId('quantaforge_idea_id')->constrained();
         $blueprint->foreignId('team_id')->references('id')->on('teams');
         $blueprint->foreignId('team_column_id')->constrained('teams');
 
@@ -315,7 +315,7 @@ class DatabaseSQLiteSchemaGrammarTest extends TestCase
         $this->assertSame([
             'alter table "users" add column "foo" integer not null',
             'alter table "users" add column "company_id" integer not null',
-            'alter table "users" add column "quantaquirk_idea_id" integer not null',
+            'alter table "users" add column "quantaforge_idea_id" integer not null',
             'alter table "users" add column "team_id" integer not null',
             'alter table "users" add column "team_column_id" integer not null',
         ], $statements);
@@ -726,7 +726,7 @@ class DatabaseSQLiteSchemaGrammarTest extends TestCase
         $blueprint = new Blueprint('users');
         $foreignUuid = $blueprint->foreignUuid('foo');
         $blueprint->foreignUuid('company_id')->constrained();
-        $blueprint->foreignUuid('quantaquirk_idea_id')->constrained();
+        $blueprint->foreignUuid('quantaforge_idea_id')->constrained();
         $blueprint->foreignUuid('team_id')->references('id')->on('teams');
         $blueprint->foreignUuid('team_column_id')->constrained('teams');
 
@@ -736,7 +736,7 @@ class DatabaseSQLiteSchemaGrammarTest extends TestCase
         $this->assertSame([
             'alter table "users" add column "foo" varchar not null',
             'alter table "users" add column "company_id" varchar not null',
-            'alter table "users" add column "quantaquirk_idea_id" varchar not null',
+            'alter table "users" add column "quantaforge_idea_id" varchar not null',
             'alter table "users" add column "team_id" varchar not null',
             'alter table "users" add column "team_column_id" varchar not null',
         ], $statements);

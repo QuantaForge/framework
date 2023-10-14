@@ -1,19 +1,19 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Queue;
+namespace QuantaForge\Tests\Integration\Queue;
 
-use QuantaQuirk\Bus\Queueable;
-use QuantaQuirk\Contracts\Encryption\DecryptException;
-use QuantaQuirk\Contracts\Queue\ShouldBeEncrypted;
-use QuantaQuirk\Contracts\Queue\ShouldQueue;
-use QuantaQuirk\Database\Schema\Blueprint;
-use QuantaQuirk\Foundation\Bus\Dispatchable;
-use QuantaQuirk\Support\Facades\Bus;
-use QuantaQuirk\Support\Facades\DB;
-use QuantaQuirk\Support\Facades\Queue;
-use QuantaQuirk\Support\Facades\Schema;
-use QuantaQuirk\Support\Str;
-use QuantaQuirk\Tests\Integration\Database\DatabaseTestCase;
+use QuantaForge\Bus\Queueable;
+use QuantaForge\Contracts\Encryption\DecryptException;
+use QuantaForge\Contracts\Queue\ShouldBeEncrypted;
+use QuantaForge\Contracts\Queue\ShouldQueue;
+use QuantaForge\Database\Schema\Blueprint;
+use QuantaForge\Foundation\Bus\Dispatchable;
+use QuantaForge\Support\Facades\Bus;
+use QuantaForge\Support\Facades\DB;
+use QuantaForge\Support\Facades\Queue;
+use QuantaForge\Support\Facades\Schema;
+use QuantaForge\Support\Str;
+use QuantaForge\Tests\Integration\Database\DatabaseTestCase;
 
 class JobEncryptionTest extends DatabaseTestCase
 {

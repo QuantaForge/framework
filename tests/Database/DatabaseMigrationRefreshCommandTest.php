@@ -1,14 +1,14 @@
 <?php
 
-namespace QuantaQuirk\Tests\Database;
+namespace QuantaForge\Tests\Database;
 
-use QuantaQuirk\Contracts\Events\Dispatcher;
-use QuantaQuirk\Database\Console\Migrations\MigrateCommand;
-use QuantaQuirk\Database\Console\Migrations\RefreshCommand;
-use QuantaQuirk\Database\Console\Migrations\ResetCommand;
-use QuantaQuirk\Database\Console\Migrations\RollbackCommand;
-use QuantaQuirk\Database\Events\DatabaseRefreshed;
-use QuantaQuirk\Foundation\Application;
+use QuantaForge\Contracts\Events\Dispatcher;
+use QuantaForge\Database\Console\Migrations\MigrateCommand;
+use QuantaForge\Database\Console\Migrations\RefreshCommand;
+use QuantaForge\Database\Console\Migrations\ResetCommand;
+use QuantaForge\Database\Console\Migrations\RollbackCommand;
+use QuantaForge\Database\Events\DatabaseRefreshed;
+use QuantaForge\Foundation\Application;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Application as ConsoleApplication;
@@ -30,7 +30,7 @@ class DatabaseMigrationRefreshCommandTest extends TestCase
         $dispatcher = $app->instance(Dispatcher::class, $events = m::mock());
         $console = m::mock(ConsoleApplication::class)->makePartial();
         $console->__construct();
-        $command->setQuantaQuirk($app);
+        $command->setQuantaForge($app);
         $command->setApplication($console);
 
         $resetCommand = m::mock(ResetCommand::class);
@@ -55,7 +55,7 @@ class DatabaseMigrationRefreshCommandTest extends TestCase
         $dispatcher = $app->instance(Dispatcher::class, $events = m::mock());
         $console = m::mock(ConsoleApplication::class)->makePartial();
         $console->__construct();
-        $command->setQuantaQuirk($app);
+        $command->setQuantaForge($app);
         $command->setApplication($console);
 
         $rollbackCommand = m::mock(RollbackCommand::class);

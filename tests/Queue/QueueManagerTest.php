@@ -1,9 +1,9 @@
 <?php
 
-namespace QuantaQuirk\Tests\Queue;
+namespace QuantaForge\Tests\Queue;
 
-use QuantaQuirk\Contracts\Encryption\Encrypter;
-use QuantaQuirk\Queue\QueueManager;
+use QuantaForge\Contracts\Encryption\Encrypter;
+use QuantaForge\Queue\QueueManager;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 use stdClass;

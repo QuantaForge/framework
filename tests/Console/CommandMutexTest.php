@@ -1,11 +1,11 @@
 <?php
 
-namespace QuantaQuirk\Tests\Console;
+namespace QuantaForge\Tests\Console;
 
-use QuantaQuirk\Console\Command;
-use QuantaQuirk\Console\CommandMutex;
-use QuantaQuirk\Contracts\Console\Isolatable;
-use QuantaQuirk\Foundation\Application;
+use QuantaForge\Console\Command;
+use QuantaForge\Console\CommandMutex;
+use QuantaForge\Contracts\Console\Isolatable;
+use QuantaForge\Foundation\Application;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Input\ArrayInput;
@@ -39,7 +39,7 @@ class CommandMutexTest extends TestCase
 
         $app = new Application;
         $app->instance(CommandMutex::class, $this->commandMutex);
-        $this->command->setQuantaQuirk($app);
+        $this->command->setQuantaForge($app);
     }
 
     public function testCanRunIsolatedCommandIfNotBlocked()

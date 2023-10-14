@@ -1,8 +1,8 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Log;
+namespace QuantaForge\Tests\Integration\Log;
 
-use QuantaQuirk\Support\Facades\Log;
+use QuantaForge\Support\Facades\Log;
 use Orchestra\Testbench\TestCase;
 
 class LoggingIntegrationTest extends TestCase

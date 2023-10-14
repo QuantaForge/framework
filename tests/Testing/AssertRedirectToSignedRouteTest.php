@@ -1,22 +1,22 @@
 <?php
 
-namespace QuantaQuirk\Tests\Testing;
+namespace QuantaForge\Tests\Testing;
 
-use QuantaQuirk\Contracts\Routing\Registrar;
-use QuantaQuirk\Http\RedirectResponse;
-use QuantaQuirk\Routing\UrlGenerator;
-use QuantaQuirk\Support\Facades\Facade;
+use QuantaForge\Contracts\Routing\Registrar;
+use QuantaForge\Http\RedirectResponse;
+use QuantaForge\Routing\UrlGenerator;
+use QuantaForge\Support\Facades\Facade;
 use Orchestra\Testbench\TestCase;
 
 class AssertRedirectToSignedRouteTest extends TestCase
 {
     /**
-     * @var \QuantaQuirk\Contracts\Routing\Registrar
+     * @var \QuantaForge\Contracts\Routing\Registrar
      */
     private $router;
 
     /**
-     * @var \QuantaQuirk\Routing\UrlGenerator
+     * @var \QuantaForge\Routing\UrlGenerator
      */
     private $urlGenerator;
 

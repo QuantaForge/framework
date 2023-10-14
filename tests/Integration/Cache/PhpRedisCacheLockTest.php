@@ -1,9 +1,9 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Cache;
+namespace QuantaForge\Tests\Integration\Cache;
 
-use QuantaQuirk\Foundation\Testing\Concerns\InteractsWithRedis;
-use QuantaQuirk\Support\Facades\Cache;
+use QuantaForge\Foundation\Testing\Concerns\InteractsWithRedis;
+use QuantaForge\Support\Facades\Cache;
 use Orchestra\Testbench\TestCase;
 use Redis;
 
@@ -31,7 +31,7 @@ class PhpRedisCacheLockTest extends TestCase
         $this->app['config']->set('cache.stores.redis.connection', 'default');
         $this->app['config']->set('cache.stores.redis.lock_connection', 'default');
 
-        /** @var \QuantaQuirk\Cache\RedisStore $store */
+        /** @var \QuantaForge\Cache\RedisStore $store */
         $store = Cache::store('redis');
         /** @var \Redis $client */
         $client = $store->lockConnection()->client();
@@ -52,7 +52,7 @@ class PhpRedisCacheLockTest extends TestCase
         $this->app['config']->set('cache.stores.redis.connection', 'default');
         $this->app['config']->set('cache.stores.redis.lock_connection', 'default');
 
-        /** @var \QuantaQuirk\Cache\RedisStore $store */
+        /** @var \QuantaForge\Cache\RedisStore $store */
         $store = Cache::store('redis');
         /** @var \Redis $client */
         $client = $store->lockConnection()->client();
@@ -73,7 +73,7 @@ class PhpRedisCacheLockTest extends TestCase
         $this->app['config']->set('cache.stores.redis.connection', 'default');
         $this->app['config']->set('cache.stores.redis.lock_connection', 'default');
 
-        /** @var \QuantaQuirk\Cache\RedisStore $store */
+        /** @var \QuantaForge\Cache\RedisStore $store */
         $store = Cache::store('redis');
         /** @var \Redis $client */
         $client = $store->lockConnection()->client();
@@ -98,7 +98,7 @@ class PhpRedisCacheLockTest extends TestCase
         $this->app['config']->set('cache.stores.redis.connection', 'default');
         $this->app['config']->set('cache.stores.redis.lock_connection', 'default');
 
-        /** @var \QuantaQuirk\Cache\RedisStore $store */
+        /** @var \QuantaForge\Cache\RedisStore $store */
         $store = Cache::store('redis');
         /** @var \Redis $client */
         $client = $store->lockConnection()->client();
@@ -123,7 +123,7 @@ class PhpRedisCacheLockTest extends TestCase
         $this->app['config']->set('cache.stores.redis.connection', 'default');
         $this->app['config']->set('cache.stores.redis.lock_connection', 'default');
 
-        /** @var \QuantaQuirk\Cache\RedisStore $store */
+        /** @var \QuantaForge\Cache\RedisStore $store */
         $store = Cache::store('redis');
         /** @var \Redis $client */
         $client = $store->lockConnection()->client();
@@ -151,7 +151,7 @@ class PhpRedisCacheLockTest extends TestCase
         $this->app['config']->set('cache.stores.redis.connection', 'default');
         $this->app['config']->set('cache.stores.redis.lock_connection', 'default');
 
-        /** @var \QuantaQuirk\Cache\RedisStore $store */
+        /** @var \QuantaForge\Cache\RedisStore $store */
         $store = Cache::store('redis');
         /** @var \Redis $client */
         $client = $store->lockConnection()->client();
@@ -180,7 +180,7 @@ class PhpRedisCacheLockTest extends TestCase
         $this->app['config']->set('cache.stores.redis.connection', 'default');
         $this->app['config']->set('cache.stores.redis.lock_connection', 'default');
 
-        /** @var \QuantaQuirk\Cache\RedisStore $store */
+        /** @var \QuantaForge\Cache\RedisStore $store */
         $store = Cache::store('redis');
         /** @var \Redis $client */
         $client = $store->lockConnection()->client();
@@ -228,7 +228,7 @@ class PhpRedisCacheLockTest extends TestCase
         $this->app['config']->set('cache.stores.redis.connection', 'default');
         $this->app['config']->set('cache.stores.redis.lock_connection', 'default');
 
-        /** @var \QuantaQuirk\Cache\RedisStore $store */
+        /** @var \QuantaForge\Cache\RedisStore $store */
         $store = Cache::store('redis');
         /** @var \Redis $client */
         $client = $store->lockConnection()->client();
@@ -276,7 +276,7 @@ class PhpRedisCacheLockTest extends TestCase
         $this->app['config']->set('cache.stores.redis.connection', 'default');
         $this->app['config']->set('cache.stores.redis.lock_connection', 'default');
 
-        /** @var \QuantaQuirk\Cache\RedisStore $store */
+        /** @var \QuantaForge\Cache\RedisStore $store */
         $store = Cache::store('redis');
         /** @var \Redis $client */
         $client = $store->lockConnection()->client();

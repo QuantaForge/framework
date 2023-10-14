@@ -1,6 +1,6 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Database\Postgres;
+namespace QuantaForge\Tests\Integration\Database\Postgres;
 
 use RuntimeException;
 

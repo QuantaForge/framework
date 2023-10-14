@@ -1,8 +1,8 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Support\Fixtures;
+namespace QuantaForge\Tests\Integration\Support\Fixtures;
 
-use QuantaQuirk\Support\Manager;
+use QuantaForge\Support\Manager;
 
 class NullableManager extends Manager
 {

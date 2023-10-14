@@ -1,11 +1,11 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\View;
+namespace QuantaForge\Tests\Integration\View;
 
 use Exception;
-use QuantaQuirk\Http\Response;
-use QuantaQuirk\Support\Facades\Route;
-use QuantaQuirk\Support\Facades\View;
+use QuantaForge\Http\Response;
+use QuantaForge\Support\Facades\Route;
+use QuantaForge\Support\Facades\View;
 use Orchestra\Testbench\TestCase;
 
 class RenderableViewExceptionTest extends TestCase

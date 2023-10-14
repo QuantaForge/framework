@@ -1,13 +1,13 @@
 <?php
 
-namespace QuantaQuirk\Tests\Database;
+namespace QuantaForge\Tests\Database;
 
-use QuantaQuirk\Container\Container;
-use QuantaQuirk\Database\Connection;
-use QuantaQuirk\Database\Schema\SQLiteBuilder;
-use QuantaQuirk\Filesystem\Filesystem;
-use QuantaQuirk\Support\Facades\Facade;
-use QuantaQuirk\Support\Facades\File;
+use QuantaForge\Container\Container;
+use QuantaForge\Database\Connection;
+use QuantaForge\Database\Schema\SQLiteBuilder;
+use QuantaForge\Filesystem\Filesystem;
+use QuantaForge\Support\Facades\Facade;
+use QuantaForge\Support\Facades\File;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 

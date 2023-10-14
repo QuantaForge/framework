@@ -1,18 +1,18 @@
 <?php
 
-namespace QuantaQuirk\Tests\Http;
+namespace QuantaForge\Tests\Http;
 
 use BadMethodCallException;
-use QuantaQuirk\Contracts\Support\Arrayable;
-use QuantaQuirk\Contracts\Support\Jsonable;
-use QuantaQuirk\Contracts\Support\MessageProvider;
-use QuantaQuirk\Contracts\Support\Renderable;
-use QuantaQuirk\Http\RedirectResponse;
-use QuantaQuirk\Http\Request;
-use QuantaQuirk\Http\Response;
-use QuantaQuirk\Session\Store;
-use QuantaQuirk\Support\MessageBag;
-use QuantaQuirk\Support\ViewErrorBag;
+use QuantaForge\Contracts\Support\Arrayable;
+use QuantaForge\Contracts\Support\Jsonable;
+use QuantaForge\Contracts\Support\MessageProvider;
+use QuantaForge\Contracts\Support\Renderable;
+use QuantaForge\Http\RedirectResponse;
+use QuantaForge\Http\Request;
+use QuantaForge\Http\Response;
+use QuantaForge\Session\Store;
+use QuantaForge\Support\MessageBag;
+use QuantaForge\Support\ViewErrorBag;
 use JsonSerializable;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
@@ -207,7 +207,7 @@ class HttpResponseTest extends TestCase
     public function testMagicCallException()
     {
         $this->expectException(BadMethodCallException::class);
-        $this->expectExceptionMessage('Call to undefined method QuantaQuirk\Http\RedirectResponse::doesNotExist()');
+        $this->expectExceptionMessage('Call to undefined method QuantaForge\Http\RedirectResponse::doesNotExist()');
 
         $response = new RedirectResponse('foo.bar');
         $response->doesNotExist('bar');

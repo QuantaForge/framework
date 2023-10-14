@@ -1,10 +1,10 @@
 <?php
 
-namespace QuantaQuirk\Tests\Database;
+namespace QuantaForge\Tests\Database;
 
-use QuantaQuirk\Database\Console\Migrations\RollbackCommand;
-use QuantaQuirk\Database\Migrations\Migrator;
-use QuantaQuirk\Foundation\Application;
+use QuantaForge\Database\Console\Migrations\RollbackCommand;
+use QuantaForge\Database\Migrations\Migrator;
+use QuantaForge\Foundation\Application;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Input\ArrayInput;
@@ -22,7 +22,7 @@ class DatabaseMigrationRollbackCommandTest extends TestCase
         $command = new RollbackCommand($migrator = m::mock(Migrator::class));
         $app = new ApplicationDatabaseRollbackStub(['path.database' => __DIR__]);
         $app->useDatabasePath(__DIR__);
-        $command->setQuantaQuirk($app);
+        $command->setQuantaForge($app);
         $migrator->shouldReceive('paths')->once()->andReturn([]);
         $migrator->shouldReceive('usingConnection')->once()->andReturnUsing(function ($name, $callback) {
             return $callback();
@@ -38,7 +38,7 @@ class DatabaseMigrationRollbackCommandTest extends TestCase
         $command = new RollbackCommand($migrator = m::mock(Migrator::class));
         $app = new ApplicationDatabaseRollbackStub(['path.database' => __DIR__]);
         $app->useDatabasePath(__DIR__);
-        $command->setQuantaQuirk($app);
+        $command->setQuantaForge($app);
         $migrator->shouldReceive('paths')->once()->andReturn([]);
         $migrator->shouldReceive('usingConnection')->once()->andReturnUsing(function ($name, $callback) {
             return $callback();
@@ -54,7 +54,7 @@ class DatabaseMigrationRollbackCommandTest extends TestCase
         $command = new RollbackCommand($migrator = m::mock(Migrator::class));
         $app = new ApplicationDatabaseRollbackStub(['path.database' => __DIR__]);
         $app->useDatabasePath(__DIR__);
-        $command->setQuantaQuirk($app);
+        $command->setQuantaForge($app);
         $migrator->shouldReceive('paths')->once()->andReturn([]);
         $migrator->shouldReceive('usingConnection')->once()->andReturnUsing(function ($name, $callback) {
             return $callback();
@@ -70,7 +70,7 @@ class DatabaseMigrationRollbackCommandTest extends TestCase
         $command = new RollbackCommand($migrator = m::mock(Migrator::class));
         $app = new ApplicationDatabaseRollbackStub(['path.database' => __DIR__]);
         $app->useDatabasePath(__DIR__);
-        $command->setQuantaQuirk($app);
+        $command->setQuantaForge($app);
         $migrator->shouldReceive('paths')->once()->andReturn([]);
         $migrator->shouldReceive('usingConnection')->once()->andReturnUsing(function ($name, $callback) {
             return $callback();

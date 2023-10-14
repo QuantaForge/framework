@@ -1,8 +1,8 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Database;
+namespace QuantaForge\Tests\Integration\Database;
 
-use QuantaQuirk\Foundation\Testing\DatabaseMigrations;
+use QuantaForge\Foundation\Testing\DatabaseMigrations;
 use Orchestra\Testbench\TestCase;
 
 abstract class DatabaseTestCase extends TestCase

@@ -1,6 +1,6 @@
 <?php
 
-use QuantaQuirk\Support\Facades\Cache;
+use QuantaForge\Support\Facades\Cache;
 
 use function PHPStan\Testing\assertType;
 

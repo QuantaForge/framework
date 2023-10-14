@@ -1,15 +1,15 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Queue;
+namespace QuantaForge\Tests\Integration\Queue;
 
-use QuantaQuirk\Bus\Dispatcher;
-use QuantaQuirk\Bus\Queueable;
-use QuantaQuirk\Contracts\Queue\Job;
-use QuantaQuirk\Database\Eloquent\ModelNotFoundException;
-use QuantaQuirk\Queue\CallQueuedHandler;
-use QuantaQuirk\Queue\Events\JobFailed;
-use QuantaQuirk\Queue\InteractsWithQueue;
-use QuantaQuirk\Support\Facades\Event;
+use QuantaForge\Bus\Dispatcher;
+use QuantaForge\Bus\Queueable;
+use QuantaForge\Contracts\Queue\Job;
+use QuantaForge\Database\Eloquent\ModelNotFoundException;
+use QuantaForge\Queue\CallQueuedHandler;
+use QuantaForge\Queue\Events\JobFailed;
+use QuantaForge\Queue\InteractsWithQueue;
+use QuantaForge\Support\Facades\Event;
 use Mockery as m;
 use Orchestra\Testbench\TestCase;
 

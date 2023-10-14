@@ -1,8 +1,8 @@
 <?php
 
-namespace QuantaQuirk\Tests\View\Blade;
+namespace QuantaForge\Tests\View\Blade;
 
-use QuantaQuirk\Support\Str;
+use QuantaForge\Support\Str;
 
 class BladePushTest extends AbstractBladeTestCase
 {

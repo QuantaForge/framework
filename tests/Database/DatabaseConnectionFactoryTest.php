@@ -1,10 +1,10 @@
 <?php
 
-namespace QuantaQuirk\Tests\Database;
+namespace QuantaForge\Tests\Database;
 
-use QuantaQuirk\Container\Container;
-use QuantaQuirk\Database\Capsule\Manager as DB;
-use QuantaQuirk\Database\Connectors\ConnectionFactory;
+use QuantaForge\Container\Container;
+use QuantaForge\Database\Capsule\Manager as DB;
+use QuantaForge\Database\Connectors\ConnectionFactory;
 use InvalidArgumentException;
 use Mockery as m;
 use PDO;

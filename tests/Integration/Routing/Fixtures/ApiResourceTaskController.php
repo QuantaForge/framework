@@ -1,8 +1,8 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Routing\Fixtures;
+namespace QuantaForge\Tests\Integration\Routing\Fixtures;
 
-use QuantaQuirk\Routing\Controller;
+use QuantaForge\Routing\Controller;
 
 class ApiResourceTaskController extends Controller
 {

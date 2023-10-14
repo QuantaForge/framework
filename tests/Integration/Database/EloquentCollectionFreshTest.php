@@ -1,11 +1,11 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Database;
+namespace QuantaForge\Tests\Integration\Database;
 
-use QuantaQuirk\Database\Eloquent\Collection as EloquentCollection;
-use QuantaQuirk\Database\Schema\Blueprint;
-use QuantaQuirk\Support\Facades\Schema;
-use QuantaQuirk\Tests\Integration\Database\Fixtures\User;
+use QuantaForge\Database\Eloquent\Collection as EloquentCollection;
+use QuantaForge\Database\Schema\Blueprint;
+use QuantaForge\Support\Facades\Schema;
+use QuantaForge\Tests\Integration\Database\Fixtures\User;
 
 class EloquentCollectionFreshTest extends DatabaseTestCase
 {
@@ -21,8 +21,8 @@ class EloquentCollectionFreshTest extends DatabaseTestCase
     public function testEloquentCollectionFresh()
     {
         User::insert([
-            ['email' => 'quantaquirk@framework.com'],
-            ['email' => 'quantaquirk@quantaquirk.com'],
+            ['email' => 'quantaforge@framework.com'],
+            ['email' => 'quantaforge@quantaforge.com'],
         ]);
 
         $collection = User::all();

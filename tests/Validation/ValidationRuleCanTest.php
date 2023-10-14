@@ -1,16 +1,16 @@
 <?php
 
-namespace QuantaQuirk\Tests\Validation;
+namespace QuantaForge\Tests\Validation;
 
-use QuantaQuirk\Auth\Access\Gate;
-use QuantaQuirk\Container\Container;
-use QuantaQuirk\Contracts\Auth\Access\Gate as GateContract;
-use QuantaQuirk\Support\Facades\Facade;
-use QuantaQuirk\Translation\ArrayLoader;
-use QuantaQuirk\Translation\Translator;
-use QuantaQuirk\Validation\Rules\Can;
-use QuantaQuirk\Validation\ValidationServiceProvider;
-use QuantaQuirk\Validation\Validator;
+use QuantaForge\Auth\Access\Gate;
+use QuantaForge\Container\Container;
+use QuantaForge\Contracts\Auth\Access\Gate as GateContract;
+use QuantaForge\Support\Facades\Facade;
+use QuantaForge\Translation\ArrayLoader;
+use QuantaForge\Translation\Translator;
+use QuantaForge\Validation\Rules\Can;
+use QuantaForge\Validation\ValidationServiceProvider;
+use QuantaForge\Validation\Validator;
 use PHPUnit\Framework\TestCase;
 use stdClass;
 
@@ -93,7 +93,7 @@ class ValidationRuleCanTest extends TestCase
     /**
      * Get the Gate instance from the container.
      *
-     * @return \QuantaQuirk\Auth\Access\Gate
+     * @return \QuantaForge\Auth\Access\Gate
      */
     protected function gate()
     {

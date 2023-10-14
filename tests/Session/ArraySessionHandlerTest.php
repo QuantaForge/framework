@@ -1,9 +1,9 @@
 <?php
 
-namespace QuantaQuirk\Tests\Session;
+namespace QuantaForge\Tests\Session;
 
-use QuantaQuirk\Session\ArraySessionHandler;
-use QuantaQuirk\Support\Carbon;
+use QuantaForge\Session\ArraySessionHandler;
+use QuantaForge\Support\Carbon;
 use PHPUnit\Framework\TestCase;
 use SessionHandlerInterface;
 

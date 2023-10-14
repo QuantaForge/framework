@@ -58,8 +58,8 @@ do
     echo ""
     echo "Releasing $REMOTE";
 
-    TMP_DIR="/tmp/quantaquirk-split"
-    REMOTE_URL="git@github.com:quantaquirk/$REMOTE.git"
+    TMP_DIR="/tmp/quantaforge-split"
+    REMOTE_URL="git@github.com:quantaforge/$REMOTE.git"
 
     rm -rf $TMP_DIR;
     mkdir $TMP_DIR;

@@ -1,13 +1,13 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Mail;
+namespace QuantaForge\Tests\Integration\Mail;
 
-use QuantaQuirk\Mail\Mailable;
-use QuantaQuirk\Mail\Mailables\Content;
-use QuantaQuirk\Mail\Mailables\Envelope;
-use QuantaQuirk\Mail\Markdown;
-use QuantaQuirk\Support\Facades\Mail;
-use QuantaQuirk\Support\Facades\View;
+use QuantaForge\Mail\Mailable;
+use QuantaForge\Mail\Mailables\Content;
+use QuantaForge\Mail\Mailables\Envelope;
+use QuantaForge\Mail\Markdown;
+use QuantaForge\Support\Facades\Mail;
+use QuantaForge\Support\Facades\View;
 use Orchestra\Testbench\TestCase;
 
 class SendingMarkdownMailTest extends TestCase

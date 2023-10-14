@@ -1,17 +1,17 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Queue;
+namespace QuantaForge\Tests\Integration\Queue;
 
 use Exception;
-use QuantaQuirk\Bus\Dispatcher;
-use QuantaQuirk\Bus\Queueable;
-use QuantaQuirk\Contracts\Queue\Job;
-use QuantaQuirk\Foundation\Testing\Concerns\InteractsWithRedis;
-use QuantaQuirk\Queue\CallQueuedHandler;
-use QuantaQuirk\Queue\InteractsWithQueue;
-use QuantaQuirk\Queue\Middleware\ThrottlesExceptionsWithRedis;
-use QuantaQuirk\Support\Carbon;
-use QuantaQuirk\Support\Str;
+use QuantaForge\Bus\Dispatcher;
+use QuantaForge\Bus\Queueable;
+use QuantaForge\Contracts\Queue\Job;
+use QuantaForge\Foundation\Testing\Concerns\InteractsWithRedis;
+use QuantaForge\Queue\CallQueuedHandler;
+use QuantaForge\Queue\InteractsWithQueue;
+use QuantaForge\Queue\Middleware\ThrottlesExceptionsWithRedis;
+use QuantaForge\Support\Carbon;
+use QuantaForge\Support\Str;
 use Mockery as m;
 use Orchestra\Testbench\TestCase;
 

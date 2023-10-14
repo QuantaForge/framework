@@ -1,9 +1,9 @@
 <?php
 
-namespace QuantaQuirk\Tests\Auth;
+namespace QuantaForge\Tests\Auth;
 
-use QuantaQuirk\Auth\Access\AuthorizationException;
-use QuantaQuirk\Auth\Access\Response;
+use QuantaForge\Auth\Access\AuthorizationException;
+use QuantaForge\Auth\Access\Response;
 use PHPUnit\Framework\TestCase;
 
 class AuthAccessResponseTest extends TestCase

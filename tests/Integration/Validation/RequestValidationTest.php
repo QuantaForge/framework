@@ -1,9 +1,9 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Validation;
+namespace QuantaForge\Tests\Integration\Validation;
 
-use QuantaQuirk\Http\Request;
-use QuantaQuirk\Validation\ValidationException;
+use QuantaForge\Http\Request;
+use QuantaForge\Validation\ValidationException;
 use Orchestra\Testbench\TestCase;
 
 class RequestValidationTest extends TestCase

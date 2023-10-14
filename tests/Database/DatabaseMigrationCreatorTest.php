@@ -1,9 +1,9 @@
 <?php
 
-namespace QuantaQuirk\Tests\Database;
+namespace QuantaForge\Tests\Database;
 
-use QuantaQuirk\Database\Migrations\MigrationCreator;
-use QuantaQuirk\Filesystem\Filesystem;
+use QuantaForge\Database\Migrations\MigrationCreator;
+use QuantaForge\Filesystem\Filesystem;
 use InvalidArgumentException;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;

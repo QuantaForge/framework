@@ -1,16 +1,16 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Mail;
+namespace QuantaForge\Tests\Integration\Mail;
 
-use QuantaQuirk\Contracts\Translation\HasLocalePreference;
-use QuantaQuirk\Database\Eloquent\Model;
-use QuantaQuirk\Foundation\Events\LocaleUpdated;
-use QuantaQuirk\Mail\Mailable;
-use QuantaQuirk\Support\Carbon;
-use QuantaQuirk\Support\Facades\Event;
-use QuantaQuirk\Support\Facades\Mail;
-use QuantaQuirk\Support\Facades\View;
-use QuantaQuirk\Testing\Assert;
+use QuantaForge\Contracts\Translation\HasLocalePreference;
+use QuantaForge\Database\Eloquent\Model;
+use QuantaForge\Foundation\Events\LocaleUpdated;
+use QuantaForge\Mail\Mailable;
+use QuantaForge\Support\Carbon;
+use QuantaForge\Support\Facades\Event;
+use QuantaForge\Support\Facades\Mail;
+use QuantaForge\Support\Facades\View;
+use QuantaForge\Testing\Assert;
 use Orchestra\Testbench\TestCase;
 
 class SendingMailWithLocaleTest extends TestCase

@@ -1,13 +1,13 @@
 <?php
 
-namespace QuantaQuirk\Tests\Session;
+namespace QuantaForge\Tests\Session;
 
-use QuantaQuirk\Cookie\CookieJar;
-use QuantaQuirk\Session\CookieSessionHandler;
-use QuantaQuirk\Session\Store;
-use QuantaQuirk\Support\MessageBag;
-use QuantaQuirk\Support\Str;
-use QuantaQuirk\Support\ViewErrorBag;
+use QuantaForge\Cookie\CookieJar;
+use QuantaForge\Session\CookieSessionHandler;
+use QuantaForge\Session\Store;
+use QuantaForge\Support\MessageBag;
+use QuantaForge\Support\Str;
+use QuantaForge\Support\ViewErrorBag;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;
@@ -479,10 +479,10 @@ class SessionStoreTest extends TestCase
     public function testKeyPush()
     {
         $session = $this->getSession();
-        $session->put('language', ['PHP' => ['QuantaQuirk']]);
+        $session->put('language', ['PHP' => ['QuantaForge']]);
         $session->push('language.PHP', 'Symfony');
 
-        $this->assertEquals(['PHP' => ['QuantaQuirk', 'Symfony']], $session->get('language'));
+        $this->assertEquals(['PHP' => ['QuantaForge', 'Symfony']], $session->get('language'));
     }
 
     public function testKeyPull()

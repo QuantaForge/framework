@@ -1,6 +1,6 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Generators;
+namespace QuantaForge\Tests\Integration\Generators;
 
 class ResourceMakeCommandTest extends TestCase
 {
@@ -17,7 +17,7 @@ class ResourceMakeCommandTest extends TestCase
 
         $this->assertFileContains([
             'namespace App\Http\Resources;',
-            'use QuantaQuirk\Http\Resources\Json\JsonResource;',
+            'use QuantaForge\Http\Resources\Json\JsonResource;',
             'class FooResource extends JsonResource',
         ], 'app/Http/Resources/FooResource.php');
     }
@@ -30,7 +30,7 @@ class ResourceMakeCommandTest extends TestCase
 
         $this->assertFileContains([
             'namespace App\Http\Resources;',
-            'use QuantaQuirk\Http\Resources\Json\ResourceCollection;',
+            'use QuantaForge\Http\Resources\Json\ResourceCollection;',
             'class FooResourceCollection extends ResourceCollection',
         ], 'app/Http/Resources/FooResourceCollection.php');
     }

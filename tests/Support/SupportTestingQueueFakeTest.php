@@ -1,12 +1,12 @@
 <?php
 
-namespace QuantaQuirk\Tests\Support;
+namespace QuantaForge\Tests\Support;
 
 use BadMethodCallException;
-use QuantaQuirk\Bus\Queueable;
-use QuantaQuirk\Foundation\Application;
-use QuantaQuirk\Queue\QueueManager;
-use QuantaQuirk\Support\Testing\Fakes\QueueFake;
+use QuantaForge\Bus\Queueable;
+use QuantaForge\Foundation\Application;
+use QuantaForge\Queue\QueueManager;
+use QuantaForge\Support\Testing\Fakes\QueueFake;
 use Mockery as m;
 use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;
@@ -14,12 +14,12 @@ use PHPUnit\Framework\TestCase;
 class SupportTestingQueueFakeTest extends TestCase
 {
     /**
-     * @var \QuantaQuirk\Support\Testing\Fakes\QueueFake
+     * @var \QuantaForge\Support\Testing\Fakes\QueueFake
      */
     private $fake;
 
     /**
-     * @var \QuantaQuirk\Tests\Support\JobStub
+     * @var \QuantaForge\Tests\Support\JobStub
      */
     private $job;
 
@@ -43,7 +43,7 @@ class SupportTestingQueueFakeTest extends TestCase
             $this->fake->assertPushed(JobStub::class);
             $this->fail();
         } catch (ExpectationFailedException $e) {
-            $this->assertStringContainsString('The expected [QuantaQuirk\Tests\Support\JobStub] job was not pushed.', $e->getMessage());
+            $this->assertStringContainsString('The expected [QuantaForge\Tests\Support\JobStub] job was not pushed.', $e->getMessage());
         }
 
         $this->fake->push($this->job);
@@ -109,7 +109,7 @@ class SupportTestingQueueFakeTest extends TestCase
             $this->fake->assertNotPushed(JobStub::class);
             $this->fail();
         } catch (ExpectationFailedException $e) {
-            $this->assertStringContainsString('The unexpected [QuantaQuirk\Tests\Support\JobStub] job was pushed.', $e->getMessage());
+            $this->assertStringContainsString('The unexpected [QuantaForge\Tests\Support\JobStub] job was pushed.', $e->getMessage());
         }
     }
 
@@ -125,7 +125,7 @@ class SupportTestingQueueFakeTest extends TestCase
             });
             $this->fail();
         } catch (ExpectationFailedException $e) {
-            $this->assertStringContainsString('The unexpected [QuantaQuirk\Tests\Support\JobStub] job was pushed.', $e->getMessage());
+            $this->assertStringContainsString('The unexpected [QuantaForge\Tests\Support\JobStub] job was pushed.', $e->getMessage());
         }
     }
 
@@ -137,7 +137,7 @@ class SupportTestingQueueFakeTest extends TestCase
             $this->fake->assertPushedOn('bar', JobStub::class);
             $this->fail();
         } catch (ExpectationFailedException $e) {
-            $this->assertStringContainsString('The expected [QuantaQuirk\Tests\Support\JobStub] job was not pushed.', $e->getMessage());
+            $this->assertStringContainsString('The expected [QuantaForge\Tests\Support\JobStub] job was not pushed.', $e->getMessage());
         }
 
         $this->fake->assertPushedOn('foo', JobStub::class);
@@ -153,7 +153,7 @@ class SupportTestingQueueFakeTest extends TestCase
             });
             $this->fail();
         } catch (ExpectationFailedException $e) {
-            $this->assertStringContainsString('The expected [QuantaQuirk\Tests\Support\JobStub] job was not pushed.', $e->getMessage());
+            $this->assertStringContainsString('The expected [QuantaForge\Tests\Support\JobStub] job was not pushed.', $e->getMessage());
         }
 
         $this->fake->assertPushedOn('foo', function (JobStub $job) {
@@ -170,7 +170,7 @@ class SupportTestingQueueFakeTest extends TestCase
             $this->fake->assertPushed(JobStub::class, 1);
             $this->fail();
         } catch (ExpectationFailedException $e) {
-            $this->assertStringContainsString('The expected [QuantaQuirk\Tests\Support\JobStub] job was pushed 2 times instead of 1 times.', $e->getMessage());
+            $this->assertStringContainsString('The expected [QuantaForge\Tests\Support\JobStub] job was pushed 2 times instead of 1 times.', $e->getMessage());
         }
 
         $this->fake->assertPushed(JobStub::class, 2);
@@ -282,7 +282,7 @@ class SupportTestingQueueFakeTest extends TestCase
             $this->fake->assertPushedWithChain(JobWithChainStub::class, []);
             $this->fail();
         } catch (ExpectationFailedException $e) {
-            $this->assertStringContainsString('The expected [QuantaQuirk\Tests\Support\JobWithChainStub] job was not pushed.', $e->getMessage());
+            $this->assertStringContainsString('The expected [QuantaForge\Tests\Support\JobWithChainStub] job was not pushed.', $e->getMessage());
         }
 
         $this->fake->push(new JobWithChainStub([

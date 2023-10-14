@@ -1,6 +1,6 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Generators;
+namespace QuantaForge\Tests\Integration\Generators;
 
 class PolicyMakeCommandTest extends TestCase
 {
@@ -15,7 +15,7 @@ class PolicyMakeCommandTest extends TestCase
 
         $this->assertFileContains([
             'namespace App\Policies;',
-            'use QuantaQuirk\Foundation\Auth\User;',
+            'use QuantaForge\Foundation\Auth\User;',
             'class FooPolicy',
         ], 'app/Policies/FooPolicy.php');
     }
@@ -28,7 +28,7 @@ class PolicyMakeCommandTest extends TestCase
         $this->assertFileContains([
             'namespace App\Policies;',
             'use App\Models\Post;',
-            'use QuantaQuirk\Foundation\Auth\User;',
+            'use QuantaForge\Foundation\Auth\User;',
             'class FooPolicy',
             'public function viewAny(User $user)',
             'public function view(User $user, Post $post)',

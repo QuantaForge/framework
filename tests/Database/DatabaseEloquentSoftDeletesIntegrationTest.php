@@ -1,17 +1,17 @@
 <?php
 
-namespace QuantaQuirk\Tests\Database;
+namespace QuantaForge\Tests\Database;
 
 use BadMethodCallException;
 use Exception;
-use QuantaQuirk\Database\Capsule\Manager as DB;
-use QuantaQuirk\Database\Eloquent\Model as Eloquent;
-use QuantaQuirk\Database\Eloquent\SoftDeletes;
-use QuantaQuirk\Database\Eloquent\SoftDeletingScope;
-use QuantaQuirk\Database\Query\Builder;
-use QuantaQuirk\Pagination\CursorPaginator;
-use QuantaQuirk\Pagination\Paginator;
-use QuantaQuirk\Support\Carbon;
+use QuantaForge\Database\Capsule\Manager as DB;
+use QuantaForge\Database\Eloquent\Model as Eloquent;
+use QuantaForge\Database\Eloquent\SoftDeletes;
+use QuantaForge\Database\Eloquent\SoftDeletingScope;
+use QuantaForge\Database\Query\Builder;
+use QuantaForge\Pagination\CursorPaginator;
+use QuantaForge\Pagination\Paginator;
+use QuantaForge\Support\Carbon;
 use Mockery as m;
 use Mockery\MockInterface;
 use PHPUnit\Framework\TestCase;
@@ -342,7 +342,7 @@ class DatabaseEloquentSoftDeletesIntegrationTest extends TestCase
         Carbon::setTestNow($now = Carbon::now());
         $this->createUsers();
 
-        /** @var \QuantaQuirk\Tests\Database\SoftDeletesTestUser $userModel */
+        /** @var \QuantaForge\Tests\Database\SoftDeletesTestUser $userModel */
         $userModel = SoftDeletesTestUser::find(2);
         $userModel->delete();
         $this->assertEquals($now->toDateTimeString(), $userModel->getOriginal('deleted_at'));
@@ -357,7 +357,7 @@ class DatabaseEloquentSoftDeletesIntegrationTest extends TestCase
     {
         $this->createUsers();
 
-        /** @var \QuantaQuirk\Tests\Database\SoftDeletesTestUser $userModel */
+        /** @var \QuantaForge\Tests\Database\SoftDeletesTestUser $userModel */
         $userModel = SoftDeletesTestUser::find(2);
         $userModel->delete();
         $userModel->restore();
@@ -372,7 +372,7 @@ class DatabaseEloquentSoftDeletesIntegrationTest extends TestCase
     {
         $this->createUsers();
 
-        /** @var \QuantaQuirk\Tests\Database\SoftDeletesTestUser $userModel */
+        /** @var \QuantaForge\Tests\Database\SoftDeletesTestUser $userModel */
         $userModel = SoftDeletesTestUser::withTrashed()->find(1);
         $userModel->restore();
         $this->assertEquals($userModel->deleted_at, SoftDeletesTestUser::find(1)->deleted_at);
@@ -387,7 +387,7 @@ class DatabaseEloquentSoftDeletesIntegrationTest extends TestCase
     {
         $this->createUsers();
 
-        /** @var \QuantaQuirk\Tests\Database\SoftDeletesTestUser $userModel */
+        /** @var \QuantaForge\Tests\Database\SoftDeletesTestUser $userModel */
         $userModel = SoftDeletesTestUser::find(2);
         $userModel->email = 'foo@bar.com';
         $userModel->delete();
@@ -416,7 +416,7 @@ class DatabaseEloquentSoftDeletesIntegrationTest extends TestCase
         $this->createUsers();
 
         $abigail = SoftDeletesTestUser::where('email', 'abigailotwell@gmail.com')->first();
-        $abigail->address()->create(['address' => 'QuantaQuirk avenue 43']);
+        $abigail->address()->create(['address' => 'QuantaForge avenue 43']);
 
         // delete on builder
         $abigail->address()->delete();
@@ -424,14 +424,14 @@ class DatabaseEloquentSoftDeletesIntegrationTest extends TestCase
         $abigail = $abigail->fresh();
 
         $this->assertNull($abigail->address);
-        $this->assertSame('QuantaQuirk avenue 43', $abigail->address()->withTrashed()->first()->address);
+        $this->assertSame('QuantaForge avenue 43', $abigail->address()->withTrashed()->first()->address);
 
         // restore
         $abigail->address()->withTrashed()->restore();
 
         $abigail = $abigail->fresh();
 
-        $this->assertSame('QuantaQuirk avenue 43', $abigail->address->address);
+        $this->assertSame('QuantaForge avenue 43', $abigail->address->address);
 
         // delete on model
         $abigail->address->delete();
@@ -439,7 +439,7 @@ class DatabaseEloquentSoftDeletesIntegrationTest extends TestCase
         $abigail = $abigail->fresh();
 
         $this->assertNull($abigail->address);
-        $this->assertSame('QuantaQuirk avenue 43', $abigail->address()->withTrashed()->first()->address);
+        $this->assertSame('QuantaForge avenue 43', $abigail->address()->withTrashed()->first()->address);
 
         // force delete
         $abigail->address()->withTrashed()->forceDelete();
@@ -896,7 +896,7 @@ class DatabaseEloquentSoftDeletesIntegrationTest extends TestCase
     public function testSelfReferencingRelationshipWithSoftDeletes()
     {
         /*
-         * https://github.com/quantaquirk/framework/issues/42075
+         * https://github.com/quantaforge/framework/issues/42075
          */
         [$taylor, $abigail] = $this->createUsers();
 
@@ -910,7 +910,7 @@ class DatabaseEloquentSoftDeletesIntegrationTest extends TestCase
     /**
      * Helpers...
      *
-     * @return \QuantaQuirk\Tests\Database\SoftDeletesTestUser[]
+     * @return \QuantaForge\Tests\Database\SoftDeletesTestUser[]
      */
     protected function createUsers()
     {
@@ -925,7 +925,7 @@ class DatabaseEloquentSoftDeletesIntegrationTest extends TestCase
     /**
      * Get a database connection instance.
      *
-     * @return \QuantaQuirk\Database\Connection
+     * @return \QuantaForge\Database\Connection
      */
     protected function connection()
     {
@@ -935,7 +935,7 @@ class DatabaseEloquentSoftDeletesIntegrationTest extends TestCase
     /**
      * Get a schema builder instance.
      *
-     * @return \QuantaQuirk\Database\Schema\Builder
+     * @return \QuantaForge\Database\Schema\Builder
      */
     protected function schema()
     {

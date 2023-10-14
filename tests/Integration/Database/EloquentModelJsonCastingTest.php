@@ -1,12 +1,12 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Database\EloquentModelJsonCastingTest;
+namespace QuantaForge\Tests\Integration\Database\EloquentModelJsonCastingTest;
 
-use QuantaQuirk\Database\Eloquent\Model;
-use QuantaQuirk\Database\Schema\Blueprint;
-use QuantaQuirk\Support\Collection;
-use QuantaQuirk\Support\Facades\Schema;
-use QuantaQuirk\Tests\Integration\Database\DatabaseTestCase;
+use QuantaForge\Database\Eloquent\Model;
+use QuantaForge\Database\Schema\Blueprint;
+use QuantaForge\Support\Collection;
+use QuantaForge\Support\Facades\Schema;
+use QuantaForge\Tests\Integration\Database\DatabaseTestCase;
 use stdClass;
 
 class EloquentModelJsonCastingTest extends DatabaseTestCase
@@ -25,7 +25,7 @@ class EloquentModelJsonCastingTest extends DatabaseTestCase
 
     public function testStringsAreCastable()
     {
-        /** @var \QuantaQuirk\Tests\Integration\Database\EloquentModelJsonCastingTest\JsonCast $object */
+        /** @var \QuantaForge\Tests\Integration\Database\EloquentModelJsonCastingTest\JsonCast $object */
         $object = JsonCast::create([
             'basic_string_as_json_field' => 'this is a string',
             'json_string_as_json_field' => '{"key1":"value1"}',
@@ -37,7 +37,7 @@ class EloquentModelJsonCastingTest extends DatabaseTestCase
 
     public function testArraysAreCastable()
     {
-        /** @var \QuantaQuirk\Tests\Integration\Database\EloquentModelJsonCastingTest\JsonCast $object */
+        /** @var \QuantaForge\Tests\Integration\Database\EloquentModelJsonCastingTest\JsonCast $object */
         $object = JsonCast::create([
             'array_as_json_field' => ['key1' => 'value1'],
         ]);
@@ -50,7 +50,7 @@ class EloquentModelJsonCastingTest extends DatabaseTestCase
         $object = new stdClass;
         $object->key1 = 'value1';
 
-        /** @var \QuantaQuirk\Tests\Integration\Database\EloquentModelJsonCastingTest\JsonCast $user */
+        /** @var \QuantaForge\Tests\Integration\Database\EloquentModelJsonCastingTest\JsonCast $user */
         $user = JsonCast::create([
             'object_as_json_field' => $object,
         ]);
@@ -61,7 +61,7 @@ class EloquentModelJsonCastingTest extends DatabaseTestCase
 
     public function testCollectionsAreCastable()
     {
-        /** @var \QuantaQuirk\Tests\Integration\Database\EloquentModelJsonCastingTest\JsonCast $user */
+        /** @var \QuantaForge\Tests\Integration\Database\EloquentModelJsonCastingTest\JsonCast $user */
         $user = JsonCast::create([
             'collection_as_json_field' => new Collection(['key1' => 'value1']),
         ]);

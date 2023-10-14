@@ -1,10 +1,10 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Console;
+namespace QuantaForge\Tests\Integration\Console;
 
-use QuantaQuirk\Encryption\Encrypter;
-use QuantaQuirk\Filesystem\Filesystem;
-use QuantaQuirk\Support\Facades\File;
+use QuantaForge\Encryption\Encrypter;
+use QuantaForge\Filesystem\Filesystem;
+use QuantaForge\Support\Facades\File;
 use Mockery as m;
 use Orchestra\Testbench\TestCase;
 
@@ -80,7 +80,7 @@ class EnvironmentDecryptCommandTest extends TestCase
             ->once()
             ->andReturn(
                 (new Encrypter($key = Encrypter::generateKey('AES-256-CBC'), 'AES-256-CBC'))
-                    ->encrypt('APP_NAME=QuantaQuirk')
+                    ->encrypt('APP_NAME=QuantaForge')
             );
 
         $this->artisan('env:decrypt', ['--force' => true, '--key' => 'base64:'.base64_encode($key)])
@@ -88,7 +88,7 @@ class EnvironmentDecryptCommandTest extends TestCase
             ->assertExitCode(0);
 
         $this->filesystem->shouldHaveReceived('put')
-            ->with(base_path('.env'), 'APP_NAME=QuantaQuirk');
+            ->with(base_path('.env'), 'APP_NAME=QuantaForge');
     }
 
     public function testItGeneratesTheEnvironmentFileWithUserProvidedKey()
@@ -103,7 +103,7 @@ class EnvironmentDecryptCommandTest extends TestCase
             ->once()
             ->andReturn(
                 (new Encrypter('abcdefghijklmnop', 'aes-128-gcm'))
-                    ->encrypt('APP_NAME="QuantaQuirk Two"')
+                    ->encrypt('APP_NAME="QuantaForge Two"')
             );
 
         $this->artisan('env:decrypt', ['--cipher' => 'aes-128-gcm', '--key' => 'abcdefghijklmnop'])
@@ -111,12 +111,12 @@ class EnvironmentDecryptCommandTest extends TestCase
             ->assertExitCode(0);
 
         $this->filesystem->shouldHaveReceived('put')
-            ->with(base_path('.env'), 'APP_NAME="QuantaQuirk Two"');
+            ->with(base_path('.env'), 'APP_NAME="QuantaForge Two"');
     }
 
     public function testItGeneratesTheEnvironmentFileWithKeyFromEnvironment()
     {
-        $_SERVER['QUANTAQUIRK_ENV_ENCRYPTION_KEY'] = 'ponmlkjihgfedcbaponmlkjihgfedcba';
+        $_SERVER['QUANTAFORGE_ENV_ENCRYPTION_KEY'] = 'ponmlkjihgfedcbaponmlkjihgfedcba';
 
         $this->filesystem->shouldReceive('exists')
             ->once()
@@ -128,7 +128,7 @@ class EnvironmentDecryptCommandTest extends TestCase
             ->once()
             ->andReturn(
                 (new Encrypter('ponmlkjihgfedcbaponmlkjihgfedcba', 'AES-256-CBC'))
-                    ->encrypt('APP_NAME="QuantaQuirk Three"')
+                    ->encrypt('APP_NAME="QuantaForge Three"')
             );
 
         $this->artisan('env:decrypt')
@@ -136,9 +136,9 @@ class EnvironmentDecryptCommandTest extends TestCase
             ->assertExitCode(0);
 
         $this->filesystem->shouldHaveReceived('put')
-            ->with(base_path('.env'), 'APP_NAME="QuantaQuirk Three"');
+            ->with(base_path('.env'), 'APP_NAME="QuantaForge Three"');
 
-        unset($_SERVER['QUANTAQUIRK_ENV_ENCRYPTION_KEY']);
+        unset($_SERVER['QUANTAFORGE_ENV_ENCRYPTION_KEY']);
     }
 
     public function testItGeneratesTheEnvironmentFileWhenForcing()
@@ -153,7 +153,7 @@ class EnvironmentDecryptCommandTest extends TestCase
             ->once()
             ->andReturn(
                 (new Encrypter('abcdefghijklmnop', 'aes-128-gcm'))
-                    ->encrypt('APP_NAME="QuantaQuirk Two"')
+                    ->encrypt('APP_NAME="QuantaForge Two"')
             );
 
         $this->artisan('env:decrypt', ['--force' => true, '--key' => 'abcdefghijklmnop', '--cipher' => 'aes-128-gcm'])
@@ -161,13 +161,13 @@ class EnvironmentDecryptCommandTest extends TestCase
             ->assertExitCode(0);
 
         $this->filesystem->shouldHaveReceived('put')
-            ->with(base_path('.env'), 'APP_NAME="QuantaQuirk Two"');
+            ->with(base_path('.env'), 'APP_NAME="QuantaForge Two"');
     }
 
     public function testItDecryptsMultiLineEnvironmentCorrectly()
     {
         $contents = <<<'Text'
-        APP_NAME=QuantaQuirk
+        APP_NAME=QuantaForge
         APP_ENV=local
         APP_DEBUG=true
         APP_URL=http://localhost
@@ -179,7 +179,7 @@ class EnvironmentDecryptCommandTest extends TestCase
         DB_CONNECTION=mysql
         DB_HOST=127.0.0.1
         DB_PORT=3306
-        DB_DATABASE=quantaquirk
+        DB_DATABASE=quantaforge
         DB_USERNAME=root
         DB_PASSWORD=
         Text;
@@ -217,7 +217,7 @@ class EnvironmentDecryptCommandTest extends TestCase
             ->once()
             ->andReturn(
                 (new Encrypter('abcdefghijklmnopabcdefghijklmnop', 'AES-256-CBC'))
-                    ->encrypt('APP_NAME="QuantaQuirk Two"')
+                    ->encrypt('APP_NAME="QuantaForge Two"')
             );
 
         $this->artisan('env:decrypt', ['--env' => 'production', '--key' => 'abcdefghijklmnopabcdefghijklmnop', '--filename' => '.env'])
@@ -225,7 +225,7 @@ class EnvironmentDecryptCommandTest extends TestCase
             ->assertExitCode(0);
 
         $this->filesystem->shouldHaveReceived('put')
-            ->with(base_path('.env'), 'APP_NAME="QuantaQuirk Two"');
+            ->with(base_path('.env'), 'APP_NAME="QuantaForge Two"');
     }
 
     public function testItWritesTheEnvironmentFileCustomPath()
@@ -240,7 +240,7 @@ class EnvironmentDecryptCommandTest extends TestCase
             ->once()
             ->andReturn(
                 (new Encrypter('abcdefghijklmnopabcdefghijklmnop', 'AES-256-CBC'))
-                    ->encrypt('APP_NAME="QuantaQuirk Two"')
+                    ->encrypt('APP_NAME="QuantaForge Two"')
             );
 
         $this->artisan('env:decrypt', ['--env' => 'production', '--key' => 'abcdefghijklmnopabcdefghijklmnop', '--path' => '/tmp'])
@@ -248,7 +248,7 @@ class EnvironmentDecryptCommandTest extends TestCase
             ->assertExitCode(0);
 
         $this->filesystem->shouldHaveReceived('put')
-            ->with('/tmp'.DIRECTORY_SEPARATOR.'.env.production', 'APP_NAME="QuantaQuirk Two"');
+            ->with('/tmp'.DIRECTORY_SEPARATOR.'.env.production', 'APP_NAME="QuantaForge Two"');
     }
 
     public function testItWritesTheEnvironmentFileCustomPathAndFilename()
@@ -263,7 +263,7 @@ class EnvironmentDecryptCommandTest extends TestCase
             ->once()
             ->andReturn(
                 (new Encrypter('abcdefghijklmnopabcdefghijklmnop', 'AES-256-CBC'))
-                    ->encrypt('APP_NAME="QuantaQuirk Two"')
+                    ->encrypt('APP_NAME="QuantaForge Two"')
             );
 
         $this->artisan('env:decrypt', ['--env' => 'production', '--key' => 'abcdefghijklmnopabcdefghijklmnop', '--filename' => '.env', '--path' => '/tmp'])
@@ -271,7 +271,7 @@ class EnvironmentDecryptCommandTest extends TestCase
             ->assertExitCode(0);
 
         $this->filesystem->shouldHaveReceived('put')
-            ->with('/tmp'.DIRECTORY_SEPARATOR.'.env', 'APP_NAME="QuantaQuirk Two"');
+            ->with('/tmp'.DIRECTORY_SEPARATOR.'.env', 'APP_NAME="QuantaForge Two"');
     }
 
     public function testItCannotOverwriteEncryptedFiles()

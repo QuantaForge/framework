@@ -1,8 +1,8 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Database\MySql;
+namespace QuantaForge\Tests\Integration\Database\MySql;
 
-use QuantaQuirk\Tests\Integration\Database\DatabaseTestCase;
+use QuantaForge\Tests\Integration\Database\DatabaseTestCase;
 
 abstract class MySqlTestCase extends DatabaseTestCase
 {

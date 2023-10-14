@@ -1,12 +1,12 @@
 <?php
 
-namespace QuantaQuirk\Tests\Queue;
+namespace QuantaForge\Tests\Queue;
 
 use Exception;
-use QuantaQuirk\Container\Container;
-use QuantaQuirk\Contracts\Events\Dispatcher;
-use QuantaQuirk\Queue\Events\JobFailed;
-use QuantaQuirk\Queue\Jobs\BeanstalkdJob;
+use QuantaForge\Container\Container;
+use QuantaForge\Contracts\Events\Dispatcher;
+use QuantaForge\Queue\Events\JobFailed;
+use QuantaForge\Queue\Jobs\BeanstalkdJob;
 use Mockery as m;
 use Pheanstalk\Job;
 use Pheanstalk\Pheanstalk;

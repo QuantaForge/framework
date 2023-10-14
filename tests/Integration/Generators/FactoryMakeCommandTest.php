@@ -1,6 +1,6 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Generators;
+namespace QuantaForge\Tests\Integration\Generators;
 
 class FactoryMakeCommandTest extends TestCase
 {
@@ -16,7 +16,7 @@ class FactoryMakeCommandTest extends TestCase
 
         $this->assertFileContains([
             'namespace Database\Factories;',
-            'use QuantaQuirk\Database\Eloquent\Factories\Factory;',
+            'use QuantaForge\Database\Eloquent\Factories\Factory;',
             'class FooFactory extends Factory',
             'public function definition()',
         ], 'database/factories/FooFactory.php');

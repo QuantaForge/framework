@@ -1,13 +1,13 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Database;
+namespace QuantaForge\Tests\Integration\Database;
 
-use QuantaQuirk\Database\Eloquent\Collection;
-use QuantaQuirk\Database\Eloquent\Model;
-use QuantaQuirk\Database\LazyLoadingViolationException;
-use QuantaQuirk\Database\Schema\Blueprint;
-use QuantaQuirk\Support\Facades\Event;
-use QuantaQuirk\Support\Facades\Schema;
+use QuantaForge\Database\Eloquent\Collection;
+use QuantaForge\Database\Eloquent\Model;
+use QuantaForge\Database\LazyLoadingViolationException;
+use QuantaForge\Database\Schema\Blueprint;
+use QuantaForge\Support\Facades\Event;
+use QuantaForge\Support\Facades\Schema;
 use RuntimeException;
 
 class EloquentStrictLoadingTest extends DatabaseTestCase

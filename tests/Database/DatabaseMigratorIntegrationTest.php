@@ -1,15 +1,15 @@
 <?php
 
-namespace QuantaQuirk\Tests\Database;
+namespace QuantaForge\Tests\Database;
 
-use QuantaQuirk\Console\OutputStyle;
-use QuantaQuirk\Container\Container;
-use QuantaQuirk\Database\Capsule\Manager as DB;
-use QuantaQuirk\Database\Migrations\DatabaseMigrationRepository;
-use QuantaQuirk\Database\Migrations\Migrator;
-use QuantaQuirk\Filesystem\Filesystem;
-use QuantaQuirk\Support\Facades\Facade;
-use QuantaQuirk\Support\Str;
+use QuantaForge\Console\OutputStyle;
+use QuantaForge\Container\Container;
+use QuantaForge\Database\Capsule\Manager as DB;
+use QuantaForge\Database\Migrations\DatabaseMigrationRepository;
+use QuantaForge\Database\Migrations\Migrator;
+use QuantaForge\Filesystem\Filesystem;
+use QuantaForge\Support\Facades\Facade;
+use QuantaForge\Support\Str;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 

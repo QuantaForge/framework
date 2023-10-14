@@ -1,9 +1,9 @@
 <?php
 
-namespace QuantaQuirk\Tests\Foundation\Bootstrap;
+namespace QuantaForge\Tests\Foundation\Bootstrap;
 
-use QuantaQuirk\Foundation\Application;
-use QuantaQuirk\Foundation\Bootstrap\LoadEnvironmentVariables;
+use QuantaForge\Foundation\Application;
+use QuantaForge\Foundation\Bootstrap\LoadEnvironmentVariables;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 

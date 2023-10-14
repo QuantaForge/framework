@@ -1,13 +1,13 @@
 <?php
 
-namespace QuantaQuirk\Tests\Http\Middleware;
+namespace QuantaForge\Tests\Http\Middleware;
 
-use QuantaQuirk\Container\Container;
-use QuantaQuirk\Foundation\Vite;
-use QuantaQuirk\Http\Middleware\AddLinkHeadersForPreloadedAssets;
-use QuantaQuirk\Http\Request;
-use QuantaQuirk\Http\Response;
-use QuantaQuirk\Support\Facades\Facade;
+use QuantaForge\Container\Container;
+use QuantaForge\Foundation\Vite;
+use QuantaForge\Http\Middleware\AddLinkHeadersForPreloadedAssets;
+use QuantaForge\Http\Request;
+use QuantaForge\Http\Response;
+use QuantaForge\Support\Facades\Facade;
 use PHPUnit\Framework\TestCase;
 
 class VitePreloadingTest extends TestCase
@@ -28,7 +28,7 @@ class VitePreloadingTest extends TestCase
         Facade::setFacadeApplication($app);
 
         $response = (new AddLinkHeadersForPreloadedAssets)->handle(new Request, function () {
-            return new Response('Hello QuantaQuirk');
+            return new Response('Hello QuantaForge');
         });
 
         $this->assertNull($response->headers->get('Link'));
@@ -40,7 +40,7 @@ class VitePreloadingTest extends TestCase
         $app->instance(Vite::class, new class extends Vite
         {
             protected $preloadedAssets = [
-                'https://quantaquirk.com/app.js' => [
+                'https://quantaforge.com/app.js' => [
                     'rel="modulepreload"',
                     'foo="bar"',
                 ],
@@ -49,12 +49,12 @@ class VitePreloadingTest extends TestCase
         Facade::setFacadeApplication($app);
 
         $response = (new AddLinkHeadersForPreloadedAssets)->handle(new Request, function () {
-            return new Response('Hello QuantaQuirk');
+            return new Response('Hello QuantaForge');
         });
 
         $this->assertSame(
             $response->headers->get('Link'),
-            '<https://quantaquirk.com/app.js>; rel="modulepreload"; foo="bar"'
+            '<https://quantaforge.com/app.js>; rel="modulepreload"; foo="bar"'
         );
     }
 }

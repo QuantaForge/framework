@@ -1,8 +1,8 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Database;
+namespace QuantaForge\Tests\Integration\Database;
 
-use QuantaQuirk\Database\Eloquent\Model;
+use QuantaForge\Database\Eloquent\Model;
 
 class EloquentModelScopeTest extends DatabaseTestCase
 {

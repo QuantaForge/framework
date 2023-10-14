@@ -1,16 +1,16 @@
 <?php
 
-namespace QuantaQuirk\Tests\Database;
+namespace QuantaForge\Tests\Database;
 
 use BadMethodCallException;
-use QuantaQuirk\Container\Container;
-use QuantaQuirk\Database\Capsule\Manager as DB;
-use QuantaQuirk\Database\Schema\Blueprint;
-use QuantaQuirk\Database\Schema\Grammars\MySqlGrammar;
-use QuantaQuirk\Database\Schema\Grammars\PostgresGrammar;
-use QuantaQuirk\Database\Schema\Grammars\SQLiteGrammar;
-use QuantaQuirk\Database\Schema\Grammars\SqlServerGrammar;
-use QuantaQuirk\Support\Facades\Facade;
+use QuantaForge\Container\Container;
+use QuantaForge\Database\Capsule\Manager as DB;
+use QuantaForge\Database\Schema\Blueprint;
+use QuantaForge\Database\Schema\Grammars\MySqlGrammar;
+use QuantaForge\Database\Schema\Grammars\PostgresGrammar;
+use QuantaForge\Database\Schema\Grammars\SQLiteGrammar;
+use QuantaForge\Database\Schema\Grammars\SqlServerGrammar;
+use QuantaForge\Support\Facades\Facade;
 use PHPUnit\Framework\TestCase;
 
 class DatabaseSchemaBlueprintIntegrationTest extends TestCase
@@ -682,7 +682,7 @@ class DatabaseSchemaBlueprintIntegrationTest extends TestCase
             $this->addToAssertionCount(1); // it did not throw
         } catch (\Exception $e) {
             // Expecting something similar to:
-            // QuantaQuirk\Database\QueryException
+            // QuantaForge\Database\QueryException
             //   SQLSTATE[42000]: Syntax error or access violation: 1426 Too big precision 10 specified for 'my_timestamp'. Maximum is 6....
             $this->fail('test_it_does_not_set_precision_higher_than_supported_when_renaming_timestamps has failed. Error: '.$e->getMessage());
         }

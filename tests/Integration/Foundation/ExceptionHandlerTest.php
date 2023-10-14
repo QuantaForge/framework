@@ -1,10 +1,10 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Foundation;
+namespace QuantaForge\Tests\Integration\Foundation;
 
-use QuantaQuirk\Auth\Access\AuthorizationException;
-use QuantaQuirk\Auth\Access\Response;
-use QuantaQuirk\Support\Facades\Route;
+use QuantaForge\Auth\Access\AuthorizationException;
+use QuantaForge\Auth\Access\Response;
+use QuantaForge\Support\Facades\Route;
 use Orchestra\Testbench\TestCase;
 use Symfony\Component\Process\PhpProcess;
 
@@ -13,12 +13,12 @@ class ExceptionHandlerTest extends TestCase
     /**
      * Resolve application HTTP exception handler.
      *
-     * @param  \QuantaQuirk\Foundation\Application  $app
+     * @param  \QuantaForge\Foundation\Application  $app
      * @return void
      */
     protected function resolveApplicationExceptionHandler($app)
     {
-        $app->singleton('QuantaQuirk\Contracts\Debug\ExceptionHandler', 'QuantaQuirk\Foundation\Exceptions\Handler');
+        $app->singleton('QuantaForge\Contracts\Debug\ExceptionHandler', 'QuantaForge\Foundation\Exceptions\Handler');
     }
 
     public function testItRendersAuthorizationExceptions()
@@ -133,10 +133,10 @@ class ExceptionHandlerTest extends TestCase
 
 require 'vendor/autoload.php';
 
-\$quantaquirk = Orchestra\Testbench\Foundation\Application::create(basePath: '$basePath', options: ['extra' => ['providers' => $providers]]);
-\$quantaquirk->singleton('QuantaQuirk\Contracts\Debug\ExceptionHandler', 'QuantaQuirk\Foundation\Exceptions\Handler');
+\$quantaforge = Orchestra\Testbench\Foundation\Application::create(basePath: '$basePath', options: ['extra' => ['providers' => $providers]]);
+\$quantaforge->singleton('QuantaForge\Contracts\Debug\ExceptionHandler', 'QuantaForge\Foundation\Exceptions\Handler');
 
-\$kernel = \$quantaquirk[QuantaQuirk\Contracts\Console\Kernel::class];
+\$kernel = \$quantaforge[QuantaForge\Contracts\Console\Kernel::class];
 
 return \$kernel->call('throw-exception-command');
 EOF, __DIR__.'/../../../', ['APP_RUNNING_IN_CONSOLE' => true]);

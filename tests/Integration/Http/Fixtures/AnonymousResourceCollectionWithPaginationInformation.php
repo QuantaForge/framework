@@ -1,8 +1,8 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Http\Fixtures;
+namespace QuantaForge\Tests\Integration\Http\Fixtures;
 
-use QuantaQuirk\Http\Resources\Json\AnonymousResourceCollection;
+use QuantaForge\Http\Resources\Json\AnonymousResourceCollection;
 
 class AnonymousResourceCollectionWithPaginationInformation extends AnonymousResourceCollection
 {

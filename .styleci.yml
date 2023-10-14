@@ -1,5 +1,5 @@
 php:
-  preset: quantaquirk
+  preset: quantaforge
   version: 8.1
   finder:
     not-name:

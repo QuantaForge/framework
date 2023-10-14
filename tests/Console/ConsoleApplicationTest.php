@@ -1,12 +1,12 @@
 <?php
 
-namespace QuantaQuirk\Tests\Console;
+namespace QuantaForge\Tests\Console;
 
-use QuantaQuirk\Console\Application;
-use QuantaQuirk\Console\Command;
-use QuantaQuirk\Contracts\Events\Dispatcher;
-use QuantaQuirk\Contracts\Foundation\Application as ApplicationContract;
-use QuantaQuirk\Tests\Console\Fixtures\FakeCommandWithInputPrompting;
+use QuantaForge\Console\Application;
+use QuantaForge\Console\Command;
+use QuantaForge\Contracts\Events\Dispatcher;
+use QuantaForge\Contracts\Foundation\Application as ApplicationContract;
+use QuantaForge\Tests\Console\Fixtures\FakeCommandWithInputPrompting;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Command\Command as SymfonyCommand;
@@ -18,22 +18,22 @@ class ConsoleApplicationTest extends TestCase
         m::close();
     }
 
-    public function testAddSetsQuantaQuirkInstance()
+    public function testAddSetsQuantaForgeInstance()
     {
         $app = $this->getMockConsole(['addToParent']);
         $command = m::mock(Command::class);
-        $command->shouldReceive('setQuantaQuirk')->once()->with(m::type(ApplicationContract::class));
+        $command->shouldReceive('setQuantaForge')->once()->with(m::type(ApplicationContract::class));
         $app->expects($this->once())->method('addToParent')->with($this->equalTo($command))->willReturn($command);
         $result = $app->add($command);
 
         $this->assertEquals($command, $result);
     }
 
-    public function testQuantaQuirkNotSetOnSymfonyCommands()
+    public function testQuantaForgeNotSetOnSymfonyCommands()
     {
         $app = $this->getMockConsole(['addToParent']);
         $command = m::mock(SymfonyCommand::class);
-        $command->shouldReceive('setQuantaQuirk')->never();
+        $command->shouldReceive('setQuantaForge')->never();
         $app->expects($this->once())->method('addToParent')->with($this->equalTo($command))->willReturn($command);
         $result = $app->add($command);
 
@@ -44,7 +44,7 @@ class ConsoleApplicationTest extends TestCase
     {
         $app = $this->getMockConsole(['addToParent']);
         $command = m::mock(SymfonyCommand::class);
-        $app->getQuantaQuirk()->shouldReceive('make')->once()->with('foo')->andReturn(m::mock(SymfonyCommand::class));
+        $app->getQuantaForge()->shouldReceive('make')->once()->with('foo')->andReturn(m::mock(SymfonyCommand::class));
         $app->expects($this->once())->method('addToParent')->with($this->equalTo($command))->willReturn($command);
         $result = $app->resolve('foo');
 
@@ -81,14 +81,14 @@ class ConsoleApplicationTest extends TestCase
     public function testCommandInputPromptsWhenRequiredArgumentIsMissing()
     {
         $app = new Application(
-            $quantaquirk = new \QuantaQuirk\Foundation\Application(__DIR__),
+            $quantaforge = new \QuantaForge\Foundation\Application(__DIR__),
             $events = m::mock(Dispatcher::class, ['dispatch' => null, 'fire' => null]),
             'testing'
         );
 
         $app->addCommands([$command = new FakeCommandWithInputPrompting()]);
 
-        $command->setQuantaQuirk($quantaquirk);
+        $command->setQuantaForge($quantaforge);
 
         $statusCode = $app->call('fake-command-for-testing');
 
@@ -99,7 +99,7 @@ class ConsoleApplicationTest extends TestCase
     public function testCommandInputDoesntPromptWhenRequiredArgumentIsPassed()
     {
         $app = new Application(
-            $app = new \QuantaQuirk\Foundation\Application(__DIR__),
+            $app = new \QuantaForge\Foundation\Application(__DIR__),
             $events = m::mock(Dispatcher::class, ['dispatch' => null, 'fire' => null]),
             'testing'
         );

@@ -1,14 +1,14 @@
 <?php
 
-namespace QuantaQuirk\Tests\Filesystem;
+namespace QuantaForge\Tests\Filesystem;
 
 use Carbon\Carbon;
 use GuzzleHttp\Psr7\Stream;
-use QuantaQuirk\Filesystem\FilesystemAdapter;
-use QuantaQuirk\Filesystem\FilesystemManager;
-use QuantaQuirk\Foundation\Application;
-use QuantaQuirk\Http\UploadedFile;
-use QuantaQuirk\Testing\Assert;
+use QuantaForge\Filesystem\FilesystemAdapter;
+use QuantaForge\Filesystem\FilesystemManager;
+use QuantaForge\Foundation\Application;
+use QuantaForge\Http\UploadedFile;
+use QuantaForge\Testing\Assert;
 use InvalidArgumentException;
 use League\Flysystem\Filesystem;
 use League\Flysystem\Ftp\FtpAdapter;
@@ -588,7 +588,7 @@ class FilesystemAdapterTest extends TestCase
         $filesystem = new FilesystemManager(new Application);
         $filesystemAdapter = $filesystem->createS3Driver([
             'region' => 'us-west-1',
-            'bucket' => 'quantaquirk',
+            'bucket' => 'quantaforge',
         ]);
 
         $this->assertTrue($filesystemAdapter->providesTemporaryUrls());

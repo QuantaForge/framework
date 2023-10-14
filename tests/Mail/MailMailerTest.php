@@ -1,15 +1,15 @@
 <?php
 
-namespace QuantaQuirk\Tests\Mail;
+namespace QuantaForge\Tests\Mail;
 
-use QuantaQuirk\Contracts\Events\Dispatcher;
-use QuantaQuirk\Contracts\View\Factory;
-use QuantaQuirk\Mail\Events\MessageSending;
-use QuantaQuirk\Mail\Events\MessageSent;
-use QuantaQuirk\Mail\Mailer;
-use QuantaQuirk\Mail\Message;
-use QuantaQuirk\Mail\Transport\ArrayTransport;
-use QuantaQuirk\Support\HtmlString;
+use QuantaForge\Contracts\Events\Dispatcher;
+use QuantaForge\Contracts\View\Factory;
+use QuantaForge\Mail\Events\MessageSending;
+use QuantaForge\Mail\Events\MessageSent;
+use QuantaForge\Mail\Mailer;
+use QuantaForge\Mail\Message;
+use QuantaForge\Mail\Transport\ArrayTransport;
+use QuantaForge\Support\HtmlString;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 
@@ -31,7 +31,7 @@ class MailMailerTest extends TestCase
         $mailer = new Mailer('array', $view, new ArrayTransport);
 
         $sentMessage = $mailer->send('foo', ['data'], function (Message $message) {
-            $message->to('taylor@quantaquirk.com')->from('hello@quantaquirk.com');
+            $message->to('taylor@quantaforge.com')->from('hello@quantaforge.com');
         });
 
         $this->assertStringContainsString('rendered.view', $sentMessage->toString());
@@ -46,10 +46,10 @@ class MailMailerTest extends TestCase
         $mailer = new Mailer('array', $view, new ArrayTransport);
 
         $sentMessage = $mailer->send('foo', ['data'], function (Message $message) {
-            $message->to('taylor@quantaquirk.com')
-                ->cc('dries@quantaquirk.com')
-                ->bcc('james@quantaquirk.com')
-                ->from('hello@quantaquirk.com');
+            $message->to('taylor@quantaforge.com')
+                ->cc('dries@quantaforge.com')
+                ->bcc('james@quantaforge.com')
+                ->from('hello@quantaforge.com');
         });
 
         $recipients = collect($sentMessage->getEnvelope()->getRecipients())->map(function ($recipient) {
@@ -57,9 +57,9 @@ class MailMailerTest extends TestCase
         });
 
         $this->assertStringContainsString('rendered.view', $sentMessage->toString());
-        $this->assertStringContainsString('dries@quantaquirk.com', $sentMessage->toString());
-        $this->assertStringNotContainsString('james@quantaquirk.com', $sentMessage->toString());
-        $this->assertTrue($recipients->contains('james@quantaquirk.com'));
+        $this->assertStringContainsString('dries@quantaforge.com', $sentMessage->toString());
+        $this->assertStringNotContainsString('james@quantaforge.com', $sentMessage->toString());
+        $this->assertTrue($recipients->contains('james@quantaforge.com'));
     }
 
     public function testMailerSendSendsMessageWithProperViewContentUsingHtmlStrings()
@@ -70,14 +70,14 @@ class MailMailerTest extends TestCase
         $mailer = new Mailer('array', $view, new ArrayTransport);
 
         $sentMessage = $mailer->send(
-            ['html' => new HtmlString('<p>Hello QuantaQuirk</p>'), 'text' => new HtmlString('Hello World')],
+            ['html' => new HtmlString('<p>Hello QuantaForge</p>'), 'text' => new HtmlString('Hello World')],
             ['data'],
             function (Message $message) {
-                $message->to('taylor@quantaquirk.com')->from('hello@quantaquirk.com');
+                $message->to('taylor@quantaforge.com')->from('hello@quantaforge.com');
             }
         );
 
-        $this->assertStringContainsString('<p>Hello QuantaQuirk</p>', $sentMessage->toString());
+        $this->assertStringContainsString('<p>Hello QuantaForge</p>', $sentMessage->toString());
         $this->assertStringContainsString('Hello World', $sentMessage->toString());
     }
 
@@ -93,7 +93,7 @@ class MailMailerTest extends TestCase
                 'html' => function ($data) {
                     $this->assertInstanceOf(Message::class, $data['message']);
 
-                    return new HtmlString('<p>Hello QuantaQuirk</p>');
+                    return new HtmlString('<p>Hello QuantaForge</p>');
                 },
                 'text' => function ($data) {
                     $this->assertInstanceOf(Message::class, $data['message']);
@@ -103,11 +103,11 @@ class MailMailerTest extends TestCase
             ],
             [],
             function (Message $message) {
-                $message->to('taylor@quantaquirk.com')->from('hello@quantaquirk.com');
+                $message->to('taylor@quantaforge.com')->from('hello@quantaforge.com');
             }
         );
 
-        $this->assertStringContainsString('<p>Hello QuantaQuirk</p>', $sentMessage->toString());
+        $this->assertStringContainsString('<p>Hello QuantaForge</p>', $sentMessage->toString());
         $this->assertStringContainsString('Hello World', $sentMessage->toString());
     }
 
@@ -119,7 +119,7 @@ class MailMailerTest extends TestCase
         $mailer = new Mailer('array', $view, new ArrayTransport);
 
         $sentMessage = $mailer->html('<p>Hello World</p>', function (Message $message) {
-            $message->to('taylor@quantaquirk.com')->from('hello@quantaquirk.com');
+            $message->to('taylor@quantaforge.com')->from('hello@quantaforge.com');
         });
 
         $this->assertStringContainsString('<p>Hello World</p>', $sentMessage->toString());
@@ -135,7 +135,7 @@ class MailMailerTest extends TestCase
         $mailer = new Mailer('array', $view, new ArrayTransport);
 
         $sentMessage = $mailer->send(['foo', 'bar'], ['data'], function (Message $message) {
-            $message->to('taylor@quantaquirk.com')->from('hello@quantaquirk.com');
+            $message->to('taylor@quantaforge.com')->from('hello@quantaforge.com');
         });
 
         $expected = <<<Text
@@ -167,7 +167,7 @@ class MailMailerTest extends TestCase
         $mailer = new Mailer('array', $view, new ArrayTransport);
 
         $sentMessage = $mailer->send(['html' => 'foo', 'text' => 'bar'], ['data'], function (Message $message) {
-            $message->to('taylor@quantaquirk.com')->from('hello@quantaquirk.com');
+            $message->to('taylor@quantaforge.com')->from('hello@quantaforge.com');
         });
 
         $expected = <<<Text
@@ -196,11 +196,11 @@ class MailMailerTest extends TestCase
         $view->shouldReceive('render')->once()->andReturn('rendered.view');
         $mailer = new Mailer('array', $view, new ArrayTransport);
 
-        $sentMessage = $mailer->to('taylor@quantaquirk.com', 'Taylor Otwell')->send(new TestMail());
+        $sentMessage = $mailer->to('taylor@quantaforge.com', 'Taylor Otwell')->send(new TestMail());
 
         $recipients = $sentMessage->getEnvelope()->getRecipients();
         $this->assertCount(1, $recipients);
-        $this->assertSame('taylor@quantaquirk.com', $recipients[0]->getAddress());
+        $this->assertSame('taylor@quantaforge.com', $recipients[0]->getAddress());
         $this->assertSame('Taylor Otwell', $recipients[0]->getName());
     }
 
@@ -210,14 +210,14 @@ class MailMailerTest extends TestCase
         $view->shouldReceive('make')->once()->andReturn($view);
         $view->shouldReceive('render')->once()->andReturn('rendered.view');
         $mailer = new Mailer('array', $view, new ArrayTransport);
-        $mailer->alwaysFrom('hello@quantaquirk.com');
+        $mailer->alwaysFrom('hello@quantaforge.com');
 
         $sentMessage = $mailer->send('foo', ['data'], function (Message $message) {
-            $message->to('taylor@quantaquirk.com');
+            $message->to('taylor@quantaforge.com');
         });
 
-        $this->assertSame('taylor@quantaquirk.com', $sentMessage->getEnvelope()->getRecipients()[0]->getAddress());
-        $this->assertSame('hello@quantaquirk.com', $sentMessage->getEnvelope()->getSender()->getAddress());
+        $this->assertSame('taylor@quantaforge.com', $sentMessage->getEnvelope()->getRecipients()[0]->getAddress());
+        $this->assertSame('hello@quantaforge.com', $sentMessage->getEnvelope()->getSender()->getAddress());
     }
 
     public function testGlobalReplyToIsRespectedOnAllMessages()
@@ -226,14 +226,14 @@ class MailMailerTest extends TestCase
         $view->shouldReceive('make')->once()->andReturn($view);
         $view->shouldReceive('render')->once()->andReturn('rendered.view');
         $mailer = new Mailer('array', $view, new ArrayTransport);
-        $mailer->alwaysReplyTo('taylor@quantaquirk.com', 'Taylor Otwell');
+        $mailer->alwaysReplyTo('taylor@quantaforge.com', 'Taylor Otwell');
 
         $sentMessage = $mailer->send('foo', ['data'], function (Message $message) {
-            $message->to('dries@quantaquirk.com')->from('hello@quantaquirk.com');
+            $message->to('dries@quantaforge.com')->from('hello@quantaforge.com');
         });
 
-        $this->assertSame('dries@quantaquirk.com', $sentMessage->getEnvelope()->getRecipients()[0]->getAddress());
-        $this->assertStringContainsString('Reply-To: Taylor Otwell <taylor@quantaquirk.com>', $sentMessage->toString());
+        $this->assertSame('dries@quantaforge.com', $sentMessage->getEnvelope()->getRecipients()[0]->getAddress());
+        $this->assertStringContainsString('Reply-To: Taylor Otwell <taylor@quantaforge.com>', $sentMessage->toString());
     }
 
     public function testGlobalToIsRespectedOnAllMessages()
@@ -242,28 +242,28 @@ class MailMailerTest extends TestCase
         $view->shouldReceive('make')->once()->andReturn($view);
         $view->shouldReceive('render')->once()->andReturn('rendered.view');
         $mailer = new Mailer('array', $view, new ArrayTransport);
-        $mailer->alwaysTo('taylor@quantaquirk.com', 'Taylor Otwell');
+        $mailer->alwaysTo('taylor@quantaforge.com', 'Taylor Otwell');
 
         $sentMessage = $mailer->send('foo', ['data'], function (Message $message) {
-            $message->from('hello@quantaquirk.com');
-            $message->to('nuno@quantaquirk.com');
-            $message->cc('dries@quantaquirk.com');
-            $message->bcc('james@quantaquirk.com');
+            $message->from('hello@quantaforge.com');
+            $message->to('nuno@quantaforge.com');
+            $message->cc('dries@quantaforge.com');
+            $message->bcc('james@quantaforge.com');
         });
 
         $recipients = collect($sentMessage->getEnvelope()->getRecipients())->map(function ($recipient) {
             return $recipient->getAddress();
         });
 
-        $this->assertSame('taylor@quantaquirk.com', $sentMessage->getEnvelope()->getRecipients()[0]->getAddress());
-        $this->assertDoesNotMatchRegularExpression('/^To: nuno@quantaquirk.com/m', $sentMessage->toString());
-        $this->assertDoesNotMatchRegularExpression('/^Cc: dries@quantaquirk.com/m', $sentMessage->toString());
-        $this->assertMatchesRegularExpression('/^X-To: nuno@quantaquirk.com/m', $sentMessage->toString());
-        $this->assertMatchesRegularExpression('/^X-Cc: dries@quantaquirk.com/m', $sentMessage->toString());
-        $this->assertMatchesRegularExpression('/^X-Bcc: james@quantaquirk.com/m', $sentMessage->toString());
-        $this->assertFalse($recipients->contains('nuno@quantaquirk.com'));
-        $this->assertFalse($recipients->contains('dries@quantaquirk.com'));
-        $this->assertFalse($recipients->contains('james@quantaquirk.com'));
+        $this->assertSame('taylor@quantaforge.com', $sentMessage->getEnvelope()->getRecipients()[0]->getAddress());
+        $this->assertDoesNotMatchRegularExpression('/^To: nuno@quantaforge.com/m', $sentMessage->toString());
+        $this->assertDoesNotMatchRegularExpression('/^Cc: dries@quantaforge.com/m', $sentMessage->toString());
+        $this->assertMatchesRegularExpression('/^X-To: nuno@quantaforge.com/m', $sentMessage->toString());
+        $this->assertMatchesRegularExpression('/^X-Cc: dries@quantaforge.com/m', $sentMessage->toString());
+        $this->assertMatchesRegularExpression('/^X-Bcc: james@quantaforge.com/m', $sentMessage->toString());
+        $this->assertFalse($recipients->contains('nuno@quantaforge.com'));
+        $this->assertFalse($recipients->contains('dries@quantaforge.com'));
+        $this->assertFalse($recipients->contains('james@quantaforge.com'));
     }
 
     public function testGlobalReturnPathIsRespectedOnAllMessages()
@@ -276,7 +276,7 @@ class MailMailerTest extends TestCase
         $mailer->alwaysReturnPath('taylorotwell@gmail.com');
 
         $sentMessage = $mailer->send('foo', ['data'], function (Message $message) {
-            $message->to('taylor@quantaquirk.com')->from('hello@quantaquirk.com');
+            $message->to('taylor@quantaforge.com')->from('hello@quantaforge.com');
         });
 
         $this->assertStringContainsString('Return-Path: <taylorotwell@gmail.com>', $sentMessage->toString());
@@ -295,7 +295,7 @@ class MailMailerTest extends TestCase
         $mailer = new Mailer('array', $view, new ArrayTransport, $events);
 
         $mailer->send('foo', ['data'], function (Message $message) {
-            $message->to('taylor@quantaquirk.com')->from('hello@quantaquirk.com');
+            $message->to('taylor@quantaforge.com')->from('hello@quantaforge.com');
         });
     }
 
@@ -313,11 +313,11 @@ class MailMailerTest extends TestCase
     }
 }
 
-class TestMail extends \QuantaQuirk\Mail\Mailable
+class TestMail extends \QuantaForge\Mail\Mailable
 {
     public function build()
     {
         return $this->view('view')
-            ->from('hello@quantaquirk.com');
+            ->from('hello@quantaforge.com');
     }
 }

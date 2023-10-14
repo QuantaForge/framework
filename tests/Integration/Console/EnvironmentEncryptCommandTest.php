@@ -1,10 +1,10 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Console;
+namespace QuantaForge\Tests\Integration\Console;
 
-use QuantaQuirk\Encryption\Encrypter;
-use QuantaQuirk\Filesystem\Filesystem;
-use QuantaQuirk\Support\Facades\File;
+use QuantaForge\Encryption\Encrypter;
+use QuantaForge\Filesystem\Filesystem;
+use QuantaForge\Support\Facades\File;
 use Mockery as m;
 use Orchestra\Testbench\TestCase;
 
@@ -20,7 +20,7 @@ class EnvironmentEncryptCommandTest extends TestCase
         $this->filesystem->shouldReceive('get')
             ->andReturn(true)
             ->shouldReceive('put')
-            ->andReturn('APP_NAME=QuantaQuirk');
+            ->andReturn('APP_NAME=QuantaForge');
         File::swap($this->filesystem);
     }
 

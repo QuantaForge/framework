@@ -1,10 +1,10 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Routing;
+namespace QuantaForge\Tests\Integration\Routing;
 
-use QuantaQuirk\Foundation\Http\FormRequest;
-use QuantaQuirk\Session\SessionServiceProvider;
-use QuantaQuirk\Support\Facades\Route;
+use QuantaForge\Foundation\Http\FormRequest;
+use QuantaForge\Session\SessionServiceProvider;
+use QuantaForge\Support\Facades\Route;
 use Orchestra\Testbench\TestCase;
 
 class PreviousUrlTest extends TestCase

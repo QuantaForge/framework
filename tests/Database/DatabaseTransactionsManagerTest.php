@@ -1,8 +1,8 @@
 <?php
 
-namespace QuantaQuirk\Tests\Database;
+namespace QuantaForge\Tests\Database;
 
-use QuantaQuirk\Database\DatabaseTransactionsManager;
+use QuantaForge\Database\DatabaseTransactionsManager;
 use PHPUnit\Framework\TestCase;
 
 class DatabaseTransactionsManagerTest extends TestCase

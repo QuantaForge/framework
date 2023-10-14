@@ -1,9 +1,9 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Routing;
+namespace QuantaForge\Tests\Integration\Routing;
 
-use QuantaQuirk\Contracts\Support\Responsable;
-use QuantaQuirk\Support\Facades\Route;
+use QuantaForge\Contracts\Support\Responsable;
+use QuantaForge\Support\Facades\Route;
 use Orchestra\Testbench\TestCase;
 
 class ResponsableTest extends TestCase

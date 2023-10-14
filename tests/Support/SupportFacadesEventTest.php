@@ -1,18 +1,18 @@
 <?php
 
-namespace QuantaQuirk\Tests\Support;
+namespace QuantaForge\Tests\Support;
 
-use QuantaQuirk\Cache\CacheManager;
-use QuantaQuirk\Cache\Events\CacheMissed;
-use QuantaQuirk\Config\Repository as ConfigRepository;
-use QuantaQuirk\Container\Container;
-use QuantaQuirk\Contracts\Events\Dispatcher as DispatcherContract;
-use QuantaQuirk\Database\Eloquent\Model;
-use QuantaQuirk\Events\Dispatcher;
-use QuantaQuirk\Support\Facades\Cache;
-use QuantaQuirk\Support\Facades\Event;
-use QuantaQuirk\Support\Facades\Facade;
-use QuantaQuirk\Support\Testing\Fakes\EventFake;
+use QuantaForge\Cache\CacheManager;
+use QuantaForge\Cache\Events\CacheMissed;
+use QuantaForge\Config\Repository as ConfigRepository;
+use QuantaForge\Container\Container;
+use QuantaForge\Contracts\Events\Dispatcher as DispatcherContract;
+use QuantaForge\Database\Eloquent\Model;
+use QuantaForge\Events\Dispatcher;
+use QuantaForge\Support\Facades\Cache;
+use QuantaForge\Support\Facades\Event;
+use QuantaForge\Support\Facades\Facade;
+use QuantaForge\Support\Testing\Fakes\EventFake;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 

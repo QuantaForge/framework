@@ -1,11 +1,11 @@
 <?php
 
-namespace QuantaQuirk\Tests\Database;
+namespace QuantaForge\Tests\Database;
 
-use QuantaQuirk\Database\ClassMorphViolationException;
-use QuantaQuirk\Database\Eloquent\Model;
-use QuantaQuirk\Database\Eloquent\Relations\Pivot;
-use QuantaQuirk\Database\Eloquent\Relations\Relation;
+use QuantaForge\Database\ClassMorphViolationException;
+use QuantaForge\Database\Eloquent\Model;
+use QuantaForge\Database\Eloquent\Relations\Pivot;
+use QuantaForge\Database\Eloquent\Relations\Relation;
 use PHPUnit\Framework\TestCase;
 
 class DatabaseEloquentStrictMorphsTest extends TestCase

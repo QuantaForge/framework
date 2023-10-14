@@ -1,6 +1,6 @@
 <?php
 
-namespace QuantaQuirk\Tests;
+namespace QuantaForge\Tests;
 
 use PHPUnit\Framework\TestResult;
 use PHPUnit\TextUI\DefaultResultPrinter;

@@ -1,11 +1,11 @@
 <?php
 
-namespace QuantaQuirk\Tests\Cookie\Middleware;
+namespace QuantaForge\Tests\Cookie\Middleware;
 
-use QuantaQuirk\Cookie\CookieJar;
-use QuantaQuirk\Cookie\Middleware\AddQueuedCookiesToResponse;
-use QuantaQuirk\Http\Request;
-use QuantaQuirk\Http\Response;
+use QuantaForge\Cookie\CookieJar;
+use QuantaForge\Cookie\Middleware\AddQueuedCookiesToResponse;
+use QuantaForge\Http\Request;
+use QuantaForge\Http\Response;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 

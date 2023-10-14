@@ -1,6 +1,6 @@
 <?php
 
-namespace QuantaQuirk\Tests\View\Blade;
+namespace QuantaForge\Tests\View\Blade;
 
 class BladePhpStatementsTest extends AbstractBladeTestCase
 {
@@ -85,8 +85,8 @@ class BladePhpStatementsTest extends AbstractBladeTestCase
         $this->assertEquals($expected, $this->compiler->compileString($string));
 
         $this->assertSame('<?php echo $__env->renderEach(\'foo\', \'b)a)r\'); ?>', $this->compiler->compileString('@each(\'foo\', \'b)a)r\')'));
-        $this->assertSame('<?php echo $__env->make(\'test_for\', [\'issue))\' => \'(issue#45424))\'], \QuantaQuirk\Support\Arr::except(get_defined_vars(), [\'__data\', \'__path\']))->render(); ?>', $this->compiler->compileString('@include(\'test_for\', [\'issue))\' => \'(issue#45424))\'])'));
-        $this->assertSame('( <?php echo $__env->make(\'test_for\', [\'not_too_much))\' => \'(issue#45424))\'], \QuantaQuirk\Support\Arr::except(get_defined_vars(), [\'__data\', \'__path\']))->render(); ?>))', $this->compiler->compileString('( @include(\'test_for\', [\'not_too_much))\' => \'(issue#45424))\'])))'));
+        $this->assertSame('<?php echo $__env->make(\'test_for\', [\'issue))\' => \'(issue#45424))\'], \QuantaForge\Support\Arr::except(get_defined_vars(), [\'__data\', \'__path\']))->render(); ?>', $this->compiler->compileString('@include(\'test_for\', [\'issue))\' => \'(issue#45424))\'])'));
+        $this->assertSame('( <?php echo $__env->make(\'test_for\', [\'not_too_much))\' => \'(issue#45424))\'], \QuantaForge\Support\Arr::except(get_defined_vars(), [\'__data\', \'__path\']))->render(); ?>))', $this->compiler->compileString('( @include(\'test_for\', [\'not_too_much))\' => \'(issue#45424))\'])))'));
     }
 
     public function testStringWithEmptyStringDataValue()
@@ -122,12 +122,12 @@ class BladePhpStatementsTest extends AbstractBladeTestCase
     public function testUnclosedParenthesisForBladeTags()
     {
         $string = "<span @class(['(']></span>";
-        $expected = "<span class=\"<?php echo \QuantaQuirk\Support\Arr::toCssClasses([]); ?>\"(['(']></span>";
+        $expected = "<span class=\"<?php echo \QuantaForge\Support\Arr::toCssClasses([]); ?>\"(['(']></span>";
 
         $this->assertEquals($expected, $this->compiler->compileString($string));
 
         $string = "<span @class(['']></span>";
-        $expected = "<span class=\"<?php echo \QuantaQuirk\Support\Arr::toCssClasses([]); ?>\"(['']></span>";
+        $expected = "<span class=\"<?php echo \QuantaForge\Support\Arr::toCssClasses([]); ?>\"(['']></span>";
 
         $this->assertEquals($expected, $this->compiler->compileString($string));
 
@@ -145,31 +145,31 @@ class BladePhpStatementsTest extends AbstractBladeTestCase
     public function testNestedTagCalls()
     {
         $string = "<span @class(['k' => @empty(\$v)])></span>";
-        $expected = '<span class="<?php echo \QuantaQuirk\Support\Arr::toCssClasses([\'k\' => @empty($v)]); ?>"></span>';
+        $expected = '<span class="<?php echo \QuantaForge\Support\Arr::toCssClasses([\'k\' => @empty($v)]); ?>"></span>';
         $this->assertEquals($expected, $this->compiler->compileString($string));
 
         $string = "<span @class(['k))' => @empty(\$v)])></span>";
-        $expected = '<span class="<?php echo \QuantaQuirk\Support\Arr::toCssClasses([\'k))\' => @empty($v)]); ?>"></span>';
+        $expected = '<span class="<?php echo \QuantaForge\Support\Arr::toCssClasses([\'k))\' => @empty($v)]); ?>"></span>';
         $this->assertEquals($expected, $this->compiler->compileString($string));
 
         $string = "<span @class(['k' => @empty(\$v), 't' => @empty(\$v1)])></span>";
-        $expected = '<span class="<?php echo \QuantaQuirk\Support\Arr::toCssClasses([\'k\' => @empty($v), \'t\' => @empty($v1)]); ?>"></span>';
+        $expected = '<span class="<?php echo \QuantaForge\Support\Arr::toCssClasses([\'k\' => @empty($v), \'t\' => @empty($v1)]); ?>"></span>';
         $this->assertEquals($expected, $this->compiler->compileString($string));
 
         $string = "<span @class(['k' => @empty(\$v), 't' => @empty(\$v1)])></span>";
-        $expected = '<span class="<?php echo \QuantaQuirk\Support\Arr::toCssClasses([\'k\' => @empty($v), \'t\' => @empty($v1)]); ?>"></span>';
+        $expected = '<span class="<?php echo \QuantaForge\Support\Arr::toCssClasses([\'k\' => @empty($v), \'t\' => @empty($v1)]); ?>"></span>';
         $this->assertEquals($expected, $this->compiler->compileString($string));
 
         $string = "<span @class(['k' => @empty(\$v), 't' => @empty(\$v1), 'r' => @empty(\$v2)])></span>";
-        $expected = '<span class="<?php echo \QuantaQuirk\Support\Arr::toCssClasses([\'k\' => @empty($v), \'t\' => @empty($v1), \'r\' => @empty($v2)]); ?>"></span>';
+        $expected = '<span class="<?php echo \QuantaForge\Support\Arr::toCssClasses([\'k\' => @empty($v), \'t\' => @empty($v1), \'r\' => @empty($v2)]); ?>"></span>';
         $this->assertEquals($expected, $this->compiler->compileString($string));
 
         $string = "<span @class(['k' => @empty(\$v), 't))' => @empty(\$v1), 'r' => @empty(\$v2)])></span>";
-        $expected = '<span class="<?php echo \QuantaQuirk\Support\Arr::toCssClasses([\'k\' => @empty($v), \'t))\' => @empty($v1), \'r\' => @empty($v2)]); ?>"></span>';
+        $expected = '<span class="<?php echo \QuantaForge\Support\Arr::toCssClasses([\'k\' => @empty($v), \'t))\' => @empty($v1), \'r\' => @empty($v2)]); ?>"></span>';
         $this->assertEquals($expected, $this->compiler->compileString($string));
 
         $string = "<span @class(['k' => @empty(\$v), 't' => @empty(\$v1), 'r' => @empty(\$v2), 'l' => 'l'])></span><span @class(['k' => @empty(\$v)])></span>";
-        $expected = '<span class="<?php echo \QuantaQuirk\Support\Arr::toCssClasses([\'k\' => @empty($v), \'t\' => @empty($v1), \'r\' => @empty($v2), \'l\' => \'l\']); ?>"></span><span class="<?php echo \QuantaQuirk\Support\Arr::toCssClasses([\'k\' => @empty($v)]); ?>"></span>';
+        $expected = '<span class="<?php echo \QuantaForge\Support\Arr::toCssClasses([\'k\' => @empty($v), \'t\' => @empty($v1), \'r\' => @empty($v2), \'l\' => \'l\']); ?>"></span><span class="<?php echo \QuantaForge\Support\Arr::toCssClasses([\'k\' => @empty($v)]); ?>"></span>';
         $this->assertEquals($expected, $this->compiler->compileString($string));
     }
 

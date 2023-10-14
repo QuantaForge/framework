@@ -1,12 +1,12 @@
 <?php
 
-namespace QuantaQuirk\Tests\Foundation;
+namespace QuantaForge\Tests\Foundation;
 
 use Exception;
-use QuantaQuirk\Contracts\Config\Repository;
-use QuantaQuirk\Foundation\Application;
-use QuantaQuirk\Foundation\Mix;
-use QuantaQuirk\Support\Str;
+use QuantaForge\Contracts\Config\Repository;
+use QuantaForge\Foundation\Application;
+use QuantaForge\Foundation\Mix;
+use QuantaForge\Support\Str;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 use stdClass;
@@ -132,22 +132,22 @@ class FoundationHelpersTest extends TestCase
 
     public function testMixHotModuleReloadingGetsUrlFromFileWithHttps()
     {
-        $path = $this->makeHotModuleReloadFile('https://quantaquirk.com/docs');
+        $path = $this->makeHotModuleReloadFile('https://quantaforge.com/docs');
 
         $result = mix('unversioned.css');
 
-        $this->assertSame('//quantaquirk.com/docs/unversioned.css', $result->toHtml());
+        $this->assertSame('//quantaforge.com/docs/unversioned.css', $result->toHtml());
 
         unlink($path);
     }
 
     public function testMixHotModuleReloadingGetsUrlFromFileWithHttp()
     {
-        $path = $this->makeHotModuleReloadFile('http://quantaquirk.com/docs');
+        $path = $this->makeHotModuleReloadFile('http://quantaforge.com/docs');
 
         $result = mix('unversioned.css');
 
-        $this->assertSame('//quantaquirk.com/docs/unversioned.css', $result->toHtml());
+        $this->assertSame('//quantaforge.com/docs/unversioned.css', $result->toHtml());
 
         unlink($path);
     }
@@ -155,11 +155,11 @@ class FoundationHelpersTest extends TestCase
     public function testMixHotModuleReloadingGetsUrlFromFileWithManifestDirectoryAndHttps()
     {
         mkdir($directory = __DIR__.'/mix');
-        $path = $this->makeHotModuleReloadFile('https://quantaquirk.com/docs', 'mix');
+        $path = $this->makeHotModuleReloadFile('https://quantaforge.com/docs', 'mix');
 
         $result = mix('unversioned.css', 'mix');
 
-        $this->assertSame('//quantaquirk.com/docs/unversioned.css', $result->toHtml());
+        $this->assertSame('//quantaforge.com/docs/unversioned.css', $result->toHtml());
 
         unlink($path);
         rmdir($directory);
@@ -168,11 +168,11 @@ class FoundationHelpersTest extends TestCase
     public function testMixHotModuleReloadingGetsUrlFromFileWithManifestDirectoryAndHttp()
     {
         mkdir($directory = __DIR__.'/mix');
-        $path = $this->makeHotModuleReloadFile('http://quantaquirk.com/docs', 'mix');
+        $path = $this->makeHotModuleReloadFile('http://quantaforge.com/docs', 'mix');
 
         $result = mix('unversioned.css', 'mix');
 
-        $this->assertSame('//quantaquirk.com/docs/unversioned.css', $result->toHtml());
+        $this->assertSame('//quantaforge.com/docs/unversioned.css', $result->toHtml());
 
         unlink($path);
         rmdir($directory);
@@ -208,7 +208,7 @@ class FoundationHelpersTest extends TestCase
 
         $path = public_path(Str::finish($directory, '/').'hot');
 
-        // QuantaQuirk mix when run 'hot' has a new line after the
+        // QuantaForge mix when run 'hot' has a new line after the
         // url, so for consistency this "\n" is added.
         file_put_contents($path, "{$url}\n");
 
@@ -223,7 +223,7 @@ class FoundationHelpersTest extends TestCase
 
         touch($path);
 
-        // QuantaQuirk mix prints JSON pretty and with escaped
+        // QuantaForge mix prints JSON pretty and with escaped
         // slashes, so we are doing that here for consistency.
         $content = json_encode(['/unversioned.css' => '/versioned.css'], JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
 

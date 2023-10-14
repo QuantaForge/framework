@@ -1,8 +1,8 @@
 <?php
 
-namespace QuantaQuirk\Tests\Support;
+namespace QuantaForge\Tests\Support;
 
-use QuantaQuirk\Support\Traits\ReflectsClosures;
+use QuantaForge\Support\Traits\ReflectsClosures;
 use PHPUnit\Framework\TestCase;
 use RuntimeException;
 

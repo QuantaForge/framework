@@ -1,12 +1,12 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Queue;
+namespace QuantaForge\Tests\Integration\Queue;
 
-use QuantaQuirk\Contracts\Bus\QueueingDispatcher;
-use QuantaQuirk\Contracts\Queue\ShouldQueue;
-use QuantaQuirk\Foundation\Testing\TestCase;
-use QuantaQuirk\Queue\Queue;
-use QuantaQuirk\Support\ServiceProvider;
+use QuantaForge\Contracts\Bus\QueueingDispatcher;
+use QuantaForge\Contracts\Queue\ShouldQueue;
+use QuantaForge\Foundation\Testing\TestCase;
+use QuantaForge\Queue\Queue;
+use QuantaForge\Support\ServiceProvider;
 use Orchestra\Testbench\Concerns\CreatesApplication;
 
 class CustomPayloadTest extends TestCase
@@ -20,9 +20,9 @@ class CustomPayloadTest extends TestCase
 
     public static function websites()
     {
-        yield ['quantaquirk.com'];
+        yield ['quantaforge.com'];
 
-        yield ['blog.quantaquirk.com'];
+        yield ['blog.quantaforge.com'];
     }
 
     /**

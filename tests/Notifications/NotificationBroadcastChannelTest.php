@@ -1,13 +1,13 @@
 <?php
 
-namespace QuantaQuirk\Tests\Notifications;
+namespace QuantaForge\Tests\Notifications;
 
-use QuantaQuirk\Broadcasting\PrivateChannel;
-use QuantaQuirk\Contracts\Events\Dispatcher;
-use QuantaQuirk\Notifications\Channels\BroadcastChannel;
-use QuantaQuirk\Notifications\Events\BroadcastNotificationCreated;
-use QuantaQuirk\Notifications\Messages\BroadcastMessage;
-use QuantaQuirk\Notifications\Notification;
+use QuantaForge\Broadcasting\PrivateChannel;
+use QuantaForge\Contracts\Events\Dispatcher;
+use QuantaForge\Notifications\Channels\BroadcastChannel;
+use QuantaForge\Notifications\Events\BroadcastNotificationCreated;
+use QuantaForge\Notifications\Messages\BroadcastMessage;
+use QuantaForge\Notifications\Notification;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 

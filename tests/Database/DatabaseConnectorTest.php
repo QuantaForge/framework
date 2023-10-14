@@ -1,12 +1,12 @@
 <?php
 
-namespace QuantaQuirk\Tests\Database;
+namespace QuantaForge\Tests\Database;
 
-use QuantaQuirk\Database\Connectors\Connector;
-use QuantaQuirk\Database\Connectors\MySqlConnector;
-use QuantaQuirk\Database\Connectors\PostgresConnector;
-use QuantaQuirk\Database\Connectors\SQLiteConnector;
-use QuantaQuirk\Database\Connectors\SqlServerConnector;
+use QuantaForge\Database\Connectors\Connector;
+use QuantaForge\Database\Connectors\MySqlConnector;
+use QuantaForge\Database\Connectors\PostgresConnector;
+use QuantaForge\Database\Connectors\SQLiteConnector;
+use QuantaForge\Database\Connectors\SqlServerConnector;
 use Mockery as m;
 use PDO;
 use PDOStatement;
@@ -202,14 +202,14 @@ class DatabaseConnectorTest extends TestCase
     public function testPostgresApplicationNameIsSet()
     {
         $dsn = 'pgsql:host=foo;dbname=\'bar\'';
-        $config = ['host' => 'foo', 'database' => 'bar', 'charset' => 'utf8', 'application_name' => 'QuantaQuirk App'];
+        $config = ['host' => 'foo', 'database' => 'bar', 'charset' => 'utf8', 'application_name' => 'QuantaForge App'];
         $connector = $this->getMockBuilder(PostgresConnector::class)->onlyMethods(['createConnection', 'getOptions'])->getMock();
         $connection = m::mock(stdClass::class);
         $connector->expects($this->once())->method('getOptions')->with($this->equalTo($config))->willReturn(['options']);
         $connector->expects($this->once())->method('createConnection')->with($this->equalTo($dsn), $this->equalTo($config), $this->equalTo(['options']))->willReturn($connection);
         $statement = m::mock(PDOStatement::class);
         $connection->shouldReceive('prepare')->once()->with('set names \'utf8\'')->andReturn($statement);
-        $connection->shouldReceive('prepare')->once()->with('set application_name to \'QuantaQuirk App\'')->andReturn($statement);
+        $connection->shouldReceive('prepare')->once()->with('set application_name to \'QuantaForge App\'')->andReturn($statement);
         $statement->shouldReceive('execute')->twice();
         $result = $connector->connect($config);
 

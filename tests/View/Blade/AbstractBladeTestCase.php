@@ -1,18 +1,18 @@
 <?php
 
-namespace QuantaQuirk\Tests\View\Blade;
+namespace QuantaForge\Tests\View\Blade;
 
-use QuantaQuirk\Container\Container;
-use QuantaQuirk\Filesystem\Filesystem;
-use QuantaQuirk\View\Compilers\BladeCompiler;
-use QuantaQuirk\View\Component;
+use QuantaForge\Container\Container;
+use QuantaForge\Filesystem\Filesystem;
+use QuantaForge\View\Compilers\BladeCompiler;
+use QuantaForge\View\Component;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 
 abstract class AbstractBladeTestCase extends TestCase
 {
     /**
-     * @var \QuantaQuirk\View\Compilers\BladeCompiler
+     * @var \QuantaForge\View\Compilers\BladeCompiler
      */
     protected $compiler;
 

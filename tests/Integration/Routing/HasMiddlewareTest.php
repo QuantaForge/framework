@@ -1,10 +1,10 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Routing;
+namespace QuantaForge\Tests\Integration\Routing;
 
-use QuantaQuirk\Routing\Controllers\HasMiddleware;
-use QuantaQuirk\Routing\Controllers\Middleware;
-use QuantaQuirk\Support\Facades\Route;
+use QuantaForge\Routing\Controllers\HasMiddleware;
+use QuantaForge\Routing\Controllers\Middleware;
+use QuantaForge\Support\Facades\Route;
 use Orchestra\Testbench\TestCase;
 
 class HasMiddlewareTest extends TestCase

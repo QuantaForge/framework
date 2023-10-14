@@ -1,9 +1,9 @@
 <?php
 
-namespace QuantaQuirk\Tests\Database;
+namespace QuantaForge\Tests\Database;
 
-use QuantaQuirk\Database\Eloquent\Casts\Attribute;
-use QuantaQuirk\Database\Eloquent\Concerns\HasAttributes;
+use QuantaForge\Database\Eloquent\Casts\Attribute;
+use QuantaForge\Database\Eloquent\Concerns\HasAttributes;
 use PHPUnit\Framework\TestCase;
 
 class DatabaseConcernsHasAttributesTest extends TestCase

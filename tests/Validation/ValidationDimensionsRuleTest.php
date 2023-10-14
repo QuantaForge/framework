@@ -1,9 +1,9 @@
 <?php
 
-namespace QuantaQuirk\Tests\Validation;
+namespace QuantaForge\Tests\Validation;
 
-use QuantaQuirk\Validation\Rule;
-use QuantaQuirk\Validation\Rules\Dimensions;
+use QuantaForge\Validation\Rule;
+use QuantaForge\Validation\Rules\Dimensions;
 use PHPUnit\Framework\TestCase;
 
 class ValidationDimensionsRuleTest extends TestCase

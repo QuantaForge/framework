@@ -1,14 +1,14 @@
 <?php
 
-namespace QuantaQuirk\Tests\Foundation;
+namespace QuantaForge\Tests\Foundation;
 
-use QuantaQuirk\Database\Connection;
-use QuantaQuirk\Database\Eloquent\Model;
-use QuantaQuirk\Database\Eloquent\SoftDeletes;
-use QuantaQuirk\Database\Query\Builder;
-use QuantaQuirk\Foundation\Testing\Concerns\InteractsWithDatabase;
-use QuantaQuirk\Foundation\Testing\TestCase as TestingTestCase;
-use QuantaQuirk\Support\Facades\DB;
+use QuantaForge\Database\Connection;
+use QuantaForge\Database\Eloquent\Model;
+use QuantaForge\Database\Eloquent\SoftDeletes;
+use QuantaForge\Database\Query\Builder;
+use QuantaForge\Foundation\Testing\Concerns\InteractsWithDatabase;
+use QuantaForge\Foundation\Testing\TestCase as TestingTestCase;
+use QuantaForge\Support\Facades\DB;
 use Mockery as m;
 use Orchestra\Testbench\Concerns\CreatesApplication;
 use PHPUnit\Framework\ExpectationFailedException;
@@ -22,7 +22,7 @@ class FoundationInteractsWithDatabaseTest extends TestCase
 
     protected $data = [
         'title' => 'Spark',
-        'name' => 'QuantaQuirk',
+        'name' => 'QuantaForge',
     ];
 
     protected $connection;
@@ -228,7 +228,7 @@ class FoundationInteractsWithDatabaseTest extends TestCase
         $this->expectException(ExpectationFailedException::class);
         $this->expectExceptionMessage('The table is empty.');
 
-        $model = new CustomProductStub(['id' => 1, 'name' => 'QuantaQuirk']);
+        $model = new CustomProductStub(['id' => 1, 'name' => 'QuantaForge']);
         $this->data = ['id' => 1, 'name' => 'Tailwind'];
 
         $builder = $this->mockCountBuilder(0, 'trashed_at');
@@ -243,7 +243,7 @@ class FoundationInteractsWithDatabaseTest extends TestCase
         $this->expectException(ExpectationFailedException::class);
         $this->expectExceptionMessage('The table is empty.');
 
-        $model = new CustomProductStub(['id' => 1, 'name' => 'QuantaQuirk']);
+        $model = new CustomProductStub(['id' => 1, 'name' => 'QuantaForge']);
         $this->data = ['id' => 1];
 
         $builder = $this->mockCountBuilder(0, 'trashed_at');
@@ -310,7 +310,7 @@ class FoundationInteractsWithDatabaseTest extends TestCase
         $this->expectException(ExpectationFailedException::class);
         $this->expectExceptionMessage('The table is empty.');
 
-        $model = new CustomProductStub(['id' => 1, 'name' => 'QuantaQuirk']);
+        $model = new CustomProductStub(['id' => 1, 'name' => 'QuantaForge']);
         $this->data = ['id' => 1, 'name' => 'Tailwind'];
 
         $builder = $this->mockCountBuilder(0, 'trashed_at');
@@ -325,7 +325,7 @@ class FoundationInteractsWithDatabaseTest extends TestCase
         $this->expectException(ExpectationFailedException::class);
         $this->expectExceptionMessage('The table is empty.');
 
-        $model = new CustomProductStub(['id' => 1, 'name' => 'QuantaQuirk']);
+        $model = new CustomProductStub(['id' => 1, 'name' => 'QuantaForge']);
         $this->data = ['id' => 1];
 
         $builder = $this->mockCountBuilder(0, 'trashed_at');

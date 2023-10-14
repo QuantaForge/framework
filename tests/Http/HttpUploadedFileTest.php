@@ -1,8 +1,8 @@
 <?php
 
-namespace QuantaQuirk\Tests\Http;
+namespace QuantaForge\Tests\Http;
 
-use QuantaQuirk\Http\UploadedFile;
+use QuantaForge\Http\UploadedFile;
 use PHPUnit\Framework\TestCase;
 
 class HttpUploadedFileTest extends TestCase

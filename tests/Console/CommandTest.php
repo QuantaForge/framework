@@ -1,11 +1,11 @@
 <?php
 
-namespace QuantaQuirk\Tests\Console;
+namespace QuantaForge\Tests\Console;
 
-use QuantaQuirk\Console\Application;
-use QuantaQuirk\Console\Command;
-use QuantaQuirk\Console\OutputStyle;
-use QuantaQuirk\Console\View\Components\Factory;
+use QuantaForge\Console\Application;
+use QuantaForge\Console\Command;
+use QuantaForge\Console\OutputStyle;
+use QuantaForge\Console\View\Components\Factory;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Input\ArrayInput;
@@ -32,7 +32,7 @@ class CommandTest extends TestCase
         };
 
         $application = m::mock(Application::class);
-        $command->setQuantaQuirk($application);
+        $command->setQuantaForge($application);
 
         $input = new ArrayInput([]);
         $output = new NullOutput;
@@ -46,7 +46,7 @@ class CommandTest extends TestCase
             $application->shouldReceive('make')->once()->with(Command::class)->andReturn($commandCalled);
 
             $commandCalled->shouldReceive('setApplication')->once()->with(null);
-            $commandCalled->shouldReceive('setQuantaQuirk')->once()->with($application);
+            $commandCalled->shouldReceive('setQuantaForge')->once()->with($application);
             $commandCalled->shouldReceive('run')->once();
 
             $command->call(Command::class);
@@ -94,7 +94,7 @@ class CommandTest extends TestCase
         };
 
         $application = app();
-        $command->setQuantaQuirk($application);
+        $command->setQuantaForge($application);
 
         $input = new ArrayInput([
             'argument-one' => 'test-first-argument',

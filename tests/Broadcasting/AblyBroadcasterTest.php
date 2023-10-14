@@ -1,10 +1,10 @@
 <?php
 
-namespace QuantaQuirk\Tests\Broadcasting;
+namespace QuantaForge\Tests\Broadcasting;
 
 use Ably\AblyRest;
-use QuantaQuirk\Broadcasting\Broadcasters\AblyBroadcaster;
-use QuantaQuirk\Http\Request;
+use QuantaForge\Broadcasting\Broadcasters\AblyBroadcaster;
+use QuantaForge\Http\Request;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
@@ -12,7 +12,7 @@ use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 class AblyBroadcasterTest extends TestCase
 {
     /**
-     * @var \QuantaQuirk\Broadcasting\Broadcasters\AblyBroadcaster
+     * @var \QuantaForge\Broadcasting\Broadcasters\AblyBroadcaster
      */
     public $broadcaster;
 
@@ -117,7 +117,7 @@ class AblyBroadcasterTest extends TestCase
 
     /**
      * @param  string  $channel
-     * @return \QuantaQuirk\Http\Request
+     * @return \QuantaForge\Http\Request
      */
     protected function getMockRequestWithUserForChannel($channel)
     {
@@ -142,7 +142,7 @@ class AblyBroadcasterTest extends TestCase
 
     /**
      * @param  string  $channel
-     * @return \QuantaQuirk\Http\Request
+     * @return \QuantaForge\Http\Request
      */
     protected function getMockRequestWithoutUserForChannel($channel)
     {

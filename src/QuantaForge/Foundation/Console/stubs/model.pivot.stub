@@ -1,0 +1,10 @@
+<?php
+
+namespace {{ namespace }};
+
+use QuantaForge\Database\Eloquent\Relations\Pivot;
+
+class {{ class }} extends Pivot
+{
+    //
+}

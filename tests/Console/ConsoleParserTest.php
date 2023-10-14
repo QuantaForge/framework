@@ -1,8 +1,8 @@
 <?php
 
-namespace QuantaQuirk\Tests\Console;
+namespace QuantaForge\Tests\Console;
 
-use QuantaQuirk\Console\Parser;
+use QuantaForge\Console\Parser;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 

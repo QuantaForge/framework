@@ -1,10 +1,10 @@
 <?php
 
-namespace QuantaQuirk\Tests\Database;
+namespace QuantaForge\Tests\Database;
 
-use QuantaQuirk\Database\Capsule\Manager as DB;
-use QuantaQuirk\Database\Eloquent\Model;
-use QuantaQuirk\Support\Carbon;
+use QuantaForge\Database\Capsule\Manager as DB;
+use QuantaForge\Database\Eloquent\Model;
+use QuantaForge\Support\Carbon;
 use PHPUnit\Framework\TestCase;
 
 class DatabaseEloquentIrregularPluralTest extends TestCase

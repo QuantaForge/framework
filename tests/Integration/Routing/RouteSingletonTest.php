@@ -1,11 +1,11 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Routing;
+namespace QuantaForge\Tests\Integration\Routing;
 
-use QuantaQuirk\Support\Facades\Route;
-use QuantaQuirk\Tests\Integration\Routing\Fixtures\CreatableSingletonTestController;
-use QuantaQuirk\Tests\Integration\Routing\Fixtures\NestedSingletonTestController;
-use QuantaQuirk\Tests\Integration\Routing\Fixtures\SingletonTestController;
+use QuantaForge\Support\Facades\Route;
+use QuantaForge\Tests\Integration\Routing\Fixtures\CreatableSingletonTestController;
+use QuantaForge\Tests\Integration\Routing\Fixtures\NestedSingletonTestController;
+use QuantaForge\Tests\Integration\Routing\Fixtures\SingletonTestController;
 use Orchestra\Testbench\TestCase;
 
 class RouteSingletonTest extends TestCase

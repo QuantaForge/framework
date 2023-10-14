@@ -1,10 +1,10 @@
 <?php
 
-namespace QuantaQuirk\Tests\Auth;
+namespace QuantaForge\Tests\Auth;
 
-use QuantaQuirk\Auth\TokenGuard;
-use QuantaQuirk\Contracts\Auth\UserProvider;
-use QuantaQuirk\Http\Request;
+use QuantaForge\Auth\TokenGuard;
+use QuantaForge\Contracts\Auth\UserProvider;
+use QuantaForge\Http\Request;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 

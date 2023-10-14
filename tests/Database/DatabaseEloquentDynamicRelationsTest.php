@@ -1,13 +1,13 @@
 <?php
 
-namespace QuantaQuirk\Tests\Database;
+namespace QuantaForge\Tests\Database;
 
-use QuantaQuirk\Database\Eloquent\Builder;
-use QuantaQuirk\Database\Eloquent\Model;
-use QuantaQuirk\Database\Eloquent\Relations\HasMany;
-use QuantaQuirk\Database\Eloquent\Relations\HasOne;
-use QuantaQuirk\Database\Query\Builder as Query;
-use QuantaQuirk\Tests\Database\DynamicRelationModel2 as Related;
+use QuantaForge\Database\Eloquent\Builder;
+use QuantaForge\Database\Eloquent\Model;
+use QuantaForge\Database\Eloquent\Relations\HasMany;
+use QuantaForge\Database\Eloquent\Relations\HasOne;
+use QuantaForge\Database\Query\Builder as Query;
+use QuantaForge\Tests\Database\DynamicRelationModel2 as Related;
 use PHPUnit\Framework\TestCase;
 
 class DatabaseEloquentDynamicRelationsTest extends TestCase

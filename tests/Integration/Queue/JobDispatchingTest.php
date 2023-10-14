@@ -1,13 +1,13 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Queue;
+namespace QuantaForge\Tests\Integration\Queue;
 
-use QuantaQuirk\Bus\Queueable;
-use QuantaQuirk\Contracts\Cache\Repository;
-use QuantaQuirk\Contracts\Queue\ShouldBeUnique;
-use QuantaQuirk\Contracts\Queue\ShouldQueue;
-use QuantaQuirk\Foundation\Bus\Dispatchable;
-use QuantaQuirk\Queue\InteractsWithQueue;
+use QuantaForge\Bus\Queueable;
+use QuantaForge\Contracts\Cache\Repository;
+use QuantaForge\Contracts\Queue\ShouldBeUnique;
+use QuantaForge\Contracts\Queue\ShouldQueue;
+use QuantaForge\Foundation\Bus\Dispatchable;
+use QuantaForge\Queue\InteractsWithQueue;
 use Orchestra\Testbench\TestCase;
 
 class JobDispatchingTest extends TestCase
@@ -116,7 +116,7 @@ class JobDispatchingTest extends TestCase
      */
     private function getJobLock($job, $value = null)
     {
-        return $this->app->get(Repository::class)->lock('quantaquirk_unique_job:'.$job.$value, 10)->get();
+        return $this->app->get(Repository::class)->lock('quantaforge_unique_job:'.$job.$value, 10)->get();
     }
 }
 

@@ -1,12 +1,12 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Http\Middleware;
+namespace QuantaForge\Tests\Integration\Http\Middleware;
 
-use QuantaQuirk\Contracts\Http\Kernel;
-use QuantaQuirk\Foundation\Validation\ValidatesRequests;
-use QuantaQuirk\Http\Middleware\HandleCors;
-use QuantaQuirk\Http\Request;
-use QuantaQuirk\Routing\Router;
+use QuantaForge\Contracts\Http\Kernel;
+use QuantaForge\Foundation\Validation\ValidatesRequests;
+use QuantaForge\Http\Middleware\HandleCors;
+use QuantaForge\Http\Request;
+use QuantaForge\Routing\Router;
 use Orchestra\Testbench\TestCase;
 
 class HandleCorsTest extends TestCase
@@ -67,7 +67,7 @@ class HandleCorsTest extends TestCase
         $this->app['config']->set('cors.allowed_origins', ['*']);
 
         $crawler = $this->call('OPTIONS', 'api/ping', [], [], [], [
-            'HTTP_ORIGIN' => 'http://quantaquirk.com',
+            'HTTP_ORIGIN' => 'http://quantaforge.com',
             'HTTP_ACCESS_CONTROL_REQUEST_METHOD' => 'POST',
         ]);
 
@@ -77,33 +77,33 @@ class HandleCorsTest extends TestCase
 
     public function testAllowAllOriginsWildcard()
     {
-        $this->app['config']->set('cors.allowed_origins', ['*.quantaquirk.com']);
+        $this->app['config']->set('cors.allowed_origins', ['*.quantaforge.com']);
 
         $crawler = $this->call('OPTIONS', 'api/ping', [], [], [], [
-            'HTTP_ORIGIN' => 'http://test.quantaquirk.com',
+            'HTTP_ORIGIN' => 'http://test.quantaforge.com',
             'HTTP_ACCESS_CONTROL_REQUEST_METHOD' => 'POST',
         ]);
 
-        $this->assertSame('http://test.quantaquirk.com', $crawler->headers->get('Access-Control-Allow-Origin'));
+        $this->assertSame('http://test.quantaforge.com', $crawler->headers->get('Access-Control-Allow-Origin'));
         $this->assertEquals(204, $crawler->getStatusCode());
     }
 
     public function testOriginsWildcardIncludesNestedSubdomains()
     {
-        $this->app['config']->set('cors.allowed_origins', ['*.quantaquirk.com']);
+        $this->app['config']->set('cors.allowed_origins', ['*.quantaforge.com']);
 
         $crawler = $this->call('OPTIONS', 'api/ping', [], [], [], [
-            'HTTP_ORIGIN' => 'http://api.service.test.quantaquirk.com',
+            'HTTP_ORIGIN' => 'http://api.service.test.quantaforge.com',
             'HTTP_ACCESS_CONTROL_REQUEST_METHOD' => 'POST',
         ]);
 
-        $this->assertSame('http://api.service.test.quantaquirk.com', $crawler->headers->get('Access-Control-Allow-Origin'));
+        $this->assertSame('http://api.service.test.quantaforge.com', $crawler->headers->get('Access-Control-Allow-Origin'));
         $this->assertEquals(204, $crawler->getStatusCode());
     }
 
     public function testAllowAllOriginsWildcardNoMatch()
     {
-        $this->app['config']->set('cors.allowed_origins', ['*.quantaquirk.com']);
+        $this->app['config']->set('cors.allowed_origins', ['*.quantaforge.com']);
 
         $crawler = $this->call('OPTIONS', 'api/ping', [], [], [], [
             'HTTP_ORIGIN' => 'http://test.symfony.com',

@@ -1,19 +1,19 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Database;
+namespace QuantaForge\Tests\Integration\Database;
 
 use Closure;
-use QuantaQuirk\Broadcasting\BroadcastEvent;
-use QuantaQuirk\Contracts\Broadcasting\Broadcaster;
-use QuantaQuirk\Contracts\Broadcasting\Factory as BroadcastingFactory;
-use QuantaQuirk\Database\Eloquent\BroadcastableModelEventOccurred;
-use QuantaQuirk\Database\Eloquent\BroadcastsEvents;
-use QuantaQuirk\Database\Eloquent\Model;
-use QuantaQuirk\Database\Eloquent\SoftDeletes;
-use QuantaQuirk\Database\Schema\Blueprint;
-use QuantaQuirk\Support\Arr;
-use QuantaQuirk\Support\Facades\Event;
-use QuantaQuirk\Support\Facades\Schema;
+use QuantaForge\Broadcasting\BroadcastEvent;
+use QuantaForge\Contracts\Broadcasting\Broadcaster;
+use QuantaForge\Contracts\Broadcasting\Factory as BroadcastingFactory;
+use QuantaForge\Database\Eloquent\BroadcastableModelEventOccurred;
+use QuantaForge\Database\Eloquent\BroadcastsEvents;
+use QuantaForge\Database\Eloquent\Model;
+use QuantaForge\Database\Eloquent\SoftDeletes;
+use QuantaForge\Database\Schema\Blueprint;
+use QuantaForge\Support\Arr;
+use QuantaForge\Support\Facades\Event;
+use QuantaForge\Support\Facades\Schema;
 use Mockery as m;
 
 class DatabaseEloquentBroadcastingTest extends DatabaseTestCase
@@ -40,7 +40,7 @@ class DatabaseEloquentBroadcastingTest extends DatabaseTestCase
             return $event->model instanceof TestEloquentBroadcastUser
                     && count($event->broadcastOn()) === 1
                     && $event->model->name === 'Taylor'
-                    && $event->broadcastOn()[0]->name == "private-QuantaQuirk.Tests.Integration.Database.TestEloquentBroadcastUser.{$event->model->id}";
+                    && $event->broadcastOn()[0]->name == "private-QuantaForge.Tests.Integration.Database.TestEloquentBroadcastUser.{$event->model->id}";
         });
     }
 
@@ -48,7 +48,7 @@ class DatabaseEloquentBroadcastingTest extends DatabaseTestCase
     {
         $model = new TestEloquentBroadcastUser;
 
-        $this->assertSame('QuantaQuirk.Tests.Integration.Database.TestEloquentBroadcastUser.{testEloquentBroadcastUser}', $model->broadcastChannelRoute());
+        $this->assertSame('QuantaForge.Tests.Integration.Database.TestEloquentBroadcastUser.{testEloquentBroadcastUser}', $model->broadcastChannelRoute());
     }
 
     public function testBroadcastingOnModelTrashing()
@@ -66,7 +66,7 @@ class DatabaseEloquentBroadcastingTest extends DatabaseTestCase
                 && $event->event() == 'trashed'
                 && count($event->broadcastOn()) === 1
                 && $event->model->name === 'Bean'
-                && $event->broadcastOn()[0]->name == "private-QuantaQuirk.Tests.Integration.Database.SoftDeletableTestEloquentBroadcastUser.{$event->model->id}";
+                && $event->broadcastOn()[0]->name == "private-QuantaForge.Tests.Integration.Database.SoftDeletableTestEloquentBroadcastUser.{$event->model->id}";
         });
     }
 
@@ -83,7 +83,7 @@ class DatabaseEloquentBroadcastingTest extends DatabaseTestCase
                 && $event->event() == 'created'
                 && count($event->broadcastOn()) === 1
                 && $event->model->name === 'James'
-                && $event->broadcastOn()[0]->name == "private-QuantaQuirk.Tests.Integration.Database.TestEloquentBroadcastUserOnSpecificEventsOnly.{$event->model->id}";
+                && $event->broadcastOn()[0]->name == "private-QuantaForge.Tests.Integration.Database.TestEloquentBroadcastUserOnSpecificEventsOnly.{$event->model->id}";
         });
 
         $model->name = 'Graham';

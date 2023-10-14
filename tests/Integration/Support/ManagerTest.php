@@ -1,8 +1,8 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Support;
+namespace QuantaForge\Tests\Integration\Support;
 
-use QuantaQuirk\Tests\Integration\Support\Fixtures\NullableManager;
+use QuantaForge\Tests\Integration\Support\Fixtures\NullableManager;
 use InvalidArgumentException;
 use Orchestra\Testbench\TestCase;
 

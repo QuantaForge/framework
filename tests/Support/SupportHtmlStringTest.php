@@ -1,8 +1,8 @@
 <?php
 
-namespace QuantaQuirk\Tests\Support;
+namespace QuantaForge\Tests\Support;
 
-use QuantaQuirk\Support\HtmlString;
+use QuantaForge\Support\HtmlString;
 use PHPUnit\Framework\TestCase;
 
 class SupportHtmlStringTest extends TestCase

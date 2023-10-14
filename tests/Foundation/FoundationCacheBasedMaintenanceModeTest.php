@@ -1,10 +1,10 @@
 <?php
 
-namespace QuantaQuirk\Tests\Foundation;
+namespace QuantaForge\Tests\Foundation;
 
-use QuantaQuirk\Contracts\Cache\Factory;
-use QuantaQuirk\Contracts\Cache\Repository;
-use QuantaQuirk\Foundation\CacheBasedMaintenanceMode;
+use QuantaForge\Contracts\Cache\Factory;
+use QuantaForge\Contracts\Cache\Repository;
+use QuantaForge\Foundation\CacheBasedMaintenanceMode;
 use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;

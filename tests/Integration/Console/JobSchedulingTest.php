@@ -1,12 +1,12 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Console;
+namespace QuantaForge\Tests\Integration\Console;
 
-use QuantaQuirk\Bus\Queueable;
-use QuantaQuirk\Console\Scheduling\Schedule;
-use QuantaQuirk\Contracts\Queue\ShouldQueue;
-use QuantaQuirk\Queue\InteractsWithQueue;
-use QuantaQuirk\Support\Facades\Queue;
+use QuantaForge\Bus\Queueable;
+use QuantaForge\Console\Scheduling\Schedule;
+use QuantaForge\Contracts\Queue\ShouldQueue;
+use QuantaForge\Queue\InteractsWithQueue;
+use QuantaForge\Support\Facades\Queue;
 use Orchestra\Testbench\TestCase;
 
 class JobSchedulingTest extends TestCase
@@ -15,7 +15,7 @@ class JobSchedulingTest extends TestCase
     {
         Queue::fake();
 
-        /** @var \QuantaQuirk\Console\Scheduling\Schedule $scheduler */
+        /** @var \QuantaForge\Console\Scheduling\Schedule $scheduler */
         $scheduler = $this->app->make(Schedule::class);
 
         // all job names were set to an empty string so that the registered shutdown function in CallbackEvent does nothing
@@ -43,7 +43,7 @@ class JobSchedulingTest extends TestCase
     {
         Queue::fake();
 
-        /** @var \QuantaQuirk\Console\Scheduling\Schedule $scheduler */
+        /** @var \QuantaForge\Console\Scheduling\Schedule $scheduler */
         $scheduler = $this->app->make(Schedule::class);
 
         // all job names were set to an empty string so that the registered shutdown function in CallbackEvent does nothing

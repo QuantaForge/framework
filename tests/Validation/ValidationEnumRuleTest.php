@@ -1,14 +1,14 @@
 <?php
 
-namespace QuantaQuirk\Tests\Validation;
+namespace QuantaForge\Tests\Validation;
 
-use QuantaQuirk\Container\Container;
-use QuantaQuirk\Support\Facades\Facade;
-use QuantaQuirk\Translation\ArrayLoader;
-use QuantaQuirk\Translation\Translator;
-use QuantaQuirk\Validation\Rules\Enum;
-use QuantaQuirk\Validation\ValidationServiceProvider;
-use QuantaQuirk\Validation\Validator;
+use QuantaForge\Container\Container;
+use QuantaForge\Support\Facades\Facade;
+use QuantaForge\Translation\ArrayLoader;
+use QuantaForge\Translation\Translator;
+use QuantaForge\Validation\Rules\Enum;
+use QuantaForge\Validation\ValidationServiceProvider;
+use QuantaForge\Validation\Validator;
 use PHPUnit\Framework\TestCase;
 
 include_once 'Enums.php';

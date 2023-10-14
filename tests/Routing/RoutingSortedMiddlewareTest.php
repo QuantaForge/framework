@@ -1,8 +1,8 @@
 <?php
 
-namespace QuantaQuirk\Tests\Routing;
+namespace QuantaForge\Tests\Routing;
 
-use QuantaQuirk\Routing\SortedMiddleware;
+use QuantaForge\Routing\SortedMiddleware;
 use PHPUnit\Framework\TestCase;
 
 class RoutingSortedMiddlewareTest extends TestCase

@@ -1,7 +1,7 @@
 <?php
 
-use QuantaQuirk\Contracts\Support\Arrayable;
-use QuantaQuirk\Support\Collection;
+use QuantaForge\Contracts\Support\Arrayable;
+use QuantaForge\Support\Collection;
 
 use function PHPStan\Testing\assertType;
 
@@ -22,52 +22,52 @@ class Invokable
 }
 $invokable = new Invokable();
 
-assertType('QuantaQuirk\Support\Collection<int, User>', $collection);
+assertType('QuantaForge\Support\Collection<int, User>', $collection);
 
-assertType('QuantaQuirk\Support\Collection<int, string>', collect(['string']));
-assertType('QuantaQuirk\Support\Collection<string, User>', collect(['string' => new User]));
-assertType('QuantaQuirk\Support\Collection<int, User>', collect($arrayable));
-assertType('QuantaQuirk\Support\Collection<int, User>', collect($collection));
-assertType('QuantaQuirk\Support\Collection<int, User>', collect($collection));
-assertType('QuantaQuirk\Support\Collection<int, int>', collect($iterable));
-assertType('QuantaQuirk\Support\Collection<int, string>', collect($traversable));
+assertType('QuantaForge\Support\Collection<int, string>', collect(['string']));
+assertType('QuantaForge\Support\Collection<string, User>', collect(['string' => new User]));
+assertType('QuantaForge\Support\Collection<int, User>', collect($arrayable));
+assertType('QuantaForge\Support\Collection<int, User>', collect($collection));
+assertType('QuantaForge\Support\Collection<int, User>', collect($collection));
+assertType('QuantaForge\Support\Collection<int, int>', collect($iterable));
+assertType('QuantaForge\Support\Collection<int, string>', collect($traversable));
 
-assertType('QuantaQuirk\Support\Collection<int, string>', $collection::make(['string']));
-assertType('QuantaQuirk\Support\Collection<string, User>', $collection::make(['string' => new User]));
-assertType('QuantaQuirk\Support\Collection<int, User>', $collection::make($arrayable));
-assertType('QuantaQuirk\Support\Collection<int, User>', $collection::make($collection));
-assertType('QuantaQuirk\Support\Collection<int, User>', $collection::make($collection));
-assertType('QuantaQuirk\Support\Collection<int, int>', $collection::make($iterable));
-assertType('QuantaQuirk\Support\Collection<int, string>', $collection::make($traversable));
+assertType('QuantaForge\Support\Collection<int, string>', $collection::make(['string']));
+assertType('QuantaForge\Support\Collection<string, User>', $collection::make(['string' => new User]));
+assertType('QuantaForge\Support\Collection<int, User>', $collection::make($arrayable));
+assertType('QuantaForge\Support\Collection<int, User>', $collection::make($collection));
+assertType('QuantaForge\Support\Collection<int, User>', $collection::make($collection));
+assertType('QuantaForge\Support\Collection<int, int>', $collection::make($iterable));
+assertType('QuantaForge\Support\Collection<int, string>', $collection::make($traversable));
 
-assertType('QuantaQuirk\Support\Collection<int, User>', $collection::times(10, function ($int) {
+assertType('QuantaForge\Support\Collection<int, User>', $collection::times(10, function ($int) {
     // assertType('int', $int);
 
     return new User;
 }));
 
-assertType('QuantaQuirk\Support\Collection<int, User>', $collection::times(10, function () {
+assertType('QuantaForge\Support\Collection<int, User>', $collection::times(10, function () {
     return new User;
 }));
 
-assertType('QuantaQuirk\Support\Collection<int, User>', $collection->each(function ($user) {
+assertType('QuantaForge\Support\Collection<int, User>', $collection->each(function ($user) {
     assertType('User', $user);
 }));
 
-assertType('QuantaQuirk\Support\Collection<int, int>', $collection->range(1, 100));
+assertType('QuantaForge\Support\Collection<int, int>', $collection->range(1, 100));
 
-assertType('QuantaQuirk\Support\Collection<(int|string), string>', $collection->wrap('string'));
-assertType('QuantaQuirk\Support\Collection<(int|string), User>', $collection->wrap(new User));
+assertType('QuantaForge\Support\Collection<(int|string), string>', $collection->wrap('string'));
+assertType('QuantaForge\Support\Collection<(int|string), User>', $collection->wrap(new User));
 
-assertType('QuantaQuirk\Support\Collection<(int|string), string>', $collection->wrap(['string']));
-assertType('QuantaQuirk\Support\Collection<(int|string), User>', $collection->wrap(['string' => new User]));
+assertType('QuantaForge\Support\Collection<(int|string), string>', $collection->wrap(['string']));
+assertType('QuantaForge\Support\Collection<(int|string), User>', $collection->wrap(['string' => new User]));
 
 assertType('array<int, string>', $collection->unwrap(['string']));
 assertType('array<int, User>', $collection->unwrap(
     $collection
 ));
 
-assertType('QuantaQuirk\Support\Collection<int, User>', $collection::empty());
+assertType('QuantaForge\Support\Collection<int, User>', $collection::empty());
 
 assertType('float|int|null', $collection->average());
 assertType('float|int|null', $collection->average('string'));
@@ -90,7 +90,7 @@ assertType('array<int, float|int>|null', $collection->mode());
 assertType('array<int, float|int>|null', $collection->mode('string'));
 assertType('array<int, float|int>|null', $collection->mode(['string']));
 
-assertType('QuantaQuirk\Support\Collection<int, mixed>', $collection->collapse());
+assertType('QuantaForge\Support\Collection<int, mixed>', $collection->collapse());
 
 assertType('bool', $collection->some(function ($user) {
     assertType('User', $user);
@@ -107,7 +107,7 @@ assertType('bool', $collection->containsStrict(function ($user) {
 assertType('bool', $collection::make(['string'])->containsStrict('string', 'string'));
 assertType('bool', $collection::make([[1]])->containsStrict(0));
 
-assertType('QuantaQuirk\Support\LazyCollection<int, User>', $collection->lazy());
+assertType('QuantaForge\Support\LazyCollection<int, User>', $collection->lazy());
 
 assertType('float|int|null', $collection->avg());
 assertType('float|int|null', $collection->avg('string'));
@@ -135,98 +135,98 @@ assertType('bool', $collection->contains(function ($user, $int) {
 }));
 assertType('bool', $collection::make(['string'])->contains('string', '=', 'string'));
 
-assertType('QuantaQuirk\Support\Collection<int, array<int, string|User>>', $collection->crossJoin($collection::make(['string'])));
-assertType('QuantaQuirk\Support\Collection<int, array<int, int|User>>', $collection->crossJoin([1, 2]));
+assertType('QuantaForge\Support\Collection<int, array<int, string|User>>', $collection->crossJoin($collection::make(['string'])));
+assertType('QuantaForge\Support\Collection<int, array<int, int|User>>', $collection->crossJoin([1, 2]));
 
-assertType('QuantaQuirk\Support\Collection<int, int>', $collection::make([3, 4])->diff([1, 2]));
-assertType('QuantaQuirk\Support\Collection<int, string>', $collection::make(['string-1'])->diff(['string-2']));
+assertType('QuantaForge\Support\Collection<int, int>', $collection::make([3, 4])->diff([1, 2]));
+assertType('QuantaForge\Support\Collection<int, string>', $collection::make(['string-1'])->diff(['string-2']));
 
-assertType('QuantaQuirk\Support\Collection<int, int>', $collection::make([3, 4])->diffUsing([1, 2], function ($intA, $intB) {
+assertType('QuantaForge\Support\Collection<int, int>', $collection::make([3, 4])->diffUsing([1, 2], function ($intA, $intB) {
     assertType('int', $intA);
     assertType('int', $intB);
 
     return -1;
 }));
-assertType('QuantaQuirk\Support\Collection<int, string>', $collection::make(['string-1'])->diffUsing(['string-2'], function ($stringA, $stringB) {
+assertType('QuantaForge\Support\Collection<int, string>', $collection::make(['string-1'])->diffUsing(['string-2'], function ($stringA, $stringB) {
     assertType('string', $stringA);
     assertType('string', $stringB);
 
     return -1;
 }));
 
-assertType('QuantaQuirk\Support\Collection<int, int>', $collection::make([3, 4])->diffAssoc([1, 2]));
-assertType('QuantaQuirk\Support\Collection<string, string>', $collection::make(['string' => 'string'])->diffAssoc(['string' => 'string']));
+assertType('QuantaForge\Support\Collection<int, int>', $collection::make([3, 4])->diffAssoc([1, 2]));
+assertType('QuantaForge\Support\Collection<string, string>', $collection::make(['string' => 'string'])->diffAssoc(['string' => 'string']));
 
-assertType('QuantaQuirk\Support\Collection<int, int>', $collection::make([3, 4])->diffAssocUsing([1, 2], function ($intA, $intB) {
+assertType('QuantaForge\Support\Collection<int, int>', $collection::make([3, 4])->diffAssocUsing([1, 2], function ($intA, $intB) {
     assertType('int', $intA);
     assertType('int', $intB);
 
     return -1;
 }));
-assertType('QuantaQuirk\Support\Collection<int, string>', $collection::make(['string-1'])->diffAssocUsing(['string-2'], function ($intA, $intB) {
-    assertType('int', $intA);
-    assertType('int', $intB);
-
-    return -1;
-}));
-
-assertType('QuantaQuirk\Support\Collection<int, int>', $collection::make([3, 4])->diffKeys([1, 2]));
-assertType('QuantaQuirk\Support\Collection<string, string>', $collection::make(['string' => 'string'])->diffKeys(['string' => 'string']));
-
-assertType('QuantaQuirk\Support\Collection<int, int>', $collection::make([3, 4])->diffKeysUsing([1, 2], function ($intA, $intB) {
-    assertType('int', $intA);
-    assertType('int', $intB);
-
-    return -1;
-}));
-assertType('QuantaQuirk\Support\Collection<int, string>', $collection::make(['string-1'])->diffKeysUsing(['string-2'], function ($intA, $intB) {
+assertType('QuantaForge\Support\Collection<int, string>', $collection::make(['string-1'])->diffAssocUsing(['string-2'], function ($intA, $intB) {
     assertType('int', $intA);
     assertType('int', $intB);
 
     return -1;
 }));
 
-assertType('QuantaQuirk\Support\Collection<string, string>', $collection::make(['string' => 'string'])
+assertType('QuantaForge\Support\Collection<int, int>', $collection::make([3, 4])->diffKeys([1, 2]));
+assertType('QuantaForge\Support\Collection<string, string>', $collection::make(['string' => 'string'])->diffKeys(['string' => 'string']));
+
+assertType('QuantaForge\Support\Collection<int, int>', $collection::make([3, 4])->diffKeysUsing([1, 2], function ($intA, $intB) {
+    assertType('int', $intA);
+    assertType('int', $intB);
+
+    return -1;
+}));
+assertType('QuantaForge\Support\Collection<int, string>', $collection::make(['string-1'])->diffKeysUsing(['string-2'], function ($intA, $intB) {
+    assertType('int', $intA);
+    assertType('int', $intB);
+
+    return -1;
+}));
+
+assertType('QuantaForge\Support\Collection<string, string>', $collection::make(['string' => 'string'])
     ->duplicates());
-assertType('QuantaQuirk\Support\Collection<int, User>', $collection->duplicates('name', true));
-assertType('QuantaQuirk\Support\Collection<int, int|string>', $collection::make([3, 'string'])
+assertType('QuantaForge\Support\Collection<int, User>', $collection->duplicates('name', true));
+assertType('QuantaForge\Support\Collection<int, int|string>', $collection::make([3, 'string'])
     ->duplicates(function ($intOrString) {
         assertType('int|string', $intOrString);
 
         return true;
     }));
 
-assertType('QuantaQuirk\Support\Collection<string, string>', $collection::make(['string' => 'string'])
+assertType('QuantaForge\Support\Collection<string, string>', $collection::make(['string' => 'string'])
     ->duplicatesStrict());
-assertType('QuantaQuirk\Support\Collection<int, User>', $collection->duplicatesStrict('name'));
-assertType('QuantaQuirk\Support\Collection<int, int|string>', $collection::make([3, 'string'])
+assertType('QuantaForge\Support\Collection<int, User>', $collection->duplicatesStrict('name'));
+assertType('QuantaForge\Support\Collection<int, int|string>', $collection::make([3, 'string'])
     ->duplicatesStrict(function ($intOrString) {
         assertType('int|string', $intOrString);
 
         return true;
     }));
 
-assertType('QuantaQuirk\Support\Collection<int, User>', $collection->each(function ($user) {
+assertType('QuantaForge\Support\Collection<int, User>', $collection->each(function ($user) {
     assertType('User', $user);
 
     return null;
 }));
-assertType('QuantaQuirk\Support\Collection<int, User>', $collection->each(function ($user) {
+assertType('QuantaForge\Support\Collection<int, User>', $collection->each(function ($user) {
     assertType('User', $user);
 }));
-assertType('QuantaQuirk\Support\Collection<int, User>', $collection->each(function ($user, $int) {
+assertType('QuantaForge\Support\Collection<int, User>', $collection->each(function ($user, $int) {
     assertType('int', $int);
     assertType('User', $user);
 }));
 
-assertType('QuantaQuirk\Support\Collection<int, array{string}>', $collection::make([['string']])
+assertType('QuantaForge\Support\Collection<int, array{string}>', $collection::make([['string']])
     ->eachSpread(function ($int, $string) {
         // assertType('int', $int);
         // assertType('int', $string);
 
         return null;
     }));
-assertType('QuantaQuirk\Support\Collection<int, array{int, string}>', $collection::make([[1, 'string']])
+assertType('QuantaForge\Support\Collection<int, array{int, string}>', $collection::make([[1, 'string']])
     ->eachSpread(function ($int, $string) {
         // assertType('int', $int);
         // assertType('int', $string);
@@ -240,237 +240,237 @@ assertType('bool', $collection->every(function ($user, $int) {
 }));
 assertType('bool', $collection::make(['string'])->every('string', '=', 'string'));
 
-assertType('QuantaQuirk\Support\Collection<string, string>', $collection::make(['string' => 'string'])->except(['string']));
-assertType('QuantaQuirk\Support\Collection<int, User>', $collection->except([1]));
-assertType('QuantaQuirk\Support\Collection<int, string>', $collection::make(['string'])
+assertType('QuantaForge\Support\Collection<string, string>', $collection::make(['string' => 'string'])->except(['string']));
+assertType('QuantaForge\Support\Collection<int, User>', $collection->except([1]));
+assertType('QuantaForge\Support\Collection<int, string>', $collection::make(['string'])
     ->except([1]));
 
-assertType('QuantaQuirk\Support\Collection<int, User>', $collection->filter());
-assertType('QuantaQuirk\Support\Collection<int, User>', $collection->filter(function ($user) {
+assertType('QuantaForge\Support\Collection<int, User>', $collection->filter());
+assertType('QuantaForge\Support\Collection<int, User>', $collection->filter(function ($user) {
     assertType('User', $user);
 
     return true;
 }));
 
-assertType('QuantaQuirk\Support\Collection<int, User>', $collection->filter());
-assertType('QuantaQuirk\Support\Collection<int, User>', $collection->filter(function ($user) {
+assertType('QuantaForge\Support\Collection<int, User>', $collection->filter());
+assertType('QuantaForge\Support\Collection<int, User>', $collection->filter(function ($user) {
     assertType('User', $user);
 
     return true;
 }));
 
-assertType('bool|QuantaQuirk\Support\Collection<int, User>', $collection->when(true, function ($collection) {
-    assertType('QuantaQuirk\Support\Collection<int, User>', $collection);
+assertType('bool|QuantaForge\Support\Collection<int, User>', $collection->when(true, function ($collection) {
+    assertType('QuantaForge\Support\Collection<int, User>', $collection);
 
     return true;
 }));
-assertType('QuantaQuirk\Support\Collection<int, User>|void', $collection->when(true, function ($collection) {
-    assertType('QuantaQuirk\Support\Collection<int, User>', $collection);
+assertType('QuantaForge\Support\Collection<int, User>|void', $collection->when(true, function ($collection) {
+    assertType('QuantaForge\Support\Collection<int, User>', $collection);
 }));
-assertType('QuantaQuirk\Support\Collection<int, User>|string', $collection->when(true, function ($collection) {
-    assertType('QuantaQuirk\Support\Collection<int, User>', $collection);
+assertType('QuantaForge\Support\Collection<int, User>|string', $collection->when(true, function ($collection) {
+    assertType('QuantaForge\Support\Collection<int, User>', $collection);
 
     return 'string';
 }));
-assertType('QuantaQuirk\Support\Collection<int, User>|void', $collection->when('Taylor', function ($collection, $name) {
-    assertType('QuantaQuirk\Support\Collection<int, User>', $collection);
+assertType('QuantaForge\Support\Collection<int, User>|void', $collection->when('Taylor', function ($collection, $name) {
+    assertType('QuantaForge\Support\Collection<int, User>', $collection);
     assertType('string', $name);
 }));
 assertType(
-    'QuantaQuirk\Support\Collection<int, User>|void',
+    'QuantaForge\Support\Collection<int, User>|void',
     $collection->when(
         'Taylor',
         function ($collection, $name) {
-            assertType('QuantaQuirk\Support\Collection<int, User>', $collection);
+            assertType('QuantaForge\Support\Collection<int, User>', $collection);
             assertType('string', $name);
         },
         function ($collection, $name) {
-            assertType('QuantaQuirk\Support\Collection<int, User>', $collection);
+            assertType('QuantaForge\Support\Collection<int, User>', $collection);
             assertType('string', $name);
         }
     )
 );
-assertType('QuantaQuirk\Support\Collection<int, User>|void', $collection->when(fn () => 'Taylor', function ($collection, $name) {
-    assertType('QuantaQuirk\Support\Collection<int, User>', $collection);
+assertType('QuantaForge\Support\Collection<int, User>|void', $collection->when(fn () => 'Taylor', function ($collection, $name) {
+    assertType('QuantaForge\Support\Collection<int, User>', $collection);
     assertType('string', $name);
 }));
 assertType(
-    'QuantaQuirk\Support\Collection<int, User>|void',
+    'QuantaForge\Support\Collection<int, User>|void',
     $collection->when(
         function ($collection) {
-            assertType('QuantaQuirk\Support\Collection<int, User>', $collection);
+            assertType('QuantaForge\Support\Collection<int, User>', $collection);
 
             return 14;
         },
         function ($collection, $count) {
-            assertType('QuantaQuirk\Support\Collection<int, User>', $collection);
+            assertType('QuantaForge\Support\Collection<int, User>', $collection);
             assertType('int', $count);
         },
         function ($collection, $count) {
-            assertType('QuantaQuirk\Support\Collection<int, User>', $collection);
+            assertType('QuantaForge\Support\Collection<int, User>', $collection);
             assertType('int', $count);
         }
     )
 );
 
-assertType('QuantaQuirk\Support\Collection<int, User>|void', $collection->when($invokable, function ($collection, $param) {
-    assertType('QuantaQuirk\Support\Collection<int, User>', $collection);
+assertType('QuantaForge\Support\Collection<int, User>|void', $collection->when($invokable, function ($collection, $param) {
+    assertType('QuantaForge\Support\Collection<int, User>', $collection);
     assertType('Invokable', $param);
 }));
 
-assertType('bool|QuantaQuirk\Support\Collection<int, User>', $collection->whenEmpty(function ($collection) {
-    assertType('QuantaQuirk\Support\Collection<int, User>', $collection);
+assertType('bool|QuantaForge\Support\Collection<int, User>', $collection->whenEmpty(function ($collection) {
+    assertType('QuantaForge\Support\Collection<int, User>', $collection);
 
     return true;
 }));
-assertType('QuantaQuirk\Support\Collection<int, User>|void', $collection->whenEmpty(function ($collection) {
-    assertType('QuantaQuirk\Support\Collection<int, User>', $collection);
+assertType('QuantaForge\Support\Collection<int, User>|void', $collection->whenEmpty(function ($collection) {
+    assertType('QuantaForge\Support\Collection<int, User>', $collection);
 }));
-assertType('QuantaQuirk\Support\Collection<int, User>|string', $collection->whenEmpty(function ($collection) {
-    assertType('QuantaQuirk\Support\Collection<int, User>', $collection);
+assertType('QuantaForge\Support\Collection<int, User>|string', $collection->whenEmpty(function ($collection) {
+    assertType('QuantaForge\Support\Collection<int, User>', $collection);
 
     return 'string';
 }));
 
-assertType('bool|QuantaQuirk\Support\Collection<int, User>', $collection->whenNotEmpty(function ($collection) {
-    assertType('QuantaQuirk\Support\Collection<int, User>', $collection);
+assertType('bool|QuantaForge\Support\Collection<int, User>', $collection->whenNotEmpty(function ($collection) {
+    assertType('QuantaForge\Support\Collection<int, User>', $collection);
 
     return true;
 }));
-assertType('QuantaQuirk\Support\Collection<int, User>|void', $collection->whenNotEmpty(function ($collection) {
-    assertType('QuantaQuirk\Support\Collection<int, User>', $collection);
+assertType('QuantaForge\Support\Collection<int, User>|void', $collection->whenNotEmpty(function ($collection) {
+    assertType('QuantaForge\Support\Collection<int, User>', $collection);
 }));
-assertType('QuantaQuirk\Support\Collection<int, User>|string', $collection->whenNotEmpty(function ($collection) {
-    assertType('QuantaQuirk\Support\Collection<int, User>', $collection);
+assertType('QuantaForge\Support\Collection<int, User>|string', $collection->whenNotEmpty(function ($collection) {
+    assertType('QuantaForge\Support\Collection<int, User>', $collection);
 
     return 'string';
 }));
 
-assertType('bool|QuantaQuirk\Support\Collection<int, User>', $collection->unless(true, function ($collection) {
-    assertType('QuantaQuirk\Support\Collection<int, User>', $collection);
+assertType('bool|QuantaForge\Support\Collection<int, User>', $collection->unless(true, function ($collection) {
+    assertType('QuantaForge\Support\Collection<int, User>', $collection);
 
     return true;
 }));
-assertType('QuantaQuirk\Support\Collection<int, User>|void', $collection->unless(true, function ($collection) {
-    assertType('QuantaQuirk\Support\Collection<int, User>', $collection);
+assertType('QuantaForge\Support\Collection<int, User>|void', $collection->unless(true, function ($collection) {
+    assertType('QuantaForge\Support\Collection<int, User>', $collection);
 }));
-assertType('QuantaQuirk\Support\Collection<int, User>|string', $collection->unless(true, function ($collection) {
-    assertType('QuantaQuirk\Support\Collection<int, User>', $collection);
+assertType('QuantaForge\Support\Collection<int, User>|string', $collection->unless(true, function ($collection) {
+    assertType('QuantaForge\Support\Collection<int, User>', $collection);
 
     return 'string';
 }));
-assertType('QuantaQuirk\Support\Collection<int, User>|void', $collection->unless('Taylor', function ($collection, $name) {
-    assertType('QuantaQuirk\Support\Collection<int, User>', $collection);
+assertType('QuantaForge\Support\Collection<int, User>|void', $collection->unless('Taylor', function ($collection, $name) {
+    assertType('QuantaForge\Support\Collection<int, User>', $collection);
     assertType('string', $name);
 }));
 assertType(
-    'QuantaQuirk\Support\Collection<int, User>|void',
+    'QuantaForge\Support\Collection<int, User>|void',
     $collection->unless(
         'Taylor',
         function ($collection, $name) {
-            assertType('QuantaQuirk\Support\Collection<int, User>', $collection);
+            assertType('QuantaForge\Support\Collection<int, User>', $collection);
             assertType('string', $name);
         },
         function ($collection, $name) {
-            assertType('QuantaQuirk\Support\Collection<int, User>', $collection);
+            assertType('QuantaForge\Support\Collection<int, User>', $collection);
             assertType('string', $name);
         }
     )
 );
-assertType('QuantaQuirk\Support\Collection<int, User>|void', $collection->unless(fn () => 'Taylor', function ($collection, $name) {
-    assertType('QuantaQuirk\Support\Collection<int, User>', $collection);
+assertType('QuantaForge\Support\Collection<int, User>|void', $collection->unless(fn () => 'Taylor', function ($collection, $name) {
+    assertType('QuantaForge\Support\Collection<int, User>', $collection);
     assertType('string', $name);
 }));
 assertType(
-    'QuantaQuirk\Support\Collection<int, User>|void',
+    'QuantaForge\Support\Collection<int, User>|void',
     $collection->unless(
         function ($collection) {
-            assertType('QuantaQuirk\Support\Collection<int, User>', $collection);
+            assertType('QuantaForge\Support\Collection<int, User>', $collection);
 
             return 14;
         },
         function ($collection, $count) {
-            assertType('QuantaQuirk\Support\Collection<int, User>', $collection);
+            assertType('QuantaForge\Support\Collection<int, User>', $collection);
             assertType('int', $count);
         },
         function ($collection, $count) {
-            assertType('QuantaQuirk\Support\Collection<int, User>', $collection);
+            assertType('QuantaForge\Support\Collection<int, User>', $collection);
             assertType('int', $count);
         }
     )
 );
 
-assertType('QuantaQuirk\Support\Collection<int, User>|void', $collection->unless($invokable, function ($collection, $param) {
-    assertType('QuantaQuirk\Support\Collection<int, User>', $collection);
+assertType('QuantaForge\Support\Collection<int, User>|void', $collection->unless($invokable, function ($collection, $param) {
+    assertType('QuantaForge\Support\Collection<int, User>', $collection);
     assertType('Invokable', $param);
 }));
 
-assertType('bool|QuantaQuirk\Support\Collection<int, User>', $collection->unlessEmpty(function ($collection) {
-    assertType('QuantaQuirk\Support\Collection<int, User>', $collection);
+assertType('bool|QuantaForge\Support\Collection<int, User>', $collection->unlessEmpty(function ($collection) {
+    assertType('QuantaForge\Support\Collection<int, User>', $collection);
 
     return true;
 }));
-assertType('QuantaQuirk\Support\Collection<int, User>|void', $collection->unlessEmpty(function ($collection) {
-    assertType('QuantaQuirk\Support\Collection<int, User>', $collection);
+assertType('QuantaForge\Support\Collection<int, User>|void', $collection->unlessEmpty(function ($collection) {
+    assertType('QuantaForge\Support\Collection<int, User>', $collection);
 }));
-assertType('QuantaQuirk\Support\Collection<int, User>|string', $collection->unlessEmpty(function ($collection) {
-    assertType('QuantaQuirk\Support\Collection<int, User>', $collection);
+assertType('QuantaForge\Support\Collection<int, User>|string', $collection->unlessEmpty(function ($collection) {
+    assertType('QuantaForge\Support\Collection<int, User>', $collection);
 
     return 'string';
 }));
 
-assertType('bool|QuantaQuirk\Support\Collection<int, User>', $collection->unlessNotEmpty(function ($collection) {
-    assertType('QuantaQuirk\Support\Collection<int, User>', $collection);
+assertType('bool|QuantaForge\Support\Collection<int, User>', $collection->unlessNotEmpty(function ($collection) {
+    assertType('QuantaForge\Support\Collection<int, User>', $collection);
 
     return true;
 }));
-assertType('QuantaQuirk\Support\Collection<int, User>|void', $collection->unlessNotEmpty(function ($collection) {
-    assertType('QuantaQuirk\Support\Collection<int, User>', $collection);
+assertType('QuantaForge\Support\Collection<int, User>|void', $collection->unlessNotEmpty(function ($collection) {
+    assertType('QuantaForge\Support\Collection<int, User>', $collection);
 }));
-assertType('QuantaQuirk\Support\Collection<int, User>|string', $collection->unlessNotEmpty(function ($collection) {
-    assertType('QuantaQuirk\Support\Collection<int, User>', $collection);
+assertType('QuantaForge\Support\Collection<int, User>|string', $collection->unlessNotEmpty(function ($collection) {
+    assertType('QuantaForge\Support\Collection<int, User>', $collection);
 
     return 'string';
 }));
 
-assertType("QuantaQuirk\Support\Collection<int, array{string: string}>", $collection::make([['string' => 'string']])
+assertType("QuantaForge\Support\Collection<int, array{string: string}>", $collection::make([['string' => 'string']])
     ->where('string'));
-assertType("QuantaQuirk\Support\Collection<int, array{string: string}>", $collection::make([['string' => 'string']])
+assertType("QuantaForge\Support\Collection<int, array{string: string}>", $collection::make([['string' => 'string']])
     ->where('string', '=', 'string'));
-assertType("QuantaQuirk\Support\Collection<int, array{string: string}>", $collection::make([['string' => 'string']])
+assertType("QuantaForge\Support\Collection<int, array{string: string}>", $collection::make([['string' => 'string']])
     ->where('string', 'string'));
 
-assertType('QuantaQuirk\Support\Collection<int, User>', $collection->whereNull());
-assertType('QuantaQuirk\Support\Collection<int, User>', $collection->whereNull('foo'));
+assertType('QuantaForge\Support\Collection<int, User>', $collection->whereNull());
+assertType('QuantaForge\Support\Collection<int, User>', $collection->whereNull('foo'));
 
-assertType('QuantaQuirk\Support\Collection<int, User>', $collection->whereNotNull());
-assertType('QuantaQuirk\Support\Collection<int, User>', $collection->whereNotNull('foo'));
+assertType('QuantaForge\Support\Collection<int, User>', $collection->whereNotNull());
+assertType('QuantaForge\Support\Collection<int, User>', $collection->whereNotNull('foo'));
 
-assertType("QuantaQuirk\Support\Collection<int, array{string: int}>", $collection::make([['string' => 2]])
+assertType("QuantaForge\Support\Collection<int, array{string: int}>", $collection::make([['string' => 2]])
     ->whereStrict('string', 2));
 
-assertType("QuantaQuirk\Support\Collection<int, array{string: int}>", $collection::make([['string' => 2]])
+assertType("QuantaForge\Support\Collection<int, array{string: int}>", $collection::make([['string' => 2]])
     ->whereIn('string', [2]));
 
-assertType("QuantaQuirk\Support\Collection<int, array{string: int}>", $collection::make([['string' => 2]])
+assertType("QuantaForge\Support\Collection<int, array{string: int}>", $collection::make([['string' => 2]])
     ->whereInStrict('string', [2]));
 
-assertType("QuantaQuirk\Support\Collection<int, array{string: int}>", $collection::make([['string' => 2]])
+assertType("QuantaForge\Support\Collection<int, array{string: int}>", $collection::make([['string' => 2]])
     ->whereBetween('string', [1, 3]));
 
-assertType("QuantaQuirk\Support\Collection<int, array{string: int}>", $collection::make([['string' => 2]])
+assertType("QuantaForge\Support\Collection<int, array{string: int}>", $collection::make([['string' => 2]])
     ->whereNotBetween('string', [1, 3]));
 
-assertType("QuantaQuirk\Support\Collection<int, array{string: int}>", $collection::make([['string' => 2]])
+assertType("QuantaForge\Support\Collection<int, array{string: int}>", $collection::make([['string' => 2]])
     ->whereNotIn('string', [2]));
 
-assertType("QuantaQuirk\Support\Collection<int, array{string: int}>", $collection::make([['string' => 2]])
+assertType("QuantaForge\Support\Collection<int, array{string: int}>", $collection::make([['string' => 2]])
     ->whereNotInStrict('string', [2]));
 
-assertType('QuantaQuirk\Support\Collection<int, User>', $collection::make([new User, 1])
+assertType('QuantaForge\Support\Collection<int, User>', $collection::make([new User, 1])
     ->whereInstanceOf(User::class));
 
-assertType('QuantaQuirk\Support\Collection<int, Exception|User>', $collection::make([new User, 1])
+assertType('QuantaForge\Support\Collection<int, Exception|User>', $collection::make([new User, 1])
     ->whereInstanceOf([User::class, Exception::class]));
 
 assertType('User|null', $collection->first());
@@ -488,8 +488,8 @@ assertType('string|User', $collection->first(null, function () {
     return 'string';
 }));
 
-assertType('QuantaQuirk\Support\Collection<int, mixed>', $collection->flatten());
-assertType('QuantaQuirk\Support\Collection<int, mixed>', $collection::make(['string' => 'string'])->flatten(4));
+assertType('QuantaForge\Support\Collection<int, mixed>', $collection->flatten());
+assertType('QuantaForge\Support\Collection<int, mixed>', $collection::make(['string' => 'string'])->flatten(4));
 
 assertType('User|null', $collection->firstWhere('string', 'string'));
 assertType('User|null', $collection->firstWhere('string', 'string', 'string'));
@@ -498,22 +498,22 @@ assertType('User|null', $collection->value('string'));
 assertType('string|User', $collection->value('string', 'string'));
 assertType('string|User', $collection->value('string', fn () => 'string'));
 
-assertType('QuantaQuirk\Support\Collection<string, int>', $collection::make(['string'])->flip());
+assertType('QuantaForge\Support\Collection<string, int>', $collection::make(['string'])->flip());
 
-assertType('QuantaQuirk\Support\Collection<(int|string), QuantaQuirk\Support\Collection<(int|string), User>>', $collection->groupBy('name'));
-assertType('QuantaQuirk\Support\Collection<(int|string), QuantaQuirk\Support\Collection<(int|string), User>>', $collection->groupBy('name', true));
-assertType('QuantaQuirk\Support\Collection<(int|string), QuantaQuirk\Support\Collection<(int|string), User>>', $collection->groupBy(function ($user, $int) {
+assertType('QuantaForge\Support\Collection<(int|string), QuantaForge\Support\Collection<(int|string), User>>', $collection->groupBy('name'));
+assertType('QuantaForge\Support\Collection<(int|string), QuantaForge\Support\Collection<(int|string), User>>', $collection->groupBy('name', true));
+assertType('QuantaForge\Support\Collection<(int|string), QuantaForge\Support\Collection<(int|string), User>>', $collection->groupBy(function ($user, $int) {
     // assertType('User', $user);
     // assertType('int', $int);
 
     return 'foo';
 }));
-assertType('QuantaQuirk\Support\Collection<(int|string), QuantaQuirk\Support\Collection<(int|string), User>>', $collection->groupBy(function ($user) {
+assertType('QuantaForge\Support\Collection<(int|string), QuantaForge\Support\Collection<(int|string), User>>', $collection->groupBy(function ($user) {
     return 'foo';
 }));
 
-assertType('QuantaQuirk\Support\Collection<(int|string), User>', $collection->keyBy('name'));
-assertType('QuantaQuirk\Support\Collection<(int|string), User>', $collection->keyBy(function ($user, $int) {
+assertType('QuantaForge\Support\Collection<(int|string), User>', $collection->keyBy('name'));
+assertType('QuantaForge\Support\Collection<(int|string), User>', $collection->keyBy(function ($user, $int) {
     // assertType('User', $user);
     // assertType('int', $int);
 
@@ -523,11 +523,11 @@ assertType('QuantaQuirk\Support\Collection<(int|string), User>', $collection->ke
 assertType('bool', $collection->has(0));
 assertType('bool', $collection->has([0, 1]));
 
-assertType('QuantaQuirk\Support\Collection<int, User>', $collection->intersect([new User]));
+assertType('QuantaForge\Support\Collection<int, User>', $collection->intersect([new User]));
 
-assertType('QuantaQuirk\Support\Collection<int, User>', $collection->intersectByKeys([new User]));
+assertType('QuantaForge\Support\Collection<int, User>', $collection->intersectByKeys([new User]));
 
-assertType('QuantaQuirk\Support\Collection<int, int>', $collection->keys());
+assertType('QuantaForge\Support\Collection<int, int>', $collection->keys());
 
 assertType('User|null', $collection->last());
 assertType('User|null', $collection->last(function ($user, $int) {
@@ -543,14 +543,14 @@ assertType('string|User', $collection->last(null, function () {
     return 'string';
 }));
 
-assertType('QuantaQuirk\Support\Collection<int, int>', $collection->map(function () {
+assertType('QuantaForge\Support\Collection<int, int>', $collection->map(function () {
     return 1;
 }));
-assertType('QuantaQuirk\Support\Collection<int, string>', $collection->map(function () {
+assertType('QuantaForge\Support\Collection<int, string>', $collection->map(function () {
     return 'string';
 }));
 
-assertType('QuantaQuirk\Support\Collection<int, string>', $collection::make(['string'])
+assertType('QuantaForge\Support\Collection<int, string>', $collection::make(['string'])
     ->map(function ($string, $int) {
         assertType('string', $string);
         assertType('int', $int);
@@ -558,17 +558,17 @@ assertType('QuantaQuirk\Support\Collection<int, string>', $collection::make(['st
         return (string) $string;
     }));
 
-assertType('QuantaQuirk\Support\Collection<int, string>', $collection::make(['string'])
+assertType('QuantaForge\Support\Collection<int, string>', $collection::make(['string'])
     ->mapSpread(function () {
         return 'string';
     }));
 
-assertType('QuantaQuirk\Support\Collection<int, int>', $collection::make(['string'])
+assertType('QuantaForge\Support\Collection<int, int>', $collection::make(['string'])
     ->mapSpread(function () {
         return 1;
     }));
 
-assertType('QuantaQuirk\Support\Collection<string, array<int, int>>', $collection::make(['string', 'string'])
+assertType('QuantaForge\Support\Collection<string, array<int, int>>', $collection::make(['string', 'string'])
     ->mapToDictionary(function ($stringValue, $stringKey) {
         assertType('string', $stringValue);
         assertType('int', $stringKey);
@@ -576,7 +576,7 @@ assertType('QuantaQuirk\Support\Collection<string, array<int, int>>', $collectio
         return ['string' => 1];
     }));
 
-assertType('QuantaQuirk\Support\Collection<string, QuantaQuirk\Support\Collection<int, int>>', $collection::make(['string', 'string'])
+assertType('QuantaForge\Support\Collection<string, QuantaForge\Support\Collection<int, int>>', $collection::make(['string', 'string'])
     ->mapToGroups(function ($stringValue, $stringKey) {
         assertType('string', $stringValue);
         assertType('int', $stringKey);
@@ -584,7 +584,7 @@ assertType('QuantaQuirk\Support\Collection<string, QuantaQuirk\Support\Collectio
         return ['string' => 1];
     }));
 
-assertType('QuantaQuirk\Support\Collection<string, int>', $collection::make(['string'])
+assertType('QuantaForge\Support\Collection<string, int>', $collection::make(['string'])
     ->mapWithKeys(function ($string, $int) {
         assertType('string', $string);
         assertType('int', $int);
@@ -592,7 +592,7 @@ assertType('QuantaQuirk\Support\Collection<string, int>', $collection::make(['st
         return ['string' => 1];
     }));
 
-assertType('QuantaQuirk\Support\Collection<int, string>', $collection::make(['string'])
+assertType('QuantaForge\Support\Collection<int, string>', $collection::make(['string'])
     ->flatMap(function ($string, $int) {
         assertType('string', $string);
         assertType('int', $int);
@@ -600,20 +600,20 @@ assertType('QuantaQuirk\Support\Collection<int, string>', $collection::make(['st
         return [0 => 'string'];
     }));
 
-assertType('QuantaQuirk\Support\Collection<int, User>', $collection->mapInto(User::class));
+assertType('QuantaForge\Support\Collection<int, User>', $collection->mapInto(User::class));
 
-assertType('QuantaQuirk\Support\Collection<int, int>', $collection->make([1])->merge([2]));
-assertType('QuantaQuirk\Support\Collection<int, string>', $collection->make(['string'])->merge(['string']));
+assertType('QuantaForge\Support\Collection<int, int>', $collection->make([1])->merge([2]));
+assertType('QuantaForge\Support\Collection<int, string>', $collection->make(['string'])->merge(['string']));
 
-assertType('QuantaQuirk\Support\Collection<int, int|string>', $collection->make([1])->mergeRecursive([2 => 'string']));
-assertType('QuantaQuirk\Support\Collection<int, string>', $collection->make(['string'])->mergeRecursive(['string']));
+assertType('QuantaForge\Support\Collection<int, int|string>', $collection->make([1])->mergeRecursive([2 => 'string']));
+assertType('QuantaForge\Support\Collection<int, string>', $collection->make(['string'])->mergeRecursive(['string']));
 
-assertType('QuantaQuirk\Support\Collection<string, int>', $collection->make(['string' => 'string'])->combine([2]));
-assertType('QuantaQuirk\Support\Collection<int, int>', $collection->make([1])->combine([1]));
-assertType('QuantaQuirk\Support\Collection<string, string>', $collection->make(['string'])->combine(['string']));
+assertType('QuantaForge\Support\Collection<string, int>', $collection->make(['string' => 'string'])->combine([2]));
+assertType('QuantaForge\Support\Collection<int, int>', $collection->make([1])->combine([1]));
+assertType('QuantaForge\Support\Collection<string, string>', $collection->make(['string'])->combine(['string']));
 
-assertType('QuantaQuirk\Support\Collection<int, int>', $collection->make([1])->union([1]));
-assertType('QuantaQuirk\Support\Collection<string, string>', $collection->make(['string' => 'string'])->union(['string' => 'string']));
+assertType('QuantaForge\Support\Collection<int, int>', $collection->make([1])->union([1]));
+assertType('QuantaForge\Support\Collection<string, string>', $collection->make(['string' => 'string'])->union(['string' => 'string']));
 
 assertType('mixed', $collection->make()->min());
 assertType('mixed', $collection->make([1])->min());
@@ -636,30 +636,30 @@ assertType('mixed', $collection->make([1])->max(function ($int) {
 }));
 assertType('mixed', $collection->make([new User])->max('id'));
 
-assertType('QuantaQuirk\Support\Collection<int, User>', $collection->nth(1, 2));
+assertType('QuantaForge\Support\Collection<int, User>', $collection->nth(1, 2));
 
-assertType('QuantaQuirk\Support\Collection<string, string>', $collection::make(['string' => 'string'])->only(['string']));
-assertType('QuantaQuirk\Support\Collection<int, User>', $collection->only([1]));
-assertType('QuantaQuirk\Support\Collection<int, string>', $collection::make(['string'])
+assertType('QuantaForge\Support\Collection<string, string>', $collection::make(['string' => 'string'])->only(['string']));
+assertType('QuantaForge\Support\Collection<int, User>', $collection->only([1]));
+assertType('QuantaForge\Support\Collection<int, string>', $collection::make(['string'])
     ->only([1]));
 
-assertType('QuantaQuirk\Support\Collection<int, User>', $collection->forPage(1, 2));
+assertType('QuantaForge\Support\Collection<int, User>', $collection->forPage(1, 2));
 
-assertType('QuantaQuirk\Support\Collection<int<0, 1>, QuantaQuirk\Support\Collection<int, User>>', $collection->partition(function ($user, $int) {
+assertType('QuantaForge\Support\Collection<int<0, 1>, QuantaForge\Support\Collection<int, User>>', $collection->partition(function ($user, $int) {
     assertType('User', $user);
     assertType('int', $int);
 
     return true;
 }));
-assertType('QuantaQuirk\Support\Collection<int<0, 1>, QuantaQuirk\Support\Collection<int, string>>', $collection::make(['string'])->partition('string', '=', 'string'));
-assertType('QuantaQuirk\Support\Collection<int<0, 1>, QuantaQuirk\Support\Collection<int, string>>', $collection::make(['string'])->partition('string', 'string'));
-assertType('QuantaQuirk\Support\Collection<int<0, 1>, QuantaQuirk\Support\Collection<int, string>>', $collection::make(['string'])->partition('string'));
+assertType('QuantaForge\Support\Collection<int<0, 1>, QuantaForge\Support\Collection<int, string>>', $collection::make(['string'])->partition('string', '=', 'string'));
+assertType('QuantaForge\Support\Collection<int<0, 1>, QuantaForge\Support\Collection<int, string>>', $collection::make(['string'])->partition('string', 'string'));
+assertType('QuantaForge\Support\Collection<int<0, 1>, QuantaForge\Support\Collection<int, string>>', $collection::make(['string'])->partition('string'));
 
-assertType('QuantaQuirk\Support\Collection<int, int>', $collection->make([1])->concat([2]));
-assertType('QuantaQuirk\Support\Collection<int, string>', $collection->make(['string'])->concat(['string']));
+assertType('QuantaForge\Support\Collection<int, int>', $collection->make([1])->concat([2]));
+assertType('QuantaForge\Support\Collection<int, string>', $collection->make(['string'])->concat(['string']));
 
-assertType('QuantaQuirk\Support\Collection<int, int>|int', $collection->make([1])->random(2));
-assertType('QuantaQuirk\Support\Collection<int, string>|string', $collection->make(['string'])->random());
+assertType('QuantaForge\Support\Collection<int, int>|int', $collection->make([1])->random(2));
+assertType('QuantaForge\Support\Collection<int, string>|string', $collection->make(['string'])->random());
 
 assertType('int', $collection
     ->reduce(function ($null, $user) {
@@ -707,13 +707,13 @@ assertType('int', $collection
         return 1;
     }, 0));
 
-assertType('QuantaQuirk\Support\Collection<int, int>', $collection::make([1])->replace([1]));
-assertType('QuantaQuirk\Support\Collection<int, User>', $collection->replace([new User]));
+assertType('QuantaForge\Support\Collection<int, int>', $collection::make([1])->replace([1]));
+assertType('QuantaForge\Support\Collection<int, User>', $collection->replace([new User]));
 
-assertType('QuantaQuirk\Support\Collection<int, int>', $collection::make([1])->replaceRecursive([1]));
-assertType('QuantaQuirk\Support\Collection<int, User>', $collection->replaceRecursive([new User]));
+assertType('QuantaForge\Support\Collection<int, int>', $collection::make([1])->replaceRecursive([1]));
+assertType('QuantaForge\Support\Collection<int, User>', $collection->replaceRecursive([new User]));
 
-assertType('QuantaQuirk\Support\Collection<int, User>', $collection->reverse());
+assertType('QuantaForge\Support\Collection<int, User>', $collection->reverse());
 
 // assertType('int|bool', $collection->make([1])->search(2));
 // assertType('string|bool', $collection->make(['string' => 'string'])->search('string'));
@@ -724,35 +724,35 @@ assertType('QuantaQuirk\Support\Collection<int, User>', $collection->reverse());
 //    return true;
 // }));
 
-assertType('QuantaQuirk\Support\Collection<int, int>', $collection->make([1])->shuffle());
-assertType('QuantaQuirk\Support\Collection<int, User>', $collection->shuffle());
+assertType('QuantaForge\Support\Collection<int, int>', $collection->make([1])->shuffle());
+assertType('QuantaForge\Support\Collection<int, User>', $collection->shuffle());
 
-assertType('QuantaQuirk\Support\Collection<int, int>', $collection->make([1])->skip(1));
-assertType('QuantaQuirk\Support\Collection<int, User>', $collection->skip(1));
+assertType('QuantaForge\Support\Collection<int, int>', $collection->make([1])->skip(1));
+assertType('QuantaForge\Support\Collection<int, User>', $collection->skip(1));
 
-assertType('QuantaQuirk\Support\Collection<int, int>', $collection->make([1])->skipUntil(1));
-assertType('QuantaQuirk\Support\Collection<int, User>', $collection->skipUntil(new User));
-assertType('QuantaQuirk\Support\Collection<int, User>', $collection->skipUntil(function ($user, $int) {
+assertType('QuantaForge\Support\Collection<int, int>', $collection->make([1])->skipUntil(1));
+assertType('QuantaForge\Support\Collection<int, User>', $collection->skipUntil(new User));
+assertType('QuantaForge\Support\Collection<int, User>', $collection->skipUntil(function ($user, $int) {
     assertType('User', $user);
     assertType('int', $int);
 
     return true;
 }));
 
-assertType('QuantaQuirk\Support\Collection<int, int>', $collection->make([1])->skipWhile(1));
-assertType('QuantaQuirk\Support\Collection<int, User>', $collection->skipWhile(new User));
-assertType('QuantaQuirk\Support\Collection<int, User>', $collection->skipWhile(function ($user, $int) {
+assertType('QuantaForge\Support\Collection<int, int>', $collection->make([1])->skipWhile(1));
+assertType('QuantaForge\Support\Collection<int, User>', $collection->skipWhile(new User));
+assertType('QuantaForge\Support\Collection<int, User>', $collection->skipWhile(function ($user, $int) {
     assertType('User', $user);
     assertType('int', $int);
 
     return true;
 }));
 
-assertType('QuantaQuirk\Support\Collection<int, int>', $collection->make([1])->slice(1));
-assertType('QuantaQuirk\Support\Collection<int, User>', $collection->slice(1, 2));
+assertType('QuantaForge\Support\Collection<int, int>', $collection->make([1])->slice(1));
+assertType('QuantaForge\Support\Collection<int, User>', $collection->slice(1, 2));
 
-assertType('QuantaQuirk\Support\Collection<int, QuantaQuirk\Support\Collection<int, User>>', $collection->split(3));
-assertType('QuantaQuirk\Support\Collection<int, QuantaQuirk\Support\Collection<int, int>>', $collection->make([1])->split(3));
+assertType('QuantaForge\Support\Collection<int, QuantaForge\Support\Collection<int, User>>', $collection->split(3));
+assertType('QuantaForge\Support\Collection<int, QuantaForge\Support\Collection<int, int>>', $collection->make([1])->split(3));
 
 assertType('string', $collection->make(['string' => 'string'])->sole('string', 'string'));
 assertType('string', $collection->make(['string' => 'string'])->sole('string', '=', 'string'));
@@ -773,69 +773,69 @@ assertType('User', $collection->firstOrFail(function ($user, $int) {
     return true;
 }));
 
-assertType('QuantaQuirk\Support\Collection<int, QuantaQuirk\Support\Collection<int, string>>', $collection::make(['string'])->chunk(1));
-assertType('QuantaQuirk\Support\Collection<int, QuantaQuirk\Support\Collection<int, User>>', $collection->chunk(2));
+assertType('QuantaForge\Support\Collection<int, QuantaForge\Support\Collection<int, string>>', $collection::make(['string'])->chunk(1));
+assertType('QuantaForge\Support\Collection<int, QuantaForge\Support\Collection<int, User>>', $collection->chunk(2));
 
-assertType('QuantaQuirk\Support\Collection<int, QuantaQuirk\Support\Collection<int, User>>', $collection->chunkWhile(function ($user, $int, $collection) {
+assertType('QuantaForge\Support\Collection<int, QuantaForge\Support\Collection<int, User>>', $collection->chunkWhile(function ($user, $int, $collection) {
     assertType('User', $user);
     assertType('int', $int);
-    assertType('QuantaQuirk\Support\Collection<int, User>', $collection);
+    assertType('QuantaForge\Support\Collection<int, User>', $collection);
 
     return true;
 }));
 
-assertType('QuantaQuirk\Support\Collection<int, User>', $collection->sort(function ($userA, $userB) {
+assertType('QuantaForge\Support\Collection<int, User>', $collection->sort(function ($userA, $userB) {
     assertType('User', $userA);
     assertType('User', $userB);
 
     return 1;
 }));
-assertType('QuantaQuirk\Support\Collection<int, User>', $collection->sort());
+assertType('QuantaForge\Support\Collection<int, User>', $collection->sort());
 
-assertType('QuantaQuirk\Support\Collection<int, User>', $collection->sortDesc());
-assertType('QuantaQuirk\Support\Collection<int, User>', $collection->sortDesc(2));
+assertType('QuantaForge\Support\Collection<int, User>', $collection->sortDesc());
+assertType('QuantaForge\Support\Collection<int, User>', $collection->sortDesc(2));
 
-assertType('QuantaQuirk\Support\Collection<int, User>', $collection->sortBy(function ($user, $int) {
+assertType('QuantaForge\Support\Collection<int, User>', $collection->sortBy(function ($user, $int) {
     // assertType('User', $user);
     // assertType('int', $int);
 
     return 1;
 }));
-assertType('QuantaQuirk\Support\Collection<int, User>', $collection->sortBy('string'));
-assertType('QuantaQuirk\Support\Collection<int, User>', $collection->sortBy('string', 1, false));
-assertType('QuantaQuirk\Support\Collection<int, User>', $collection->sortBy([
+assertType('QuantaForge\Support\Collection<int, User>', $collection->sortBy('string'));
+assertType('QuantaForge\Support\Collection<int, User>', $collection->sortBy('string', 1, false));
+assertType('QuantaForge\Support\Collection<int, User>', $collection->sortBy([
     ['string', 'string'],
 ]));
-assertType('QuantaQuirk\Support\Collection<int, User>', $collection->sortBy([function ($user, $int) {
+assertType('QuantaForge\Support\Collection<int, User>', $collection->sortBy([function ($user, $int) {
     // assertType('User', $user);
     // assertType('int', $int);
 
     return 1;
 }]));
 
-assertType('QuantaQuirk\Support\Collection<int, User>', $collection->sortByDesc(function ($user, $int) {
+assertType('QuantaForge\Support\Collection<int, User>', $collection->sortByDesc(function ($user, $int) {
     // assertType('User', $user);
     // assertType('int', $int);
 
     return 1;
 }));
-assertType('QuantaQuirk\Support\Collection<int, User>', $collection->sortByDesc('string'));
-assertType('QuantaQuirk\Support\Collection<int, User>', $collection->sortByDesc('string', 1));
-assertType('QuantaQuirk\Support\Collection<int, User>', $collection->sortByDesc([
+assertType('QuantaForge\Support\Collection<int, User>', $collection->sortByDesc('string'));
+assertType('QuantaForge\Support\Collection<int, User>', $collection->sortByDesc('string', 1));
+assertType('QuantaForge\Support\Collection<int, User>', $collection->sortByDesc([
     ['string', 'string'],
 ]));
-assertType('QuantaQuirk\Support\Collection<int, User>', $collection->sortByDesc([function ($user, $int) {
+assertType('QuantaForge\Support\Collection<int, User>', $collection->sortByDesc([function ($user, $int) {
     // assertType('User', $user);
     // assertType('int', $int);
 
     return 1;
 }]));
 
-assertType('QuantaQuirk\Support\Collection<int, int>', $collection->make([1])->sortKeys());
-assertType('QuantaQuirk\Support\Collection<string, string>', $collection->make(['string' => 'string'])->sortKeys(1, true));
+assertType('QuantaForge\Support\Collection<int, int>', $collection->make([1])->sortKeys());
+assertType('QuantaForge\Support\Collection<string, string>', $collection->make(['string' => 'string'])->sortKeys(1, true));
 
-assertType('QuantaQuirk\Support\Collection<int, int>', $collection->make([1])->sortKeysDesc());
-assertType('QuantaQuirk\Support\Collection<string, string>', $collection->make(['string' => 'string'])->sortKeysDesc(1));
+assertType('QuantaForge\Support\Collection<int, int>', $collection->make([1])->sortKeysDesc());
+assertType('QuantaForge\Support\Collection<string, string>', $collection->make(['string' => 'string'])->sortKeysDesc(1));
 
 assertType('mixed', $collection->make([1])->sum('string'));
 assertType('mixed', $collection->make(['string'])->sum(function ($string) {
@@ -844,109 +844,109 @@ assertType('mixed', $collection->make(['string'])->sum(function ($string) {
     return 1;
 }));
 
-assertType('QuantaQuirk\Support\Collection<int, int>', $collection->make([1])->take(1));
-assertType('QuantaQuirk\Support\Collection<int, User>', $collection->take(1));
+assertType('QuantaForge\Support\Collection<int, int>', $collection->make([1])->take(1));
+assertType('QuantaForge\Support\Collection<int, User>', $collection->take(1));
 
-assertType('QuantaQuirk\Support\Collection<int, int>', $collection->make([1])->takeUntil(1));
-assertType('QuantaQuirk\Support\Collection<int, User>', $collection->takeUntil(new User));
-assertType('QuantaQuirk\Support\Collection<int, User>', $collection->takeUntil(function ($user, $int) {
+assertType('QuantaForge\Support\Collection<int, int>', $collection->make([1])->takeUntil(1));
+assertType('QuantaForge\Support\Collection<int, User>', $collection->takeUntil(new User));
+assertType('QuantaForge\Support\Collection<int, User>', $collection->takeUntil(function ($user, $int) {
     assertType('User', $user);
     assertType('int', $int);
 
     return true;
 }));
 
-assertType('QuantaQuirk\Support\Collection<int, int>', $collection->make([1])->takeWhile(1));
-assertType('QuantaQuirk\Support\Collection<int, User>', $collection->takeWhile(new User));
-assertType('QuantaQuirk\Support\Collection<int, User>', $collection->takeWhile(function ($user, $int) {
+assertType('QuantaForge\Support\Collection<int, int>', $collection->make([1])->takeWhile(1));
+assertType('QuantaForge\Support\Collection<int, User>', $collection->takeWhile(new User));
+assertType('QuantaForge\Support\Collection<int, User>', $collection->takeWhile(function ($user, $int) {
     assertType('User', $user);
     assertType('int', $int);
 
     return true;
 }));
 
-assertType('QuantaQuirk\Support\Collection<int, User>', $collection->tap(function ($collection) {
-    assertType('QuantaQuirk\Support\Collection<int, User>', $collection);
+assertType('QuantaForge\Support\Collection<int, User>', $collection->tap(function ($collection) {
+    assertType('QuantaForge\Support\Collection<int, User>', $collection);
 }));
 
-assertType('QuantaQuirk\Support\Collection<int, int>', $collection->pipe(function ($collection) {
-    assertType('QuantaQuirk\Support\Collection<int, User>', $collection);
+assertType('QuantaForge\Support\Collection<int, int>', $collection->pipe(function ($collection) {
+    assertType('QuantaForge\Support\Collection<int, User>', $collection);
 
     return collect([1]);
 }));
 assertType('int', $collection->make([1])->pipe(function ($collection) {
-    assertType('QuantaQuirk\Support\Collection<int, int>', $collection);
+    assertType('QuantaForge\Support\Collection<int, int>', $collection);
 
     return 1;
 }));
 
 assertType('User', $collection->pipeInto(User::class));
 
-assertType('QuantaQuirk\Support\Collection<(int|string), mixed>', $collection->make(['string' => 'string'])->pluck('string'));
-assertType('QuantaQuirk\Support\Collection<(int|string), mixed>', $collection->make(['string' => 'string'])->pluck('string', 'string'));
+assertType('QuantaForge\Support\Collection<(int|string), mixed>', $collection->make(['string' => 'string'])->pluck('string'));
+assertType('QuantaForge\Support\Collection<(int|string), mixed>', $collection->make(['string' => 'string'])->pluck('string', 'string'));
 
-assertType('QuantaQuirk\Support\Collection<int, User>', $collection->reject());
-assertType('QuantaQuirk\Support\Collection<int, User>', $collection->reject(new User));
-assertType('QuantaQuirk\Support\Collection<int, User>', $collection->reject(function ($user) {
+assertType('QuantaForge\Support\Collection<int, User>', $collection->reject());
+assertType('QuantaForge\Support\Collection<int, User>', $collection->reject(new User));
+assertType('QuantaForge\Support\Collection<int, User>', $collection->reject(function ($user) {
     assertType('User', $user);
 
     return true;
 }));
-assertType('QuantaQuirk\Support\Collection<int, User>', $collection->reject(function ($user, $int) {
+assertType('QuantaForge\Support\Collection<int, User>', $collection->reject(function ($user, $int) {
     assertType('User', $user);
     assertType('int', $int);
 
     return true;
 }));
 
-assertType('QuantaQuirk\Support\Collection<int, User>', $collection->unique());
-assertType('QuantaQuirk\Support\Collection<int, User>', $collection->unique(function ($user, $int) {
+assertType('QuantaForge\Support\Collection<int, User>', $collection->unique());
+assertType('QuantaForge\Support\Collection<int, User>', $collection->unique(function ($user, $int) {
     assertType('User', $user);
     assertType('int', $int);
 
     return $user->getTable();
 }));
-assertType('QuantaQuirk\Support\Collection<string, string>', $collection->make(['string' => 'string'])->unique(function ($stringA, $stringB) {
+assertType('QuantaForge\Support\Collection<string, string>', $collection->make(['string' => 'string'])->unique(function ($stringA, $stringB) {
     assertType('string', $stringA);
     assertType('string', $stringB);
 
     return $stringA;
 }, true));
 
-assertType('QuantaQuirk\Support\Collection<int, User>', $collection->uniqueStrict());
-assertType('QuantaQuirk\Support\Collection<int, User>', $collection->uniqueStrict(function ($user, $int) {
+assertType('QuantaForge\Support\Collection<int, User>', $collection->uniqueStrict());
+assertType('QuantaForge\Support\Collection<int, User>', $collection->uniqueStrict(function ($user, $int) {
     assertType('User', $user);
     assertType('int', $int);
 
     return $user->getTable();
 }));
 
-assertType('QuantaQuirk\Support\Collection<int, User>', $collection->values());
-assertType('QuantaQuirk\Support\Collection<int, string>', $collection::make(['string', 'string'])->values());
-assertType('QuantaQuirk\Support\Collection<int, int|string>', $collection::make(['string', 1])->values());
+assertType('QuantaForge\Support\Collection<int, User>', $collection->values());
+assertType('QuantaForge\Support\Collection<int, string>', $collection::make(['string', 'string'])->values());
+assertType('QuantaForge\Support\Collection<int, int|string>', $collection::make(['string', 1])->values());
 
-assertType('QuantaQuirk\Support\Collection<int, int>', $collection->make([1])->pad(2, 0));
-assertType('QuantaQuirk\Support\Collection<int, int|string>', $collection->make([1])->pad(2, 'string'));
-assertType('QuantaQuirk\Support\Collection<int, int|User>', $collection->pad(2, 0));
+assertType('QuantaForge\Support\Collection<int, int>', $collection->make([1])->pad(2, 0));
+assertType('QuantaForge\Support\Collection<int, int|string>', $collection->make([1])->pad(2, 'string'));
+assertType('QuantaForge\Support\Collection<int, int|User>', $collection->pad(2, 0));
 
-assertType('QuantaQuirk\Support\Collection<(int|string), int>', $collection->make([1])->countBy());
-assertType('QuantaQuirk\Support\Collection<(int|string), int>', $collection->make(['string' => 'string'])->countBy('string'));
-assertType('QuantaQuirk\Support\Collection<(int|string), int>', $collection->make([new User])->countBy('email'));
-assertType('QuantaQuirk\Support\Collection<(int|string), int>', $collection->make(['string'])->countBy(function ($string, $int) {
+assertType('QuantaForge\Support\Collection<(int|string), int>', $collection->make([1])->countBy());
+assertType('QuantaForge\Support\Collection<(int|string), int>', $collection->make(['string' => 'string'])->countBy('string'));
+assertType('QuantaForge\Support\Collection<(int|string), int>', $collection->make([new User])->countBy('email'));
+assertType('QuantaForge\Support\Collection<(int|string), int>', $collection->make(['string'])->countBy(function ($string, $int) {
     assertType('string', $string);
     assertType('int', $int);
 
     return $string;
 }));
 
-assertType('QuantaQuirk\Support\Collection<int, QuantaQuirk\Support\Collection<int, int|User>>', $collection->zip([1]));
-assertType('QuantaQuirk\Support\Collection<int, QuantaQuirk\Support\Collection<int, string|User>>', $collection->zip(['string']));
-assertType('QuantaQuirk\Support\Collection<int, QuantaQuirk\Support\Collection<int, string>>', $collection::make(['string' => 'string'])->zip(['string']));
+assertType('QuantaForge\Support\Collection<int, QuantaForge\Support\Collection<int, int|User>>', $collection->zip([1]));
+assertType('QuantaForge\Support\Collection<int, QuantaForge\Support\Collection<int, string|User>>', $collection->zip(['string']));
+assertType('QuantaForge\Support\Collection<int, QuantaForge\Support\Collection<int, string>>', $collection::make(['string' => 'string'])->zip(['string']));
 
-assertType('QuantaQuirk\Support\Collection<int, User>', $collection->collect());
-assertType('QuantaQuirk\Support\Collection<int, int>', $collection->make([1])->collect());
+assertType('QuantaForge\Support\Collection<int, User>', $collection->collect());
+assertType('QuantaForge\Support\Collection<int, int>', $collection->make([1])->collect());
 
-assertType('QuantaQuirk\Support\Collection<int, int>', $collection->make([1])->push(2));
+assertType('QuantaForge\Support\Collection<int, int>', $collection->make([1])->push(2));
 
 assertType('array<int, User>', $collection->all());
 
@@ -959,20 +959,20 @@ assertType('string|User', $collection->get(0, function () {
 assertType('string|User', $collection->getOrPut(0, 'string'));
 assertType('string|User', $collection->getOrPut(0, fn () => 'string'));
 
-assertType('QuantaQuirk\Support\Collection<int, User>', $collection->forget(1));
-assertType('QuantaQuirk\Support\Collection<int, User>', $collection->forget([1, 2]));
+assertType('QuantaForge\Support\Collection<int, User>', $collection->forget(1));
+assertType('QuantaForge\Support\Collection<int, User>', $collection->forget([1, 2]));
 
-assertType('QuantaQuirk\Support\Collection<int, User>|User|null', $collection->pop(1));
-assertType('QuantaQuirk\Support\Collection<int, string>|string|null', $collection::make([
+assertType('QuantaForge\Support\Collection<int, User>|User|null', $collection->pop(1));
+assertType('QuantaForge\Support\Collection<int, string>|string|null', $collection::make([
     'string-key-1' => 'string-value-1',
     'string-key-2' => 'string-value-2',
 ])->pop(2));
 
-assertType('QuantaQuirk\Support\Collection<int, int>', $collection->make([1])->prepend(2));
-assertType('QuantaQuirk\Support\Collection<int, User>', $collection->prepend(new User, 2));
+assertType('QuantaForge\Support\Collection<int, int>', $collection->make([1])->prepend(2));
+assertType('QuantaForge\Support\Collection<int, User>', $collection->prepend(new User, 2));
 
-assertType('QuantaQuirk\Support\Collection<int, int>', $collection->make([1])->push(2));
-assertType('QuantaQuirk\Support\Collection<int, User>', $collection->push(new User, new User));
+assertType('QuantaForge\Support\Collection<int, int>', $collection->make([1])->push(2));
+assertType('QuantaForge\Support\Collection<int, User>', $collection->push(new User, new User));
 
 assertType('User|null', $collection->pull(1));
 assertType('string|User', $collection->pull(1, 'string'));
@@ -980,61 +980,61 @@ assertType('string|User', $collection->pull(1, function () {
     return 'string';
 }));
 
-assertType('QuantaQuirk\Support\Collection<int, User>', $collection->put(1, new User));
-assertType('QuantaQuirk\Support\Collection<string, string>', $collection::make([
+assertType('QuantaForge\Support\Collection<int, User>', $collection->put(1, new User));
+assertType('QuantaForge\Support\Collection<string, string>', $collection::make([
     'string-key-1' => 'string-value-1',
 ])->put('string-key-2', 'string-value-2'));
 
-assertType('QuantaQuirk\Support\Collection<int, User>|User|null', $collection->shift(1));
-assertType('QuantaQuirk\Support\Collection<int, string>|string|null', $collection::make([
+assertType('QuantaForge\Support\Collection<int, User>|User|null', $collection->shift(1));
+assertType('QuantaForge\Support\Collection<int, string>|string|null', $collection::make([
     'string-key-1' => 'string-value-1',
     'string-key-2' => 'string-value-2',
 ])->shift(2));
 
 assertType(
-    'QuantaQuirk\Support\Collection<int, QuantaQuirk\Support\Collection<int, User>>',
+    'QuantaForge\Support\Collection<int, QuantaForge\Support\Collection<int, User>>',
     $collection->sliding(2)
 );
 
 assertType(
-    'QuantaQuirk\Support\Collection<int, QuantaQuirk\Support\Collection<string, string>>',
+    'QuantaForge\Support\Collection<int, QuantaForge\Support\Collection<string, string>>',
     $collection::make(['string' => 'string'])->sliding(2, 1)
 );
 
 assertType(
-    'QuantaQuirk\Support\Collection<int, QuantaQuirk\Support\Collection<int, User>>',
+    'QuantaForge\Support\Collection<int, QuantaForge\Support\Collection<int, User>>',
     $collection->splitIn(2)
 );
 
 assertType(
-    'QuantaQuirk\Support\Collection<int, QuantaQuirk\Support\Collection<string, string>>',
+    'QuantaForge\Support\Collection<int, QuantaForge\Support\Collection<string, string>>',
     $collection::make(['string' => 'string'])->splitIn(1)
 );
 
-assertType('QuantaQuirk\Support\Collection<int, User>', $collection->splice(1));
-assertType('QuantaQuirk\Support\Collection<int, User>', $collection->splice(1, 1, [new User]));
+assertType('QuantaForge\Support\Collection<int, User>', $collection->splice(1));
+assertType('QuantaForge\Support\Collection<int, User>', $collection->splice(1, 1, [new User]));
 
-assertType('QuantaQuirk\Support\Collection<int, User>', $collection->transform(function ($user, $int) {
+assertType('QuantaForge\Support\Collection<int, User>', $collection->transform(function ($user, $int) {
     assertType('User', $user);
     assertType('int', $int);
 
     return new User;
 }));
 
-assertType('QuantaQuirk\Support\Collection<int, User>', $collection->add(new User));
+assertType('QuantaForge\Support\Collection<int, User>', $collection->add(new User));
 
 /**
  * @template TKey of array-key
  * @template TValue
  *
- * @extends \QuantaQuirk\Support\Collection<TKey, TValue>
+ * @extends \QuantaForge\Support\Collection<TKey, TValue>
  */
 class CustomCollection extends Collection
 {
 }
 
 // assertType('CustomCollection<int, User>', CustomCollection::make([new User]));
-assertType('QuantaQuirk\Support\Collection<int, User>', CustomCollection::make([new User])->toBase());
+assertType('QuantaForge\Support\Collection<int, User>', CustomCollection::make([new User])->toBase());
 
 assertType('bool', $collection->offsetExists(0));
 assertType('bool', isset($collection[0]));
@@ -1072,7 +1072,7 @@ class Zebra extends Animal
 class Zoo
 {
     /**
-     * @var \QuantaQuirk\Support\Collection<int, Animal>
+     * @var \QuantaForge\Support\Collection<int, Animal>
      */
     private Collection $animals;
 
@@ -1086,7 +1086,7 @@ class Zoo
     }
 
     /**
-     * @return \QuantaQuirk\Support\Collection<int, Animal>
+     * @return \QuantaForge\Support\Collection<int, Animal>
      */
     public function getWithoutZebras(): Collection
     {
@@ -1096,4 +1096,4 @@ class Zoo
 
 $zoo = new Zoo();
 
-assertType('QuantaQuirk\Support\Collection<int, Animal>', $zoo->getWithoutZebras());
+assertType('QuantaForge\Support\Collection<int, Animal>', $zoo->getWithoutZebras());

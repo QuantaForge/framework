@@ -1,10 +1,10 @@
 <?php
 
-namespace QuantaQuirk\Tests\Foundation\Testing;
+namespace QuantaForge\Tests\Foundation\Testing;
 
 use Carbon\CarbonImmutable;
-use QuantaQuirk\Foundation\Testing\Wormhole;
-use QuantaQuirk\Support\Facades\Date;
+use QuantaForge\Foundation\Testing\Wormhole;
+use QuantaForge\Support\Facades\Date;
 use PHPUnit\Framework\TestCase;
 
 class WormholeTest extends TestCase

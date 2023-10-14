@@ -14,4 +14,4 @@ parameters:
     - "#Instantiated class [a-zA-Z0-9\\\\_]+ not found.#"
     - "#Unsafe usage of new static#"
   excludePaths:
-    - "src/QuantaQuirk/Testing/ParallelRunner.php"
+    - "src/QuantaForge/Testing/ParallelRunner.php"

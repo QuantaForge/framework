@@ -1,12 +1,12 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Foundation;
+namespace QuantaForge\Tests\Integration\Foundation;
 
 use Exception;
-use QuantaQuirk\Config\Repository as ConfigRepository;
-use QuantaQuirk\Contracts\Debug\ExceptionHandler;
-use QuantaQuirk\Support\Facades\Route;
-use QuantaQuirk\Support\Str;
+use QuantaForge\Config\Repository as ConfigRepository;
+use QuantaForge\Contracts\Debug\ExceptionHandler;
+use QuantaForge\Support\Facades\Route;
+use QuantaForge\Support\Str;
 use Orchestra\Testbench\TestCase;
 
 class FoundationHelpersTest extends TestCase
@@ -159,7 +159,7 @@ class FoundationHelpersTest extends TestCase
 
         touch($path);
 
-        // QuantaQuirk mix prints JSON pretty and with escaped
+        // QuantaForge mix prints JSON pretty and with escaped
         // slashes, so we are doing that here for consistency.
         $content = json_encode(['/unversioned.css' => '/versioned.css'], JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
 

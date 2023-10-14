@@ -1,19 +1,19 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Broadcasting;
+namespace QuantaForge\Tests\Integration\Broadcasting;
 
-use QuantaQuirk\Broadcasting\BroadcastEvent;
-use QuantaQuirk\Broadcasting\BroadcastManager;
-use QuantaQuirk\Broadcasting\UniqueBroadcastEvent;
-use QuantaQuirk\Config\Repository;
-use QuantaQuirk\Container\Container;
-use QuantaQuirk\Contracts\Broadcasting\ShouldBeUnique;
-use QuantaQuirk\Contracts\Broadcasting\ShouldBroadcast;
-use QuantaQuirk\Contracts\Broadcasting\ShouldBroadcastNow;
-use QuantaQuirk\Contracts\Cache\Repository as Cache;
-use QuantaQuirk\Support\Facades\Broadcast;
-use QuantaQuirk\Support\Facades\Bus;
-use QuantaQuirk\Support\Facades\Queue;
+use QuantaForge\Broadcasting\BroadcastEvent;
+use QuantaForge\Broadcasting\BroadcastManager;
+use QuantaForge\Broadcasting\UniqueBroadcastEvent;
+use QuantaForge\Config\Repository;
+use QuantaForge\Container\Container;
+use QuantaForge\Contracts\Broadcasting\ShouldBeUnique;
+use QuantaForge\Contracts\Broadcasting\ShouldBroadcast;
+use QuantaForge\Contracts\Broadcasting\ShouldBroadcastNow;
+use QuantaForge\Contracts\Cache\Repository as Cache;
+use QuantaForge\Support\Facades\Broadcast;
+use QuantaForge\Support\Facades\Bus;
+use QuantaForge\Support\Facades\Queue;
 use InvalidArgumentException;
 use Orchestra\Testbench\TestCase;
 
@@ -51,7 +51,7 @@ class BroadcastManagerTest extends TestCase
         Bus::assertNotDispatched(UniqueBroadcastEvent::class);
         Queue::assertPushed(UniqueBroadcastEvent::class);
 
-        $lockKey = 'quantaquirk_unique_job:'.UniqueBroadcastEvent::class.TestEventUnique::class;
+        $lockKey = 'quantaforge_unique_job:'.UniqueBroadcastEvent::class.TestEventUnique::class;
         $this->assertFalse($this->app->get(Cache::class)->lock($lockKey, 10)->get());
     }
 
@@ -91,7 +91,7 @@ class TestEvent implements ShouldBroadcast
     /**
      * Get the channels the event should broadcast on.
      *
-     * @return \QuantaQuirk\Broadcasting\Channel|\QuantaQuirk\Broadcasting\Channel[]
+     * @return \QuantaForge\Broadcasting\Channel|\QuantaForge\Broadcasting\Channel[]
      */
     public function broadcastOn()
     {
@@ -104,7 +104,7 @@ class TestEventNow implements ShouldBroadcastNow
     /**
      * Get the channels the event should broadcast on.
      *
-     * @return \QuantaQuirk\Broadcasting\Channel|\QuantaQuirk\Broadcasting\Channel[]
+     * @return \QuantaForge\Broadcasting\Channel|\QuantaForge\Broadcasting\Channel[]
      */
     public function broadcastOn()
     {
@@ -117,7 +117,7 @@ class TestEventUnique implements ShouldBroadcast, ShouldBeUnique
     /**
      * Get the channels the event should broadcast on.
      *
-     * @return \QuantaQuirk\Broadcasting\Channel|\QuantaQuirk\Broadcasting\Channel[]
+     * @return \QuantaForge\Broadcasting\Channel|\QuantaForge\Broadcasting\Channel[]
      */
     public function broadcastOn()
     {

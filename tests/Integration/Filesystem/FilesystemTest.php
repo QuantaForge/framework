@@ -1,8 +1,8 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Filesystem;
+namespace QuantaForge\Tests\Integration\Filesystem;
 
-use QuantaQuirk\Support\Facades\File;
+use QuantaForge\Support\Facades\File;
 use Orchestra\Testbench\TestCase;
 use Symfony\Component\Process\Process;
 

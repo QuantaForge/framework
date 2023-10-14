@@ -1,12 +1,12 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Database;
+namespace QuantaForge\Tests\Integration\Database;
 
-use QuantaQuirk\Contracts\Hashing\Hasher;
-use QuantaQuirk\Database\Eloquent\Model;
-use QuantaQuirk\Database\Schema\Blueprint;
-use QuantaQuirk\Support\Facades\Hash;
-use QuantaQuirk\Support\Facades\Schema;
+use QuantaForge\Contracts\Hashing\Hasher;
+use QuantaForge\Database\Eloquent\Model;
+use QuantaForge\Database\Schema\Blueprint;
+use QuantaForge\Support\Facades\Hash;
+use QuantaForge\Support\Facades\Schema;
 
 class EloquentModelHashedCastingTest extends DatabaseTestCase
 {

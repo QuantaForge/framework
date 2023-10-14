@@ -1,14 +1,14 @@
 <?php
 
-namespace QuantaQuirk\Tests\Pagination;
+namespace QuantaForge\Tests\Pagination;
 
-use QuantaQuirk\Pagination\LengthAwarePaginator;
+use QuantaForge\Pagination\LengthAwarePaginator;
 use PHPUnit\Framework\TestCase;
 
 class LengthAwarePaginatorTest extends TestCase
 {
     /**
-     * @var \QuantaQuirk\Pagination\LengthAwarePaginator
+     * @var \QuantaForge\Pagination\LengthAwarePaginator
      */
     private $p;
 

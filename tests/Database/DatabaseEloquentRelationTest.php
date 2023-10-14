@@ -1,15 +1,15 @@
 <?php
 
-namespace QuantaQuirk\Tests\Database;
+namespace QuantaForge\Tests\Database;
 
 use Exception;
-use QuantaQuirk\Database\Eloquent\Builder;
-use QuantaQuirk\Database\Eloquent\Casts\Attribute;
-use QuantaQuirk\Database\Eloquent\Collection;
-use QuantaQuirk\Database\Eloquent\Model;
-use QuantaQuirk\Database\Eloquent\Relations\HasOne;
-use QuantaQuirk\Database\Eloquent\Relations\Relation;
-use QuantaQuirk\Support\Carbon;
+use QuantaForge\Database\Eloquent\Builder;
+use QuantaForge\Database\Eloquent\Casts\Attribute;
+use QuantaForge\Database\Eloquent\Collection;
+use QuantaForge\Database\Eloquent\Model;
+use QuantaForge\Database\Eloquent\Relations\HasOne;
+use QuantaForge\Database\Eloquent\Relations\Relation;
+use QuantaForge\Support\Carbon;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 
@@ -60,7 +60,7 @@ class DatabaseEloquentRelationTest extends TestCase
 
     public function testCanDisableParentTouchingForAllModels()
     {
-        /** @var \QuantaQuirk\Tests\Database\EloquentNoTouchingModelStub $related */
+        /** @var \QuantaForge\Tests\Database\EloquentNoTouchingModelStub $related */
         $related = m::mock(EloquentNoTouchingModelStub::class)->makePartial();
         $related->shouldReceive('getUpdatedAtColumn')->never();
         $related->shouldReceive('freshTimestampString')->never();

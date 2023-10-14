@@ -1,12 +1,12 @@
 <?php
 
-namespace QuantaQuirk\Tests\Database;
+namespace QuantaForge\Tests\Database;
 
 use Closure;
-use QuantaQuirk\Database\Connection;
-use QuantaQuirk\Database\ConnectionResolverInterface;
-use QuantaQuirk\Database\Migrations\DatabaseMigrationRepository;
-use QuantaQuirk\Support\Collection;
+use QuantaForge\Database\Connection;
+use QuantaForge\Database\ConnectionResolverInterface;
+use QuantaForge\Database\Migrations\DatabaseMigrationRepository;
+use QuantaForge\Support\Collection;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 use stdClass;

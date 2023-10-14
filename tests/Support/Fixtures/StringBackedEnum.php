@@ -1,6 +1,6 @@
 <?php
 
-namespace QuantaQuirk\Tests\Support\Fixtures;
+namespace QuantaForge\Tests\Support\Fixtures;
 
 enum StringBackedEnum: string
 {

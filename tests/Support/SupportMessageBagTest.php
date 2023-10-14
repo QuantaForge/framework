@@ -1,9 +1,9 @@
 <?php
 
-namespace QuantaQuirk\Tests\Support;
+namespace QuantaForge\Tests\Support;
 
-use QuantaQuirk\Support\Collection;
-use QuantaQuirk\Support\MessageBag;
+use QuantaForge\Support\Collection;
+use QuantaForge\Support\MessageBag;
 use PHPUnit\Framework\TestCase;
 
 class SupportMessageBagTest extends TestCase

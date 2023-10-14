@@ -1,9 +1,9 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Support;
+namespace QuantaForge\Tests\Integration\Support;
 
-use QuantaQuirk\Support\Pluralizer;
-use QuantaQuirk\Support\Str;
+use QuantaForge\Support\Pluralizer;
+use QuantaForge\Support\Str;
 use Orchestra\Testbench\TestCase;
 
 class PluralizerPortugueseTest extends TestCase

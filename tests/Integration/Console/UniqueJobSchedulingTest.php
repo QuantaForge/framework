@@ -1,14 +1,14 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Console;
+namespace QuantaForge\Tests\Integration\Console;
 
-use QuantaQuirk\Bus\Queueable;
-use QuantaQuirk\Console\Scheduling\Schedule;
-use QuantaQuirk\Contracts\Queue\ShouldBeUnique;
-use QuantaQuirk\Contracts\Queue\ShouldQueue;
-use QuantaQuirk\Foundation\Bus\Dispatchable;
-use QuantaQuirk\Queue\InteractsWithQueue;
-use QuantaQuirk\Support\Facades\Queue;
+use QuantaForge\Bus\Queueable;
+use QuantaForge\Console\Scheduling\Schedule;
+use QuantaForge\Contracts\Queue\ShouldBeUnique;
+use QuantaForge\Contracts\Queue\ShouldQueue;
+use QuantaForge\Foundation\Bus\Dispatchable;
+use QuantaForge\Queue\InteractsWithQueue;
+use QuantaForge\Support\Facades\Queue;
 use Orchestra\Testbench\TestCase;
 
 class UniqueJobSchedulingTest extends TestCase
@@ -41,7 +41,7 @@ class UniqueJobSchedulingTest extends TestCase
 
     private function dispatch(...$jobs)
     {
-        /** @var \QuantaQuirk\Console\Scheduling\Schedule $scheduler */
+        /** @var \QuantaForge\Console\Scheduling\Schedule $scheduler */
         $scheduler = $this->app->make(Schedule::class);
         foreach ($jobs as $job) {
             $scheduler->job($job)->name('')->everyMinute();

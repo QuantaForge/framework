@@ -1,13 +1,13 @@
 <?php
 
-namespace QuantaQuirk\Tests\Database;
+namespace QuantaForge\Tests\Database;
 
-use QuantaQuirk\Console\CommandMutex;
-use QuantaQuirk\Contracts\Events\Dispatcher;
-use QuantaQuirk\Database\Console\Migrations\MigrateCommand;
-use QuantaQuirk\Database\Events\SchemaLoaded;
-use QuantaQuirk\Database\Migrations\Migrator;
-use QuantaQuirk\Foundation\Application;
+use QuantaForge\Console\CommandMutex;
+use QuantaForge\Contracts\Events\Dispatcher;
+use QuantaForge\Database\Console\Migrations\MigrateCommand;
+use QuantaForge\Database\Events\SchemaLoaded;
+use QuantaForge\Database\Migrations\Migrator;
+use QuantaForge\Foundation\Application;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 use stdClass;
@@ -26,7 +26,7 @@ class DatabaseMigrationMigrateCommandTest extends TestCase
         $command = new MigrateCommand($migrator = m::mock(Migrator::class), $dispatcher = m::mock(Dispatcher::class));
         $app = new ApplicationDatabaseMigrationStub(['path.database' => __DIR__]);
         $app->useDatabasePath(__DIR__);
-        $command->setQuantaQuirk($app);
+        $command->setQuantaForge($app);
         $migrator->shouldReceive('paths')->once()->andReturn([]);
         $migrator->shouldReceive('hasRunAnyMigrations')->andReturn(true);
         $migrator->shouldReceive('usingConnection')->once()->andReturnUsing(function ($name, $callback) {
@@ -45,7 +45,7 @@ class DatabaseMigrationMigrateCommandTest extends TestCase
         $command = new MigrateCommand($migrator = m::mock(Migrator::class), $dispatcher = m::mock(Dispatcher::class));
         $app = new ApplicationDatabaseMigrationStub(['path.database' => __DIR__]);
         $app->useDatabasePath(__DIR__);
-        $command->setQuantaQuirk($app);
+        $command->setQuantaForge($app);
         $migrator->shouldReceive('paths')->once()->andReturn([]);
         $migrator->shouldReceive('hasRunAnyMigrations')->andReturn(false);
         $migrator->shouldReceive('resolveConnection')->andReturn($connection = m::mock(stdClass::class));
@@ -72,7 +72,7 @@ class DatabaseMigrationMigrateCommandTest extends TestCase
         $command = $this->getMockBuilder(MigrateCommand::class)->onlyMethods(['callSilent'])->setConstructorArgs($params)->getMock();
         $app = new ApplicationDatabaseMigrationStub(['path.database' => __DIR__]);
         $app->useDatabasePath(__DIR__);
-        $command->setQuantaQuirk($app);
+        $command->setQuantaForge($app);
         $migrator->shouldReceive('paths')->once()->andReturn([]);
         $migrator->shouldReceive('hasRunAnyMigrations')->andReturn(true);
         $migrator->shouldReceive('usingConnection')->once()->andReturnUsing(function ($name, $callback) {
@@ -91,7 +91,7 @@ class DatabaseMigrationMigrateCommandTest extends TestCase
         $command = new MigrateCommand($migrator = m::mock(Migrator::class), $dispatcher = m::mock(Dispatcher::class));
         $app = new ApplicationDatabaseMigrationStub(['path.database' => __DIR__]);
         $app->useDatabasePath(__DIR__);
-        $command->setQuantaQuirk($app);
+        $command->setQuantaForge($app);
         $migrator->shouldReceive('paths')->once()->andReturn([]);
         $migrator->shouldReceive('hasRunAnyMigrations')->andReturn(true);
         $migrator->shouldReceive('usingConnection')->once()->andReturnUsing(function ($name, $callback) {
@@ -109,7 +109,7 @@ class DatabaseMigrationMigrateCommandTest extends TestCase
         $command = new MigrateCommand($migrator = m::mock(Migrator::class), $dispatcher = m::mock(Dispatcher::class));
         $app = new ApplicationDatabaseMigrationStub(['path.database' => __DIR__]);
         $app->useDatabasePath(__DIR__);
-        $command->setQuantaQuirk($app);
+        $command->setQuantaForge($app);
         $migrator->shouldReceive('paths')->once()->andReturn([]);
         $migrator->shouldReceive('hasRunAnyMigrations')->andReturn(true);
         $migrator->shouldReceive('usingConnection')->once()->andReturnUsing(function ($name, $callback) {
@@ -127,7 +127,7 @@ class DatabaseMigrationMigrateCommandTest extends TestCase
         $command = new MigrateCommand($migrator = m::mock(Migrator::class), $dispatcher = m::mock(Dispatcher::class));
         $app = new ApplicationDatabaseMigrationStub(['path.database' => __DIR__]);
         $app->useDatabasePath(__DIR__);
-        $command->setQuantaQuirk($app);
+        $command->setQuantaForge($app);
         $migrator->shouldReceive('paths')->once()->andReturn([]);
         $migrator->shouldReceive('hasRunAnyMigrations')->andReturn(true);
         $migrator->shouldReceive('usingConnection')->once()->andReturnUsing(function ($name, $callback) {

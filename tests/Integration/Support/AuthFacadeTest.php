@@ -1,8 +1,8 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Support;
+namespace QuantaForge\Tests\Integration\Support;
 
-use QuantaQuirk\Support\Facades\Auth;
+use QuantaForge\Support\Facades\Auth;
 use Orchestra\Testbench\TestCase;
 use RuntimeException;
 
@@ -11,7 +11,7 @@ class AuthFacadeTest extends TestCase
     public function testItFailsIfTheUiPackageIsMissing()
     {
         $this->expectExceptionObject(new RuntimeException(
-            'In order to use the Auth::routes() method, please install the quantaquirk/ui package.'
+            'In order to use the Auth::routes() method, please install the quantaforge/ui package.'
         ));
 
         Auth::routes();

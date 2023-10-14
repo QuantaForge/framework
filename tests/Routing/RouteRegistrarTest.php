@@ -1,13 +1,13 @@
 <?php
 
-namespace QuantaQuirk\Tests\Routing;
+namespace QuantaForge\Tests\Routing;
 
 use BadMethodCallException;
 use FooController;
-use QuantaQuirk\Container\Container;
-use QuantaQuirk\Contracts\Events\Dispatcher;
-use QuantaQuirk\Http\Request;
-use QuantaQuirk\Routing\Router;
+use QuantaForge\Container\Container;
+use QuantaForge\Contracts\Events\Dispatcher;
+use QuantaForge\Http\Request;
+use QuantaForge\Routing\Router;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 use Stringable;
@@ -15,7 +15,7 @@ use Stringable;
 class RouteRegistrarTest extends TestCase
 {
     /**
-     * @var \QuantaQuirk\Routing\Router
+     * @var \QuantaForge\Routing\Router
      */
     protected $router;
 
@@ -152,7 +152,7 @@ class RouteRegistrarTest extends TestCase
                 'destroy',
             ]);
 
-        /** @var \QuantaQuirk\Routing\Route $route */
+        /** @var \QuantaForge\Routing\Route $route */
         foreach ($this->router->getRoutes() as $route) {
             $this->assertTrue($route->allowsTrashedBindings());
         }
@@ -491,14 +491,14 @@ class RouteRegistrarTest extends TestCase
 
         $routeCollection = $this->router->getRoutes();
 
-        $this->assertInstanceOf(\QuantaQuirk\Routing\Route::class, $routeCollection->match(Request::create('foo', 'GET')));
-        $this->assertInstanceOf(\QuantaQuirk\Routing\Route::class, $routeCollection->match(Request::create('bar', 'GET')));
+        $this->assertInstanceOf(\QuantaForge\Routing\Route::class, $routeCollection->match(Request::create('foo', 'GET')));
+        $this->assertInstanceOf(\QuantaForge\Routing\Route::class, $routeCollection->match(Request::create('bar', 'GET')));
     }
 
     public function testRegisteringNonApprovedAttributesThrows()
     {
         $this->expectException(BadMethodCallException::class);
-        $this->expectExceptionMessage('Method QuantaQuirk\Routing\RouteRegistrar::missing does not exist.');
+        $this->expectExceptionMessage('Method QuantaForge\Routing\RouteRegistrar::missing does not exist.');
 
         $this->router->domain('foo')->missing('bar')->group(function ($router) {
             //
@@ -885,7 +885,7 @@ class RouteRegistrarTest extends TestCase
         $this->router->resource('users', RouteRegistrarControllerStub::class)
                      ->where($wheres);
 
-        /** @var \QuantaQuirk\Routing\Route $route */
+        /** @var \QuantaForge\Routing\Route $route */
         foreach ($this->router->getRoutes() as $route) {
             $this->assertEquals($wheres, $route->wheres);
         }
@@ -898,7 +898,7 @@ class RouteRegistrarTest extends TestCase
         $this->router->get('/{foo}/{bar}')->whereNumber(['foo', 'bar']);
         $this->router->get('/api/{bar}/{foo}')->whereNumber(['bar', 'foo']);
 
-        /** @var \QuantaQuirk\Routing\Route $route */
+        /** @var \QuantaForge\Routing\Route $route */
         foreach ($this->router->getRoutes() as $route) {
             $this->assertEquals($wheres, $route->wheres);
         }
@@ -911,7 +911,7 @@ class RouteRegistrarTest extends TestCase
         $this->router->get('/{foo}/{bar}')->whereAlpha(['foo', 'bar']);
         $this->router->get('/api/{bar}/{foo}')->whereAlpha(['bar', 'foo']);
 
-        /** @var \QuantaQuirk\Routing\Route $route */
+        /** @var \QuantaForge\Routing\Route $route */
         foreach ($this->router->getRoutes() as $route) {
             $this->assertEquals($wheres, $route->wheres);
         }
@@ -923,7 +923,7 @@ class RouteRegistrarTest extends TestCase
 
         $this->router->get('/{foo}')->whereAlphaNumeric(['1a2b3c']);
 
-        /** @var \QuantaQuirk\Routing\Route $route */
+        /** @var \QuantaForge\Routing\Route $route */
         foreach ($this->router->getRoutes() as $route) {
             $this->assertEquals($wheres, $route->wheres);
         }
@@ -936,7 +936,7 @@ class RouteRegistrarTest extends TestCase
         $this->router->get('/{foo}/{bar}')->whereIn(['foo', 'bar'], ['one', 'two']);
         $this->router->get('/api/{bar}/{foo}')->whereIn(['bar', 'foo'], ['one', 'two']);
 
-        /** @var \QuantaQuirk\Routing\Route $route */
+        /** @var \QuantaForge\Routing\Route $route */
         foreach ($this->router->getRoutes() as $route) {
             $this->assertEquals($wheres, $route->wheres);
         }
@@ -954,7 +954,7 @@ class RouteRegistrarTest extends TestCase
             $router->get('/');
         });
 
-        /** @var \QuantaQuirk\Routing\Route $route */
+        /** @var \QuantaForge\Routing\Route $route */
         foreach ($this->router->getRoutes() as $route) {
             $this->assertEquals($wheres, $route->wheres);
         }
@@ -972,7 +972,7 @@ class RouteRegistrarTest extends TestCase
             $router->get('/');
         });
 
-        /** @var \QuantaQuirk\Routing\Route $route */
+        /** @var \QuantaForge\Routing\Route $route */
         foreach ($this->router->getRoutes() as $route) {
             $this->assertEquals($wheres, $route->wheres);
         }
@@ -986,7 +986,7 @@ class RouteRegistrarTest extends TestCase
             $router->get('/');
         });
 
-        /** @var \QuantaQuirk\Routing\Route $route */
+        /** @var \QuantaForge\Routing\Route $route */
         foreach ($this->router->getRoutes() as $route) {
             $this->assertEquals($wheres, $route->wheres);
         }
@@ -1004,7 +1004,7 @@ class RouteRegistrarTest extends TestCase
             $router->get('/');
         });
 
-        /** @var \QuantaQuirk\Routing\Route $route */
+        /** @var \QuantaForge\Routing\Route $route */
         foreach ($this->router->getRoutes() as $route) {
             $this->assertEquals($wheres, $route->wheres);
         }
@@ -1022,7 +1022,7 @@ class RouteRegistrarTest extends TestCase
             $router->get('/');
         });
 
-        /** @var \QuantaQuirk\Routing\Route $route */
+        /** @var \QuantaForge\Routing\Route $route */
         foreach ($this->router->getRoutes() as $route) {
             $this->assertEquals($wheres, $route->wheres);
         }
@@ -1040,7 +1040,7 @@ class RouteRegistrarTest extends TestCase
             $router->get('/');
         });
 
-        /** @var \QuantaQuirk\Routing\Route $route */
+        /** @var \QuantaForge\Routing\Route $route */
         foreach ($this->router->getRoutes() as $route) {
             $this->assertEquals($wheres, $route->wheres);
         }
@@ -1054,7 +1054,7 @@ class RouteRegistrarTest extends TestCase
             $router->get('/');
         });
 
-        /** @var \QuantaQuirk\Routing\Route $route */
+        /** @var \QuantaForge\Routing\Route $route */
         foreach ($this->router->getRoutes() as $route) {
             $this->assertEquals($wheres, $route->wheres);
         }
@@ -1072,7 +1072,7 @@ class RouteRegistrarTest extends TestCase
             $router->get('/');
         });
 
-        /** @var \QuantaQuirk\Routing\Route $route */
+        /** @var \QuantaForge\Routing\Route $route */
         foreach ($this->router->getRoutes() as $route) {
             $this->assertEquals($wheres, $route->wheres);
         }
@@ -1298,7 +1298,7 @@ class RouteRegistrarTest extends TestCase
     /**
      * Get the last route registered with the router.
      *
-     * @return \QuantaQuirk\Routing\Route
+     * @return \QuantaForge\Routing\Route
      */
     protected function getRoute()
     {
@@ -1320,7 +1320,7 @@ class RouteRegistrarTest extends TestCase
      * Assert that the last route has the given content.
      *
      * @param  string  $content
-     * @param  \QuantaQuirk\Http\Request  $request
+     * @param  \QuantaForge\Http\Request  $request
      * @return void
      */
     protected function seeResponse($content, Request $request)

@@ -1,6 +1,6 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Database\SqlServer;
+namespace QuantaForge\Tests\Integration\Database\SqlServer;
 
 use RuntimeException;
 

@@ -1,10 +1,10 @@
 <?php
 
-namespace QuantaQuirk\Tests\Foundation\Testing;
+namespace QuantaForge\Tests\Foundation\Testing;
 
-use QuantaQuirk\Contracts\Console\Kernel;
-use QuantaQuirk\Foundation\Testing\RefreshDatabase;
-use QuantaQuirk\Foundation\Testing\RefreshDatabaseState;
+use QuantaForge\Contracts\Console\Kernel;
+use QuantaForge\Foundation\Testing\RefreshDatabase;
+use QuantaForge\Foundation\Testing\RefreshDatabaseState;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 use ReflectionMethod;

@@ -1,9 +1,9 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Auth\Fixtures;
+namespace QuantaForge\Tests\Integration\Auth\Fixtures;
 
-use QuantaQuirk\Foundation\Auth\User as Authenticatable;
-use QuantaQuirk\Notifications\Notifiable;
+use QuantaForge\Foundation\Auth\User as Authenticatable;
+use QuantaForge\Notifications\Notifiable;
 
 class AuthenticationTestUser extends Authenticatable
 {

@@ -1,6 +1,6 @@
 <?php
 
-use QuantaQuirk\Http\Request;
+use QuantaForge\Http\Request;
 
 use function PHPStan\Testing\assertType;
 

@@ -1,12 +1,12 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Queue;
+namespace QuantaForge\Tests\Integration\Queue;
 
-use QuantaQuirk\Bus\Queueable;
-use QuantaQuirk\Contracts\Queue\ShouldQueue;
-use QuantaQuirk\Database\Schema\Blueprint;
-use QuantaQuirk\Foundation\Bus\Dispatchable;
-use QuantaQuirk\Support\Carbon;
+use QuantaForge\Bus\Queueable;
+use QuantaForge\Contracts\Queue\ShouldQueue;
+use QuantaForge\Database\Schema\Blueprint;
+use QuantaForge\Foundation\Bus\Dispatchable;
+use QuantaForge\Support\Carbon;
 use Orchestra\Testbench\TestCase;
 use Queue;
 

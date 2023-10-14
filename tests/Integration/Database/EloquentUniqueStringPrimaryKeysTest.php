@@ -1,13 +1,13 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Database;
+namespace QuantaForge\Tests\Integration\Database;
 
-use QuantaQuirk\Database\Eloquent\Concerns\HasUlids;
-use QuantaQuirk\Database\Eloquent\Concerns\HasUuids;
-use QuantaQuirk\Database\Eloquent\Model as Eloquent;
-use QuantaQuirk\Database\Schema\Blueprint;
-use QuantaQuirk\Support\Facades\Schema;
-use QuantaQuirk\Support\Str;
+use QuantaForge\Database\Eloquent\Concerns\HasUlids;
+use QuantaForge\Database\Eloquent\Concerns\HasUuids;
+use QuantaForge\Database\Eloquent\Model as Eloquent;
+use QuantaForge\Database\Schema\Blueprint;
+use QuantaForge\Support\Facades\Schema;
+use QuantaForge\Support\Str;
 
 class EloquentUniqueStringPrimaryKeysTest extends DatabaseTestCase
 {

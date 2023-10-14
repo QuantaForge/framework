@@ -1,11 +1,11 @@
 <?php
 
-namespace QuantaQuirk\Tests\Database;
+namespace QuantaForge\Tests\Database;
 
-use QuantaQuirk\Database\Connection;
-use QuantaQuirk\Database\Query\Processors\MySqlProcessor;
-use QuantaQuirk\Database\Schema\Grammars\MySqlGrammar;
-use QuantaQuirk\Database\Schema\MySqlBuilder;
+use QuantaForge\Database\Connection;
+use QuantaForge\Database\Query\Processors\MySqlProcessor;
+use QuantaForge\Database\Schema\Grammars\MySqlGrammar;
+use QuantaForge\Database\Schema\MySqlBuilder;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 

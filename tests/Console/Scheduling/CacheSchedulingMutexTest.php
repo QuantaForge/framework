@@ -1,40 +1,40 @@
 <?php
 
-namespace QuantaQuirk\Tests\Console\Scheduling;
+namespace QuantaForge\Tests\Console\Scheduling;
 
-use QuantaQuirk\Console\Scheduling\CacheEventMutex;
-use QuantaQuirk\Console\Scheduling\CacheSchedulingMutex;
-use QuantaQuirk\Console\Scheduling\Event;
-use QuantaQuirk\Contracts\Cache\Factory;
-use QuantaQuirk\Contracts\Cache\Repository;
-use QuantaQuirk\Support\Carbon;
+use QuantaForge\Console\Scheduling\CacheEventMutex;
+use QuantaForge\Console\Scheduling\CacheSchedulingMutex;
+use QuantaForge\Console\Scheduling\Event;
+use QuantaForge\Contracts\Cache\Factory;
+use QuantaForge\Contracts\Cache\Repository;
+use QuantaForge\Support\Carbon;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 
 class CacheSchedulingMutexTest extends TestCase
 {
     /**
-     * @var \QuantaQuirk\Console\Scheduling\CacheSchedulingMutex
+     * @var \QuantaForge\Console\Scheduling\CacheSchedulingMutex
      */
     protected $cacheMutex;
 
     /**
-     * @var \QuantaQuirk\Console\Scheduling\Event
+     * @var \QuantaForge\Console\Scheduling\Event
      */
     protected $event;
 
     /**
-     * @var \QuantaQuirk\Support\Carbon
+     * @var \QuantaForge\Support\Carbon
      */
     protected $time;
 
     /**
-     * @var \QuantaQuirk\Contracts\Cache\Factory
+     * @var \QuantaForge\Contracts\Cache\Factory
      */
     protected $cacheFactory;
 
     /**
-     * @var \QuantaQuirk\Contracts\Cache\Repository
+     * @var \QuantaForge\Contracts\Cache\Repository
      */
     protected $cacheRepository;
 

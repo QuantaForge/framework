@@ -1,11 +1,11 @@
 <?php
 
-namespace QuantaQuirk\Tests\Http\Middleware;
+namespace QuantaForge\Tests\Http\Middleware;
 
-use QuantaQuirk\Http\Middleware\SetCacheHeaders as Cache;
-use QuantaQuirk\Http\Request;
-use QuantaQuirk\Http\Response;
-use QuantaQuirk\Support\Carbon;
+use QuantaForge\Http\Middleware\SetCacheHeaders as Cache;
+use QuantaForge\Http\Request;
+use QuantaForge\Http\Response;
+use QuantaForge\Support\Carbon;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
@@ -15,24 +15,24 @@ class CacheTest extends TestCase
     public function testItCanGenerateDefinitionViaStaticMethod()
     {
         $signature = (string) Cache::using('max_age=120;no-transform;s_maxage=60;');
-        $this->assertSame('QuantaQuirk\Http\Middleware\SetCacheHeaders:max_age=120;no-transform;s_maxage=60;', $signature);
+        $this->assertSame('QuantaForge\Http\Middleware\SetCacheHeaders:max_age=120;no-transform;s_maxage=60;', $signature);
 
         $signature = (string) Cache::using('max_age=120;no-transform;s_maxage=60');
-        $this->assertSame('QuantaQuirk\Http\Middleware\SetCacheHeaders:max_age=120;no-transform;s_maxage=60', $signature);
+        $this->assertSame('QuantaForge\Http\Middleware\SetCacheHeaders:max_age=120;no-transform;s_maxage=60', $signature);
 
         $signature = (string) Cache::using([
             'max_age=120',
             'no-transform',
             's_maxage=60',
         ]);
-        $this->assertSame('QuantaQuirk\Http\Middleware\SetCacheHeaders:max_age=120;no-transform;s_maxage=60', $signature);
+        $this->assertSame('QuantaForge\Http\Middleware\SetCacheHeaders:max_age=120;no-transform;s_maxage=60', $signature);
 
         $signature = (string) Cache::using([
             'max_age' => 120,
             'no-transform',
             's_maxage' => '60',
         ]);
-        $this->assertSame('QuantaQuirk\Http\Middleware\SetCacheHeaders:max_age=120;no-transform;s_maxage=60', $signature);
+        $this->assertSame('QuantaForge\Http\Middleware\SetCacheHeaders:max_age=120;no-transform;s_maxage=60', $signature);
     }
 
     public function testDoNotSetHeaderWhenMethodNotCacheable()
@@ -41,7 +41,7 @@ class CacheTest extends TestCase
         $request->setMethod('PUT');
 
         $response = (new Cache)->handle($request, function () {
-            return new Response('Hello QuantaQuirk');
+            return new Response('Hello QuantaForge');
         }, 'max_age=120;s_maxage=60');
 
         $this->assertNull($response->getMaxAge());

@@ -1,10 +1,10 @@
 <?php
 
-namespace QuantaQuirk\Tests\Redis;
+namespace QuantaForge\Tests\Redis;
 
-use QuantaQuirk\Foundation\Application;
-use QuantaQuirk\Foundation\Testing\Concerns\InteractsWithRedis;
-use QuantaQuirk\Redis\RedisManager;
+use QuantaForge\Foundation\Application;
+use QuantaForge\Foundation\Testing\Concerns\InteractsWithRedis;
+use QuantaForge\Redis\RedisManager;
 use PHPUnit\Framework\TestCase;
 use Redis;
 

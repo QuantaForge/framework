@@ -1,6 +1,6 @@
 <?php
 
-use QuantaQuirk\Database\Eloquent\Model;
+use QuantaForge\Database\Eloquent\Model;
 
 class EloquentModelUuidStub extends Model
 {

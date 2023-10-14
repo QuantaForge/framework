@@ -1,9 +1,9 @@
 <?php
 
-namespace QuantaQuirk\Tests\Support;
+namespace QuantaForge\Tests\Support;
 
-use QuantaQuirk\Foundation\Application;
-use QuantaQuirk\Support\ServiceProvider;
+use QuantaForge\Foundation\Application;
+use QuantaForge\Support\ServiceProvider;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 

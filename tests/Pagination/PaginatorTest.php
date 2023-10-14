@@ -1,8 +1,8 @@
 <?php
 
-namespace QuantaQuirk\Tests\Pagination;
+namespace QuantaForge\Tests\Pagination;
 
-use QuantaQuirk\Pagination\Paginator;
+use QuantaForge\Pagination\Paginator;
 use PHPUnit\Framework\TestCase;
 
 class PaginatorTest extends TestCase

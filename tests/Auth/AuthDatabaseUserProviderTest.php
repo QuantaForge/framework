@@ -1,12 +1,12 @@
 <?php
 
-namespace QuantaQuirk\Tests\Auth;
+namespace QuantaForge\Tests\Auth;
 
-use QuantaQuirk\Auth\DatabaseUserProvider;
-use QuantaQuirk\Auth\GenericUser;
-use QuantaQuirk\Contracts\Auth\Authenticatable;
-use QuantaQuirk\Contracts\Hashing\Hasher;
-use QuantaQuirk\Database\Connection;
+use QuantaForge\Auth\DatabaseUserProvider;
+use QuantaForge\Auth\GenericUser;
+use QuantaForge\Contracts\Auth\Authenticatable;
+use QuantaForge\Contracts\Hashing\Hasher;
+use QuantaForge\Database\Connection;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 use stdClass;

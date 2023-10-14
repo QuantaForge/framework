@@ -1,17 +1,17 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Database\EloquentBelongsToManyTest;
+namespace QuantaForge\Tests\Integration\Database\EloquentBelongsToManyTest;
 
-use QuantaQuirk\Database\Eloquent\Collection;
-use QuantaQuirk\Database\Eloquent\Model;
-use QuantaQuirk\Database\Eloquent\ModelNotFoundException;
-use QuantaQuirk\Database\Eloquent\Relations\Pivot;
-use QuantaQuirk\Database\Schema\Blueprint;
-use QuantaQuirk\Support\Carbon;
-use QuantaQuirk\Support\Facades\DB;
-use QuantaQuirk\Support\Facades\Schema;
-use QuantaQuirk\Support\Str;
-use QuantaQuirk\Tests\Integration\Database\DatabaseTestCase;
+use QuantaForge\Database\Eloquent\Collection;
+use QuantaForge\Database\Eloquent\Model;
+use QuantaForge\Database\Eloquent\ModelNotFoundException;
+use QuantaForge\Database\Eloquent\Relations\Pivot;
+use QuantaForge\Database\Schema\Blueprint;
+use QuantaForge\Support\Carbon;
+use QuantaForge\Support\Facades\DB;
+use QuantaForge\Support\Facades\Schema;
+use QuantaForge\Support\Str;
+use QuantaForge\Tests\Integration\Database\DatabaseTestCase;
 
 class EloquentBelongsToManyTest extends DatabaseTestCase
 {
@@ -422,7 +422,7 @@ class EloquentBelongsToManyTest extends DatabaseTestCase
     public function testFindOrFailMethod()
     {
         $this->expectException(ModelNotFoundException::class);
-        $this->expectExceptionMessage('No query results for model [QuantaQuirk\Tests\Integration\Database\EloquentBelongsToManyTest\Tag] 10');
+        $this->expectExceptionMessage('No query results for model [QuantaForge\Tests\Integration\Database\EloquentBelongsToManyTest\Tag] 10');
 
         $post = Post::create(['title' => Str::random()]);
 
@@ -436,7 +436,7 @@ class EloquentBelongsToManyTest extends DatabaseTestCase
     public function testFindOrFailMethodWithMany()
     {
         $this->expectException(ModelNotFoundException::class);
-        $this->expectExceptionMessage('No query results for model [QuantaQuirk\Tests\Integration\Database\EloquentBelongsToManyTest\Tag] 10, 11');
+        $this->expectExceptionMessage('No query results for model [QuantaForge\Tests\Integration\Database\EloquentBelongsToManyTest\Tag] 10, 11');
 
         $post = Post::create(['title' => Str::random()]);
 
@@ -450,7 +450,7 @@ class EloquentBelongsToManyTest extends DatabaseTestCase
     public function testFindOrFailMethodWithManyUsingCollection()
     {
         $this->expectException(ModelNotFoundException::class);
-        $this->expectExceptionMessage('No query results for model [QuantaQuirk\Tests\Integration\Database\EloquentBelongsToManyTest\Tag] 10, 11');
+        $this->expectExceptionMessage('No query results for model [QuantaForge\Tests\Integration\Database\EloquentBelongsToManyTest\Tag] 10, 11');
 
         $post = Post::create(['title' => Str::random()]);
 

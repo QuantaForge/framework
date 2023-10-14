@@ -1,9 +1,9 @@
 <?php
 
-namespace QuantaQuirk\Tests\Support;
+namespace QuantaForge\Tests\Support;
 
 use ArrayIterator;
-use QuantaQuirk\Support\Fluent;
+use QuantaForge\Support\Fluent;
 use IteratorAggregate;
 use PHPUnit\Framework\TestCase;
 use ReflectionObject;

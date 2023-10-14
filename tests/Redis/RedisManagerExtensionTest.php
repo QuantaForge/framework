@@ -1,17 +1,17 @@
 <?php
 
-namespace QuantaQuirk\Tests\Redis;
+namespace QuantaForge\Tests\Redis;
 
-use QuantaQuirk\Contracts\Redis\Connector;
-use QuantaQuirk\Foundation\Application;
-use QuantaQuirk\Redis\RedisManager;
+use QuantaForge\Contracts\Redis\Connector;
+use QuantaForge\Foundation\Application;
+use QuantaForge\Redis\RedisManager;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 
 class RedisManagerExtensionTest extends TestCase
 {
     /**
-     * @var \QuantaQuirk\Redis\RedisManager
+     * @var \QuantaForge\Redis\RedisManager
      */
     protected $redis;
 
@@ -98,7 +98,7 @@ class FakeRedisConnector implements Connector
      *
      * @param  array  $config
      * @param  array  $options
-     * @return \QuantaQuirk\Contracts\Redis\Connection
+     * @return \QuantaForge\Contracts\Redis\Connection
      */
     public function connect(array $config, array $options)
     {
@@ -111,7 +111,7 @@ class FakeRedisConnector implements Connector
      * @param  array  $config
      * @param  array  $clusterOptions
      * @param  array  $options
-     * @return \QuantaQuirk\Contracts\Redis\Connection
+     * @return \QuantaForge\Contracts\Redis\Connection
      */
     public function connectToCluster(array $config, array $clusterOptions, array $options)
     {

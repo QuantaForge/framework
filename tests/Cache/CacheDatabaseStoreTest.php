@@ -1,12 +1,12 @@
 <?php
 
-namespace QuantaQuirk\Tests\Cache;
+namespace QuantaForge\Tests\Cache;
 
 use Closure;
 use Exception;
-use QuantaQuirk\Cache\DatabaseStore;
-use QuantaQuirk\Database\Connection;
-use QuantaQuirk\Database\PostgresConnection;
+use QuantaForge\Cache\DatabaseStore;
+use QuantaForge\Database\Connection;
+use QuantaForge\Database\PostgresConnection;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 use stdClass;

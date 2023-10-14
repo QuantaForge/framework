@@ -1,11 +1,11 @@
 <?php
 
-namespace QuantaQuirk\Tests\Database;
+namespace QuantaForge\Tests\Database;
 
-use QuantaQuirk\Database\Console\Migrations\MigrateMakeCommand;
-use QuantaQuirk\Database\Migrations\MigrationCreator;
-use QuantaQuirk\Foundation\Application;
-use QuantaQuirk\Support\Composer;
+use QuantaForge\Database\Console\Migrations\MigrateMakeCommand;
+use QuantaForge\Database\Migrations\MigrationCreator;
+use QuantaForge\Foundation\Application;
+use QuantaForge\Support\Composer;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Input\ArrayInput;
@@ -26,7 +26,7 @@ class DatabaseMigrationMakeCommandTest extends TestCase
         );
         $app = new Application;
         $app->useDatabasePath(__DIR__);
-        $command->setQuantaQuirk($app);
+        $command->setQuantaForge($app);
         $creator->shouldReceive('create')->once()
                 ->with('create_foo', __DIR__.DIRECTORY_SEPARATOR.'migrations', 'foo', true)
                 ->andReturn(__DIR__.'/migrations/2021_04_23_110457_create_foo.php');
@@ -42,7 +42,7 @@ class DatabaseMigrationMakeCommandTest extends TestCase
         );
         $app = new Application;
         $app->useDatabasePath(__DIR__);
-        $command->setQuantaQuirk($app);
+        $command->setQuantaForge($app);
         $creator->shouldReceive('create')->once()
                 ->with('create_foo', __DIR__.DIRECTORY_SEPARATOR.'migrations', 'foo', true)
                 ->andReturn(__DIR__.'/migrations/2021_04_23_110457_create_foo.php');
@@ -58,7 +58,7 @@ class DatabaseMigrationMakeCommandTest extends TestCase
         );
         $app = new Application;
         $app->useDatabasePath(__DIR__);
-        $command->setQuantaQuirk($app);
+        $command->setQuantaForge($app);
         $creator->shouldReceive('create')->once()
                 ->with('create_foo', __DIR__.DIRECTORY_SEPARATOR.'migrations', 'foo', true)
                 ->andReturn(__DIR__.'/migrations/2021_04_23_110457_create_foo.php');
@@ -74,7 +74,7 @@ class DatabaseMigrationMakeCommandTest extends TestCase
         );
         $app = new Application;
         $app->useDatabasePath(__DIR__);
-        $command->setQuantaQuirk($app);
+        $command->setQuantaForge($app);
         $creator->shouldReceive('create')->once()
                 ->with('create_foo', __DIR__.DIRECTORY_SEPARATOR.'migrations', 'users', true)
                 ->andReturn(__DIR__.'/migrations/2021_04_23_110457_create_foo.php');
@@ -90,7 +90,7 @@ class DatabaseMigrationMakeCommandTest extends TestCase
         );
         $app = new Application;
         $app->useDatabasePath(__DIR__);
-        $command->setQuantaQuirk($app);
+        $command->setQuantaForge($app);
         $creator->shouldReceive('create')->once()
                 ->with('create_users_table', __DIR__.DIRECTORY_SEPARATOR.'migrations', 'users', true)
                 ->andReturn(__DIR__.'/migrations/2021_04_23_110457_create_users_table.php');
@@ -105,12 +105,12 @@ class DatabaseMigrationMakeCommandTest extends TestCase
             m::mock(Composer::class)->shouldIgnoreMissing()
         );
         $app = new Application;
-        $command->setQuantaQuirk($app);
-        $app->setBasePath('/home/quantaquirk');
+        $command->setQuantaForge($app);
+        $app->setBasePath('/home/quantaforge');
         $creator->shouldReceive('create')->once()
-                ->with('create_foo', '/home/quantaquirk/vendor/quantaquirk-package/migrations', 'users', true)
-                ->andReturn('/home/quantaquirk/vendor/quantaquirk-package/migrations/2021_04_23_110457_create_foo.php');
-        $this->runCommand($command, ['name' => 'create_foo', '--path' => 'vendor/quantaquirk-package/migrations', '--create' => 'users']);
+                ->with('create_foo', '/home/quantaforge/vendor/quantaforge-package/migrations', 'users', true)
+                ->andReturn('/home/quantaforge/vendor/quantaforge-package/migrations/2021_04_23_110457_create_foo.php');
+        $this->runCommand($command, ['name' => 'create_foo', '--path' => 'vendor/quantaforge-package/migrations', '--create' => 'users']);
     }
 
     protected function runCommand($command, $input = [])

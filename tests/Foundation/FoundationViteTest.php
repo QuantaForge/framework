@@ -1,11 +1,11 @@
 <?php
 
-namespace QuantaQuirk\Tests\Foundation;
+namespace QuantaForge\Tests\Foundation;
 
 use Exception;
-use QuantaQuirk\Foundation\Vite;
-use QuantaQuirk\Support\Facades\Vite as ViteFacade;
-use QuantaQuirk\Support\Str;
+use QuantaForge\Foundation\Vite;
+use QuantaForge\Support\Facades\Vite as ViteFacade;
+use QuantaForge\Support\Str;
 use Orchestra\Testbench\TestCase;
 
 class FoundationViteTest extends TestCase

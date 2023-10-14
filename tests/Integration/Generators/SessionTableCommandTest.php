@@ -1,6 +1,6 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Generators;
+namespace QuantaForge\Tests\Integration\Generators;
 
 class SessionTableCommandTest extends TestCase
 {
@@ -9,7 +9,7 @@ class SessionTableCommandTest extends TestCase
         $this->artisan('session:table')->assertExitCode(0);
 
         $this->assertMigrationFileContains([
-            'use QuantaQuirk\Database\Migrations\Migration;',
+            'use QuantaForge\Database\Migrations\Migration;',
             'return new class extends Migration',
             'Schema::create(\'sessions\', function (Blueprint $table) {',
             'Schema::dropIfExists(\'sessions\');',

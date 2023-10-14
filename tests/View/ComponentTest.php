@@ -1,18 +1,18 @@
 <?php
 
-namespace QuantaQuirk\Tests\View;
+namespace QuantaForge\Tests\View;
 
 use Closure;
-use QuantaQuirk\Config\Repository as Config;
-use QuantaQuirk\Container\Container;
-use QuantaQuirk\Contracts\Container\BindingResolutionException;
-use QuantaQuirk\Contracts\Support\Htmlable;
-use QuantaQuirk\Contracts\View\Factory as FactoryContract;
-use QuantaQuirk\Support\Facades\Facade;
-use QuantaQuirk\Support\HtmlString;
-use QuantaQuirk\View\Component;
-use QuantaQuirk\View\Factory;
-use QuantaQuirk\View\View;
+use QuantaForge\Config\Repository as Config;
+use QuantaForge\Container\Container;
+use QuantaForge\Contracts\Container\BindingResolutionException;
+use QuantaForge\Contracts\Support\Htmlable;
+use QuantaForge\Contracts\View\Factory as FactoryContract;
+use QuantaForge\Support\Facades\Facade;
+use QuantaForge\Support\HtmlString;
+use QuantaForge\View\Component;
+use QuantaForge\View\Factory;
+use QuantaForge\View\View;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 

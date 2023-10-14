@@ -1,9 +1,9 @@
 <?php
 
-namespace QuantaQuirk\Tests\Cache;
+namespace QuantaForge\Tests\Cache;
 
-use QuantaQuirk\Cache\RedisStore;
-use QuantaQuirk\Contracts\Redis\Factory;
+use QuantaForge\Cache\RedisStore;
+use QuantaForge\Contracts\Redis\Factory;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 

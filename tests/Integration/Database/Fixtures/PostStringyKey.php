@@ -1,8 +1,8 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Database\Fixtures;
+namespace QuantaForge\Tests\Integration\Database\Fixtures;
 
-use QuantaQuirk\Database\Eloquent\Model;
+use QuantaForge\Database\Eloquent\Model;
 
 class PostStringyKey extends Model
 {

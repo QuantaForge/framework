@@ -1,14 +1,14 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Cookie;
+namespace QuantaForge\Tests\Integration\Cookie;
 
-use QuantaQuirk\Contracts\Debug\ExceptionHandler;
-use QuantaQuirk\Http\Response;
-use QuantaQuirk\Session\NullSessionHandler;
-use QuantaQuirk\Support\Carbon;
-use QuantaQuirk\Support\Facades\Route;
-use QuantaQuirk\Support\Facades\Session;
-use QuantaQuirk\Support\Str;
+use QuantaForge\Contracts\Debug\ExceptionHandler;
+use QuantaForge\Http\Response;
+use QuantaForge\Session\NullSessionHandler;
+use QuantaForge\Support\Carbon;
+use QuantaForge\Support\Facades\Route;
+use QuantaForge\Support\Facades\Session;
+use QuantaForge\Support\Str;
 use Mockery as m;
 use Orchestra\Testbench\TestCase;
 

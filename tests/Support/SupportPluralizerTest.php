@@ -1,8 +1,8 @@
 <?php
 
-namespace QuantaQuirk\Tests\Support;
+namespace QuantaForge\Tests\Support;
 
-use QuantaQuirk\Support\Str;
+use QuantaForge\Support\Str;
 use PHPUnit\Framework\TestCase;
 
 class SupportPluralizerTest extends TestCase

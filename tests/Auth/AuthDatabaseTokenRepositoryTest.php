@@ -1,12 +1,12 @@
 <?php
 
-namespace QuantaQuirk\Tests\Auth;
+namespace QuantaForge\Tests\Auth;
 
-use QuantaQuirk\Auth\Passwords\DatabaseTokenRepository;
-use QuantaQuirk\Contracts\Auth\CanResetPassword;
-use QuantaQuirk\Contracts\Hashing\Hasher;
-use QuantaQuirk\Database\Connection;
-use QuantaQuirk\Support\Carbon;
+use QuantaForge\Auth\Passwords\DatabaseTokenRepository;
+use QuantaForge\Contracts\Auth\CanResetPassword;
+use QuantaForge\Contracts\Hashing\Hasher;
+use QuantaForge\Database\Connection;
+use QuantaForge\Support\Carbon;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 use stdClass;

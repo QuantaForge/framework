@@ -1,9 +1,9 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Foundation;
+namespace QuantaForge\Tests\Integration\Foundation;
 
-use QuantaQuirk\Database\ConnectionResolverInterface;
-use QuantaQuirk\Database\DatabaseManager;
+use QuantaForge\Database\ConnectionResolverInterface;
+use QuantaForge\Database\DatabaseManager;
 use Orchestra\Testbench\TestCase;
 
 class CoreContainerAliasesTest extends TestCase

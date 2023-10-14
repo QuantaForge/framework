@@ -1,16 +1,16 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Database;
+namespace QuantaForge\Tests\Integration\Database;
 
-use QuantaQuirk\Contracts\Encryption\Encrypter;
-use QuantaQuirk\Database\Eloquent\Casts\ArrayObject;
-use QuantaQuirk\Database\Eloquent\Casts\AsEncryptedArrayObject;
-use QuantaQuirk\Database\Eloquent\Casts\AsEncryptedCollection;
-use QuantaQuirk\Database\Eloquent\Model;
-use QuantaQuirk\Database\Schema\Blueprint;
-use QuantaQuirk\Support\Collection;
-use QuantaQuirk\Support\Facades\Crypt;
-use QuantaQuirk\Support\Facades\Schema;
+use QuantaForge\Contracts\Encryption\Encrypter;
+use QuantaForge\Database\Eloquent\Casts\ArrayObject;
+use QuantaForge\Database\Eloquent\Casts\AsEncryptedArrayObject;
+use QuantaForge\Database\Eloquent\Casts\AsEncryptedCollection;
+use QuantaForge\Database\Eloquent\Model;
+use QuantaForge\Database\Schema\Blueprint;
+use QuantaForge\Support\Collection;
+use QuantaForge\Support\Facades\Crypt;
+use QuantaForge\Support\Facades\Schema;
 use stdClass;
 
 class EloquentModelEncryptedCastingTest extends DatabaseTestCase
@@ -48,7 +48,7 @@ class EloquentModelEncryptedCastingTest extends DatabaseTestCase
             ->with('encrypted-secret-string', false)
             ->andReturn('this is a secret string');
 
-        /** @var \QuantaQuirk\Tests\Integration\Database\EncryptedCast $subject */
+        /** @var \QuantaForge\Tests\Integration\Database\EncryptedCast $subject */
         $subject = EncryptedCast::create([
             'secret' => 'this is a secret string',
         ]);
@@ -69,7 +69,7 @@ class EloquentModelEncryptedCastingTest extends DatabaseTestCase
             ->with('encrypted-secret-array-string', false)
             ->andReturn('{"key1":"value1"}');
 
-        /** @var \QuantaQuirk\Tests\Integration\Database\EncryptedCast $subject */
+        /** @var \QuantaForge\Tests\Integration\Database\EncryptedCast $subject */
         $subject = EncryptedCast::create([
             'secret_array' => ['key1' => 'value1'],
         ]);
@@ -90,7 +90,7 @@ class EloquentModelEncryptedCastingTest extends DatabaseTestCase
             ->with('encrypted-secret-json-string', false)
             ->andReturn('{"key1":"value1"}');
 
-        /** @var \QuantaQuirk\Tests\Integration\Database\EncryptedCast $subject */
+        /** @var \QuantaForge\Tests\Integration\Database\EncryptedCast $subject */
         $subject = EncryptedCast::create([
             'secret_json' => ['key1' => 'value1'],
         ]);
@@ -145,7 +145,7 @@ class EloquentModelEncryptedCastingTest extends DatabaseTestCase
             ->with('encrypted-secret-object-string', false)
             ->andReturn('{"key1":"value1"}');
 
-        /** @var \QuantaQuirk\Tests\Integration\Database\EncryptedCast $object */
+        /** @var \QuantaForge\Tests\Integration\Database\EncryptedCast $object */
         $object = EncryptedCast::create([
             'secret_object' => $object,
         ]);
@@ -168,7 +168,7 @@ class EloquentModelEncryptedCastingTest extends DatabaseTestCase
             ->with('encrypted-secret-collection-string', false)
             ->andReturn('{"key1":"value1"}');
 
-        /** @var \QuantaQuirk\Tests\Integration\Database\EncryptedCast $subject */
+        /** @var \QuantaForge\Tests\Integration\Database\EncryptedCast $subject */
         $subject = EncryptedCast::create([
             'secret_collection' => new Collection(['key1' => 'value1']),
         ]);
@@ -306,7 +306,7 @@ class EloquentModelEncryptedCastingTest extends DatabaseTestCase
             ->with('encrypted-secret-string', false)
             ->andReturn('this is a secret string');
 
-        /** @var \QuantaQuirk\Tests\Integration\Database\EncryptedCast $subject */
+        /** @var \QuantaForge\Tests\Integration\Database\EncryptedCast $subject */
         $subject = EncryptedCast::create([
             'secret' => 'this is a secret string',
         ]);

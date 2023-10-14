@@ -1,14 +1,14 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Database;
+namespace QuantaForge\Tests\Integration\Database;
 
-use QuantaQuirk\Database\Eloquent\Model;
-use QuantaQuirk\Database\Eloquent\ModelNotFoundException;
-use QuantaQuirk\Database\MultipleRecordsFoundException;
-use QuantaQuirk\Database\Query\Builder;
-use QuantaQuirk\Database\Schema\Blueprint;
-use QuantaQuirk\Support\Facades\DB;
-use QuantaQuirk\Support\Facades\Schema;
+use QuantaForge\Database\Eloquent\Model;
+use QuantaForge\Database\Eloquent\ModelNotFoundException;
+use QuantaForge\Database\MultipleRecordsFoundException;
+use QuantaForge\Database\Query\Builder;
+use QuantaForge\Database\Schema\Blueprint;
+use QuantaForge\Support\Facades\DB;
+use QuantaForge\Support\Facades\Schema;
 
 class EloquentWhereTest extends DatabaseTestCase
 {
@@ -24,14 +24,14 @@ class EloquentWhereTest extends DatabaseTestCase
 
     public function testWhereAndWhereOrBehavior()
     {
-        /** @var \QuantaQuirk\Tests\Integration\Database\UserWhereTest $firstUser */
+        /** @var \QuantaForge\Tests\Integration\Database\UserWhereTest $firstUser */
         $firstUser = UserWhereTest::create([
             'name' => 'test-name',
             'email' => 'test-email',
             'address' => 'test-address',
         ]);
 
-        /** @var \QuantaQuirk\Tests\Integration\Database\UserWhereTest $secondUser */
+        /** @var \QuantaForge\Tests\Integration\Database\UserWhereTest $secondUser */
         $secondUser = UserWhereTest::create([
             'name' => 'test-name1',
             'email' => 'test-email1',
@@ -66,14 +66,14 @@ class EloquentWhereTest extends DatabaseTestCase
 
     public function testWhereNot()
     {
-        /** @var \QuantaQuirk\Tests\Integration\Database\UserWhereTest $firstUser */
+        /** @var \QuantaForge\Tests\Integration\Database\UserWhereTest $firstUser */
         $firstUser = UserWhereTest::create([
             'name' => 'test-name',
             'email' => 'test-email',
             'address' => 'test-address',
         ]);
 
-        /** @var \QuantaQuirk\Tests\Integration\Database\UserWhereTest $secondUser */
+        /** @var \QuantaForge\Tests\Integration\Database\UserWhereTest $secondUser */
         $secondUser = UserWhereTest::create([
             'name' => 'test-name1',
             'email' => 'test-email1',
@@ -93,21 +93,21 @@ class EloquentWhereTest extends DatabaseTestCase
 
     public function testWhereIn()
     {
-        /** @var \QuantaQuirk\Tests\Integration\Database\UserWhereTest $user1 */
+        /** @var \QuantaForge\Tests\Integration\Database\UserWhereTest $user1 */
         $user1 = UserWhereTest::create([
             'name' => 'test-name1',
             'email' => 'test-email1',
             'address' => 'test-address1',
         ]);
 
-        /** @var \QuantaQuirk\Tests\Integration\Database\UserWhereTest $user2 */
+        /** @var \QuantaForge\Tests\Integration\Database\UserWhereTest $user2 */
         $user2 = UserWhereTest::create([
             'name' => 'test-name2',
             'email' => 'test-email2',
             'address' => 'test-address2',
         ]);
 
-        /** @var \QuantaQuirk\Tests\Integration\Database\UserWhereTest $user3 */
+        /** @var \QuantaForge\Tests\Integration\Database\UserWhereTest $user3 */
         $user3 = UserWhereTest::create([
             'name' => 'test-name2',
             'email' => 'test-email3',
@@ -185,21 +185,21 @@ class EloquentWhereTest extends DatabaseTestCase
 
     public function testWhereIntegerInRaw()
     {
-        /** @var \QuantaQuirk\Tests\Integration\Database\UserWhereTest $user1 */
+        /** @var \QuantaForge\Tests\Integration\Database\UserWhereTest $user1 */
         $user1 = UserWhereTest::create([
             'name' => 'test-name1',
             'email' => 'test-email1',
             'address' => 'test-address1',
         ]);
 
-        /** @var \QuantaQuirk\Tests\Integration\Database\UserWhereTest $user2 */
+        /** @var \QuantaForge\Tests\Integration\Database\UserWhereTest $user2 */
         $user2 = UserWhereTest::create([
             'name' => 'test-name2',
             'email' => 'test-email2',
             'address' => 'test-address2',
         ]);
 
-        /** @var \QuantaQuirk\Tests\Integration\Database\UserWhereTest $user3 */
+        /** @var \QuantaForge\Tests\Integration\Database\UserWhereTest $user3 */
         $user3 = UserWhereTest::create([
             'name' => 'test-name2',
             'email' => 'test-email3',
@@ -224,14 +224,14 @@ class EloquentWhereTest extends DatabaseTestCase
 
     public function testFirstWhere()
     {
-        /** @var \QuantaQuirk\Tests\Integration\Database\UserWhereTest $firstUser */
+        /** @var \QuantaForge\Tests\Integration\Database\UserWhereTest $firstUser */
         $firstUser = UserWhereTest::create([
             'name' => 'test-name',
             'email' => 'test-email',
             'address' => 'test-address',
         ]);
 
-        /** @var \QuantaQuirk\Tests\Integration\Database\UserWhereTest $secondUser */
+        /** @var \QuantaForge\Tests\Integration\Database\UserWhereTest $secondUser */
         $secondUser = UserWhereTest::create([
             'name' => 'test-name1',
             'email' => 'test-email1',

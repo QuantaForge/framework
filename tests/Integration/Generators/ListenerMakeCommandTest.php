@@ -1,6 +1,6 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Generators;
+namespace QuantaForge\Tests\Integration\Generators;
 
 class ListenerMakeCommandTest extends TestCase
 {
@@ -38,14 +38,14 @@ class ListenerMakeCommandTest extends TestCase
         ], 'app/Listeners/FooListener.php');
     }
 
-    public function testItCanGenerateListenerFileForQuantaQuirkEvent()
+    public function testItCanGenerateListenerFileForQuantaForgeEvent()
     {
-        $this->artisan('make:listener', ['name' => 'FooListener', '--event' => 'QuantaQuirk\Auth\Events\Login'])
+        $this->artisan('make:listener', ['name' => 'FooListener', '--event' => 'QuantaForge\Auth\Events\Login'])
             ->assertExitCode(0);
 
         $this->assertFileContains([
             'namespace App\Listeners;',
-            'use QuantaQuirk\Auth\Events\Login;',
+            'use QuantaForge\Auth\Events\Login;',
             'class FooListener',
             'public function handle(Login $event)',
         ], 'app/Listeners/FooListener.php');
@@ -58,8 +58,8 @@ class ListenerMakeCommandTest extends TestCase
 
         $this->assertFileContains([
             'namespace App\Listeners;',
-            'use QuantaQuirk\Contracts\Queue\ShouldQueue;',
-            'use QuantaQuirk\Queue\InteractsWithQueue;',
+            'use QuantaForge\Contracts\Queue\ShouldQueue;',
+            'use QuantaForge\Queue\InteractsWithQueue;',
             'class FooListener implements ShouldQueue',
             'public function handle(object $event)',
         ], 'app/Listeners/FooListener.php');
@@ -73,23 +73,23 @@ class ListenerMakeCommandTest extends TestCase
         $this->assertFileContains([
             'namespace App\Listeners;',
             'use App\Events\FooListenerCreated;',
-            'use QuantaQuirk\Contracts\Queue\ShouldQueue;',
-            'use QuantaQuirk\Queue\InteractsWithQueue;',
+            'use QuantaForge\Contracts\Queue\ShouldQueue;',
+            'use QuantaForge\Queue\InteractsWithQueue;',
             'class FooListener implements ShouldQueue',
             'public function handle(FooListenerCreated $event)',
         ], 'app/Listeners/FooListener.php');
     }
 
-    public function testItCanGenerateQueuedListenerFileForQuantaQuirkEvent()
+    public function testItCanGenerateQueuedListenerFileForQuantaForgeEvent()
     {
-        $this->artisan('make:listener', ['name' => 'FooListener', '--queued' => true, '--event' => 'QuantaQuirk\Auth\Events\Login'])
+        $this->artisan('make:listener', ['name' => 'FooListener', '--queued' => true, '--event' => 'QuantaForge\Auth\Events\Login'])
             ->assertExitCode(0);
 
         $this->assertFileContains([
             'namespace App\Listeners;',
-            'use QuantaQuirk\Auth\Events\Login;',
-            'use QuantaQuirk\Contracts\Queue\ShouldQueue;',
-            'use QuantaQuirk\Queue\InteractsWithQueue;',
+            'use QuantaForge\Auth\Events\Login;',
+            'use QuantaForge\Contracts\Queue\ShouldQueue;',
+            'use QuantaForge\Queue\InteractsWithQueue;',
             'class FooListener implements ShouldQueue',
             'public function handle(Login $event)',
         ], 'app/Listeners/FooListener.php');

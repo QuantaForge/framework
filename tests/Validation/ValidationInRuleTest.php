@@ -1,10 +1,10 @@
 <?php
 
-namespace QuantaQuirk\Tests\Validation;
+namespace QuantaForge\Tests\Validation;
 
-use QuantaQuirk\Tests\Validation\fixtures\Values;
-use QuantaQuirk\Validation\Rule;
-use QuantaQuirk\Validation\Rules\In;
+use QuantaForge\Tests\Validation\fixtures\Values;
+use QuantaForge\Validation\Rule;
+use QuantaForge\Validation\Rules\In;
 use PHPUnit\Framework\TestCase;
 
 include_once 'Enums.php';
@@ -13,9 +13,9 @@ class ValidationInRuleTest extends TestCase
 {
     public function testItCorrectlyFormatsAStringVersionOfTheRule()
     {
-        $rule = new In(['QuantaQuirk', 'Framework', 'PHP']);
+        $rule = new In(['QuantaForge', 'Framework', 'PHP']);
 
-        $this->assertSame('in:"QuantaQuirk","Framework","PHP"', (string) $rule);
+        $this->assertSame('in:"QuantaForge","Framework","PHP"', (string) $rule);
 
         $rule = new In(['Life, the Universe and Everything', 'this is a "quote"']);
 

@@ -1,21 +1,21 @@
 <?php
 
-namespace QuantaQuirk\Tests\Console;
+namespace QuantaForge\Tests\Console;
 
-use QuantaQuirk\Console\Command;
-use QuantaQuirk\Console\Scheduling\CacheEventMutex;
-use QuantaQuirk\Console\Scheduling\CacheSchedulingMutex;
-use QuantaQuirk\Console\Scheduling\EventMutex;
-use QuantaQuirk\Console\Scheduling\Schedule;
-use QuantaQuirk\Console\Scheduling\SchedulingMutex;
-use QuantaQuirk\Container\Container;
+use QuantaForge\Console\Command;
+use QuantaForge\Console\Scheduling\CacheEventMutex;
+use QuantaForge\Console\Scheduling\CacheSchedulingMutex;
+use QuantaForge\Console\Scheduling\EventMutex;
+use QuantaForge\Console\Scheduling\Schedule;
+use QuantaForge\Console\Scheduling\SchedulingMutex;
+use QuantaForge\Container\Container;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 
 class ConsoleEventSchedulerTest extends TestCase
 {
     /**
-     * @var \QuantaQuirk\Console\Scheduling\Schedule
+     * @var \QuantaForge\Console\Scheduling\Schedule
      */
     private $schedule;
 

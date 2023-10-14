@@ -1,21 +1,21 @@
 <?php
 
-namespace QuantaQuirk\Tests\Database;
+namespace QuantaForge\Tests\Database;
 
 use BadMethodCallException;
 use Carbon\Carbon;
 use Faker\Generator;
-use QuantaQuirk\Container\Container;
-use QuantaQuirk\Contracts\Foundation\Application;
-use QuantaQuirk\Database\Capsule\Manager as DB;
-use QuantaQuirk\Database\Eloquent\Collection;
-use QuantaQuirk\Database\Eloquent\Factories\CrossJoinSequence;
-use QuantaQuirk\Database\Eloquent\Factories\Factory;
-use QuantaQuirk\Database\Eloquent\Factories\HasFactory;
-use QuantaQuirk\Database\Eloquent\Factories\Sequence;
-use QuantaQuirk\Database\Eloquent\Model as Eloquent;
-use QuantaQuirk\Database\Eloquent\SoftDeletes;
-use QuantaQuirk\Tests\Database\Fixtures\Models\Money\Price;
+use QuantaForge\Container\Container;
+use QuantaForge\Contracts\Foundation\Application;
+use QuantaForge\Database\Capsule\Manager as DB;
+use QuantaForge\Database\Eloquent\Collection;
+use QuantaForge\Database\Eloquent\Factories\CrossJoinSequence;
+use QuantaForge\Database\Eloquent\Factories\Factory;
+use QuantaForge\Database\Eloquent\Factories\HasFactory;
+use QuantaForge\Database\Eloquent\Factories\Sequence;
+use QuantaForge\Database\Eloquent\Model as Eloquent;
+use QuantaForge\Database\Eloquent\SoftDeletes;
+use QuantaForge\Tests\Database\Fixtures\Models\Money\Price;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;
@@ -572,9 +572,9 @@ class DatabaseEloquentFactoryTest extends TestCase
     public function test_resolve_nested_model_name_from_factory()
     {
         Container::getInstance()->instance(Application::class, $app = m::mock(Application::class));
-        $app->shouldReceive('getNamespace')->andReturn('QuantaQuirk\\Tests\\Database\\Fixtures\\');
+        $app->shouldReceive('getNamespace')->andReturn('QuantaForge\\Tests\\Database\\Fixtures\\');
 
-        Factory::useNamespace('QuantaQuirk\\Tests\\Database\\Fixtures\\Factories\\');
+        Factory::useNamespace('QuantaForge\\Tests\\Database\\Fixtures\\Factories\\');
 
         $factory = Price::factory();
 
@@ -807,7 +807,7 @@ class DatabaseEloquentFactoryTest extends TestCase
     /**
      * Get a database connection instance.
      *
-     * @return \QuantaQuirk\Database\ConnectionInterface
+     * @return \QuantaForge\Database\ConnectionInterface
      */
     protected function connection()
     {
@@ -817,7 +817,7 @@ class DatabaseEloquentFactoryTest extends TestCase
     /**
      * Get a schema builder instance.
      *
-     * @return \QuantaQuirk\Database\Schema\Builder
+     * @return \QuantaForge\Database\Schema\Builder
      */
     protected function schema()
     {

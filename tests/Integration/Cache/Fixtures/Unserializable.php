@@ -1,6 +1,6 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Cache\Fixtures;
+namespace QuantaForge\Tests\Integration\Cache\Fixtures;
 
 use Exception;
 

@@ -1,9 +1,9 @@
 <?php
 
-namespace QuantaQuirk\Tests\Pagination;
+namespace QuantaForge\Tests\Pagination;
 
-use QuantaQuirk\Database\Eloquent\Collection;
-use QuantaQuirk\Pagination\AbstractCursorPaginator;
+use QuantaForge\Database\Eloquent\Collection;
+use QuantaForge\Pagination\AbstractCursorPaginator;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 

@@ -1,15 +1,15 @@
 <?php
 
-namespace QuantaQuirk\Tests\Mail;
+namespace QuantaForge\Tests\Mail;
 
 use Aws\Command;
 use Aws\Exception\AwsException;
 use Aws\Ses\SesClient;
-use QuantaQuirk\Config\Repository;
-use QuantaQuirk\Container\Container;
-use QuantaQuirk\Mail\MailManager;
-use QuantaQuirk\Mail\Transport\SesTransport;
-use QuantaQuirk\View\Factory;
+use QuantaForge\Config\Repository;
+use QuantaForge\Container\Container;
+use QuantaForge\Mail\MailManager;
+use QuantaForge\Mail\Transport\SesTransport;
+use QuantaForge\View\Factory;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Mailer\Exception\TransportException;
@@ -42,7 +42,7 @@ class MailSesTransportTest extends TestCase
 
         $manager = new MailManager($container);
 
-        /** @var \QuantaQuirk\Mail\Transport\SesTransport $transport */
+        /** @var \QuantaForge\Mail\Transport\SesTransport $transport */
         $transport = $manager->createSymfonyTransport(['transport' => 'ses']);
 
         $ses = $transport->ses();
@@ -110,9 +110,9 @@ class MailSesTransportTest extends TestCase
                             'transport' => 'ses',
                             'region' => 'eu-west-1',
                             'options' => [
-                                'ConfigurationSetName' => 'QuantaQuirk',
+                                'ConfigurationSetName' => 'QuantaForge',
                                 'Tags' => [
-                                    ['Name' => 'QuantaQuirk', 'Value' => 'Framework'],
+                                    ['Name' => 'QuantaForge', 'Value' => 'Framework'],
                                 ],
                             ],
                         ],
@@ -134,18 +134,18 @@ class MailSesTransportTest extends TestCase
 
         $manager = new MailManager($container);
 
-        /** @var \QuantaQuirk\Mail\Mailer $mailer */
+        /** @var \QuantaForge\Mail\Mailer $mailer */
         $mailer = $manager->mailer('ses');
 
-        /** @var \QuantaQuirk\Mail\Transport\SesTransport $transport */
+        /** @var \QuantaForge\Mail\Transport\SesTransport $transport */
         $transport = $mailer->getSymfonyTransport();
 
         $this->assertSame('eu-west-1', $transport->ses()->getRegion());
 
         $this->assertSame([
-            'ConfigurationSetName' => 'QuantaQuirk',
+            'ConfigurationSetName' => 'QuantaForge',
             'Tags' => [
-                ['Name' => 'QuantaQuirk', 'Value' => 'Framework'],
+                ['Name' => 'QuantaForge', 'Value' => 'Framework'],
             ],
         ], $transport->getOptions());
     }

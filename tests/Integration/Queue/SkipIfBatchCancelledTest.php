@@ -1,14 +1,14 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Queue;
+namespace QuantaForge\Tests\Integration\Queue;
 
-use QuantaQuirk\Bus\Batchable;
-use QuantaQuirk\Bus\Dispatcher;
-use QuantaQuirk\Bus\Queueable;
-use QuantaQuirk\Contracts\Queue\Job;
-use QuantaQuirk\Queue\CallQueuedHandler;
-use QuantaQuirk\Queue\InteractsWithQueue;
-use QuantaQuirk\Queue\Middleware\SkipIfBatchCancelled;
+use QuantaForge\Bus\Batchable;
+use QuantaForge\Bus\Dispatcher;
+use QuantaForge\Bus\Queueable;
+use QuantaForge\Contracts\Queue\Job;
+use QuantaForge\Queue\CallQueuedHandler;
+use QuantaForge\Queue\InteractsWithQueue;
+use QuantaForge\Queue\Middleware\SkipIfBatchCancelled;
 use Mockery as m;
 use Orchestra\Testbench\TestCase;
 

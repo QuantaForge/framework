@@ -1,10 +1,10 @@
 <?php
 
-namespace QuantaQuirk\Tests\Integration\Console;
+namespace QuantaForge\Tests\Integration\Console;
 
-use QuantaQuirk\Console\Command;
-use QuantaQuirk\Console\Scheduling\Schedule;
-use QuantaQuirk\Contracts\Console\Kernel;
+use QuantaForge\Console\Command;
+use QuantaForge\Console\Scheduling\Schedule;
+use QuantaForge\Contracts\Console\Kernel;
 use Orchestra\Testbench\TestCase;
 
 class ConsoleApplicationTest extends TestCase

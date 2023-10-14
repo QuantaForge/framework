@@ -1,11 +1,11 @@
 <?php
 
-namespace QuantaQuirk\Tests\Database;
+namespace QuantaForge\Tests\Database;
 
-use QuantaQuirk\Database\Connection;
-use QuantaQuirk\Database\Query\Processors\PostgresProcessor;
-use QuantaQuirk\Database\Schema\Grammars\PostgresGrammar;
-use QuantaQuirk\Database\Schema\PostgresBuilder;
+use QuantaForge\Database\Connection;
+use QuantaForge\Database\Query\Processors\PostgresProcessor;
+use QuantaForge\Database\Schema\Grammars\PostgresGrammar;
+use QuantaForge\Database\Schema\PostgresBuilder;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 

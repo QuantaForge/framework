@@ -1,12 +1,12 @@
 <?php
 
-namespace QuantaQuirk\Tests\Cache;
+namespace QuantaForge\Tests\Cache;
 
 use Exception;
-use QuantaQuirk\Cache\FileStore;
-use QuantaQuirk\Contracts\Filesystem\FileNotFoundException;
-use QuantaQuirk\Filesystem\Filesystem;
-use QuantaQuirk\Support\Carbon;
+use QuantaForge\Cache\FileStore;
+use QuantaForge\Contracts\Filesystem\FileNotFoundException;
+use QuantaForge\Filesystem\Filesystem;
+use QuantaForge\Support\Carbon;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 
